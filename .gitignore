@@ -1,2 +1,4 @@
 *.yy.c
 *.out
+.vscode
+*.dev

@@ -30,3 +30,4 @@
 #define ASTERISK 30
 #define EOL 31
 #define STRING 32
+#define AS 33

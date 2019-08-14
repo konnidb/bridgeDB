@@ -6,14 +6,15 @@ integer     [+-]?[0-9]+
 decimal     [+-]?[0-9]+\.[0-9]+
 id          [_a-zA-Z][_a-zA-Z0-9]*
 %%
-"("     return OPEN_PARENTHESIS;
-")"     return CLOSE_PARENTHESIS;
-"{"     return OPEN_C_BRACE;
-"}"     return CLOSE_C_BRACE;
-"["     return OPEN_BRACE;
-"]"     return CLOSE_BRACE;
-"-"     return HYPHEN;
-"."     return DOT;
+"("         return OPEN_PARENTHESIS;
+")"         return CLOSE_PARENTHESIS;
+"{"         return OPEN_C_BRACE;
+"}"         return CLOSE_C_BRACE;
+"["         return OPEN_BRACE;
+"]"         return CLOSE_BRACE;
+"-"         return HYPHEN;
+"."         return DOT;
+"AS"        return AS;
 "MATCH"     return MATCH;
 "RETURN"    return RETURN;
 ":"         return COLON;
@@ -36,7 +37,7 @@ id          [_a-zA-Z][_a-zA-Z0-9]*
 {integer}   return INTEGER;
 {decimal}   return DECIMAL;
 {string}	return STRING;
-{id}    return IDENTIFIER;
+{id}        return IDENTIFIER;
 \n          return EOL;
 
 %%
