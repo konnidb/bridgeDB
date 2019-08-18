@@ -1,0 +1,24 @@
+jobs:
+  build:
+    docker:
+      - image: "debian:stretch"
+    steps:
+      - checkout
+      - run:
+          name: Upgrade
+          command: 'apt-get update'
+      - run:
+          name: Installing SUDO
+          command: 'apt-get install -y sudo'
+      - run:
+          name: Installing Flex and Bison
+          command: 'sudo apt-get install -y gcc g++ flex bison'
+      - run:
+          name: Installing CMAKE
+          command: 'sudo apt-get install -y cmake'
+      - run:
+          name: Running Flex
+          command: 'flex src/query/lexer/lang.l'
+      - run:
+          name: Running Bison
+          command: 'bison src/query/parser/parser.y'
