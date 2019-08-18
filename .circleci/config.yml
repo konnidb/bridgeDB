@@ -5,11 +5,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Installing SUDO
-          command: 'apt-get install -y sudo'
-      - run:
           name: Upgrade
           command: 'apt-get update'
+      - run:
+          name: Installing SUDO
+          command: 'apt-get install -y sudo'
       - run:
           name: Installing Flex and Bison
           command: 'sudo apt-get install -y gcc g++ flex bison'
