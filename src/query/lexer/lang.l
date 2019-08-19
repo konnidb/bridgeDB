@@ -1,5 +1,5 @@
 %{
-#include "constants.h"
+#include "../../../parser.tab.c"
 %}
 string	    \"[^\n"]+\"
 integer     [+-]?[0-9]+
