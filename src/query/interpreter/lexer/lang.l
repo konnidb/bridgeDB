@@ -1,5 +1,5 @@
 %{
-#include "../../../parser.tab.c"
+#include "parser.tab.h"
 %}
 string	    \"[^\n"]+\"
 integer     [+-]?[0-9]+
@@ -15,7 +15,7 @@ id          [_a-zA-Z][_a-zA-Z0-9]*
 "-"         return HYPHEN;
 "."         return DOT;
 "AS"        return AS;
-"MATCH"     return MATCH;
+"MATCH"     {std::cout<<"Simple cout from match"<<std::endl;return MATCH;}
 "RETURN"    return RETURN;
 ":"         return COLON;
 "NOT"       return NOT;

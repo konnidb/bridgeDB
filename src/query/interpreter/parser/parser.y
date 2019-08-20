@@ -1,6 +1,7 @@
 %{
 #include <iostream>
-#include <string.h>
+int yyerror(char *);
+int yylex(void);
 %}
 %token IDENTIFIER 
 %token MATCH
@@ -44,7 +45,8 @@
 S:  | START S;
 START:  MATCH_ST
 ;
-MATCH_ST: MATCH DATA_STRUCT RETURN_ST
+MATCH_ST: MATCH {std::cout<<"Match simple"<<std::endl;}
+        | MATCH DATA_STRUCT RETURN_ST
         | MATCH DATA_STRUCT WHERE_ST RETURN_ST
 ;
 NODE: OPEN_PARENTHESIS IDENTIFIER COLON OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS
@@ -71,7 +73,6 @@ CONNECTION: CONNECTION_TO_LEFT
             ;
 DATA_STRUCT: END_STRUCT
             | END_STRUCT CONNECTION DATA_STRUCT
-            | END_STRUCT HYPHEN HYPHEN END_STRUCT
             | END_STRUCT HYPHEN HYPHEN DATA_STRUCT
             ;
 KEY_VALUE: IDENTIFIER COLON VALUE
@@ -109,3 +110,8 @@ LITERAL_VALUE: VALUE
             | ID_RETURN_VALUES
             ;
 %%
+
+int yyerror(char *string) {
+        std::cout<<string<<std::endl;
+        return 0;
+}
