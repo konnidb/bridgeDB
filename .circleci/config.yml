@@ -18,7 +18,7 @@ jobs:
           command: 'sudo apt-get install -y cmake'
       - run:
           name: Running Bison
-          command: 'bison src/query/interpreter/parser/parser.y'
+          command: 'bison --defines=src/query/interpreter/parser.tab.h --output=src/query/interpreter/parser.tab.c src/query/interpreter/parser/parser.y'
       - run:
           name: Running Flex
-          command: 'flex src/query/interpreter/lexer/lang.l'
+          command: 'flex --outfile=src/query/interpreter/lex.yy.c src/query/interpreter/lexer/lang.l'
