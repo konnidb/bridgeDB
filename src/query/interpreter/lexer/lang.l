@@ -36,7 +36,7 @@ id          [_a-zA-Z][_a-zA-Z0-9]*
 "*"         return ASTERISK;
 {integer}   return INTEGER;
 {decimal}   return DECIMAL;
-{string}	return STRING;
+{string}	  return STRING;
 {id}        return IDENTIFIER;
 \n          return EOL;
 
