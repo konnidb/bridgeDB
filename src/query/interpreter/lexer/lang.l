@@ -1,13 +1,15 @@
 %{
 #include "parser.tab.h"
+using namespace std;
 %}
 string	    \"[^\n"]+\"
 integer     [+-]?[0-9]+
 decimal     [+-]?[0-9]+\.[0-9]+
 id          [_a-zA-Z][_a-zA-Z0-9]*
 %%
-"("         return OPEN_PARENTHESIS;
-")"         return CLOSE_PARENTHESIS;
+[ \t]+$     cout<<"blank space"<<endl;
+"("         {cout<<"OPEN_PARENTHESIS"<<endl;return OPEN_PARENTHESIS;}
+")"         {cout<<"CLOSE_PARENTHESIS"<<endl;return CLOSE_PARENTHESIS;}
 "{"         return OPEN_C_BRACE;
 "}"         return CLOSE_C_BRACE;
 "["         return OPEN_BRACE;
@@ -15,7 +17,7 @@ id          [_a-zA-Z][_a-zA-Z0-9]*
 "-"         return HYPHEN;
 "."         return DOT;
 "AS"        return AS;
-"MATCH"     {std::cout<<"Simple cout from match"<<std::endl;return MATCH;}
+"MATCH"     {cout<<"Simple cout from match"<<endl;return MATCH;}
 "RETURN"    return RETURN;
 ":"         return COLON;
 "NOT"       return NOT;
@@ -37,7 +39,7 @@ id          [_a-zA-Z][_a-zA-Z0-9]*
 {integer}   return INTEGER;
 {decimal}   return DECIMAL;
 {string}	  return STRING;
-{id}        return IDENTIFIER;
+{id}        {cout<<yytext<<endl;return IDENTIFIER;}
 \n          return EOL;
 
 %%
