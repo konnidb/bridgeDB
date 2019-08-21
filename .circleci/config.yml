@@ -17,5 +17,5 @@ jobs:
           name: Installing CMAKE
           command: 'sudo apt-get install -y cmake'
       - run:
-        name: Running make for langbuilder
-        command: make -f MAKEFILE
+          name: Running make for langbuilder
+          command: make -f MAKEFILE
