@@ -4,4 +4,4 @@
 .vscode
 *.dev
 CMTest/.vs/
-CMTest/Debug/
+CMTest/CMTest/Debug/
