@@ -5,15 +5,26 @@
 #include"..\..\utils\LogHandler.cpp"
 using namespace std;
 
+enum ElementType {
+	NODE,
+	EDGE,
+	SCHEMA,
+	UNDEF
+};
+
 class Serializable {
 public:
 	unordered_map<string, string> properties;
+	int id;
 	string path;
+	const ElementType objType;
 
-	Serializable(){}
-	Serializable(string path) {
+	Serializable(): objType(UNDEF){}
+	Serializable(string path): objType(UNDEF) {
 		this->path = path;
 	}
+
+
 
 	void load(string contentStr) {
 		ifstream rf("student.dat", ios::out | ios::binary);

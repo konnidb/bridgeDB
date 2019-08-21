@@ -1,0 +1,11 @@
+json/properties parser
+file/path manager or storing
+uuid generator
+encryption for data management
+configuration file that should contains:
+	-storage path
+		-database data files
+		-backup files
+		-installatio
+		-
+	-a
