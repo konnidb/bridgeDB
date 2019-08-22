@@ -1,5 +1,7 @@
 *.yy.c
+*.yy.h
 *.tab.c
+*.tab.h
 *.out
 .vscode
 *.dev

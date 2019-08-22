@@ -17,8 +17,5 @@ jobs:
           name: Installing CMAKE
           command: 'sudo apt-get install -y cmake'
       - run:
-          name: Running Flex
-          command: 'flex src/query/lexer/lang.l'
-      - run:
-          name: Running Bison
-          command: 'bison src/query/parser/parser.y'
+          name: Running make for langbuilder
+          command: make -f MAKEFILE
