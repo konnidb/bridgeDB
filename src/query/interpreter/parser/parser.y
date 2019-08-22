@@ -1,7 +1,7 @@
 %{
-#include "parser.tab.h"
 #include <iostream>
-#include "interpreter.h"
+#include "lex.yy.c"
+#include "Interpreter.cpp"
 using namespace std;
 int parse_query(Interpreter *);
 int yyerror(char *);
@@ -134,7 +134,7 @@ int parse_query(Interpreter *intr)
 {
 	interpreter = intr;
 	YY_BUFFER_STATE buffer = yy_scan_string(interpreter->get_query().c_str());
-	yyparse();
+	interpreter->set_parse_result(yyparse());
 }
 
 int yyerror(char *string) {
