@@ -130,6 +130,11 @@ LITERAL_VALUE: VALUE
             ;
 %%
 
+void match_statement()
+{
+        interpreter->match();
+}
+
 int parse_query(Interpreter *intr)
 {
 	interpreter = intr;
