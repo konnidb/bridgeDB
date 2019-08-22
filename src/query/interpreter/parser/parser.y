@@ -1,7 +1,11 @@
 %{
+#include "parser.tab.h"
 #include <iostream>
+#include "interpreter.h"
+using namespace std;
+int parse_query(Interpreter *);
 int yyerror(char *);
-int yylex(void);
+Interpreter* interpreter; 
 %}
 %token IDENTIFIER 
 %token MATCH
@@ -9,7 +13,7 @@ int yylex(void);
 %token CREATE
 %token UPDATE
 %token COLON 
-%token OPEN_C_BRACE 
+%token OPEN_C_BRACE
 %token CLOSE_C_BRACE 
 %token OPEN_PARENTHESIS
 %token CLOSE_PARENTHESIS
@@ -45,9 +49,9 @@ int yylex(void);
 S:  | START S;
 START:  MATCH_ST
 ;
-MATCH_ST: MATCH {std::cout<<"Match simple"<<std::endl;}
-        | MATCH DATA_STRUCT
-        | MATCH DATA_STRUCT WHERE_ST
+MATCH_ST: MATCH {cout<<"Match simple"<<endl;}
+        | MATCH DATA_STRUCT RETURN_ST
+        | MATCH DATA_STRUCT WHERE_ST RETURN_ST
 ;
 
 MATCH_WITH_RETURN: MATCH_ST RETURN_ST
@@ -70,7 +74,7 @@ NODE: OPEN_PARENTHESIS IDENTIFIER COLON OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLO
 EDGE: OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE 
     | OPEN_BRACE COLON IDENTIFIER CLOSE_BRACE
     ;
-END_STRUCT: NODE {std::cout<<$1;}
+END_STRUCT: NODE {cout<<$$<<" from parser"<<endl;}
             | EDGE
             ;
 CONNECTION_UNDIRECTED: HYPHEN
@@ -126,7 +130,14 @@ LITERAL_VALUE: VALUE
             ;
 %%
 
+int parse_query(Interpreter *intr)
+{
+	interpreter = intr;
+	YY_BUFFER_STATE buffer = yy_scan_string(interpreter->get_query().c_str());
+	yyparse();
+}
+
 int yyerror(char *string) {
-        std::cout<<string<<std::endl;
-        return 0;
+	cout<<string<<endl;
+	return 0;
 }
