@@ -22,32 +22,32 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{B93385D8-A3E4-4A38-AF9B-99A55707A3E5}</ProjectGuid>
     <RootNamespace>CMTest</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -112,7 +112,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\admin\admin.cpp" />
+    <ClCompile Include="..\..\src\admin\ConfigFile.cpp" />
     <ClCompile Include="..\..\src\cmd\cmd.cpp" />
+    <ClCompile Include="..\..\src\cmd\Main.cpp" />
     <ClCompile Include="..\..\src\graph\operations\operations.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Edge.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Graph.cpp" />
@@ -129,6 +131,8 @@
     <ClCompile Include="..\..\src\storage\storage.cpp" />
     <ClCompile Include="..\..\src\storage\StoreHandler.cpp" />
     <ClCompile Include="..\..\src\utils\LogHandler.cpp" />
+    <ClCompile Include="..\..\src\utils\LogTypeEnum.cpp" />
+    <ClCompile Include="..\..\src\utils\TextMessagesHandler.cpp" />
     <ClCompile Include="..\..\src\utils\type_names.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -5,11 +5,21 @@
 #include"..\utils\LogHandler.cpp"
 #include"..\graph\utils\Serializable.cpp"
 #include"..\graph\structs\Graph.cpp"
-#include"Node.cpp"
+#include"..\admin\ConfigFileModel.cpp"
 using namespace std;
 
 class StoreHandler {
 private:
 	string directory;
-	Serializable 
+	Serializable * element;
+
+	StoreHandler(Serializable element) {
+
+	}
+
+	void buildPath() {
+		if (directory == NULL) {
+			directory = ConfigFileModel::
+		}
+	}
 };

@@ -1,0 +1,945 @@
+﻿  ConfigFile.cpp
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\admin\ConfigFile.cpp(34,53): error C2686:  cannot overload static and non-static member functions with the same parameter types
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\admin\ConfigFile.cpp(34,53): message :  could be 'bool ConfigFileHandler::setConfig(std::string,std::string)'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\admin\ConfigFile.cpp(34,53): message :  or       'bool ConfigFileHandler::setConfig(std::string,std::string)'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\admin\ConfigFile.cpp(37,1): error C2059:  syntax error: '}'
+  Main.cpp
+  Edge.cpp
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\admin\ConfigFile.cpp(37,1): error C2143:  syntax error: missing ';' before '}'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(6,14): error C2011:  'LogType': 'enum' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(6): message :  see declaration of 'LogType'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14,11): error C2011:  'Log': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31,18): error C2011:  'LogActions': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39,16): error C2011:  'ErrorMap': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(31,22): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(31,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(35,29): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(35,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(42,22): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(42,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(45,29): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(45,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(8,18): error C2011:  'ElementType': 'enum' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(8): message :  see declaration of 'ElementType'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(15,20): error C2011:  'Serializable': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(15): message :  see declaration of 'Serializable'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+  Graph.cpp
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C1003:  error count exceeds 100; stopping compilation
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(6,14): error C2011:  'LogType': 'enum' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(6): message :  see declaration of 'LogType'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14,11): error C2011:  'Log': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31,18): error C2011:  'LogActions': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39,16): error C2011:  'ErrorMap': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(31,22): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(31,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(35,29): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(35,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(42,22): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(42,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(45,29): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(45,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(8,18): error C2011:  'ElementType': 'enum' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(8): message :  see declaration of 'ElementType'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(15,20): error C2011:  'Serializable': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(15): message :  see declaration of 'Serializable'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+  Node.cpp
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C1003:  error count exceeds 100; stopping compilation
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(6,14): error C2011:  'LogType': 'enum' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(6): message :  see declaration of 'LogType'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14,11): error C2011:  'Log': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31,18): error C2011:  'LogActions': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39,16): error C2011:  'ErrorMap': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(31,22): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(31,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(35,29): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(35,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(42,22): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(42,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(45,29): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(45,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(8,18): error C2011:  'ElementType': 'enum' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(8): message :  see declaration of 'ElementType'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(15,20): error C2011:  'Serializable': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(15): message :  see declaration of 'Serializable'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+  Schema.cpp
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C1003:  error count exceeds 100; stopping compilation
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(6,14): error C2011:  'LogType': 'enum' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(6): message :  see declaration of 'LogType'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14,11): error C2011:  'Log': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31,18): error C2011:  'LogActions': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39,16): error C2011:  'ErrorMap': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(31,22): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(31,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(35,29): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(35,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(42,22): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(42,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(45,29): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(45,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(8,18): error C2011:  'ElementType': 'enum' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(8): message :  see declaration of 'ElementType'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(15,20): error C2011:  'Serializable': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(15): message :  see declaration of 'Serializable'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+  structs.cpp
+  lexer.cpp
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C1003:  error count exceeds 100; stopping compilation
+  query.cpp
+  StoreHandler.cpp
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\query\lexer\lexer.cpp(2,10): error C1083:  Cannot open include file: 'lex.yy.c': No such file or directory
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(6,14): error C2011:  'LogType': 'enum' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(6): message :  see declaration of 'LogType'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14,11): error C2011:  'Log': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31,18): error C2011:  'LogActions': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39,16): error C2011:  'ErrorMap': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(31,22): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(31,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(35,29): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(35,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(42,22): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(42,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(45,29): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(45,1): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(8,18): error C2011:  'ElementType': 'enum' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(8): message :  see declaration of 'ElementType'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(15,20): error C2011:  'Serializable': 'class' type redefinition
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\graph\utils\Serializable.cpp(15): message :  see declaration of 'Serializable'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,38): error C2374:  'error_storing_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46): message :  see declaration of 'error_storing_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,95): error C2065:  'printAndLog': undeclared identifier
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(46,96): error C2027:  use of undefined type 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(14): message :  see declaration of 'Log'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,17): error C2027:  use of undefined type 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(39): message :  see declaration of 'ErrorMap'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,38): error C2374:  'error_loading_object': redefinition; multiple initialization
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47): message :  see declaration of 'error_loading_object'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,84): error C2027:  use of undefined type 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(31): message :  see declaration of 'LogActions'
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C2065:  'printAndLog': undeclared identifier
+  LogHandler.cpp
+  TextMessagesHandler.cpp
+  type_names.cpp
+  Generating Code...
+C:\Users\cmarisca\Documents\CRISTINA\proy\bridgeDB\src\utils\LogHandler.cpp(47,95): error C1003:  error count exceeds 100; stopping compilation

@@ -46,3 +46,4 @@ public:
 Log * ErrorMap::error_storing_object = new Log(1001, "", "", FAILURE, &LogActions::printAndLog);
 Log * ErrorMap::error_loading_object = new Log(1001, "", "", FAILURE, &LogActions::printAndLog);
 
+
