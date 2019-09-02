@@ -1,10 +1,10 @@
+#ifndef INTERPRETER_CLASS
+#define INTERPRETER_CLASS
 #include <iostream>
 #include <string.h>
 #include <unordered_map>
 using namespace std;
 
-#ifndef INTERPRETER_CLASS
-#define INTERPRETER_CLASS
 
 class Interpreter
 {
@@ -24,6 +24,7 @@ public:
   void match(void);
   void return_clause(void);
   void create_node_id(string);
+  void create_node_id(char*);
   void create_node_alias(string, string);
   void assign_node_value(string, void*);
   void create_edge_id(string);

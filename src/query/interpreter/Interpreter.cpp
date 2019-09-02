@@ -68,9 +68,16 @@ void Interpreter::match(void)
 
 void Interpreter::create_node_id(string node_id)
 {
+	cout<<"In this line";
 	string nv = NULL;
 	this->nodes[node_id] = &nv;
 	// *this->nodes->insert(make_pair(node_id, NULL));
+}
+
+void Interpreter::create_node_id(char* node_id)
+{
+	string id(node_id);
+	this->nodes[node_id] = NULL;
 }
 
 void Interpreter::set_parse_result(int result)

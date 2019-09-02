@@ -1,57 +1,66 @@
 %{
 #include <iostream>
 #include "lex.yy.c"
+#include <string.h>
 #include "Interpreter.cpp"
 using namespace std;
 int parse_query(Interpreter *);
 int yyerror(char *);
+void register_node(char*);
 Interpreter* interpreter; 
 %}
-%token IDENTIFIER 
-%token MATCH
-%token RETURN
-%token CREATE
-%token UPDATE
+%union {
+        int num;
+        float floatValue;
+        char* strValue;
+        bool boolValue;
+}
+%token <strValue> IDENTIFIER
+%token <strValue> MATCH
+%token <strValue> RETURN
+%token <strValue> CREATE
+%token <strValue> UPDATE
 %token COLON 
 %token OPEN_C_BRACE
-%token CLOSE_C_BRACE 
+%token <strValue> CLOSE_C_BRACE 
 %token OPEN_PARENTHESIS
 %token CLOSE_PARENTHESIS
-%token OPEN_BRACE
-%token CLOSE_BRACE
-%token NOT 
-%token WHERE 
-%token EQUALS 
-%token GREATER_THAN 
-%token LOWER_THAN 
-%token APOTSTROPHE 
-%token QUOTATION_MARK
-%token INTEGER
-%token DECIMAL
-%token DOT
-%token ARROW_TO_LEFT 
-%token ARROW_TO_RIGHT 
-%token HYPHEN 
-%token COMA 
-%token CONTAINS 
-%token STARTS 
-%token ENDS
-%token WITH
-%token PRIME //VIRGUILILLA
-%token ASTERISK
-%token EOL 
-%token STRING 
-%token AS
-%token TRUE
-%token FALSE
+%token <strValue> OPEN_BRACE
+%token <strValue> CLOSE_BRACE
+%token <strValue> NOT 
+%token <strValue> WHERE 
+%token <strValue> EQUALS 
+%token <strValue> GREATER_THAN 
+%token <strValue> LOWER_THAN  
+%token <strValue> APOTSTROPHE 
+%token <strValue> QUOTATION_MARK
+%token <strValue> INTEGER
+%token <strValue> DECIMAL
+%token <strValue> DOT
+%token <strValue> ARROW_TO_LEFT 
+%token <strValue> ARROW_TO_RIGHT 
+%token <strValue> HYPHEN 
+%token <strValue> COMA 
+%token <strValue> CONTAINS 
+%token <strValue> STARTS 
+%token <strValue> ENDS
+%token <strValue> WITH
+%token <strValue> PRIME //VIRGUILILLA
+%token <strValue> ASTERISK
+%token <strValue> EOL 
+%token <strValue> STRING 
+%token <strValue> AS
+%token <strValue> TRUE
+%token <strValue> FALSE
+%type <strValue> END_STRUCT
 %start S
 %%
 S:  | START S;
 START:  MATCH_ST
 ;
 MATCH_ST: MATCH {cout<<"Match simple"<<endl;}
-        | MATCH DATA_STRUCT RETURN_ST
-        | MATCH DATA_STRUCT WHERE_ST RETURN_ST
+        | MATCH DATA_STRUCT RETURN_ST {cout<<"Match DATA RET"<<endl;}
+        | MATCH DATA_STRUCT WHERE_ST RETURN_ST {cout<<"Match DATA WHERE RET"<<endl;}
 ;
 
 MATCH_WITH_RETURN: MATCH_ST RETURN_ST
@@ -63,10 +72,15 @@ CREATE_ST: CREATE DATA_STRUCT
 MATCH_CREATE: MATCH_ST CREATE_ST
 ;
 
+END_STRUCT: NODE {cout << "NODe IN END STRCUT" << endl; return NULL;}
+            | EDGE
+            ;
 
-NODE: OPEN_PARENTHESIS IDENTIFIER COLON OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS
+NODE: OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS
         | OPEN_PARENTHESIS CLOSE_PARENTHESIS
-        | OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS
+        | OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS {
+                register_node($2);
+        }
         | OPEN_PARENTHESIS IDENTIFIER CLOSE_PARENTHESIS
         | OPEN_PARENTHESIS IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS
         | OPEN_PARENTHESIS OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS
@@ -74,9 +88,7 @@ NODE: OPEN_PARENTHESIS IDENTIFIER COLON OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLO
 EDGE: OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE 
     | OPEN_BRACE COLON IDENTIFIER CLOSE_BRACE
     ;
-END_STRUCT: NODE {cout<<$$<<" from parser"<<endl;}
-            | EDGE
-            ;
+
 CONNECTION_UNDIRECTED: HYPHEN
                     ;
 CONNECTION_TO_LEFT: LOWER_THAN HYPHEN
@@ -88,7 +100,7 @@ CONNECTION: CONNECTION_TO_LEFT
             | CONNECTION_TO_RIGHT
             | HYPHEN HYPHEN
             ;
-DATA_STRUCT: END_STRUCT
+DATA_STRUCT: END_STRUCT {cout << "END_STRUCT" << endl;}
             | END_STRUCT CONNECTION DATA_STRUCT
             | NODE HYPHEN HYPHEN NODE
             | NODE ARROW_TO_LEFT HYPHEN NODE
@@ -139,10 +151,16 @@ int parse_query(Interpreter *intr)
 {
 	interpreter = intr;
 	YY_BUFFER_STATE buffer = yy_scan_string(interpreter->get_query().c_str());
-	interpreter->set_parse_result(yyparse());
+        yyparse();
+	// interpreter->set_parse_result(yyparse());
 }
 
 int yyerror(char *string) {
 	cout<<string<<endl;
 	return 0;
+}
+
+void register_node(char* nodeID)
+{
+        interpreter->create_node_id(nodeID);
 }
