@@ -1,5 +1,4 @@
-#ifndef INTERPRETER_CLASS
-#define INTERPRETER_CLASS
+#pragma once
 #include <iostream>
 #include <string.h>
 #include <unordered_map>
@@ -55,4 +54,4 @@ public:
 	void *get_edge_value_by_alias(string);
 	~Interpreter();
 };
-#endif
+// #endif
