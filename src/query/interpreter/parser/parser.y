@@ -2,18 +2,22 @@
 #include <iostream>
 #include "lex.yy.c"
 #include <string.h>
+#include <unordered_map>
 #include "Interpreter.cpp"
 using namespace std;
 int parse_query(Interpreter *);
 int yyerror(char *);
 void register_node(char*);
-Interpreter* interpreter; 
+Interpreter* interpreter;
 %}
 %union {
-        int num;
+        int intValue;
+        double doubleValue;
         float floatValue;
         char* strValue;
         bool boolValue;
+        interpreter_node* nodeValue;
+        interpreter_edge* edgeValue;
 }
 %token <strValue> IDENTIFIER
 %token <strValue> MATCH
@@ -35,7 +39,7 @@ Interpreter* interpreter;
 %token <strValue> APOTSTROPHE 
 %token <strValue> QUOTATION_MARK
 %token <strValue> INTEGER
-%token <strValue> DECIMAL
+%token <doubleValue> DECIMAL
 %token <strValue> DOT
 %token <strValue> ARROW_TO_LEFT 
 %token <strValue> ARROW_TO_RIGHT 
@@ -52,7 +56,9 @@ Interpreter* interpreter;
 %token <strValue> AS
 %token <strValue> TRUE
 %token <strValue> FALSE
+%type <strValue> NODE
 %type <strValue> END_STRUCT
+%type <strValue> EDGE
 %start S
 %%
 S:  | START S;
@@ -72,20 +78,24 @@ CREATE_ST: CREATE DATA_STRUCT
 MATCH_CREATE: MATCH_ST CREATE_ST
 ;
 
-END_STRUCT: NODE {cout << "NODe IN END STRCUT" << endl; return NULL;}
+END_STRUCT: NODE {$$ = $1;}
             | EDGE
             ;
 
-NODE: OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS
-        | OPEN_PARENTHESIS CLOSE_PARENTHESIS
-        | OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS {
-                register_node($2);
+NODE: OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {
+                $$ = $2;
+                // register_node($2);
         }
-        | OPEN_PARENTHESIS IDENTIFIER CLOSE_PARENTHESIS
-        | OPEN_PARENTHESIS IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS
-        | OPEN_PARENTHESIS OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS
+        | OPEN_PARENTHESIS CLOSE_PARENTHESIS {$$ = "";}
+        | OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS {
+                $$ = $2;
+                // register_node($2);
+        }
+        | OPEN_PARENTHESIS IDENTIFIER CLOSE_PARENTHESIS {$$ = $2;}
+        | OPEN_PARENTHESIS IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = $2;}
+        | OPEN_PARENTHESIS OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = "";}
 ;
-EDGE: OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE 
+EDGE: OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE {$$ = $2;}
     | OPEN_BRACE COLON IDENTIFIER CLOSE_BRACE
     ;
 

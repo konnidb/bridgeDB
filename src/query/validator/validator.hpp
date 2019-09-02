@@ -12,6 +12,7 @@ private:
     /* data */
 public:
     validator();
+    bool validate_schema(void*, class Shema*);
     ~validator();
 };
 

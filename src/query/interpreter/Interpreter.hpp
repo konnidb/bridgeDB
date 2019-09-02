@@ -5,6 +5,18 @@
 #include <unordered_map>
 using namespace std;
 
+struct interpreter_node
+{
+  char *name;
+  char *schema_name;
+  unordered_map<string, void *> values;
+};
+struct interpreter_edge
+{
+  char *name;
+  char *schema_name;
+  char *label;
+};
 
 class Interpreter
 {

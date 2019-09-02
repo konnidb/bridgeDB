@@ -7,4 +7,9 @@ using namespace std;
 
 validator::validator() {};
 
+bool validator::validate_schema(void* node, Schema* schema)
+{
+    return false;
+}
+
 validator::~validator() {};

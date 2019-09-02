@@ -1,5 +1,6 @@
 %{
 #include <string.h>
+#include "Interpreter.hpp"
 #include "parser.tab.h"
 using namespace std;
 %}
@@ -37,10 +38,10 @@ id          [_a-zA-Z][_a-zA-Z0-9]*
 "WITH"      return WITH;
 "~"         return PRIME;
 "*"         return ASTERISK;
-{integer}   return INTEGER;
-{decimal}   return DECIMAL;
-{string}	  return STRING;
-{id}        {yylval.strValue =  (char*) strdup(yytext);cout << yytext << endl; return IDENTIFIER;}
+{integer}   {yylval.intValue = atoi(yytext);return INTEGER;}
+{decimal}   {yylval.doubleValue = strtod(yytext, NULL); return DECIMAL;}
+{string}	{yylval.strValue =  (char*) strdup(yytext); return STRING;}
+{id}        {yylval.strValue =  (char*) strdup(yytext); cout << yytext << endl; return IDENTIFIER;}
 \n          return EOL;
 
 %%

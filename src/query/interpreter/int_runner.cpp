@@ -3,6 +3,7 @@
 #include <string.h>
 #include "Interpreter.hpp"
 #include <assert.h>
+#include <unordered_map>
 // #include "parser.tab.c"
 using namespace std;
 bool greater_than(void *parameter, void *control);
