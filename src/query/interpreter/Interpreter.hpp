@@ -4,25 +4,16 @@
 #include <unordered_map>
 using namespace std;
 
-struct interpreter_node
-{
-	char *name;
-	char *schema_name;
+struct interpreter_struct {
+	char* name;
+	char* schema_name;
 	unordered_map<string, void*>* values;
-	interpreter_node(void){};
-	interpreter_node(char* name)
-	{
-		this->name = name;
-	};
-	~interpreter_node()
-	{
-
-	};
 };
-struct interpreter_edge
+
+struct interpreter_node: public interpreter_struct
+{};
+struct interpreter_edge: public interpreter_struct
 {
-	char *name;
-	char *schema_name;
 	char *label;
 };
 

@@ -20,6 +20,7 @@ Interpreter* interpreter;
         bool boolValue;
         interpreter_node* nodeValue;
         interpreter_edge* edgeValue;
+		interpreter_struct* structValue;
 }
 %token <strValue> IDENTIFIER
 %token <strValue> MATCH
@@ -59,8 +60,8 @@ Interpreter* interpreter;
 %token <strValue> TRUE
 %token <strValue> FALSE
 %type <nodeValue> NODE
-%type <strValue> END_STRUCT
-%type <strValue> EDGE
+%type <edgeValue> EDGE
+%type <structValue> END_STRUCT
 %start S
 %%
 S:  | START S;
@@ -80,22 +81,20 @@ CREATE_ST: CREATE DATA_STRUCT
 MATCH_CREATE: MATCH_ST CREATE_ST
 ;
 
-END_STRUCT: NODE {$$ = "";}
-            | EDGE
+END_STRUCT: NODE 	{$$ = $1;}
+            | EDGE 	{$$ = $1;}
             ;
 
-NODE: OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {
-                $$ = generate_node($2, $4,NULL);
-        }
+NODE: OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = generate_node($2, $4,NULL);}
         | OPEN_PARENTHESIS CLOSE_PARENTHESIS {$$ = generate_node("", "", NULL);}
         | OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS {$$ = generate_node($2, $4, NULL);}
         | OPEN_PARENTHESIS IDENTIFIER CLOSE_PARENTHESIS {$$ = generate_node($2, "", NULL);}
         | OPEN_PARENTHESIS IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = generate_node($2, "", NULL);}
-        | OPEN_PARENTHESIS OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = NULL;}
+        | OPEN_PARENTHESIS OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = generate_node("", "", NULL);}
 ;
-EDGE: OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE {$$ = $2;}
-    | OPEN_BRACE COLON IDENTIFIER CLOSE_BRACE
-    ;
+EDGE: OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE {$$ = generate_edge($2, $4, "");}
+    | OPEN_BRACE COLON IDENTIFIER CLOSE_BRACE {$$ = generate_edge("", $3, "")}
+;
 
 CONNECTION_UNDIRECTED: HYPHEN
                     ;
@@ -108,7 +107,7 @@ CONNECTION: CONNECTION_TO_LEFT
             | CONNECTION_TO_RIGHT
             | HYPHEN HYPHEN
             ;
-DATA_STRUCT: END_STRUCT {cout << "END_STRUCT" << endl;}
+DATA_STRUCT: END_STRUCT {}
             | END_STRUCT CONNECTION DATA_STRUCT
             | NODE HYPHEN HYPHEN NODE
             | NODE ARROW_TO_LEFT HYPHEN NODE
