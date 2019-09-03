@@ -8,6 +8,8 @@ using namespace std;
 int parse_query(Interpreter *);
 int yyerror(char *);
 void register_node(char*);
+interpreter_node* generate_node(char* node_id, char* schema_name, unordered_map<string, void*>* value);
+interpreter_edge* generate_edge(char* edge_name, char* label, char* schema_name);
 Interpreter* interpreter;
 %}
 %union {
@@ -24,7 +26,7 @@ Interpreter* interpreter;
 %token <strValue> RETURN
 %token <strValue> CREATE
 %token <strValue> UPDATE
-%token COLON 
+%token COLON
 %token OPEN_C_BRACE
 %token <strValue> CLOSE_C_BRACE 
 %token OPEN_PARENTHESIS
@@ -56,7 +58,7 @@ Interpreter* interpreter;
 %token <strValue> AS
 %token <strValue> TRUE
 %token <strValue> FALSE
-%type <strValue> NODE
+%type <nodeValue> NODE
 %type <strValue> END_STRUCT
 %type <strValue> EDGE
 %start S
@@ -78,22 +80,18 @@ CREATE_ST: CREATE DATA_STRUCT
 MATCH_CREATE: MATCH_ST CREATE_ST
 ;
 
-END_STRUCT: NODE {$$ = $1;}
+END_STRUCT: NODE {$$ = "";}
             | EDGE
             ;
 
 NODE: OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {
-                $$ = $2;
-                // register_node($2);
+                $$ = generate_node($2, $4,NULL);
         }
-        | OPEN_PARENTHESIS CLOSE_PARENTHESIS {$$ = "";}
-        | OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS {
-                $$ = $2;
-                // register_node($2);
-        }
-        | OPEN_PARENTHESIS IDENTIFIER CLOSE_PARENTHESIS {$$ = $2;}
-        | OPEN_PARENTHESIS IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = $2;}
-        | OPEN_PARENTHESIS OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = "";}
+        | OPEN_PARENTHESIS CLOSE_PARENTHESIS {$$ = generate_node("", "", NULL);}
+        | OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS {$$ = generate_node($2, $4, NULL);}
+        | OPEN_PARENTHESIS IDENTIFIER CLOSE_PARENTHESIS {$$ = generate_node($2, "", NULL);}
+        | OPEN_PARENTHESIS IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = generate_node($2, "", NULL);}
+        | OPEN_PARENTHESIS OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = NULL;}
 ;
 EDGE: OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE {$$ = $2;}
     | OPEN_BRACE COLON IDENTIFIER CLOSE_BRACE
@@ -170,7 +168,26 @@ int yyerror(char *string) {
 	return 0;
 }
 
+interpreter_edge* generate_edge(char* edge_name, char* label, char* schema_name)
+{
+	interpreter_edge edge;
+	edge.name = edge_name;
+	edge.label = label;
+	edge.schema_name = schema_name;
+	return &edge;
+}
+
+interpreter_node* generate_node(char* node_id, char* schema_name, unordered_map<string, void*>* value)
+{
+	interpreter_node node;	
+	node.name = node_id;
+	node.schema_name = schema_name;
+	node.values = value;
+	return &node;
+}
+
 void register_node(char* nodeID)
 {
+        cout << "HERE MTFCK!" << endl;
         interpreter->create_node_id(nodeID);
 }

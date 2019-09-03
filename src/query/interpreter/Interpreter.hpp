@@ -8,7 +8,16 @@ struct interpreter_node
 {
 	char *name;
 	char *schema_name;
-	unordered_map<string, void *> values;
+	unordered_map<string, void*>* values;
+	interpreter_node(void){};
+	interpreter_node(char* name)
+	{
+		this->name = name;
+	};
+	~interpreter_node()
+	{
+
+	};
 };
 struct interpreter_edge
 {
@@ -41,6 +50,8 @@ public:
 	void create_edge_id(string);
 	void create_edge_alias(string, string);
 	void assign_edge_value(string, void *);
+	void set_node_id_value(char*, void*);
+	void set_node_id_value(string, void*);
 	string get_query(void);
 	void set_parse_result(int);
 	int get_parse_result(void);

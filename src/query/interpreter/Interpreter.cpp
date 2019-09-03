@@ -77,7 +77,19 @@ void Interpreter::create_node_id(string node_id)
 void Interpreter::create_node_id(char* node_id)
 {
 	string id(node_id);
-	this->nodes[node_id] = NULL;
+	cout<<node_id <<endl<<endl<<endl;
+	this->nodes[id] = &id;
+}
+
+void Interpreter::set_node_id_value(char* node_id, void* value)
+{
+	string id(node_id);
+	this->nodes[id] = value;
+}
+
+void Interpreter::set_node_id_value(string node_id, void* value)
+{
+	this->nodes[node_id] = value;
 }
 
 void Interpreter::set_parse_result(int result)

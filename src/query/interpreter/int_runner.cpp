@@ -17,10 +17,12 @@ int main()
 	cout<<"Hello world";
 	parse_query(&intr);
 	unordered_map<string, void*> map = intr.get_nodes_map();
-	int a = 12;
-	int b = 20;
-	cout<<greater_than(&a,&b)<<" >>>>"<<endl;
-	cout << typed_gt<float>(&a, &b) << " >>>>" << endl;
+	string* tmp_str = static_cast<string*>(map["n"]);
+	cout << tmp_str << endl;
+	// int a = 12;
+	// int b = 20;
+	// cout<<greater_than(&a,&b)<<" >>>>"<<endl;
+	// cout << typed_gt<float>(&a, &b) << " >>>>" << endl;
 	
 	return intr.get_parse_result();
 }
