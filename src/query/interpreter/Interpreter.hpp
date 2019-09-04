@@ -11,9 +11,14 @@ struct interpreter_struct {
 };
 
 struct interpreter_node: public interpreter_struct
-{};
+{
+	interpreter_struct* connections; // Array of nodes/edges
+};
+
 struct interpreter_edge: public interpreter_struct
 {
+	interpreter_node* source;
+	interpreter_node* destination;
 	char *label;
 };
 
@@ -46,7 +51,6 @@ public:
 	string get_query(void);
 	void set_parse_result(int);
 	int get_parse_result(void);
-
 	// Getters
 	unordered_map<string, void *> get_nodes_map(void);
 	void *get_node_value(string);

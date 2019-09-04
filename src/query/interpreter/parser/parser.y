@@ -4,10 +4,12 @@
 #include <string.h>
 #include <unordered_map>
 #include "Interpreter.cpp"
+// #include "query_graph.hpp"
 using namespace std;
 int parse_query(Interpreter *);
 int yyerror(char *);
 void register_node(char*);
+// query_graph generate_query_graph();
 interpreter_node* generate_node(char* node_id, char* schema_name, unordered_map<string, void*>* value);
 interpreter_edge* generate_edge(char* edge_name, char* label, char* schema_name);
 Interpreter* interpreter;
@@ -20,7 +22,7 @@ Interpreter* interpreter;
         bool boolValue;
         interpreter_node* nodeValue;
         interpreter_edge* edgeValue;
-		interpreter_struct* structValue;
+        interpreter_struct* structValue;
 }
 %token <strValue> IDENTIFIER
 %token <strValue> MATCH
@@ -68,7 +70,7 @@ S:  | START S;
 START:  MATCH_ST
 ;
 MATCH_ST: MATCH {cout<<"Match simple"<<endl;}
-        | MATCH DATA_STRUCT RETURN_ST {cout<<"Match DATA RET"<<endl;}
+        | MATCH DATA_STRUCT RETURN_ST {$1}
         | MATCH DATA_STRUCT WHERE_ST RETURN_ST {cout<<"Match DATA WHERE RET"<<endl;}
 ;
 
