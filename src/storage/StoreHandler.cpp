@@ -1,11 +1,12 @@
+#pragma once
 #include<iostream>
 #include<unordered_map>
 #include<list>
 #include<string>
-#include"..\utils\LogHandler.cpp"
-#include"..\graph\utils\Serializable.cpp"
+//#include"..\utils\LogHandler.cpp"
+#include"..\graph\utils\Serializable.h"
 #include"..\graph\structs\Graph.cpp"
-#include"..\admin\ConfigFileModel.cpp"
+#include"..\admin\ConfigFile.cpp"
 using namespace std;
 
 class StoreHandler {
@@ -18,8 +19,8 @@ private:
 	}
 
 	void buildPath() {
-		if (directory == NULL) {
-			directory = ConfigFileModel::
-		}
+		//if (directory == NULL) {
+			//directory = ConfigFileModel::
+		//}
 	}
 };

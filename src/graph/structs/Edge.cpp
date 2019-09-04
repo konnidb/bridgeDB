@@ -1,21 +1,13 @@
+//#pragma once
 #include<iostream>
-#include<unordered_map>
-#include<string>
-#include"..\..\utils\LogHandler.cpp"
-#include"..\utils\Serializable.cpp"
-#include"Node.cpp"
+#include"Edge.h"
 using namespace std;
 
-class EdgeSerializable : Serializable {
-public:
-	int originNode;
-	int targetNode;
-	EdgeSerializable() : objType(EDGE) {}
-};
+EdgeSerializable::EdgeSerializable() {
+	this->objType = EDGE;
+}
 
-class Edge {
-public:
-	Node * originNode;
-	Node * targetNode;
-	EdgeSerializable getSerializable() {}
-};
+EdgeSerializable Edge::getSerializable() {
+	return EdgeSerializable();
+}
+

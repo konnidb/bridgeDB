@@ -1,16 +1,14 @@
+#pragma once
 #include<iostream>
 #include<unordered_map>
-#include<list>
 #include<string>
-#include"..\..\utils\LogHandler.cpp"
-#include"..\utils\Serializable.cpp"
-#include"Edge.cpp"
-#include"Node.cpp"
+//#include"..\..\utils\LogHandler.h"
+#include"..\utils\Serializable.h"
 using namespace std;
 
 enum SchemaType {
-	NODE,
-	EDGE,
+	NODE1,
+	EDGE1,
 	GROUP
 };
 
@@ -21,10 +19,11 @@ public:
 
 	//list<int> elements;
 
-	Schema(string name, unordered_map<string, string> properties, SchemaType type): objType(SCHEMA) {
+	Schema(string name, unordered_map<string, string> properties, SchemaType type) {
 		this->name = name;
 		this->properties = properties;
 		this->type = type;
+		this->objType = SCHEMA;
 	}
 
 };

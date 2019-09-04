@@ -16,22 +16,13 @@ class ConfigFileHandler {
 public:
 	string databaseName;
 
-	ConfigFileHandler(string databaseName) {
-	}
+	ConfigFileHandler(string databaseName);
 
-	static unordered_map<string, string> loadConfigFile(string databaseName) {
+	static unordered_map<string, string> loadConfigFile(string databaseName);
 
-	}
+	static unordered_map<string, string> loadConfigFile();
 
-	unordered_map<string, string> loadConfigFile() {
-	
-	}
+	static bool setConfig(string databaseName, string config);
 
-	static bool setConfig(string databaseName, string config) {
-
-	}
-
-	bool setConfig(string databaseName, string config) {
-
-	}
+//	static bool setConfig(string databaseName, string config);
 };

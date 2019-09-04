@@ -22,32 +22,32 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{B93385D8-A3E4-4A38-AF9B-99A55707A3E5}</ProjectGuid>
     <RootNamespace>CMTest</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -69,7 +69,8 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -114,7 +115,6 @@
     <ClCompile Include="..\..\src\admin\admin.cpp" />
     <ClCompile Include="..\..\src\admin\ConfigFile.cpp" />
     <ClCompile Include="..\..\src\cmd\cmd.cpp" />
-    <ClCompile Include="..\..\src\cmd\Main.cpp" />
     <ClCompile Include="..\..\src\graph\operations\operations.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Edge.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Graph.cpp" />
@@ -125,20 +125,21 @@
     <ClCompile Include="..\..\src\graph\utils\utils.cpp" />
     <ClCompile Include="..\..\src\network\auth\auth.cpp" />
     <ClCompile Include="..\..\src\network\network.cpp" />
-    <ClCompile Include="..\..\src\query\lexer\lexer.cpp" />
     <ClCompile Include="..\..\src\query\query.cpp" />
     <ClCompile Include="..\..\src\service\service.cpp" />
     <ClCompile Include="..\..\src\storage\storage.cpp" />
     <ClCompile Include="..\..\src\storage\StoreHandler.cpp" />
     <ClCompile Include="..\..\src\utils\LogHandler.cpp" />
-    <ClCompile Include="..\..\src\utils\LogTypeEnum.cpp" />
-    <ClCompile Include="..\..\src\utils\TextMessagesHandler.cpp" />
     <ClCompile Include="..\..\src\utils\type_names.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\graph\structs\Edge.h" />
+    <ClInclude Include="..\..\src\graph\structs\Node.h" />
+    <ClInclude Include="..\..\src\graph\utils\Serializable.h" />
     <ClInclude Include="..\..\src\query\lexer\constants.h" />
     <ClInclude Include="..\..\src\query\lexer\lexer.h" />
     <ClInclude Include="..\..\src\utils\basic_typenames.h" />
+    <ClInclude Include="..\..\src\utils\LogHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\src\functions_needed.txt" />
