@@ -4,14 +4,16 @@
 #include <string.h>
 #include <unordered_map>
 #include "Interpreter.cpp"
+#include "query_graph.hpp"
 // #include "query_graph.hpp"
 using namespace std;
 int parse_query(Interpreter *);
 int yyerror(char *);
 void register_node(char*);
 // query_graph generate_query_graph();
-interpreter_node* generate_node(char* node_id, char* schema_name, unordered_map<string, void*>* value);
+interpreter_node generate_node(char* node_id, char* schema_name, unordered_map<string, void*>* value);
 interpreter_edge* generate_edge(char* edge_name, char* label, char* schema_name);
+void generate_match_graph(interpreter_struct*);
 Interpreter* interpreter;
 %}
 %union {
@@ -20,7 +22,7 @@ Interpreter* interpreter;
         float floatValue;
         char* strValue;
         bool boolValue;
-        interpreter_node* nodeValue;
+        interpreter_node nodeValue;
         interpreter_edge* edgeValue;
         interpreter_struct* structValue;
 }
@@ -64,13 +66,17 @@ Interpreter* interpreter;
 %type <nodeValue> NODE
 %type <edgeValue> EDGE
 %type <structValue> END_STRUCT
+%type <structValue> DATA_STRUCT
 %start S
 %%
 S:  | START S;
 START:  MATCH_ST
 ;
 MATCH_ST: MATCH {cout<<"Match simple"<<endl;}
-        | MATCH DATA_STRUCT RETURN_ST {$1}
+        | MATCH DATA_STRUCT RETURN_ST {
+                interpreter->element = $2->name;
+                cout<<"FINISH"<<endl;
+        }
         | MATCH DATA_STRUCT WHERE_ST RETURN_ST {cout<<"Match DATA WHERE RET"<<endl;}
 ;
 
@@ -83,7 +89,10 @@ CREATE_ST: CREATE DATA_STRUCT
 MATCH_CREATE: MATCH_ST CREATE_ST
 ;
 
-END_STRUCT: NODE 	{$$ = $1;}
+END_STRUCT: NODE 	{
+                interpreter_node node = $1;
+                $$ = &node;
+        }
             | EDGE 	{$$ = $1;}
             ;
 
@@ -109,11 +118,14 @@ CONNECTION: CONNECTION_TO_LEFT
             | CONNECTION_TO_RIGHT
             | HYPHEN HYPHEN
             ;
-DATA_STRUCT: END_STRUCT {}
-            | END_STRUCT CONNECTION DATA_STRUCT
-            | NODE HYPHEN HYPHEN NODE
-            | NODE ARROW_TO_LEFT HYPHEN NODE
-            | NODE HYPHEN ARROW_TO_RIGHT NODE
+DATA_STRUCT: END_STRUCT {
+                        cout << $1->name << endl;
+                        $$ = $1;
+                }
+            | END_STRUCT CONNECTION DATA_STRUCT {$$ = $1;}
+            | NODE HYPHEN HYPHEN NODE  {$$ = &$1;}
+            | NODE ARROW_TO_LEFT HYPHEN NODE {$$ = &$1;}
+            | NODE HYPHEN ARROW_TO_RIGHT NODE {$$ = &$1;}
             ;
 KEY_VALUE: IDENTIFIER COLON VALUE
            | IDENTIFIER COLON VALUE COMA KEY_VALUE
@@ -178,17 +190,24 @@ interpreter_edge* generate_edge(char* edge_name, char* label, char* schema_name)
 	return &edge;
 }
 
-interpreter_node* generate_node(char* node_id, char* schema_name, unordered_map<string, void*>* value)
+interpreter_node generate_node(char* node_id, char* schema_name, unordered_map<string, void*>* value)
 {
+        cout << node_id << " GENERATE_NODE" << endl;
+        cout << schema_name << " GENERATE_NODE" << endl;
 	interpreter_node node;	
 	node.name = node_id;
 	node.schema_name = schema_name;
 	node.values = value;
-	return &node;
+	return node;
 }
 
 void register_node(char* nodeID)
 {
-        cout << "HERE MTFCK!" << endl;
+        
         interpreter->create_node_id(nodeID);
+}
+
+void generate_match_graph(interpreter_struct* origin)
+{
+        
 }

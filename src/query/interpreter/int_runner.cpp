@@ -13,12 +13,12 @@ bool typed_gt(void*, void*);
 // int parse_query(Interpreter *);
 int main()
 {
-	Interpreter intr("MATCH ( n : Person ) RETURN n.property");
+	Interpreter intr("MATCH ( node_perron : Person ) RETURN n.property");
 	cout<<"Hello world";
 	parse_query(&intr);
 	unordered_map<string, void*> map = intr.get_nodes_map();
 	string* tmp_str = static_cast<string*>(map["n"]);
-	cout << tmp_str << endl;
+	cout<< intr.element << endl;
 	// int a = 12;
 	// int b = 20;
 	// cout<<greater_than(&a,&b)<<" >>>>"<<endl;

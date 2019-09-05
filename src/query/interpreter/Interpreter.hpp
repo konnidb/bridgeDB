@@ -2,25 +2,8 @@
 #include <iostream>
 #include <string.h>
 #include <unordered_map>
+#include "query_graph.hpp"
 using namespace std;
-
-struct interpreter_struct {
-	char* name;
-	char* schema_name;
-	unordered_map<string, void*>* values;
-};
-
-struct interpreter_node: public interpreter_struct
-{
-	interpreter_struct* connections; // Array of nodes/edges
-};
-
-struct interpreter_edge: public interpreter_struct
-{
-	interpreter_node* source;
-	interpreter_node* destination;
-	char *label;
-};
 
 class Interpreter
 {
@@ -36,6 +19,7 @@ private:
 	unordered_map<string, string> edge_alias;
 
 public:
+	char* element = "1231313";
 	Interpreter(string query);
 	void match(void);
 	void return_clause(void);
