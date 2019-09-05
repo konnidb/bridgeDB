@@ -80,17 +80,9 @@ MATCH_ST: MATCH {cout<<"Match simple"<<endl;}
         | MATCH DATA_STRUCT WHERE_ST RETURN_ST {cout<<"Match DATA WHERE RET"<<endl;}
 ;
 
-MATCH_WITH_RETURN: MATCH_ST RETURN_ST
-;
-
-CREATE_ST: CREATE DATA_STRUCT
-         ;
-
-MATCH_CREATE: MATCH_ST CREATE_ST
-;
-
 END_STRUCT: NODE 	{
                 interpreter_node node = $1;
+
                 $$ = &node;
         }
             | EDGE 	{$$ = $1;}
@@ -107,8 +99,6 @@ EDGE: OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE {$$ = generate_edge($2,
     | OPEN_BRACE COLON IDENTIFIER CLOSE_BRACE {$$ = generate_edge("", $3, "");}
 ;
 
-CONNECTION_UNDIRECTED: HYPHEN
-                    ;
 CONNECTION_TO_LEFT: LOWER_THAN HYPHEN
                   | LOWER_THAN HYPHEN HYPHEN
 ;

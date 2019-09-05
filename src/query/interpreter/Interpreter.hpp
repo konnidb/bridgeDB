@@ -17,10 +17,11 @@ private:
 	unordered_map<string, void *> edges;
 	unordered_map<string, void *> matcher_edges;
 	unordered_map<string, string> edge_alias;
-
+	query_graph* graph;
 public:
 	char* element = "1231313";
 	Interpreter(string query);
+	Interpreter(string query, string graph_name);
 	void match(void);
 	void return_clause(void);
 	void create_node_id(string);

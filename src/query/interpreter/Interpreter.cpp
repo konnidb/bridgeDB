@@ -2,6 +2,7 @@
 #include <string.h>
 #include <unordered_map>
 #include "Interpreter.hpp"
+#include "query_graph.hpp"
 
 using namespace std;
 
@@ -104,6 +105,14 @@ int Interpreter::get_parse_result(void)
 
 Interpreter::Interpreter(string query)
 {
+	this->graph = new query_graph();
+	this->query = query;
+}
+
+Interpreter::Interpreter(string query, string graph_name)
+{
+	this->graph = new query_graph();
+	this->graph->set_graph_name(graph_name);
 	this->query = query;
 }
 
