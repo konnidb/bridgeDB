@@ -19,8 +19,14 @@ private:
 	}
 
 	void buildPath() {
-		//if (directory == NULL) {
-			//directory = ConfigFileModel::
-		//}
+		if (directory.length()==0) {
+			directory = ConfigFileModel::dataDirectory;
+		}
+		return directory + element->objType;
 	}
+
+	void loadIndex(){}
+
+	void loadPage(){}
+
 };

@@ -15,9 +15,9 @@ Serializable::Serializable(string path) : objType(UNDEF) {
 
 
 
-void Serializable::load(string contentStr) {
-	ifstream rf("student.dat", ios::out | ios::binary);
-	if (!rf) ErrorMap::error_loading_object->action();
+void Serializable::load() {
+	ifstream rf(this->path, ios::out | ios::binary);
+	//if (!rf) ErrorMap::error_loading_object->action();
 	Serializable deserialized;
 	rf.read((char *)&deserialized, sizeof(Serializable));
 	rf.close();

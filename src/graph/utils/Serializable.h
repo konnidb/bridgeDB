@@ -21,7 +21,7 @@ public:
 	Serializable();
 	Serializable(string path);
 
-	void load(string contentStr);
+	void load();
 
 	string store();
 };

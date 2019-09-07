@@ -8,6 +8,8 @@ class ConfigFileModel {
 public:
 	string databaseName;
 	string dataDirectory;
+	string nodeIndexDirectory;
+	string edgeIndexDirectory;
 	string backupDirectory;
 	string logDirectory;
 };
@@ -15,14 +17,11 @@ public:
 class ConfigFileHandler {
 public:
 	string databaseName;
+	unordered_map<string, string> configFile;
 
 	ConfigFileHandler(string databaseName);
+	static void loadConfigFile();
+	static void setConfig(string config);
 
-	static unordered_map<string, string> loadConfigFile(string databaseName);
 
-	static unordered_map<string, string> loadConfigFile();
-
-	static bool setConfig(string databaseName, string config);
-
-//	static bool setConfig(string databaseName, string config);
 };

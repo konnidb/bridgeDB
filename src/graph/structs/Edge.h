@@ -14,6 +14,7 @@ public:
 
 class Edge {
 public:
+	unordered_map<string, string> properties;
 	Node originNode;
 	Node targetNode;
 	EdgeSerializable getSerializable();
