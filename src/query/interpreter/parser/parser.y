@@ -1,12 +1,7 @@
 %{
-#include <iostream>
+#include <stdio.h>
 #include "lex.yy.c"
-#include "Interpreter.cpp"
-#include "clauses/query_manager.cpp"
-using namespace std;
-int parse_query(Interpreter *);
 int yyerror(char *);
-Interpreter* interpreter; 
 %}
 %token IDENTIFIER 
 %token MATCH
@@ -50,7 +45,7 @@ Interpreter* interpreter;
 S:  | START S;
 START:  MATCH_ST
 ;
-MATCH_ST: MATCH {cout<<"Match simple"<<endl;}
+MATCH_ST: MATCH
         | MATCH DATA_STRUCT RETURN_ST
         | MATCH DATA_STRUCT WHERE_ST RETURN_ST
 ;
@@ -75,7 +70,7 @@ NODE: OPEN_PARENTHESIS IDENTIFIER COLON OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLO
 EDGE: OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE 
     | OPEN_BRACE COLON IDENTIFIER CLOSE_BRACE
     ;
-END_STRUCT: NODE {cout<<$$<<" from parser"<<endl;}
+END_STRUCT: NODE
             | EDGE
             ;
 CONNECTION_UNDIRECTED: HYPHEN
@@ -131,19 +126,6 @@ LITERAL_VALUE: VALUE
             ;
 %%
 
-void match_statement()
-{
-        interpreter->match();
-}
-
-int parse_query(Interpreter *intr)
-{
-	interpreter = intr;
-	YY_BUFFER_STATE buffer = yy_scan_string(interpreter->get_query().c_str());
-	interpreter->set_parse_result(yyparse());
-}
-
 int yyerror(char *string) {
-	cout<<string<<endl;
 	return 0;
 }
