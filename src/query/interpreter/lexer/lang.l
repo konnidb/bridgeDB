@@ -1,4 +1,5 @@
 %{
+#include <string.h>
 #include "parser.tab.h"
 using namespace std;
 %}
@@ -39,7 +40,7 @@ id          [_a-zA-Z][_a-zA-Z0-9]*
 {integer}   return INTEGER;
 {decimal}   return DECIMAL;
 {string}	  return STRING;
-{id}        {cout<<yytext<<endl;return IDENTIFIER;}
+{id}        {yylval.string_value = (char*) strdup(yytext); return IDENTIFIER;}
 \n          return EOL;
 
 %%

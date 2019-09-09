@@ -3,7 +3,17 @@
 #include "lex.yy.c"
 int yyerror(char *);
 %}
-%token IDENTIFIER 
+%union {
+        int int_value;
+        float float_value;
+        char* string_value;
+        long long_value;
+        struct node_struct* node_value;
+        struct edge_struct* edge_value;
+        struct field_struct field_value;
+        void* generic_value;
+}
+%token <string_value> IDENTIFIER 
 %token MATCH
 %token RETURN
 %token CREATE
@@ -41,6 +51,9 @@ int yyerror(char *);
 %token TRUE
 %token FALSE
 %start S
+%type <node_value> NODE
+%type <edge_value> EDGE
+%type <field_value> KEY_VALUE
 %%
 S:  | START S;
 START:  MATCH_ST
@@ -60,9 +73,9 @@ MATCH_CREATE: MATCH_ST CREATE_ST
 ;
 
 
-NODE: OPEN_PARENTHESIS IDENTIFIER COLON OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS
+NODE: OPEN_PARENTHESIS IDENTIFIER COLON OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {}
         | OPEN_PARENTHESIS CLOSE_PARENTHESIS
-        | OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS
+        | OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS 
         | OPEN_PARENTHESIS IDENTIFIER CLOSE_PARENTHESIS
         | OPEN_PARENTHESIS IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS
         | OPEN_PARENTHESIS OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS

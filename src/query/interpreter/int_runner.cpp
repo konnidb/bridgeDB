@@ -1,7 +1,7 @@
 #include <iostream>
+#include "clauses/query_manager.cpp"
 #include "parser.tab.c"
-#include "Interpreter.hpp"
-// #include "parser.tab.c"
+
 using namespace std;
 // int parse_query(Interpreter *);
 int main()
