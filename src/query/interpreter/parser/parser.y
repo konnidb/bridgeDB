@@ -2,6 +2,7 @@
 #include <iostream>
 #include "lex.yy.c"
 #include "Interpreter.cpp"
+#include "clauses/query_manager.cpp"
 using namespace std;
 int parse_query(Interpreter *);
 int yyerror(char *);
