@@ -115,21 +115,30 @@
     <ClCompile Include="..\..\src\admin\admin.cpp" />
     <ClCompile Include="..\..\src\admin\ConfigFile.cpp" />
     <ClCompile Include="..\..\src\cmd\cmd.cpp" />
-    <ClCompile Include="..\..\src\graph\operations\operations.cpp" />
+    <ClCompile Include="..\..\src\cmd\Main.cpp" />
+    <ClCompile Include="..\..\src\graph\operations\Definition.cpp" />
+    <ClCompile Include="..\..\src\graph\structs\Database.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Edge.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Graph.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Node.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Schema.cpp" />
     <ClCompile Include="..\..\src\graph\structs\structs.cpp" />
+    <ClCompile Include="..\..\src\graph\structs\Vertex.cpp" />
     <ClCompile Include="..\..\src\graph\utils\Serializable.cpp" />
     <ClCompile Include="..\..\src\graph\utils\utils.cpp" />
     <ClCompile Include="..\..\src\network\auth\auth.cpp" />
     <ClCompile Include="..\..\src\network\network.cpp" />
     <ClCompile Include="..\..\src\query\query.cpp" />
     <ClCompile Include="..\..\src\service\service.cpp" />
+    <ClCompile Include="..\..\src\storage\IndexHandler.cpp" />
     <ClCompile Include="..\..\src\storage\storage.cpp" />
     <ClCompile Include="..\..\src\storage\StoreHandler.cpp" />
+    <ClCompile Include="..\..\src\utils\Encrypt.cpp" />
+    <ClCompile Include="..\..\src\utils\Identifier.cpp" />
     <ClCompile Include="..\..\src\utils\LogHandler.cpp" />
+    <ClCompile Include="..\..\src\utils\LogType.cpp" />
+    <ClCompile Include="..\..\src\utils\LogTypeEnum.cpp" />
+    <ClCompile Include="..\..\src\utils\TextMessagesHandler.cpp" />
     <ClCompile Include="..\..\src\utils\type_names.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +146,6 @@
     <ClInclude Include="..\..\src\graph\structs\Node.h" />
     <ClInclude Include="..\..\src\graph\utils\Serializable.h" />
     <ClInclude Include="..\..\src\query\lexer\constants.h" />
-    <ClInclude Include="..\..\src\query\lexer\lexer.h" />
     <ClInclude Include="..\..\src\utils\basic_typenames.h" />
     <ClInclude Include="..\..\src\utils\LogHandler.h" />
   </ItemGroup>

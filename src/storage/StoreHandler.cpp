@@ -20,9 +20,9 @@ private:
 
 	void buildPath() {
 		if (directory.length()==0) {
-			directory = ConfigFileModel::dataDirectory;
+			//directory = ConfigFileModel::dataDirectory;
 		}
-		return directory + element->objType;
+		//return directory.append(element->objType);
 	}
 
 	void loadIndex(){}

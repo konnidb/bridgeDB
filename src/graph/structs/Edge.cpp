@@ -1,13 +1,13 @@
-//#pragma once
+#pragma once
 #include<iostream>
 #include"Edge.h"
 using namespace std;
 
-EdgeSerializable::EdgeSerializable() {
+SerializableEdge::SerializableEdge() {
 	this->objType = EDGE;
 }
 
-EdgeSerializable Edge::getSerializable() {
-	return EdgeSerializable();
+SerializableEdge Edge::getSerializable() {
+	return SerializableEdge();
 }
 

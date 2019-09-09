@@ -1,6 +1,6 @@
 #include<iostream>
 #include<unordered_map>
-#include<list>
+#include<fstream>
 #include<string>
 using namespace std;
 
@@ -17,11 +17,21 @@ public:
 class ConfigFileHandler {
 public:
 	string databaseName;
-	unordered_map<string, string> configFile;
+	unordered_map<string, string> configFileMap;
 
-	ConfigFileHandler(string databaseName);
-	static void loadConfigFile();
-	static void setConfig(string config);
+	ConfigFileHandler(string databaseName): databaseName(databaseName){}
+	void loadConfigFile() {
+		string path = this->databaseName.append(".cfg");
+		ifstream rf(path, ios::out | ios::binary);
+		if (!rf) cout << "CONFIG FILE: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
+		rf.read((char *)&this->configFileMap, sizeof(unordered_map<string, string>));
+		rf.close();
+		if (!rf.good()) cout << "CONFIG FILE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
+	}
+
+	void setConfig(string config, string value) {
+
+	}
 
 
 };

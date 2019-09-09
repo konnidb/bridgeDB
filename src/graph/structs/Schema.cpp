@@ -6,20 +6,16 @@
 #include"..\utils\Serializable.h"
 using namespace std;
 
-enum SchemaType {
-	NODE1,
-	EDGE1,
-	GROUP
-};
 
 class Schema : Serializable {
 public:
+	int id;
 	string name;
-	SchemaType type;
+	ElementType type;
 
 	//list<int> elements;
 
-	Schema(string name, unordered_map<string, string> properties, SchemaType type) {
+	Schema(string name, unordered_map<string, string> properties, ElementType type) {
 		this->name = name;
 		this->properties = properties;
 		this->type = type;

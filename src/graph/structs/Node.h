@@ -1,18 +1,19 @@
 #pragma once
 #include<iostream>
 #include"..\utils\Serializable.h"
-#include"Edge.h"
+//#include"..\structs\Schema.cpp"
 using namespace std;
 
-class NodeSerializable : Serializable {
+class SerializableNode : public Serializable {
 public:
-	list<int> edgesIdList;
-	NodeSerializable();
+	SerializableNode();
 };
 
 class Node {
 public:
+	//Schema * schema;
+	int id;
 	unordered_map<string, string> properties;
-	list<Edge> edgesList;
-	NodeSerializable getSerializable();
+	Node();
+	SerializableNode getSerializable();
 };

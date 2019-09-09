@@ -8,6 +8,7 @@ enum ElementType {
 	NODE,
 	EDGE,
 	SCHEMA,
+	GROUP,
 	UNDEF
 };
 
@@ -19,9 +20,6 @@ public:
 	ElementType objType;
 
 	Serializable();
-	Serializable(string path);
-
 	void load();
-
 	string store();
 };

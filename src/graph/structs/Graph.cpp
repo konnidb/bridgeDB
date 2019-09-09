@@ -1,15 +1,14 @@
 #pragma once
 #include<iostream>
-//#include"Edge.h"
+#include<string>
 #include"Node.h"
-#include<Schema>
+#include"Schema.cpp"
 using namespace std;
 
 class Graph {
 public:
+	int id; 
 	string name;
-	list<Schema> schemas;
+	list<Schema*> schemas;
 	list<Node*> nodeList;
-	int id;
-	string name;
 };
