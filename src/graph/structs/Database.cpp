@@ -5,7 +5,8 @@
 using namespace std;
 
 class Database {
+public:
 	string name;
-	list<Graph> graphList;
+	vector<Graph> graphList;
 	int deleteConfig;
 };

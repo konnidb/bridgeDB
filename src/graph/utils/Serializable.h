@@ -2,15 +2,8 @@
 #include<iostream>
 #include<unordered_map>
 #include<string>
+#include"..\..\utils\Enums.h"
 using namespace std;
-
-enum ElementType {
-	NODE,
-	EDGE,
-	SCHEMA,
-	GROUP,
-	UNDEF
-};
 
 class Serializable {
 public:

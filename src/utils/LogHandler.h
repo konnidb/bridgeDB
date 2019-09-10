@@ -1,15 +1,10 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include"Enums.h"
 using namespace std;
 
-enum LogType {
-	FAILURE,
-	ERROR,
-	WARNING,
-	INFO,
-	SUCCESS
-};
+
 
 class Log {
 public:

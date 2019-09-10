@@ -5,33 +5,7 @@
 #include"../structs/Graph.cpp"
 #include"../structs/Database.cpp"
 #include"../structs/Schema.cpp"
-
-
-enum LogicOperator {
-	AND,
-	OR,
-	NAND,
-	NOR,
-	N
-};
-
-enum ComparisonOperator {
-	EQ, //equals
-	DF, //different
-	GT, //great than
-	GE, //great or equals than
-	LT, //less than
-	LE, //less or equals than
-	RX //regex
-};
-
-enum DataType {
-	NUM,
-	STR,
-	BOOL,
-	CAT,
-	DT
-};
+#include"../../utils/Enums.h"
 
 class Comparison {
 	ComparisonOperator comparisonOperator;
@@ -75,8 +49,8 @@ public:
 	static void createRelation(Node nodeSrc, Node nodeTgt, unordered_map<string, string> edgeProperties) {}
 	static void createRelation(int nodeSrcId, int nodeTgtId, unordered_map<string, string> edgeProperties) {}
 	static Node searchNodeById(int node) {}
-	static Node searchNodeByCondition(list<Comparison> comp) {}
-	static list<Node> searchNodesByCondition(list<Comparison> comp) {}
+	static Node searchNodeByCondition(vector<Comparison> comp) {}
+	static vector<Node> searchNodesByCondition(vector<Comparison> comp) {}
 	static void searchNode(Node node) {}
 	//create nultiple relations?
 };

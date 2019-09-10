@@ -1,7 +1,6 @@
 #pragma once
 #include<iostream>
 #include<unordered_map>
-#include<list>
 #include<string>
 //#include"..\utils\LogHandler.cpp"
 #include"..\graph\utils\Serializable.h"

@@ -1,7 +1,0 @@
-enum LogType {
-	FAILURE,
-	ERROR,
-	WARNING,
-	INFO,
-	SUCCESS
-};

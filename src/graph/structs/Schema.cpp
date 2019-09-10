@@ -7,13 +7,14 @@
 using namespace std;
 
 
-class Schema : Serializable {
+class Schema : public Serializable {
 public:
 	int id;
 	string name;
 	ElementType type;
 
-	//list<int> elements;
+
+	Schema(){}
 
 	Schema(string name, unordered_map<string, string> properties, ElementType type) {
 		this->name = name;

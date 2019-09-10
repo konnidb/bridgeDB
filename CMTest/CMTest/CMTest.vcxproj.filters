@@ -84,13 +84,7 @@
     <ClCompile Include="..\..\src\graph\operations\Definition.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\utils\LogTypeEnum.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\utils\TextMessagesHandler.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\utils\LogType.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\cmd\Main.cpp">
@@ -117,6 +111,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\graph\utils\Serializable.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\utils\Enums.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

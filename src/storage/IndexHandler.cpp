@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-#include<list>
+#include<vector>
 using namespace std;
 
 class IndexModel {
@@ -14,7 +14,7 @@ public:
 class IndexHandler {
 public:
 	string directory;
-	list<IndexModel> indexes;
+	vector<IndexModel> indexes;
 	IndexHandler(string directory) {}
 	void loadIndex() {}
 

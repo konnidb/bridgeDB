@@ -6,14 +6,14 @@
 using namespace std;
 
 class VertexSerializable: Serializable {
-	list<int> edgesIdList;
+	vector<int> edgesIdVector;
 	int node;
 };
 
 class Vertex {
 public:
-	Node node;
-	list<Edge> edgesList;
+	Node * node;
+	vector<Edge *> edgesVector;
 	VertexSerializable getSerializable() {
 
 	}

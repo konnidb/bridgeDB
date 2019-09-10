@@ -83,6 +83,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -105,6 +106,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -136,8 +138,6 @@
     <ClCompile Include="..\..\src\utils\Encrypt.cpp" />
     <ClCompile Include="..\..\src\utils\Identifier.cpp" />
     <ClCompile Include="..\..\src\utils\LogHandler.cpp" />
-    <ClCompile Include="..\..\src\utils\LogType.cpp" />
-    <ClCompile Include="..\..\src\utils\LogTypeEnum.cpp" />
     <ClCompile Include="..\..\src\utils\TextMessagesHandler.cpp" />
     <ClCompile Include="..\..\src\utils\type_names.cpp" />
   </ItemGroup>
@@ -147,6 +147,7 @@
     <ClInclude Include="..\..\src\graph\utils\Serializable.h" />
     <ClInclude Include="..\..\src\query\lexer\constants.h" />
     <ClInclude Include="..\..\src\utils\basic_typenames.h" />
+    <ClInclude Include="..\..\src\utils\Enums.h" />
     <ClInclude Include="..\..\src\utils\LogHandler.h" />
   </ItemGroup>
   <ItemGroup>
