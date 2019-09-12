@@ -16,37 +16,37 @@ void Interpreter::create_edge_alias(string alias, string edge_id)
 	this->edge_alias[alias] = edge_id;
 }
 
-void Interpreter::assign_edge_value(string node_id, void* parameter)
+void Interpreter::assign_edge_value(string node_id, interpreter_edge* parameter)
 {
-	this->nodes[node_id] = parameter;
+	this->edges[node_id] = parameter;
 }
 
-unordered_map<string, void *> Interpreter::get_nodes_map(void)
+unordered_map<string, interpreter_node*> Interpreter::get_nodes_map(void)
 {
 	return this->nodes;
 }
 
-void* Interpreter::get_node_value(string node_id)
+interpreter_node* Interpreter::get_node_value(string node_id)
 {
 	return nodes[node_id];
 }
 
-void* Interpreter::get_node_value_by_alias(string alias)
+interpreter_node* Interpreter::get_node_value_by_alias(string alias)
 {
 	string node_id = node_alias[alias];
 	return nodes[node_id];
 }
-unordered_map<string, void *> Interpreter::get_edges_map(void)
+unordered_map<string, interpreter_edge*> Interpreter::get_edges_map(void)
 {
 	return edges;
 }
 
-void* Interpreter::get_edge_value(string edge_id)
+interpreter_edge* Interpreter::get_edge_value(string edge_id)
 {
 	return edges[edge_id];
 }
 
-void* Interpreter::get_edge_value_by_alias(string alias)
+interpreter_edge* Interpreter::get_edge_value_by_alias(string alias)
 {
 	string edge_id = edge_alias[alias];
 	return edges[edge_id];
@@ -71,7 +71,7 @@ void Interpreter::create_node_id(string node_id)
 {
 	cout<<"In this line";
 	string nv = NULL;
-	this->nodes[node_id] = &nv;
+	this->nodes[node_id] = NULL;
 	// *this->nodes->insert(make_pair(node_id, NULL));
 }
 
@@ -79,16 +79,16 @@ void Interpreter::create_node_id(char* node_id)
 {
 	string id(node_id);
 	cout<<node_id <<endl<<endl<<endl;
-	this->nodes[id] = &id;
+	this->nodes[id] = NULL;
 }
 
-void Interpreter::set_node_id_value(char* node_id, void* value)
+void Interpreter::set_node_id_value(char* node_id, interpreter_node* value)
 {
 	string id(node_id);
 	this->nodes[id] = value;
 }
 
-void Interpreter::set_node_id_value(string node_id, void* value)
+void Interpreter::set_node_id_value(string node_id, interpreter_node* value)
 {
 	this->nodes[node_id] = value;
 }

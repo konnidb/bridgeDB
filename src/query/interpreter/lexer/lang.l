@@ -19,7 +19,7 @@ id          [_a-zA-Z][_a-zA-Z0-9]*
 "-"         return HYPHEN;
 "."         return DOT;
 "AS"        return AS;
-"MATCH"     {cout<<"Simple cout from match"<<endl;return MATCH;}
+"MATCH"     return MATCH;
 "RETURN"    return RETURN;
 ":"         return COLON;
 "NOT"       return NOT;

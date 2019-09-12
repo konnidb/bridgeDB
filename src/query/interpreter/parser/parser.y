@@ -1,30 +1,32 @@
 %{
 #include <iostream>
 #include "lex.yy.c"
-#include <string.h>
 #include <unordered_map>
 #include "Interpreter.cpp"
 #include "query_graph.hpp"
 // #include "query_graph.hpp"
 using namespace std;
+struct interpreter_struct;
+struct interpreter_node;
+struct interpreter_edge;
 int parse_query(Interpreter *);
 int yyerror(char *);
 void register_node(char*);
 // query_graph generate_query_graph();
-interpreter_node generate_node(char* node_id, char* schema_name, unordered_map<string, void*>* value);
-interpreter_edge* generate_edge(char* edge_name, char* label, char* schema_name);
-void generate_match_graph(interpreter_struct*);
+interpreter_node create_node(char* name, char* schema_name);
+interpreter_edge create_edge(char* name, char* schema_name);
 Interpreter* interpreter;
 %}
 %union {
-        int intValue;
-        double doubleValue;
-        float floatValue;
-        char* strValue;
-        bool boolValue;
-        interpreter_node nodeValue;
-        interpreter_edge* edgeValue;
-        interpreter_struct* structValue;
+	int intValue;
+	double doubleValue;
+	float floatValue;
+	char* strValue;
+	bool boolValue;
+	struct interpreter_node nodeValue;
+	struct interpreter_edge edgeValue;
+	struct interpreter_struct* structValue;
+	void* voidPtrValue;
 }
 %token <strValue> IDENTIFIER
 %token <strValue> MATCH
@@ -65,139 +67,105 @@ Interpreter* interpreter;
 %token <strValue> FALSE
 %type <nodeValue> NODE
 %type <edgeValue> EDGE
-%type <structValue> END_STRUCT
-%type <structValue> DATA_STRUCT
 %start S
 %%
-S:  | START S;
-START:  MATCH_ST
+S: MATCH_CLAUSE
 ;
-MATCH_ST: MATCH {cout<<"Match simple"<<endl;}
-        | MATCH DATA_STRUCT RETURN_ST {
-                interpreter->element = $2->name;
-                cout<<"FINISH"<<endl;
-        }
-        | MATCH DATA_STRUCT WHERE_ST RETURN_ST {cout<<"Match DATA WHERE RET"<<endl;}
+MATCH_CLAUSE: MATCH GRAPH_REPR RETURN_CLAUSE
+;
+GRAPH_REPR:
+NODE {
+	struct interpreter_node* node = &$1;
+	cout << ">>"  << (char*)(node->name) << endl;
+	interpreter->set_node_id_value(node->name, node);
+}
+| EDGE {
+	// interpreter->set_edge_id_value()
+	;
+}
+| NODE CONNECTOR GRAPH_REPR
+| EDGE CONNECTOR GRAPH_REPR
+;
+NODE:
+OPEN_PARENTHESIS CLOSE_PARENTHESIS {
+	$$ = create_node("", "");
+}
+| OPEN_PARENTHESIS IDENTIFIER CLOSE_PARENTHESIS {
+	$$ = create_node($2, "");
+}
+| OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS {
+	$$ = create_node($2, $4);
+}
+| OPEN_PARENTHESIS COLON IDENTIFIER CLOSE_PARENTHESIS {
+	$$ = create_node("", $3);
+}
+;
+EDGE:
+OPEN_BRACE CLOSE_BRACE {
+	$$ = create_edge("", "");
+}
+| OPEN_BRACE IDENTIFIER CLOSE_BRACE {
+	$$ = create_edge($2, "");
+}
+| OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE {
+	$$ = create_edge($2, $4);
+}
+| OPEN_BRACE COLON IDENTIFIER CLOSE_BRACE {
+	$$ = create_edge("", $3);
+}
 ;
 
-END_STRUCT: NODE 	{
-                interpreter_node node = $1;
-
-                $$ = &node;
-        }
-            | EDGE 	{$$ = $1;}
-            ;
-
-NODE: OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = generate_node($2, $4,NULL);}
-        | OPEN_PARENTHESIS CLOSE_PARENTHESIS {$$ = generate_node("", "", NULL);}
-        | OPEN_PARENTHESIS IDENTIFIER COLON IDENTIFIER CLOSE_PARENTHESIS {$$ = generate_node($2, $4, NULL);}
-        | OPEN_PARENTHESIS IDENTIFIER CLOSE_PARENTHESIS {$$ = generate_node($2, "", NULL);}
-        | OPEN_PARENTHESIS IDENTIFIER OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = generate_node($2, "", NULL);}
-        | OPEN_PARENTHESIS OPEN_C_BRACE KEY_VALUE CLOSE_C_BRACE CLOSE_PARENTHESIS {$$ = generate_node("", "", NULL);}
-;
-EDGE: OPEN_BRACE IDENTIFIER COLON IDENTIFIER CLOSE_BRACE {$$ = generate_edge($2, $4, "");}
-    | OPEN_BRACE COLON IDENTIFIER CLOSE_BRACE {$$ = generate_edge("", $3, "");}
+CONNECTOR:
+ARROW_TO_LEFT
+| ARROW_TO_RIGHT
+| HYPHEN HYPHEN
+| HYPHEN
 ;
 
-CONNECTION_TO_LEFT: LOWER_THAN HYPHEN
-                  | LOWER_THAN HYPHEN HYPHEN
-;
-CONNECTION_TO_RIGHT: HYPHEN GREATER_THAN
-;
-CONNECTION: CONNECTION_TO_LEFT
-            | CONNECTION_TO_RIGHT
-            | HYPHEN HYPHEN
-            ;
-DATA_STRUCT: END_STRUCT {
-                        cout << $1->name << endl;
-                        $$ = $1;
-                }
-            | END_STRUCT CONNECTION DATA_STRUCT {$$ = $1;}
-            | NODE HYPHEN HYPHEN NODE  {$$ = &$1;}
-            | NODE ARROW_TO_LEFT HYPHEN NODE {$$ = &$1;}
-            | NODE HYPHEN ARROW_TO_RIGHT NODE {$$ = &$1;}
-            ;
-KEY_VALUE: IDENTIFIER COLON VALUE
-           | IDENTIFIER COLON VALUE COMA KEY_VALUE
-        ;
-WHERE_ST: WHERE CONDITION;
-CONDITION: EQUALS_CONDITION
-        | GREATER_CONDITION
-        | GREATER_EQ_CONDITION
-        | LOWER_CONDITION
-        | LOWER_EQ_CONDITION
-        ;
-EQUALS_CONDITION: LITERAL_VALUE EQUALS EQUALS LITERAL_VALUE;
-GREATER_CONDITION: LITERAL_VALUE GREATER_THAN LITERAL_VALUE;
-LOWER_CONDITION: LITERAL_VALUE LOWER_THAN LITERAL_VALUE;
-GREATER_EQ_CONDITION: LITERAL_VALUE GREATER_THAN EQUALS LITERAL_VALUE;
-LOWER_EQ_CONDITION: LITERAL_VALUE LOWER_THAN EQUALS LITERAL_VALUE;
-RETURN_ST: RETURN ID_RETURN_ST;
+WHERE_CLAUSE:
+WHERE
+| ;
 
-ID_RETURN_VALUES: IDENTIFIER
-                | IDENTIFIER DOT IDENTIFIER
-                ;
-ID_RETURN_ST: ID_RETURN_VALUES
-            | ID_RETURN_VALUES COMA ID_RETURN_ST
-            ;
-
-BOOLEAN: TRUE
-        | FALSE;
-VALUE:  INTEGER
-        | DECIMAL
-        | STRING
-        | BOOLEAN
-        ;
-LITERAL_VALUE: VALUE 
-            | ID_RETURN_VALUES
-            ;
+RETURN_CLAUSE:
+RETURN RETURN_REPR
+|
+;
+RETURN_REPR:
+IDENTIFIER DOT IDENTIFIER
+| IDENTIFIER DOT IDENTIFIER COMA RETURN_REPR
+;
 %%
 
-void match_statement()
+interpreter_node create_node(char* name, char* schema_name)
 {
-        interpreter->match();
+	struct interpreter_node node;
+	node.name = name;
+	node.schema_name = schema_name;
+	node.values = NULL;
+	node.edges = NULL;
+	node.connections = NULL;
+	return node;
+}
+
+interpreter_edge create_edge(char* name, char* schema_name)
+{
+	struct interpreter_edge edge;
+	edge.name = name;
+	edge.schema_name = schema_name;
+	edge.values = NULL;
+	// edge.edges = NULL;
+	return edge;
 }
 
 int parse_query(Interpreter *intr)
 {
 	interpreter = intr;
 	YY_BUFFER_STATE buffer = yy_scan_string(interpreter->get_query().c_str());
-        yyparse();
+	yyparse();
 	// interpreter->set_parse_result(yyparse());
 }
 
 int yyerror(char *string) {
 	cout<<string<<endl;
 	return 0;
-}
-
-interpreter_edge* generate_edge(char* edge_name, char* label, char* schema_name)
-{
-	interpreter_edge edge;
-	edge.name = edge_name;
-	edge.label = label;
-	edge.schema_name = schema_name;
-	return &edge;
-}
-
-interpreter_node generate_node(char* node_id, char* schema_name, unordered_map<string, void*>* value)
-{
-        cout << node_id << " GENERATE_NODE" << endl;
-        cout << schema_name << " GENERATE_NODE" << endl;
-	interpreter_node node;	
-	node.name = node_id;
-	node.schema_name = schema_name;
-	node.values = value;
-	return node;
-}
-
-void register_node(char* nodeID)
-{
-        
-        interpreter->create_node_id(nodeID);
-}
-
-void generate_match_graph(interpreter_struct* origin)
-{
-        
 }
