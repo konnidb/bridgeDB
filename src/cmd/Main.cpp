@@ -2,10 +2,28 @@
 #include<unordered_map>
 #include<string>
 #include"..\graph\structs\Node.h"
+#include"..\graph\structs\Edge.h"
+//#include"..\graph\structs\Vertex.h"
 #include"..\graph\structs\Database.cpp"
 #include"..\utils\Enums.h"
 
 using namespace std;
+
+
+
+string gen_random(const int len) {
+	string s;
+	static const char alphanum[] =
+		"0123456789"
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		"abcdefghijklmnopqrstuvwxyz";
+
+	for (int i = 0; i < len; ++i) {
+		s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
+	}
+	return s;
+}
+
 
 class Main {
 private:
@@ -17,67 +35,102 @@ public:
 };
 
 Database Main::database;
+unordered_map<string, string> Main::configs;
 
-int main() {
+void generates_semi_random_graph(){
 	int id = 1;
 	Main::database.name = "test";
 	Graph g;
+	Main::database.graphVector.push_back(&g);
 	g.name = "testGraph";
 	g.id = id++;
-	Main::database.graphVector.push_back(g);
 	Schema s1;
 	s1.id = id++;
 	s1.name = "persona";
 	s1.type = ElementType::NODE;
-	s1.properties["nombre"] = to_string(DataType::STR);
-	s1.properties["edad"] = to_string(DataType::NUM);
-	s1.properties["telefono"] = to_string(DataType::STR);
-	s1.properties["correo"] = to_string(DataType::STR);
-	s1.properties["pw"] = to_string(DataType::STR);
+	unordered_map<string, string> properties;
+	properties["nombre"] = to_string(DataType::STR);
+	properties["edad"] = to_string(DataType::NUM);
+	properties["telefono"] = to_string(DataType::STR);
+	properties["correo"] = to_string(DataType::STR);
+	properties["pw"] = to_string(DataType::STR);
+	s1.setProperties(properties);
 	g.schemaVector.push_back(&s1);
 
-	int tmp = 0;
 	for (int i = 0; i < 100; i++)
 	{
 		Node n;
 		n.id = id++;
-		for (unordered_map<string, string>::iterator it = s1.properties.begin(); it != s1.properties.end(); it++)
+		for (unordered_map<string, string>::iterator it = properties.begin(); it != properties.end(); it++)
 		{
 			if (it->second._Equal(to_string(DataType::NUM)))
-				n.properties[it->first] = to_string(tmp++);
+				n.properties[it->first] = (rand() % 1000000000) + 1000000000;
 			else
-				n.properties[it->first] = "kfmkemfklsef";
+				n.properties[it->first] = gen_random(10);
 		}
 		Vertex v;
+		v.id = id++;
 		v.node = &n;
 		g.vertexVector.push_back(&v);
 	}
 
-	for (int i = 0; i < g.vertexVector.size-3; i++)
+	int size = (int)g.vertexVector.size();
+	for (int i = 0; i < size; i++)
 	{
-		g.vertexVector[i]->edgesVector;
+		for (int j = 1; j <= 3 && i + j<size; j++)
+		{
+			Edge e;
+			e.id = id++;
+			e.originNode = g.vertexVector[i]->node;
+			e.targetNode = g.vertexVector[i + j]->node;
+			g.vertexVector[i]->edgesVector.push_back(&e);
+		}
 	}
-	
+}
 
-	/*
-	for (const auto&[key, val] : s1.properties)
+void config_main() {
+	Main::configs["NodesPath"] = "nodes_test.txt";
+	Main::configs["EdgesPath"] = "edges_test.txt";
+	Main::configs["VertexPath"] = "vertex_test.txt";
+	Main::configs["GraphPath"] = "graph_test.txt";
+}
+
+void store_graph() {
+	config_main();
+	Graph * g = Main::database.graphVector[0];
+	int size = (int)g->vertexVector.size();
+	for (int  i = 0; i < size; i++)
 	{
-		std::cout << key         // string (key)
-			<< ':'
-			<< val        // string's value
-			<< std::endl;
-	}
-	*/
 
-	Node n1;
-	n1.id = 1;
-	n1.properties["test"] = "holis";
-	n1.properties["edgar"] = "vazquez";
-	n1.properties["cristina"] = "mariscal";
+	}
+}
+
+void load_graph() {
+	config_main();
+}
+
+int main() {
 	string t = "test.txt";
+
+	//*
+	Node n1;
+	n1.id = 222;
+	n1.properties["testeefwfwf"] = "holis";
+	n1.properties["edgarqdqwdqwd"] = "vazquez";
+	n1.properties["cristina"] = "mariscal";
+	
 	SerializableNode  ser = n1.getSerializable();
+	cout << "SER ID: " << ser.id << endl;
 	ser.path = t;
 	ser.store();
+	//*/
+
+	SerializableNode  ser2;
+	ser2.path = t;
+	ser2.load();
+	cout << ser2.id<<endl;
+	cout << ser2.properties["cristina"] << endl;
+
 	cout << "SALE" << endl;
 	system("pause");
 }
@@ -127,4 +180,16 @@ configuration file that should contains :
 - database data files
 - backup files
 - installatio
+*/
+
+
+//how to use it?
+/*
+for (const auto&[key, val] : s1.properties)
+{
+std::cout << key         // string (key)
+<< ':'
+<< val        // string's value
+<< std::endl;
+}
 */

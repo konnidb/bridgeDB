@@ -1,7 +1,7 @@
 #pragma once
 #include<iostream>
 #include<string>
-#include"Vertex.cpp"
+#include"Vertex.h"
 #include"Schema.cpp"
 using namespace std;
 
@@ -11,4 +11,5 @@ public:
 	string name;
 	vector<Schema*> schemaVector;
 	vector<Vertex*> vertexVector;
+	Graph(){}
 };

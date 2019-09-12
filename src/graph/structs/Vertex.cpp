@@ -1,20 +1,18 @@
 #pragma once
 #include<iostream>
-#include"..\utils\Serializable.h"
-#include"Edge.h"
-#include"Node.h"
+#include"Vertex.h"
 using namespace std;
 
-class VertexSerializable: Serializable {
-	vector<int> edgesIdVector;
-	int node;
-};
+VertexSerializable::VertexSerializable() {
+	this->objType = VERTEX;
+}
 
-class Vertex {
-public:
-	Node * node;
-	vector<Edge *> edgesVector;
-	VertexSerializable getSerializable() {
-
+VertexSerializable Vertex::getSerializable() {
+	VertexSerializable serializable;
+	serializable.id = this->id;
+	for (int i = 0; i < (int)this->edgesVector.size(); i++)
+	{
+		serializable.edgesIdVector.push_back(this->edgesVector[i]->id);
 	}
-};
+	return serializable;
+}

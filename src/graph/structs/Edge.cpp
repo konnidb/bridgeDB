@@ -8,6 +8,12 @@ SerializableEdge::SerializableEdge() {
 }
 
 SerializableEdge Edge::getSerializable() {
-	return SerializableEdge();
+	SerializableEdge serializable;
+	serializable.id = this->id;
+	serializable.setProperties(this->properties);
+	//serializable.properties = this->properties;
+	serializable.originNode = this->originNode->id;
+	serializable.targetNode = this->targetNode->id;
+	return serializable;
 }
 

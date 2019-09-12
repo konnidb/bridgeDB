@@ -18,7 +18,7 @@ public:
 
 	Schema(string name, unordered_map<string, string> properties, ElementType type) {
 		this->name = name;
-		this->properties = properties;
+		this->setProperties(properties);
 		this->type = type;
 		this->objType = SCHEMA;
 	}

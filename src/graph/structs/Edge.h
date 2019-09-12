@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include<unordered_map>
 #include"Node.h"
 #include"Schema.cpp"
 #include"..\utils\Serializable.h"
@@ -18,7 +19,7 @@ public:
 	Schema * schema;
 	int id;
 	unordered_map<string, string> properties;
-	Node originNode;
-	Node targetNode;
+	Node * originNode;
+	Node * targetNode;
 	SerializableEdge getSerializable();
 };

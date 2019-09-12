@@ -1,12 +1,12 @@
 #pragma once
 #include<iostream>
-#include"..\utils\Serializable.h"
+//#include"..\utils\Serializable.h"
 #include"Graph.cpp"
 using namespace std;
 
 class Database {
 public:
 	string name;
-	vector<Graph> graphList;
+	vector<Graph*> graphVector;
 	int deleteConfig;
 };

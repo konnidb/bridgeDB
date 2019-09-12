@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+/*
 #include"../structs/Edge.h"
 #include"../structs/Node.h"
 #include"../structs/Graph.cpp"
@@ -54,3 +55,4 @@ public:
 	static void searchNode(Node node) {}
 	//create nultiple relations?
 };
+*/

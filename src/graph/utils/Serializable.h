@@ -7,7 +7,7 @@ using namespace std;
 
 class Serializable {
 public:
-	unordered_map<string, string> properties;
+	unordered_map<char*, char*> properties;
 	int id;
 	string path;
 	ElementType objType;
@@ -15,4 +15,5 @@ public:
 	Serializable();
 	void load();
 	string store();
+	void setProperties(unordered_map<string, string> properties);
 };

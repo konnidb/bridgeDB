@@ -19,6 +19,7 @@ enum LogType {
 enum ElementType {
 	NODE,
 	EDGE,
+	VERTEX,
 	SCHEMA,
 	GROUP,
 	UNDEF

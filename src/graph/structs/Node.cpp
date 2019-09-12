@@ -11,7 +11,8 @@ SerializableNode::SerializableNode() {
 SerializableNode Node::getSerializable() {
 	SerializableNode serializable;
 	serializable.id = this->id;
-	serializable.properties = this->properties;
+	serializable.setProperties(this->properties);
+	//serializable.properties = this->properties;
 	return serializable;
 }
 
