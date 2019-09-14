@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package network;
+
+message Query {
+    int32 number = 1;
+    string message = 2;
+}
+
+message QueryResponse {
+    string response = 1;
+}
+
+service QueryService {
+    rpc ExecuteQuery (Query) returns (QueryResponse) {};
+    rpc CreateNode (Query) returns (QueryResponse) {};
+    rpc DeleteNode (Query) returns (QueryResponse) {};
+    rpc CreateRelation (Query) returns (QueryResponse) {};
+    rpc CreateEdge (Query) returns (QueryResponse) {};
+    rpc DeleteEdge (Query) returns (QueryResponse) {};
+    rpc SearchNodeById (Query) returns (QueryResponse) {};
+    rpc SearchNodeByCondition (Query) returns (QueryResponse) {};
+    rpc SearchNode (Query) returns (QueryResponse) {};
+}

@@ -1,5 +1,8 @@
-FROM gcc
-RUN apt-get install -y lex bison
-
-RUN mkdir -p bridgedb
-COPY . /bridgedb
+FROM grpc/cxx
+RUN mkdir bridgedb
+WORKDIR /bridgedb
+ADD . .
+WORKDIR /bridgedb/src/network
+RUN ./proto.sh
+WORKDIR /bridgedb
+RUN g++ -Wall network.cpp -o network.out
