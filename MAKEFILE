@@ -1,5 +1,9 @@
 COMPILER=g++
 CCFLAGS= -Wall
+LDFLAGS += -L/usr/local/lib `pkg-config --libs protobuf grpc++ grpc`\
+		-pthread\
+		-Wl,--no-as-needed -lgrpc++_reflection -Wl,--as-needed\
+		-ldl
 langbuilder: 
 	flex --outfile=src/query/interpreter/lex.yy.c src/query/interpreter/lexer/lang.l
 	bison --defines=src/query/interpreter/parser.tab.h --output=src/query/interpreter/parser.tab.c src/query/interpreter/parser/parser.y
@@ -7,4 +11,4 @@ langbuilder:
 	./src/query/interpreter/interpreter.out
 
 networking:
-	./proto.sh
+	$(COMPILER) -Wall -o test src/network/server.cpp src/network/network.grpc.pb.cc src/network/network.pb.cc -L/usr/local/lib -lprotobuf -lgrpc++
