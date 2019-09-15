@@ -9,9 +9,12 @@ using namespace std;
 class SerializableEdge : public Serializable {
 public:
 	int id;
+	int schemaId;
 	int originNode;
 	int targetNode;
 	SerializableEdge();
+	void load();
+	void store();
 };
 
 class Edge {

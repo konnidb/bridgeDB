@@ -13,14 +13,15 @@ public:
 	string name;
 	ElementType type;
 
-
 	Schema(){}
 
 	Schema(string name, unordered_map<string, string> properties, ElementType type) {
 		this->name = name;
-		this->setProperties(properties);
+		this->properties = properties;
 		this->type = type;
 		this->objType = SCHEMA;
 	}
 
+	void load(){}
+	void store(){}
 };

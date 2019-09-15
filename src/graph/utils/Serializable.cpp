@@ -20,41 +20,52 @@ void Serializable::load() {
 	rf.read((char *)&deserialized, sizeof(Serializable));
 	rf.close();
 	if (!rf.good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
-	cout << "ENTRA LOAD5" << endl;
 	this->properties = deserialized.properties;
-	cout << "ENTRA LOAD6" << endl;
+//	deserialized.deserializeProperties();
 	this->path = deserialized.path;
 	this->id = deserialized.id;
 	this->objType = deserialized.objType;
 }
 
-string Serializable::store() {
+void Serializable::store() {
 	ofstream wf(this->path, ios::out | ios::binary);
 	if (!wf) cout << "STORE: FAILED OPENING" << endl; //ErrorMap::error_storing_object->action();
 	wf.write((char *)this, sizeof(Serializable));
 	wf.close();
 	if (!wf.good()) cout << "STORE: FAILED CLOSING" << endl;  //ErrorMap::error_storing_object->action();
-	return "";
 }
 
-string serialize() {
-	string serializedObj = "";
 
+/*
+string Serializable::serialize() {
+	string serializedObj = "";
+	const string propSeparatorChar = "|";
+	const string mapSeratorChar = "#";
+	const string objSeparatorChar = "~~~~";
+
+	serializedObj.append(to_string(this->id));
+	serializedObj.append(propSeparatorChar);
+	serializedObj.append(to_string(this->objType));
+	serializedObj.append(propSeparatorChar);
+	for (unordered_map<string, string>::iterator it = this->properties.begin(); it != this->properties.end(); it++) {
+		serializedObj.append(to_string(this->id));
+		serializedObj.append(propSeparatorChar);
+	}
+	return "";
 }
 
 void Serializable::setProperties(unordered_map<string, string> properties) {
 	for (unordered_map<string, string>::iterator it = properties.begin(); it != properties.end(); it++) {
-		//int lk = ((int)it->first.length()+1);
-		char * key = (char *)it->first.c_str();
-		for (size_t i = 0; i < sizeof(key)/sizeof(char); i++)
-		{
-			cout << key[i];
-		}
-		cout << endl << "LENGHT: " << (sizeof(key) / sizeof(char)) << endl;
-		//strcpy_s(key, lk, it->first.c_str());
-		//int lv = ((int)it->second.length()+1);
-		char * value = (char *)it->second.c_str();
-		//strcpy_s(value, lv, it->second.c_str());
+		const int lk = ((int)it->first.length()+1);
+		char* key = new char[lk];
+		cout << "SET PROP, KEY SIZE: " << strlen(key) << endl;
+		strcpy_s(key, lk, it->first.c_str());
+		int lv = ((int)it->second.length()+1);
+		char* value = new char[lv];
+		strcpy_s(value, lv, it->second.c_str());
+		cout << "SET PROP, VAL SIZE: " << sizeof(key) << endl;
 		this->properties[key] = value;
 	}
 }
+
+*/

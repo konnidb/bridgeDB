@@ -7,13 +7,12 @@ using namespace std;
 
 class Serializable {
 public:
-	unordered_map<char*, char*> properties;
+	unordered_map<string, string> properties;
 	int id;
 	string path;
 	ElementType objType;
 
 	Serializable();
-	void load();
-	string store();
-	void setProperties(unordered_map<string, string> properties);
+	virtual void load();
+	virtual void store();
 };

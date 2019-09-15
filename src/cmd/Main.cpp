@@ -1,5 +1,6 @@
 #include<iostream>
 #include<unordered_map>
+//#include"..\utils\dependencies\json.hpp"
 #include<string>
 #include"..\graph\structs\Node.h"
 #include"..\graph\structs\Edge.h"
@@ -54,7 +55,7 @@ void generates_semi_random_graph(){
 	properties["telefono"] = to_string(DataType::STR);
 	properties["correo"] = to_string(DataType::STR);
 	properties["pw"] = to_string(DataType::STR);
-	s1.setProperties(properties);
+	s1.properties = properties;
 	g.schemaVector.push_back(&s1);
 
 	for (int i = 0; i < 100; i++)
@@ -112,25 +113,38 @@ void load_graph() {
 int main() {
 	string t = "test.txt";
 
-	//*
+	char a = 'd';
+	string s = "holi";
+	cout << s+a+s << endl;
+
+	///*
 	Node n1;
 	n1.id = 222;
 	n1.properties["testeefwfwf"] = "holis";
 	n1.properties["edgarqdqwdqwd"] = "vazquez";
-	n1.properties["cristina"] = "mariscal";
+	n1.properties["cristina"] = "mariscalsdcsdcs";
 	
 	SerializableNode  ser = n1.getSerializable();
 	cout << "SER ID: " << ser.id << endl;
 	ser.path = t;
-	ser.store();
-	//*/
-
+	//ser.store();
+	
+	//*
 	SerializableNode  ser2;
 	ser2.path = t;
 	ser2.load();
 	cout << ser2.id<<endl;
-	cout << ser2.properties["cristina"] << endl;
-
+	for (unordered_map<string, string>::iterator it = ser2.properties.begin(); it != ser2.properties.end(); it++) {
+		cout << "IT " << it->first.length() << endl;
+		cout << "val " << it->second.length() << endl;
+		for (size_t i = 0; i < it->first.length(); i++)
+		{
+			cout << it->first[i];
+		}
+		cout << endl;
+	}
+	
+	//*/
 	cout << "SALE" << endl;
 	system("pause");
 }
