@@ -38,243 +38,268 @@ class MessageAllocator;
 
 namespace network {
 
-class QueryService final {
+// Service
+class Network final {
  public:
   static constexpr char const* service_full_name() {
-    return "network.QueryService";
+    return "network.Network";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status ExecuteQuery(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncExecuteQuery(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncExecuteQueryRaw(context, request, cq));
+    virtual ::grpc::Status executeQuery(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncexecuteQuery(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncexecuteQueryRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncExecuteQuery(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncExecuteQueryRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncexecuteQuery(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncexecuteQueryRaw(context, request, cq));
     }
-    virtual ::grpc::Status CreateNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncCreateNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncCreateNodeRaw(context, request, cq));
+    virtual ::grpc::Status createNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsynccreateNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsynccreateNodeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncCreateNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncCreateNodeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsynccreateNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsynccreateNodeRaw(context, request, cq));
     }
-    virtual ::grpc::Status DeleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncDeleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncDeleteNodeRaw(context, request, cq));
+    virtual ::grpc::Status deleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncdeleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncdeleteNodeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncDeleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncDeleteNodeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncdeleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncdeleteNodeRaw(context, request, cq));
     }
-    virtual ::grpc::Status CreateRelation(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncCreateRelation(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncCreateRelationRaw(context, request, cq));
+    virtual ::grpc::Status createRelation(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsynccreateRelation(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsynccreateRelationRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncCreateRelation(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncCreateRelationRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsynccreateRelation(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsynccreateRelationRaw(context, request, cq));
     }
-    virtual ::grpc::Status CreateEdge(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncCreateEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncCreateEdgeRaw(context, request, cq));
+    virtual ::grpc::Status createEdge(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsynccreateEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsynccreateEdgeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncCreateEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncCreateEdgeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsynccreateEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsynccreateEdgeRaw(context, request, cq));
     }
-    virtual ::grpc::Status DeleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncDeleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncDeleteEdgeRaw(context, request, cq));
+    virtual ::grpc::Status deleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncdeleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncdeleteEdgeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncDeleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncDeleteEdgeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncdeleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncdeleteEdgeRaw(context, request, cq));
     }
-    virtual ::grpc::Status SearchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncSearchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncSearchNodeByIdRaw(context, request, cq));
+    virtual ::grpc::Status searchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncsearchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncsearchNodeByIdRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncSearchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncSearchNodeByIdRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncsearchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncsearchNodeByIdRaw(context, request, cq));
     }
-    virtual ::grpc::Status SearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncSearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncSearchNodeByConditionRaw(context, request, cq));
+    virtual ::grpc::Status searchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncsearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncsearchNodeByConditionRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncSearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncSearchNodeByConditionRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncsearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncsearchNodeByConditionRaw(context, request, cq));
     }
-    virtual ::grpc::Status SearchNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncSearchNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncSearchNodeRaw(context, request, cq));
+    virtual ::grpc::Status searchNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> AsyncsearchNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(AsyncsearchNodeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncSearchNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncSearchNodeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>> PrepareAsyncsearchNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>>(PrepareAsyncsearchNodeRaw(context, request, cq));
+    }
+    virtual ::grpc::Status auth(::grpc::ClientContext* context, const ::network::Credentials& request, ::network::AuthResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::AuthResponse>> Asyncauth(::grpc::ClientContext* context, const ::network::Credentials& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::AuthResponse>>(AsyncauthRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::AuthResponse>> PrepareAsyncauth(::grpc::ClientContext* context, const ::network::Credentials& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::network::AuthResponse>>(PrepareAsyncauthRaw(context, request, cq));
     }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
-      virtual void ExecuteQuery(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ExecuteQuery(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ExecuteQuery(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void ExecuteQuery(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void CreateNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CreateNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CreateNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void CreateNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void DeleteNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DeleteNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DeleteNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void DeleteNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void CreateRelation(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CreateRelation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CreateRelation(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void CreateRelation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void CreateEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CreateEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CreateEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void CreateEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void DeleteEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DeleteEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DeleteEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void DeleteEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void SearchNodeById(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SearchNodeById(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SearchNodeById(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void SearchNodeById(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void SearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SearchNodeByCondition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void SearchNodeByCondition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void SearchNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SearchNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SearchNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
-      virtual void SearchNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void executeQuery(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void executeQuery(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void executeQuery(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void executeQuery(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void createNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void createNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void createNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void createNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void deleteNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void deleteNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void deleteNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void deleteNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void createRelation(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void createRelation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void createRelation(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void createRelation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void createEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void createEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void createEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void createEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void deleteEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void deleteEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void deleteEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void deleteEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void searchNodeById(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void searchNodeById(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void searchNodeById(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void searchNodeById(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void searchNodeByCondition(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void searchNodeByCondition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void searchNodeByCondition(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void searchNodeByCondition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void searchNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void searchNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void searchNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void searchNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void auth(::grpc::ClientContext* context, const ::network::Credentials* request, ::network::AuthResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void auth(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::AuthResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void auth(::grpc::ClientContext* context, const ::network::Credentials* request, ::network::AuthResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void auth(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::AuthResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
     };
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncExecuteQueryRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncExecuteQueryRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncCreateNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncCreateNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncDeleteNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncDeleteNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncCreateRelationRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncCreateRelationRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncCreateEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncCreateEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncDeleteEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncDeleteEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncSearchNodeByIdRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncSearchNodeByIdRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncSearchNodeByConditionRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncSearchNodeByConditionRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncSearchNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncSearchNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncexecuteQueryRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncexecuteQueryRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsynccreateNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsynccreateNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncdeleteNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncdeleteNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsynccreateRelationRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsynccreateRelationRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsynccreateEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsynccreateEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncdeleteEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncdeleteEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncsearchNodeByIdRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncsearchNodeByIdRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncsearchNodeByConditionRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncsearchNodeByConditionRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* AsyncsearchNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::QueryResponse>* PrepareAsyncsearchNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::AuthResponse>* AsyncauthRaw(::grpc::ClientContext* context, const ::network::Credentials& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::network::AuthResponse>* PrepareAsyncauthRaw(::grpc::ClientContext* context, const ::network::Credentials& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status ExecuteQuery(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncExecuteQuery(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncExecuteQueryRaw(context, request, cq));
+    ::grpc::Status executeQuery(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncexecuteQuery(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncexecuteQueryRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncExecuteQuery(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncExecuteQueryRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncexecuteQuery(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncexecuteQueryRaw(context, request, cq));
     }
-    ::grpc::Status CreateNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncCreateNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncCreateNodeRaw(context, request, cq));
+    ::grpc::Status createNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsynccreateNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsynccreateNodeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncCreateNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncCreateNodeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsynccreateNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsynccreateNodeRaw(context, request, cq));
     }
-    ::grpc::Status DeleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncDeleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncDeleteNodeRaw(context, request, cq));
+    ::grpc::Status deleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncdeleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncdeleteNodeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncDeleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncDeleteNodeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncdeleteNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncdeleteNodeRaw(context, request, cq));
     }
-    ::grpc::Status CreateRelation(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncCreateRelation(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncCreateRelationRaw(context, request, cq));
+    ::grpc::Status createRelation(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsynccreateRelation(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsynccreateRelationRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncCreateRelation(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncCreateRelationRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsynccreateRelation(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsynccreateRelationRaw(context, request, cq));
     }
-    ::grpc::Status CreateEdge(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncCreateEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncCreateEdgeRaw(context, request, cq));
+    ::grpc::Status createEdge(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsynccreateEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsynccreateEdgeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncCreateEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncCreateEdgeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsynccreateEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsynccreateEdgeRaw(context, request, cq));
     }
-    ::grpc::Status DeleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncDeleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncDeleteEdgeRaw(context, request, cq));
+    ::grpc::Status deleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncdeleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncdeleteEdgeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncDeleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncDeleteEdgeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncdeleteEdge(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncdeleteEdgeRaw(context, request, cq));
     }
-    ::grpc::Status SearchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncSearchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncSearchNodeByIdRaw(context, request, cq));
+    ::grpc::Status searchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncsearchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncsearchNodeByIdRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncSearchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncSearchNodeByIdRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncsearchNodeById(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncsearchNodeByIdRaw(context, request, cq));
     }
-    ::grpc::Status SearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncSearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncSearchNodeByConditionRaw(context, request, cq));
+    ::grpc::Status searchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncsearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncsearchNodeByConditionRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncSearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncSearchNodeByConditionRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncsearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncsearchNodeByConditionRaw(context, request, cq));
     }
-    ::grpc::Status SearchNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncSearchNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncSearchNodeRaw(context, request, cq));
+    ::grpc::Status searchNode(::grpc::ClientContext* context, const ::network::Query& request, ::network::QueryResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> AsyncsearchNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(AsyncsearchNodeRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncSearchNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncSearchNodeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>> PrepareAsyncsearchNode(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>>(PrepareAsyncsearchNodeRaw(context, request, cq));
+    }
+    ::grpc::Status auth(::grpc::ClientContext* context, const ::network::Credentials& request, ::network::AuthResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::AuthResponse>> Asyncauth(::grpc::ClientContext* context, const ::network::Credentials& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::AuthResponse>>(AsyncauthRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::AuthResponse>> PrepareAsyncauth(::grpc::ClientContext* context, const ::network::Credentials& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::network::AuthResponse>>(PrepareAsyncauthRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
-      void ExecuteQuery(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void ExecuteQuery(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void ExecuteQuery(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void ExecuteQuery(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void CreateNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void CreateNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void CreateNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void CreateNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void DeleteNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void DeleteNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void DeleteNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void DeleteNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void CreateRelation(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void CreateRelation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void CreateRelation(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void CreateRelation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void CreateEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void CreateEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void CreateEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void CreateEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void DeleteEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void DeleteEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void DeleteEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void DeleteEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void SearchNodeById(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void SearchNodeById(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void SearchNodeById(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void SearchNodeById(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void SearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void SearchNodeByCondition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void SearchNodeByCondition(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void SearchNodeByCondition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void SearchNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void SearchNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
-      void SearchNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
-      void SearchNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void executeQuery(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void executeQuery(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void executeQuery(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void executeQuery(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void createNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void createNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void createNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void createNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void deleteNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void deleteNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void deleteNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void deleteNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void createRelation(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void createRelation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void createRelation(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void createRelation(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void createEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void createEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void createEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void createEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void deleteEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void deleteEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void deleteEdge(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void deleteEdge(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void searchNodeById(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void searchNodeById(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void searchNodeById(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void searchNodeById(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void searchNodeByCondition(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void searchNodeByCondition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void searchNodeByCondition(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void searchNodeByCondition(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void searchNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void searchNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, std::function<void(::grpc::Status)>) override;
+      void searchNode(::grpc::ClientContext* context, const ::network::Query* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void searchNode(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::QueryResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void auth(::grpc::ClientContext* context, const ::network::Credentials* request, ::network::AuthResponse* response, std::function<void(::grpc::Status)>) override;
+      void auth(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::AuthResponse* response, std::function<void(::grpc::Status)>) override;
+      void auth(::grpc::ClientContext* context, const ::network::Credentials* request, ::network::AuthResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void auth(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::network::AuthResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -286,33 +311,36 @@ class QueryService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncExecuteQueryRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncExecuteQueryRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncCreateNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncCreateNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncDeleteNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncDeleteNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncCreateRelationRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncCreateRelationRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncCreateEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncCreateEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncDeleteEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncDeleteEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncSearchNodeByIdRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncSearchNodeByIdRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncSearchNodeByConditionRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncSearchNodeByConditionRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncSearchNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncSearchNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_ExecuteQuery_;
-    const ::grpc::internal::RpcMethod rpcmethod_CreateNode_;
-    const ::grpc::internal::RpcMethod rpcmethod_DeleteNode_;
-    const ::grpc::internal::RpcMethod rpcmethod_CreateRelation_;
-    const ::grpc::internal::RpcMethod rpcmethod_CreateEdge_;
-    const ::grpc::internal::RpcMethod rpcmethod_DeleteEdge_;
-    const ::grpc::internal::RpcMethod rpcmethod_SearchNodeById_;
-    const ::grpc::internal::RpcMethod rpcmethod_SearchNodeByCondition_;
-    const ::grpc::internal::RpcMethod rpcmethod_SearchNode_;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncexecuteQueryRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncexecuteQueryRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsynccreateNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsynccreateNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncdeleteNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncdeleteNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsynccreateRelationRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsynccreateRelationRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsynccreateEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsynccreateEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncdeleteEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncdeleteEdgeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncsearchNodeByIdRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncsearchNodeByIdRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncsearchNodeByConditionRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncsearchNodeByConditionRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* AsyncsearchNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::QueryResponse>* PrepareAsyncsearchNodeRaw(::grpc::ClientContext* context, const ::network::Query& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::AuthResponse>* AsyncauthRaw(::grpc::ClientContext* context, const ::network::Credentials& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::network::AuthResponse>* PrepareAsyncauthRaw(::grpc::ClientContext* context, const ::network::Credentials& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_executeQuery_;
+    const ::grpc::internal::RpcMethod rpcmethod_createNode_;
+    const ::grpc::internal::RpcMethod rpcmethod_deleteNode_;
+    const ::grpc::internal::RpcMethod rpcmethod_createRelation_;
+    const ::grpc::internal::RpcMethod rpcmethod_createEdge_;
+    const ::grpc::internal::RpcMethod rpcmethod_deleteEdge_;
+    const ::grpc::internal::RpcMethod rpcmethod_searchNodeById_;
+    const ::grpc::internal::RpcMethod rpcmethod_searchNodeByCondition_;
+    const ::grpc::internal::RpcMethod rpcmethod_searchNode_;
+    const ::grpc::internal::RpcMethod rpcmethod_auth_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -320,1218 +348,1352 @@ class QueryService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status ExecuteQuery(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
-    virtual ::grpc::Status CreateNode(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
-    virtual ::grpc::Status DeleteNode(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
-    virtual ::grpc::Status CreateRelation(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
-    virtual ::grpc::Status CreateEdge(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
-    virtual ::grpc::Status DeleteEdge(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
-    virtual ::grpc::Status SearchNodeById(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
-    virtual ::grpc::Status SearchNodeByCondition(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
-    virtual ::grpc::Status SearchNode(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
+    virtual ::grpc::Status executeQuery(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
+    virtual ::grpc::Status createNode(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
+    virtual ::grpc::Status deleteNode(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
+    virtual ::grpc::Status createRelation(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
+    virtual ::grpc::Status createEdge(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
+    virtual ::grpc::Status deleteEdge(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
+    virtual ::grpc::Status searchNodeById(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
+    virtual ::grpc::Status searchNodeByCondition(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
+    virtual ::grpc::Status searchNode(::grpc::ServerContext* context, const ::network::Query* request, ::network::QueryResponse* response);
+    virtual ::grpc::Status auth(::grpc::ServerContext* context, const ::network::Credentials* request, ::network::AuthResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_ExecuteQuery : public BaseClass {
+  class WithAsyncMethod_executeQuery : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_ExecuteQuery() {
+    WithAsyncMethod_executeQuery() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_ExecuteQuery() override {
+    ~WithAsyncMethod_executeQuery() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status executeQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestExecuteQuery(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestexecuteQuery(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_CreateNode : public BaseClass {
+  class WithAsyncMethod_createNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_CreateNode() {
+    WithAsyncMethod_createNode() {
       ::grpc::Service::MarkMethodAsync(1);
     }
-    ~WithAsyncMethod_CreateNode() override {
+    ~WithAsyncMethod_createNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCreateNode(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestcreateNode(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_DeleteNode : public BaseClass {
+  class WithAsyncMethod_deleteNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_DeleteNode() {
+    WithAsyncMethod_deleteNode() {
       ::grpc::Service::MarkMethodAsync(2);
     }
-    ~WithAsyncMethod_DeleteNode() override {
+    ~WithAsyncMethod_deleteNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDeleteNode(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestdeleteNode(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_CreateRelation : public BaseClass {
+  class WithAsyncMethod_createRelation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_CreateRelation() {
+    WithAsyncMethod_createRelation() {
       ::grpc::Service::MarkMethodAsync(3);
     }
-    ~WithAsyncMethod_CreateRelation() override {
+    ~WithAsyncMethod_createRelation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCreateRelation(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestcreateRelation(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_CreateEdge : public BaseClass {
+  class WithAsyncMethod_createEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_CreateEdge() {
+    WithAsyncMethod_createEdge() {
       ::grpc::Service::MarkMethodAsync(4);
     }
-    ~WithAsyncMethod_CreateEdge() override {
+    ~WithAsyncMethod_createEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCreateEdge(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestcreateEdge(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_DeleteEdge : public BaseClass {
+  class WithAsyncMethod_deleteEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_DeleteEdge() {
+    WithAsyncMethod_deleteEdge() {
       ::grpc::Service::MarkMethodAsync(5);
     }
-    ~WithAsyncMethod_DeleteEdge() override {
+    ~WithAsyncMethod_deleteEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDeleteEdge(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestdeleteEdge(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_SearchNodeById : public BaseClass {
+  class WithAsyncMethod_searchNodeById : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_SearchNodeById() {
+    WithAsyncMethod_searchNodeById() {
       ::grpc::Service::MarkMethodAsync(6);
     }
-    ~WithAsyncMethod_SearchNodeById() override {
+    ~WithAsyncMethod_searchNodeById() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSearchNodeById(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestsearchNodeById(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_SearchNodeByCondition : public BaseClass {
+  class WithAsyncMethod_searchNodeByCondition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_SearchNodeByCondition() {
+    WithAsyncMethod_searchNodeByCondition() {
       ::grpc::Service::MarkMethodAsync(7);
     }
-    ~WithAsyncMethod_SearchNodeByCondition() override {
+    ~WithAsyncMethod_searchNodeByCondition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSearchNodeByCondition(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestsearchNodeByCondition(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_SearchNode : public BaseClass {
+  class WithAsyncMethod_searchNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_SearchNode() {
+    WithAsyncMethod_searchNode() {
       ::grpc::Service::MarkMethodAsync(8);
     }
-    ~WithAsyncMethod_SearchNode() override {
+    ~WithAsyncMethod_searchNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSearchNode(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestsearchNode(::grpc::ServerContext* context, ::network::Query* request, ::grpc::ServerAsyncResponseWriter< ::network::QueryResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_ExecuteQuery<WithAsyncMethod_CreateNode<WithAsyncMethod_DeleteNode<WithAsyncMethod_CreateRelation<WithAsyncMethod_CreateEdge<WithAsyncMethod_DeleteEdge<WithAsyncMethod_SearchNodeById<WithAsyncMethod_SearchNodeByCondition<WithAsyncMethod_SearchNode<Service > > > > > > > > > AsyncService;
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_ExecuteQuery : public BaseClass {
+  class WithAsyncMethod_auth : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_ExecuteQuery() {
+    WithAsyncMethod_auth() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_auth() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status auth(::grpc::ServerContext* /*context*/, const ::network::Credentials* /*request*/, ::network::AuthResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestauth(::grpc::ServerContext* context, ::network::Credentials* request, ::grpc::ServerAsyncResponseWriter< ::network::AuthResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_executeQuery<WithAsyncMethod_createNode<WithAsyncMethod_deleteNode<WithAsyncMethod_createRelation<WithAsyncMethod_createEdge<WithAsyncMethod_deleteEdge<WithAsyncMethod_searchNodeById<WithAsyncMethod_searchNodeByCondition<WithAsyncMethod_searchNode<WithAsyncMethod_auth<Service > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_executeQuery : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_executeQuery() {
       ::grpc::Service::experimental().MarkMethodCallback(0,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>(
           [this](::grpc::ServerContext* context,
                  const ::network::Query* request,
                  ::network::QueryResponse* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->ExecuteQuery(context, request, response, controller);
+                   return this->executeQuery(context, request, response, controller);
                  }));
     }
-    void SetMessageAllocatorFor_ExecuteQuery(
+    void SetMessageAllocatorFor_executeQuery(
         ::grpc::experimental::MessageAllocator< ::network::Query, ::network::QueryResponse>* allocator) {
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>*>(
           ::grpc::Service::experimental().GetHandler(0))
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_ExecuteQuery() override {
+    ~ExperimentalWithCallbackMethod_executeQuery() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status executeQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void ExecuteQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void executeQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_CreateNode : public BaseClass {
+  class ExperimentalWithCallbackMethod_createNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_CreateNode() {
+    ExperimentalWithCallbackMethod_createNode() {
       ::grpc::Service::experimental().MarkMethodCallback(1,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>(
           [this](::grpc::ServerContext* context,
                  const ::network::Query* request,
                  ::network::QueryResponse* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->CreateNode(context, request, response, controller);
+                   return this->createNode(context, request, response, controller);
                  }));
     }
-    void SetMessageAllocatorFor_CreateNode(
+    void SetMessageAllocatorFor_createNode(
         ::grpc::experimental::MessageAllocator< ::network::Query, ::network::QueryResponse>* allocator) {
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>*>(
           ::grpc::Service::experimental().GetHandler(1))
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_CreateNode() override {
+    ~ExperimentalWithCallbackMethod_createNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void CreateNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void createNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_DeleteNode : public BaseClass {
+  class ExperimentalWithCallbackMethod_deleteNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_DeleteNode() {
+    ExperimentalWithCallbackMethod_deleteNode() {
       ::grpc::Service::experimental().MarkMethodCallback(2,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>(
           [this](::grpc::ServerContext* context,
                  const ::network::Query* request,
                  ::network::QueryResponse* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->DeleteNode(context, request, response, controller);
+                   return this->deleteNode(context, request, response, controller);
                  }));
     }
-    void SetMessageAllocatorFor_DeleteNode(
+    void SetMessageAllocatorFor_deleteNode(
         ::grpc::experimental::MessageAllocator< ::network::Query, ::network::QueryResponse>* allocator) {
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>*>(
           ::grpc::Service::experimental().GetHandler(2))
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_DeleteNode() override {
+    ~ExperimentalWithCallbackMethod_deleteNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void DeleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void deleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_CreateRelation : public BaseClass {
+  class ExperimentalWithCallbackMethod_createRelation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_CreateRelation() {
+    ExperimentalWithCallbackMethod_createRelation() {
       ::grpc::Service::experimental().MarkMethodCallback(3,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>(
           [this](::grpc::ServerContext* context,
                  const ::network::Query* request,
                  ::network::QueryResponse* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->CreateRelation(context, request, response, controller);
+                   return this->createRelation(context, request, response, controller);
                  }));
     }
-    void SetMessageAllocatorFor_CreateRelation(
+    void SetMessageAllocatorFor_createRelation(
         ::grpc::experimental::MessageAllocator< ::network::Query, ::network::QueryResponse>* allocator) {
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>*>(
           ::grpc::Service::experimental().GetHandler(3))
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_CreateRelation() override {
+    ~ExperimentalWithCallbackMethod_createRelation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void CreateRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void createRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_CreateEdge : public BaseClass {
+  class ExperimentalWithCallbackMethod_createEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_CreateEdge() {
+    ExperimentalWithCallbackMethod_createEdge() {
       ::grpc::Service::experimental().MarkMethodCallback(4,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>(
           [this](::grpc::ServerContext* context,
                  const ::network::Query* request,
                  ::network::QueryResponse* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->CreateEdge(context, request, response, controller);
+                   return this->createEdge(context, request, response, controller);
                  }));
     }
-    void SetMessageAllocatorFor_CreateEdge(
+    void SetMessageAllocatorFor_createEdge(
         ::grpc::experimental::MessageAllocator< ::network::Query, ::network::QueryResponse>* allocator) {
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>*>(
           ::grpc::Service::experimental().GetHandler(4))
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_CreateEdge() override {
+    ~ExperimentalWithCallbackMethod_createEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void CreateEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void createEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_DeleteEdge : public BaseClass {
+  class ExperimentalWithCallbackMethod_deleteEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_DeleteEdge() {
+    ExperimentalWithCallbackMethod_deleteEdge() {
       ::grpc::Service::experimental().MarkMethodCallback(5,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>(
           [this](::grpc::ServerContext* context,
                  const ::network::Query* request,
                  ::network::QueryResponse* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->DeleteEdge(context, request, response, controller);
+                   return this->deleteEdge(context, request, response, controller);
                  }));
     }
-    void SetMessageAllocatorFor_DeleteEdge(
+    void SetMessageAllocatorFor_deleteEdge(
         ::grpc::experimental::MessageAllocator< ::network::Query, ::network::QueryResponse>* allocator) {
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>*>(
           ::grpc::Service::experimental().GetHandler(5))
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_DeleteEdge() override {
+    ~ExperimentalWithCallbackMethod_deleteEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void DeleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void deleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_SearchNodeById : public BaseClass {
+  class ExperimentalWithCallbackMethod_searchNodeById : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_SearchNodeById() {
+    ExperimentalWithCallbackMethod_searchNodeById() {
       ::grpc::Service::experimental().MarkMethodCallback(6,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>(
           [this](::grpc::ServerContext* context,
                  const ::network::Query* request,
                  ::network::QueryResponse* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->SearchNodeById(context, request, response, controller);
+                   return this->searchNodeById(context, request, response, controller);
                  }));
     }
-    void SetMessageAllocatorFor_SearchNodeById(
+    void SetMessageAllocatorFor_searchNodeById(
         ::grpc::experimental::MessageAllocator< ::network::Query, ::network::QueryResponse>* allocator) {
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>*>(
           ::grpc::Service::experimental().GetHandler(6))
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_SearchNodeById() override {
+    ~ExperimentalWithCallbackMethod_searchNodeById() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void SearchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void searchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_SearchNodeByCondition : public BaseClass {
+  class ExperimentalWithCallbackMethod_searchNodeByCondition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_SearchNodeByCondition() {
+    ExperimentalWithCallbackMethod_searchNodeByCondition() {
       ::grpc::Service::experimental().MarkMethodCallback(7,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>(
           [this](::grpc::ServerContext* context,
                  const ::network::Query* request,
                  ::network::QueryResponse* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->SearchNodeByCondition(context, request, response, controller);
+                   return this->searchNodeByCondition(context, request, response, controller);
                  }));
     }
-    void SetMessageAllocatorFor_SearchNodeByCondition(
+    void SetMessageAllocatorFor_searchNodeByCondition(
         ::grpc::experimental::MessageAllocator< ::network::Query, ::network::QueryResponse>* allocator) {
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>*>(
           ::grpc::Service::experimental().GetHandler(7))
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_SearchNodeByCondition() override {
+    ~ExperimentalWithCallbackMethod_searchNodeByCondition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void SearchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void searchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_SearchNode : public BaseClass {
+  class ExperimentalWithCallbackMethod_searchNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_SearchNode() {
+    ExperimentalWithCallbackMethod_searchNode() {
       ::grpc::Service::experimental().MarkMethodCallback(8,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>(
           [this](::grpc::ServerContext* context,
                  const ::network::Query* request,
                  ::network::QueryResponse* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   return this->SearchNode(context, request, response, controller);
+                   return this->searchNode(context, request, response, controller);
                  }));
     }
-    void SetMessageAllocatorFor_SearchNode(
+    void SetMessageAllocatorFor_searchNode(
         ::grpc::experimental::MessageAllocator< ::network::Query, ::network::QueryResponse>* allocator) {
       static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::network::Query, ::network::QueryResponse>*>(
           ::grpc::Service::experimental().GetHandler(8))
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_SearchNode() override {
+    ~ExperimentalWithCallbackMethod_searchNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void SearchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void searchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
-  typedef ExperimentalWithCallbackMethod_ExecuteQuery<ExperimentalWithCallbackMethod_CreateNode<ExperimentalWithCallbackMethod_DeleteNode<ExperimentalWithCallbackMethod_CreateRelation<ExperimentalWithCallbackMethod_CreateEdge<ExperimentalWithCallbackMethod_DeleteEdge<ExperimentalWithCallbackMethod_SearchNodeById<ExperimentalWithCallbackMethod_SearchNodeByCondition<ExperimentalWithCallbackMethod_SearchNode<Service > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_ExecuteQuery : public BaseClass {
+  class ExperimentalWithCallbackMethod_auth : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_ExecuteQuery() {
+    ExperimentalWithCallbackMethod_auth() {
+      ::grpc::Service::experimental().MarkMethodCallback(9,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::network::Credentials, ::network::AuthResponse>(
+          [this](::grpc::ServerContext* context,
+                 const ::network::Credentials* request,
+                 ::network::AuthResponse* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->auth(context, request, response, controller);
+                 }));
+    }
+    void SetMessageAllocatorFor_auth(
+        ::grpc::experimental::MessageAllocator< ::network::Credentials, ::network::AuthResponse>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::network::Credentials, ::network::AuthResponse>*>(
+          ::grpc::Service::experimental().GetHandler(9))
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_auth() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status auth(::grpc::ServerContext* /*context*/, const ::network::Credentials* /*request*/, ::network::AuthResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual void auth(::grpc::ServerContext* /*context*/, const ::network::Credentials* /*request*/, ::network::AuthResponse* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+  };
+  typedef ExperimentalWithCallbackMethod_executeQuery<ExperimentalWithCallbackMethod_createNode<ExperimentalWithCallbackMethod_deleteNode<ExperimentalWithCallbackMethod_createRelation<ExperimentalWithCallbackMethod_createEdge<ExperimentalWithCallbackMethod_deleteEdge<ExperimentalWithCallbackMethod_searchNodeById<ExperimentalWithCallbackMethod_searchNodeByCondition<ExperimentalWithCallbackMethod_searchNode<ExperimentalWithCallbackMethod_auth<Service > > > > > > > > > > ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_executeQuery : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_executeQuery() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_ExecuteQuery() override {
+    ~WithGenericMethod_executeQuery() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status executeQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_CreateNode : public BaseClass {
+  class WithGenericMethod_createNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_CreateNode() {
+    WithGenericMethod_createNode() {
       ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithGenericMethod_CreateNode() override {
+    ~WithGenericMethod_createNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_DeleteNode : public BaseClass {
+  class WithGenericMethod_deleteNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_DeleteNode() {
+    WithGenericMethod_deleteNode() {
       ::grpc::Service::MarkMethodGeneric(2);
     }
-    ~WithGenericMethod_DeleteNode() override {
+    ~WithGenericMethod_deleteNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_CreateRelation : public BaseClass {
+  class WithGenericMethod_createRelation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_CreateRelation() {
+    WithGenericMethod_createRelation() {
       ::grpc::Service::MarkMethodGeneric(3);
     }
-    ~WithGenericMethod_CreateRelation() override {
+    ~WithGenericMethod_createRelation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_CreateEdge : public BaseClass {
+  class WithGenericMethod_createEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_CreateEdge() {
+    WithGenericMethod_createEdge() {
       ::grpc::Service::MarkMethodGeneric(4);
     }
-    ~WithGenericMethod_CreateEdge() override {
+    ~WithGenericMethod_createEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_DeleteEdge : public BaseClass {
+  class WithGenericMethod_deleteEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_DeleteEdge() {
+    WithGenericMethod_deleteEdge() {
       ::grpc::Service::MarkMethodGeneric(5);
     }
-    ~WithGenericMethod_DeleteEdge() override {
+    ~WithGenericMethod_deleteEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_SearchNodeById : public BaseClass {
+  class WithGenericMethod_searchNodeById : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_SearchNodeById() {
+    WithGenericMethod_searchNodeById() {
       ::grpc::Service::MarkMethodGeneric(6);
     }
-    ~WithGenericMethod_SearchNodeById() override {
+    ~WithGenericMethod_searchNodeById() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_SearchNodeByCondition : public BaseClass {
+  class WithGenericMethod_searchNodeByCondition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_SearchNodeByCondition() {
+    WithGenericMethod_searchNodeByCondition() {
       ::grpc::Service::MarkMethodGeneric(7);
     }
-    ~WithGenericMethod_SearchNodeByCondition() override {
+    ~WithGenericMethod_searchNodeByCondition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_SearchNode : public BaseClass {
+  class WithGenericMethod_searchNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_SearchNode() {
+    WithGenericMethod_searchNode() {
       ::grpc::Service::MarkMethodGeneric(8);
     }
-    ~WithGenericMethod_SearchNode() override {
+    ~WithGenericMethod_searchNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_ExecuteQuery : public BaseClass {
+  class WithGenericMethod_auth : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_ExecuteQuery() {
-      ::grpc::Service::MarkMethodRaw(0);
+    WithGenericMethod_auth() {
+      ::grpc::Service::MarkMethodGeneric(9);
     }
-    ~WithRawMethod_ExecuteQuery() override {
+    ~WithGenericMethod_auth() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status auth(::grpc::ServerContext* /*context*/, const ::network::Credentials* /*request*/, ::network::AuthResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestExecuteQuery(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+  };
+  template <class BaseClass>
+  class WithRawMethod_executeQuery : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_executeQuery() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_executeQuery() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status executeQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestexecuteQuery(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_CreateNode : public BaseClass {
+  class WithRawMethod_createNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_CreateNode() {
+    WithRawMethod_createNode() {
       ::grpc::Service::MarkMethodRaw(1);
     }
-    ~WithRawMethod_CreateNode() override {
+    ~WithRawMethod_createNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCreateNode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestcreateNode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_DeleteNode : public BaseClass {
+  class WithRawMethod_deleteNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_DeleteNode() {
+    WithRawMethod_deleteNode() {
       ::grpc::Service::MarkMethodRaw(2);
     }
-    ~WithRawMethod_DeleteNode() override {
+    ~WithRawMethod_deleteNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDeleteNode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestdeleteNode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_CreateRelation : public BaseClass {
+  class WithRawMethod_createRelation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_CreateRelation() {
+    WithRawMethod_createRelation() {
       ::grpc::Service::MarkMethodRaw(3);
     }
-    ~WithRawMethod_CreateRelation() override {
+    ~WithRawMethod_createRelation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCreateRelation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestcreateRelation(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_CreateEdge : public BaseClass {
+  class WithRawMethod_createEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_CreateEdge() {
+    WithRawMethod_createEdge() {
       ::grpc::Service::MarkMethodRaw(4);
     }
-    ~WithRawMethod_CreateEdge() override {
+    ~WithRawMethod_createEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCreateEdge(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestcreateEdge(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_DeleteEdge : public BaseClass {
+  class WithRawMethod_deleteEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_DeleteEdge() {
+    WithRawMethod_deleteEdge() {
       ::grpc::Service::MarkMethodRaw(5);
     }
-    ~WithRawMethod_DeleteEdge() override {
+    ~WithRawMethod_deleteEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDeleteEdge(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestdeleteEdge(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_SearchNodeById : public BaseClass {
+  class WithRawMethod_searchNodeById : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_SearchNodeById() {
+    WithRawMethod_searchNodeById() {
       ::grpc::Service::MarkMethodRaw(6);
     }
-    ~WithRawMethod_SearchNodeById() override {
+    ~WithRawMethod_searchNodeById() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSearchNodeById(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestsearchNodeById(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_SearchNodeByCondition : public BaseClass {
+  class WithRawMethod_searchNodeByCondition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_SearchNodeByCondition() {
+    WithRawMethod_searchNodeByCondition() {
       ::grpc::Service::MarkMethodRaw(7);
     }
-    ~WithRawMethod_SearchNodeByCondition() override {
+    ~WithRawMethod_searchNodeByCondition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSearchNodeByCondition(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestsearchNodeByCondition(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_SearchNode : public BaseClass {
+  class WithRawMethod_searchNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_SearchNode() {
+    WithRawMethod_searchNode() {
       ::grpc::Service::MarkMethodRaw(8);
     }
-    ~WithRawMethod_SearchNode() override {
+    ~WithRawMethod_searchNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSearchNode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestsearchNode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_ExecuteQuery : public BaseClass {
+  class WithRawMethod_auth : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_ExecuteQuery() {
+    WithRawMethod_auth() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_auth() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status auth(::grpc::ServerContext* /*context*/, const ::network::Credentials* /*request*/, ::network::AuthResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void Requestauth(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_executeQuery : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_executeQuery() {
       ::grpc::Service::experimental().MarkMethodRawCallback(0,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
           [this](::grpc::ServerContext* context,
                  const ::grpc::ByteBuffer* request,
                  ::grpc::ByteBuffer* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->ExecuteQuery(context, request, response, controller);
+                   this->executeQuery(context, request, response, controller);
                  }));
     }
-    ~ExperimentalWithRawCallbackMethod_ExecuteQuery() override {
+    ~ExperimentalWithRawCallbackMethod_executeQuery() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status executeQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void ExecuteQuery(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void executeQuery(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_CreateNode : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_createNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_CreateNode() {
+    ExperimentalWithRawCallbackMethod_createNode() {
       ::grpc::Service::experimental().MarkMethodRawCallback(1,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
           [this](::grpc::ServerContext* context,
                  const ::grpc::ByteBuffer* request,
                  ::grpc::ByteBuffer* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->CreateNode(context, request, response, controller);
+                   this->createNode(context, request, response, controller);
                  }));
     }
-    ~ExperimentalWithRawCallbackMethod_CreateNode() override {
+    ~ExperimentalWithRawCallbackMethod_createNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void CreateNode(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void createNode(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_DeleteNode : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_deleteNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_DeleteNode() {
+    ExperimentalWithRawCallbackMethod_deleteNode() {
       ::grpc::Service::experimental().MarkMethodRawCallback(2,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
           [this](::grpc::ServerContext* context,
                  const ::grpc::ByteBuffer* request,
                  ::grpc::ByteBuffer* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->DeleteNode(context, request, response, controller);
+                   this->deleteNode(context, request, response, controller);
                  }));
     }
-    ~ExperimentalWithRawCallbackMethod_DeleteNode() override {
+    ~ExperimentalWithRawCallbackMethod_deleteNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void DeleteNode(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void deleteNode(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_CreateRelation : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_createRelation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_CreateRelation() {
+    ExperimentalWithRawCallbackMethod_createRelation() {
       ::grpc::Service::experimental().MarkMethodRawCallback(3,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
           [this](::grpc::ServerContext* context,
                  const ::grpc::ByteBuffer* request,
                  ::grpc::ByteBuffer* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->CreateRelation(context, request, response, controller);
+                   this->createRelation(context, request, response, controller);
                  }));
     }
-    ~ExperimentalWithRawCallbackMethod_CreateRelation() override {
+    ~ExperimentalWithRawCallbackMethod_createRelation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void CreateRelation(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void createRelation(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_CreateEdge : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_createEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_CreateEdge() {
+    ExperimentalWithRawCallbackMethod_createEdge() {
       ::grpc::Service::experimental().MarkMethodRawCallback(4,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
           [this](::grpc::ServerContext* context,
                  const ::grpc::ByteBuffer* request,
                  ::grpc::ByteBuffer* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->CreateEdge(context, request, response, controller);
+                   this->createEdge(context, request, response, controller);
                  }));
     }
-    ~ExperimentalWithRawCallbackMethod_CreateEdge() override {
+    ~ExperimentalWithRawCallbackMethod_createEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CreateEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void CreateEdge(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void createEdge(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_DeleteEdge : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_deleteEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_DeleteEdge() {
+    ExperimentalWithRawCallbackMethod_deleteEdge() {
       ::grpc::Service::experimental().MarkMethodRawCallback(5,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
           [this](::grpc::ServerContext* context,
                  const ::grpc::ByteBuffer* request,
                  ::grpc::ByteBuffer* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->DeleteEdge(context, request, response, controller);
+                   this->deleteEdge(context, request, response, controller);
                  }));
     }
-    ~ExperimentalWithRawCallbackMethod_DeleteEdge() override {
+    ~ExperimentalWithRawCallbackMethod_deleteEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void DeleteEdge(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void deleteEdge(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_SearchNodeById : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_searchNodeById : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_SearchNodeById() {
+    ExperimentalWithRawCallbackMethod_searchNodeById() {
       ::grpc::Service::experimental().MarkMethodRawCallback(6,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
           [this](::grpc::ServerContext* context,
                  const ::grpc::ByteBuffer* request,
                  ::grpc::ByteBuffer* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->SearchNodeById(context, request, response, controller);
+                   this->searchNodeById(context, request, response, controller);
                  }));
     }
-    ~ExperimentalWithRawCallbackMethod_SearchNodeById() override {
+    ~ExperimentalWithRawCallbackMethod_searchNodeById() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void SearchNodeById(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void searchNodeById(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_SearchNodeByCondition : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_searchNodeByCondition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_SearchNodeByCondition() {
+    ExperimentalWithRawCallbackMethod_searchNodeByCondition() {
       ::grpc::Service::experimental().MarkMethodRawCallback(7,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
           [this](::grpc::ServerContext* context,
                  const ::grpc::ByteBuffer* request,
                  ::grpc::ByteBuffer* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->SearchNodeByCondition(context, request, response, controller);
+                   this->searchNodeByCondition(context, request, response, controller);
                  }));
     }
-    ~ExperimentalWithRawCallbackMethod_SearchNodeByCondition() override {
+    ~ExperimentalWithRawCallbackMethod_searchNodeByCondition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void SearchNodeByCondition(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void searchNodeByCondition(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_SearchNode : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_searchNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_SearchNode() {
+    ExperimentalWithRawCallbackMethod_searchNode() {
       ::grpc::Service::experimental().MarkMethodRawCallback(8,
         new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
           [this](::grpc::ServerContext* context,
                  const ::grpc::ByteBuffer* request,
                  ::grpc::ByteBuffer* response,
                  ::grpc::experimental::ServerCallbackRpcController* controller) {
-                   this->SearchNode(context, request, response, controller);
+                   this->searchNode(context, request, response, controller);
                  }));
     }
-    ~ExperimentalWithRawCallbackMethod_SearchNode() override {
+    ~ExperimentalWithRawCallbackMethod_searchNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SearchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual void SearchNode(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+    virtual void searchNode(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_ExecuteQuery : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_auth : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_ExecuteQuery() {
+    ExperimentalWithRawCallbackMethod_auth() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(9,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->auth(context, request, response, controller);
+                 }));
+    }
+    ~ExperimentalWithRawCallbackMethod_auth() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status auth(::grpc::ServerContext* /*context*/, const ::network::Credentials* /*request*/, ::network::AuthResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual void auth(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_executeQuery : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_executeQuery() {
       ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_ExecuteQuery<BaseClass>::StreamedExecuteQuery, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_executeQuery<BaseClass>::StreamedexecuteQuery, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_ExecuteQuery() override {
+    ~WithStreamedUnaryMethod_executeQuery() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status ExecuteQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status executeQuery(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedExecuteQuery(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedexecuteQuery(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_CreateNode : public BaseClass {
+  class WithStreamedUnaryMethod_createNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_CreateNode() {
+    WithStreamedUnaryMethod_createNode() {
       ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_CreateNode<BaseClass>::StreamedCreateNode, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_createNode<BaseClass>::StreamedcreateNode, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_CreateNode() override {
+    ~WithStreamedUnaryMethod_createNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status CreateNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedCreateNode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedcreateNode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_DeleteNode : public BaseClass {
+  class WithStreamedUnaryMethod_deleteNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_DeleteNode() {
+    WithStreamedUnaryMethod_deleteNode() {
       ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_DeleteNode<BaseClass>::StreamedDeleteNode, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_deleteNode<BaseClass>::StreameddeleteNode, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_DeleteNode() override {
+    ~WithStreamedUnaryMethod_deleteNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status DeleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDeleteNode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreameddeleteNode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_CreateRelation : public BaseClass {
+  class WithStreamedUnaryMethod_createRelation : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_CreateRelation() {
+    WithStreamedUnaryMethod_createRelation() {
       ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_CreateRelation<BaseClass>::StreamedCreateRelation, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_createRelation<BaseClass>::StreamedcreateRelation, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_CreateRelation() override {
+    ~WithStreamedUnaryMethod_createRelation() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status CreateRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createRelation(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedCreateRelation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedcreateRelation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_CreateEdge : public BaseClass {
+  class WithStreamedUnaryMethod_createEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_CreateEdge() {
+    WithStreamedUnaryMethod_createEdge() {
       ::grpc::Service::MarkMethodStreamed(4,
-        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_CreateEdge<BaseClass>::StreamedCreateEdge, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_createEdge<BaseClass>::StreamedcreateEdge, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_CreateEdge() override {
+    ~WithStreamedUnaryMethod_createEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status CreateEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status createEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedCreateEdge(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedcreateEdge(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_DeleteEdge : public BaseClass {
+  class WithStreamedUnaryMethod_deleteEdge : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_DeleteEdge() {
+    WithStreamedUnaryMethod_deleteEdge() {
       ::grpc::Service::MarkMethodStreamed(5,
-        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_DeleteEdge<BaseClass>::StreamedDeleteEdge, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_deleteEdge<BaseClass>::StreameddeleteEdge, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_DeleteEdge() override {
+    ~WithStreamedUnaryMethod_deleteEdge() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status DeleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status deleteEdge(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDeleteEdge(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreameddeleteEdge(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_SearchNodeById : public BaseClass {
+  class WithStreamedUnaryMethod_searchNodeById : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_SearchNodeById() {
+    WithStreamedUnaryMethod_searchNodeById() {
       ::grpc::Service::MarkMethodStreamed(6,
-        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_SearchNodeById<BaseClass>::StreamedSearchNodeById, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_searchNodeById<BaseClass>::StreamedsearchNodeById, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_SearchNodeById() override {
+    ~WithStreamedUnaryMethod_searchNodeById() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SearchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeById(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSearchNodeById(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedsearchNodeById(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_SearchNodeByCondition : public BaseClass {
+  class WithStreamedUnaryMethod_searchNodeByCondition : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_SearchNodeByCondition() {
+    WithStreamedUnaryMethod_searchNodeByCondition() {
       ::grpc::Service::MarkMethodStreamed(7,
-        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_SearchNodeByCondition<BaseClass>::StreamedSearchNodeByCondition, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_searchNodeByCondition<BaseClass>::StreamedsearchNodeByCondition, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_SearchNodeByCondition() override {
+    ~WithStreamedUnaryMethod_searchNodeByCondition() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SearchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNodeByCondition(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSearchNodeByCondition(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedsearchNodeByCondition(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_SearchNode : public BaseClass {
+  class WithStreamedUnaryMethod_searchNode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_SearchNode() {
+    WithStreamedUnaryMethod_searchNode() {
       ::grpc::Service::MarkMethodStreamed(8,
-        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_SearchNode<BaseClass>::StreamedSearchNode, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::network::Query, ::network::QueryResponse>(std::bind(&WithStreamedUnaryMethod_searchNode<BaseClass>::StreamedsearchNode, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_SearchNode() override {
+    ~WithStreamedUnaryMethod_searchNode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SearchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
+    ::grpc::Status searchNode(::grpc::ServerContext* /*context*/, const ::network::Query* /*request*/, ::network::QueryResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSearchNode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedsearchNode(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Query,::network::QueryResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_ExecuteQuery<WithStreamedUnaryMethod_CreateNode<WithStreamedUnaryMethod_DeleteNode<WithStreamedUnaryMethod_CreateRelation<WithStreamedUnaryMethod_CreateEdge<WithStreamedUnaryMethod_DeleteEdge<WithStreamedUnaryMethod_SearchNodeById<WithStreamedUnaryMethod_SearchNodeByCondition<WithStreamedUnaryMethod_SearchNode<Service > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_auth : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_auth() {
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler< ::network::Credentials, ::network::AuthResponse>(std::bind(&WithStreamedUnaryMethod_auth<BaseClass>::Streamedauth, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_auth() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status auth(::grpc::ServerContext* /*context*/, const ::network::Credentials* /*request*/, ::network::AuthResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status Streamedauth(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::network::Credentials,::network::AuthResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_executeQuery<WithStreamedUnaryMethod_createNode<WithStreamedUnaryMethod_deleteNode<WithStreamedUnaryMethod_createRelation<WithStreamedUnaryMethod_createEdge<WithStreamedUnaryMethod_deleteEdge<WithStreamedUnaryMethod_searchNodeById<WithStreamedUnaryMethod_searchNodeByCondition<WithStreamedUnaryMethod_searchNode<WithStreamedUnaryMethod_auth<Service > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_ExecuteQuery<WithStreamedUnaryMethod_CreateNode<WithStreamedUnaryMethod_DeleteNode<WithStreamedUnaryMethod_CreateRelation<WithStreamedUnaryMethod_CreateEdge<WithStreamedUnaryMethod_DeleteEdge<WithStreamedUnaryMethod_SearchNodeById<WithStreamedUnaryMethod_SearchNodeByCondition<WithStreamedUnaryMethod_SearchNode<Service > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_executeQuery<WithStreamedUnaryMethod_createNode<WithStreamedUnaryMethod_deleteNode<WithStreamedUnaryMethod_createRelation<WithStreamedUnaryMethod_createEdge<WithStreamedUnaryMethod_deleteEdge<WithStreamedUnaryMethod_searchNodeById<WithStreamedUnaryMethod_searchNodeByCondition<WithStreamedUnaryMethod_searchNode<WithStreamedUnaryMethod_auth<Service > > > > > > > > > > StreamedService;
 };
 
 }  // namespace network
