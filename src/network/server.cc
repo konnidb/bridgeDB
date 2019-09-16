@@ -2,6 +2,7 @@
 
 #include <grpcpp/grpcpp.h>
 #include "network.grpc.pb.h"
+#include "../graph/structs/Test.cc"
 
 using grpc::Server;
 using grpc::ServerBuilder;
@@ -14,9 +15,7 @@ using network::QueryResponse;
 using network::Credentials;
 using network::AuthResponse;
 
-const std::string user = "ivan";
-const std::string password = "123";
-const std::string token = "success";
+Test test;
 
 class NetworkImplementation final : public Network::Service {
     Status auth(
@@ -24,13 +23,21 @@ class NetworkImplementation final : public Network::Service {
         const Credentials* credentials, 
         AuthResponse* reply
     ) override {
+        if(test.auth(credentials->user(),credentials->password())){
+            reply->set_token(test.getToken());
+            return Status::OK;
+        }else{
+            reply->set_token("Unahutorized");
+            return Status::OK;
+        }
+        /*
         if(credentials->user() == user && credentials->password() == password){
             reply->set_token(token);
             return Status::OK;
         }else{
             reply->set_token("Unahutorized");
             return Status::OK;
-        }
+        }*/
     } 
 };
 

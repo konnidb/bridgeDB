@@ -53,7 +53,7 @@ void Run() {
     std::string response;
 
     std::string user = "ivan";
-    std::string password = "qwe";
+    std::string password = "123";
 
     response = client.sendRequest(user,password);
     std::cout << "Answer received: User - " << user << " Password - " << password << " : " << response << std::endl;
