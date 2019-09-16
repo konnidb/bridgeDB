@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include<iostream>
 //#include<unordered_map>
 #include<string>
@@ -29,3 +29,4 @@ private:
 	void loadPage(){}
 
 };
+*/

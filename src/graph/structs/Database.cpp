@@ -1,12 +1,20 @@
 #pragma once
-#include<iostream>
-//#include"..\utils\Serializable.h"
-#include"Graph.cpp"
-using namespace std;
+#include"Database.h"
 
-class Database {
-public:
-	string name;
-	vector<Graph*> graphVector;
-	int deleteConfig;
-};
+unordered_map<string, Database> Database::instances;
+
+Database::Database(string name) {
+	this->name = name;
+	this->cfg = new ConfigFileHandler(name);
+	//this->cfg(this->name);
+}
+
+Database Database::getDatabase(string name) {
+	if (Database::instances.find(name) == Database::instances.end()) {
+		Database* d = new Database(name);
+		Database::instances[name] = *d;
+	}
+	return Database::instances[name];
+}
+
+Database::Database(){}

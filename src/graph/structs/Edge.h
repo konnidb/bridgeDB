@@ -24,5 +24,5 @@ public:
 	unordered_map<string, string> properties;
 	Node * originNode;
 	Node * targetNode;
-	SerializableEdge getSerializable();
+	SerializableEdge getSerializable(string path);
 };

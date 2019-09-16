@@ -5,7 +5,7 @@ enum LogicOperator {
 	OR,
 	NAND,
 	NOR,
-	N
+	NOT
 };
 
 enum LogType {
@@ -41,4 +41,18 @@ enum DataType {
 	BOOL,
 	CAT,
 	DT
+};
+
+enum ConfigFileAttrbute {
+	databaseName,
+	dataDirectory,
+	nodeDirectory,
+	edgeDirectory,
+	vertexDirectory,
+	nodeIndexFile,
+	edgeIndexFile,
+	vertexIndexFile,
+	backupDirectory,
+	logDirectory,
+	pageExtension
 };

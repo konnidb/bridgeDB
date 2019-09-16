@@ -1,7 +1,10 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include<fstream>
 #include<unordered_map>
+#include"..\..\utils\Enums.h"
+#include"..\structs\Database.h"
 
 using namespace std;
 
@@ -22,8 +25,7 @@ unordered_map<string, string> deserializeMap(string properties) {
 	vector<string> propertiesVector;
 	string prop = "";
 
-	for (int i = 0; i < properties.length(); i++)
-	{
+	for (int i = 0; i < properties.length(); i++){
 		if (properties[i] == PROP_SEPARATOR) {
 			propertiesVector.push_back(prop);
 			prop = "";
@@ -32,13 +34,10 @@ unordered_map<string, string> deserializeMap(string properties) {
 			prop += properties[i];
 	}
 
-
-	for (int i = 0; i < propertiesVector.size(); i++)
-	{
+	for (int i = 0; i < propertiesVector.size(); i++){
 		string key = "";
 		string tmp = "";
-		for (int j = 0; j < propertiesVector[i].length(); j++)
-		{
+		for (int j = 0; j < propertiesVector[i].length(); j++){
 			if (propertiesVector[i][j] == ELMNT_SEPARATOR) {
 				key = tmp;
 				tmp = "";
@@ -53,3 +52,39 @@ unordered_map<string, string> deserializeMap(string properties) {
 	return output;
 }
 
+bool fileExists(string path){
+	fstream stream;
+	stream.open(path);
+	if (stream.fail())
+		return false;
+	stream.close();
+	return true;
+}
+
+ConfigFileHandler* getConfigFileHandler(string databaseName) {
+	Database db = Database::getDatabase(databaseName);
+	return db.cfg;
+}
+/*
+string buildIndexPath(string databaseName, ElementType element) {
+	Database db = Database::getDatabase(databaseName);
+	string directory, indexFile;
+	switch (element) {
+		case ElementType::EDGE:
+			directory = db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory];
+			indexFile = db.cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile];
+			break;
+		case ElementType::NODE:
+			directory = db.cfg->configFileMap[ConfigFileAttrbute::nodeDirectory];
+			indexFile = db.cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile];
+			break;
+		case ElementType::SCHEMA:
+			break;
+		case ElementType::VERTEX:
+			directory = db.cfg->configFileMap[ConfigFileAttrbute::vertexDirectory];
+			indexFile = db.cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile];
+			break;
+	}
+	return directory + indexFile;
+}
+*/

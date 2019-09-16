@@ -83,6 +83,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -105,6 +106,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -116,6 +118,7 @@
     <ClCompile Include="..\..\src\admin\ConfigFile.cpp" />
     <ClCompile Include="..\..\src\cmd\cmd.cpp" />
     <ClCompile Include="..\..\src\cmd\Main.cpp" />
+    <ClCompile Include="..\..\src\cmd\Run.cpp" />
     <ClCompile Include="..\..\src\graph\operations\Definition.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Database.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Edge.cpp" />
@@ -140,7 +143,9 @@
     <ClCompile Include="..\..\src\utils\type_names.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\graph\structs\Database.h" />
     <ClInclude Include="..\..\src\graph\structs\Edge.h" />
+    <ClInclude Include="..\..\src\graph\structs\Graph.h" />
     <ClInclude Include="..\..\src\graph\structs\Node.h" />
     <ClInclude Include="..\..\src\graph\structs\Schema.h" />
     <ClInclude Include="..\..\src\graph\structs\Vertex.h" />

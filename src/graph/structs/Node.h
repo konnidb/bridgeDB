@@ -19,5 +19,5 @@ public:
 	int id;
 	unordered_map<string, string> properties;
 	Node();
-	SerializableNode getSerializable();
+	SerializableNode getSerializable(string path);
 };

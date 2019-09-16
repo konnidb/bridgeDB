@@ -11,8 +11,9 @@ SerializableNode::SerializableNode() {
 	this->objType = NODE;
 }
 
-SerializableNode Node::getSerializable() {
+SerializableNode Node::getSerializable(string path) {
 	SerializableNode serializable;
+	serializable.path = path;
 	serializable.id = this->id;
 	serializable.properties = properties;
 	return serializable;
@@ -25,7 +26,6 @@ void SerializableNode::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	SerializableNode deserialized;
 	rf->read((char *)&this->id, sizeof(this->id));
 	rf->read((char *)&this->objType, sizeof(this->objType));
 	string props;

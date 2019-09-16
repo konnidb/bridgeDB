@@ -11,9 +11,10 @@ SerializableEdge::SerializableEdge() {
 	this->objType = EDGE;
 }
 
-SerializableEdge Edge::getSerializable() {
+SerializableEdge Edge::getSerializable(string path) {
 	SerializableEdge serializable;
 	serializable.id = this->id;
+	serializable.path = path;
 	serializable.properties = this->properties;
 	serializable.originNode = this->originNode->id;
 	serializable.targetNode = this->targetNode->id;

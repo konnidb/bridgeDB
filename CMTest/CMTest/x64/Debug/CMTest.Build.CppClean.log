@@ -1,7 +1,6 @@
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\vc141.pdb
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\vc141.idb
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\edge.obj
-c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\graph.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\node.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\schema.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\structs.obj
@@ -14,7 +13,6 @@ c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\query.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\service.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\indexhandler.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\storage.obj
-c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\storehandler.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\encrypt.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\identifier.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\loghandler.obj
@@ -23,9 +21,12 @@ c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\type_names.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\admin.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\configfile.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\cmd.obj
-c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\main.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\definition.obj
+c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\main.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\database.obj
+c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\storehandler.obj
+c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\graph.obj
+c:\users\l440\documents\bridgedb\bridgedb\cmtest\cmtest\x64\debug\run.obj
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\x64\debug\cmtest.exe
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\x64\debug\cmtest.ilk
 c:\users\l440\documents\bridgedb\bridgedb\cmtest\x64\debug\cmtest.pdb

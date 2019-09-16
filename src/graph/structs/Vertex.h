@@ -5,11 +5,13 @@
 #include"Node.h"
 using namespace std;
 
-class VertexSerializable : public Serializable {
+class SerializableVertex : public Serializable {
 public:
 	vector<int> edgesIdVector;
 	int node;
-	VertexSerializable();
+	SerializableVertex();
+	void load(ifstream* streamObj);
+	void store(ofstream* streamObj);
 };
 
 class Vertex {
@@ -17,6 +19,6 @@ public:
 	int id;
 	Node * node;
 	vector<Edge *> edgesVector;
-	VertexSerializable getSerializable();
+	SerializableVertex getSerializable(string path);
 };
 
