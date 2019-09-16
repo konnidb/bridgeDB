@@ -5,3 +5,6 @@
 *.out
 .vscode
 *.dev
+*.pb.h
+*.pb.cc
+*.o

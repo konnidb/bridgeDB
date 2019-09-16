@@ -16,8 +16,10 @@ using network::CreateEdgeReq;
 using network::CreateNodeReq;
 using network::CreateEdgeResponse;
 using network::CreateNodeResponse;
-using network::Node;
-using network::Edge;
+using network::NetworkNode;
+using network::NetworkEdge;
+using network::SearchNodeReq;
+using network::SearchNodeResponse;
 
 class ServiceImplementation final: public QueryService::Service {
 public:
@@ -30,16 +32,13 @@ public:
         return Status::OK;
     };
     Status CreateNode(
-        ServerContext* contest,
+        ServerContext* context,
         const CreateNodeReq* req,
         CreateNodeResponse* response
     ) override {
-        auto test = req->fields();
-        test["asd"] = "123;";
-        Node* node = new Node();
-        auto fields = node->fields();
-        fields = test;
-        response->set_allocated_node(node);
+        auto fields = req->fields();
+        NetworkNode* node = response->mutable_node();
+        (*node->mutable_fields())["field"] = fields["field"];
         return Status::OK;
     }
 
@@ -49,6 +48,14 @@ public:
         CreateEdgeResponse* response
     ) override {
 
+        return Status::OK;
+    }
+
+    Status SearchNode(
+        ServerContext* context,
+        const SearchNodeReq* req,
+        SearchNodeResponse* resp
+    ) override {
         return Status::OK;
     }
 };

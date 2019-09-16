@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "";
+option go_package = "bridgedb";
 package network;
 
 message Query {
@@ -12,12 +12,12 @@ message QueryResponse {
     string response = 1;
 }
 
-message Node {
+message NetworkNode{
     int64 id = 1;
     map<string, string> fields = 2;    
 }
 
-message Edge {
+message NetworkEdge {
     string label = 1;
     map<string, string> fields = 2;
 }
@@ -28,7 +28,7 @@ message CreateNodeReq {
 }
 
 message CreateNodeResponse {
-    Node node = 1;
+    NetworkNode node = 1;
 }
 
 message CreateEdgeReq {
@@ -37,35 +37,43 @@ message CreateEdgeReq {
 }
 
 message CreateEdgeResponse {
-    Edge edge = 1;
+    NetworkEdge edge = 1;
 }
 
 message CreateRelationReq {
-    Node source = 1;
-    Node destination = 2;
-    Edge edgeData = 3;
+    NetworkNode source = 1;
+    NetworkNode destination = 2;
+    NetworkEdge edgeData = 3;
 }
 
 message CraeteRelationResponse {
-    Node source = 1;
-    Node destination = 2;
-    Edge edge = 3;
+    NetworkNode source = 1;
+    NetworkNode destination = 2;
+    NetworkEdge edge = 3;
 }
 
 message DeleteNodeReq {
-    Node node = 1;
+    NetworkNode node = 1;
 }
 
 message DeleteNodeResponse {
-    Node node = 1;
+    NetworkNode node = 1;
 }
 
 message DeleteEdgeReq {
-    Edge edge = 1;
+    NetworkEdge edge = 1;
 }
 
 message DeleteEdgeResponse {
-    Edge edge = 1;
+    NetworkEdge edge = 1;
+}
+
+message SearchNodeReq {
+    NetworkNode node = 1;
+}
+
+message SearchNodeResponse {
+    repeated NetworkNode nodes = 1;
 }
 
 service QueryService {
@@ -75,7 +83,5 @@ service QueryService {
     rpc CreateRelation (CreateRelationReq) returns (CraeteRelationResponse) {};
     rpc CreateEdge (CreateEdgeReq) returns (CreateEdgeResponse) {};
     rpc DeleteEdge (DeleteEdgeReq) returns (DeleteEdgeResponse) {};
-    // rpc SearchNodeById (Query) returns (QueryResponse) {};
-    // rpc SearchNodeByCondition (Query) returns (QueryResponse) {};
-    rpc SearchNode (Query) returns (QueryResponse) {};
+    rpc SearchNode (SearchNodeReq) returns (SearchNodeResponse) {};
 }
