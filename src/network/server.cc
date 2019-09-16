@@ -30,14 +30,6 @@ class NetworkImplementation final : public Network::Service {
             reply->set_token("Unahutorized");
             return Status::OK;
         }
-        /*
-        if(credentials->user() == user && credentials->password() == password){
-            reply->set_token(token);
-            return Status::OK;
-        }else{
-            reply->set_token("Unahutorized");
-            return Status::OK;
-        }*/
     } 
 };
 
