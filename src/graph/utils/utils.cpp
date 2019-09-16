@@ -1,5 +1,5 @@
 #pragma once
-/*#include<iostream>
+#include<iostream>
 #include<string>
 #include<unordered_map>
 
@@ -25,7 +25,6 @@ unordered_map<string, string> deserializeMap(string properties) {
 	for (int i = 0; i < properties.length(); i++)
 	{
 		if (properties[i] == PROP_SEPARATOR) {
-			cout << "ENTRA PROPS SEPARATOR" << properties[i] << endl;
 			propertiesVector.push_back(prop);
 			prop = "";
 		}
@@ -52,4 +51,5 @@ unordered_map<string, string> deserializeMap(string properties) {
 	}
 	cout << "OUTPUT SIZE: " << output.size() << endl;
 	return output;
-}*/
+}
+

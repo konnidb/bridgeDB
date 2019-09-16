@@ -1,8 +1,8 @@
 #pragma once
 #include<iostream>
-#include<unordered_map>
+//#include<unordered_map>
 #include"Node.h"
-#include"Schema.cpp"
+#include"Schema.h"
 #include"..\utils\Serializable.h"
 using namespace std;
 
@@ -13,8 +13,8 @@ public:
 	int originNode;
 	int targetNode;
 	SerializableEdge();
-	void load();
-	void store();
+	void load(ifstream* streamObj);
+	void store(ofstream* streamObj);
 };
 
 class Edge {

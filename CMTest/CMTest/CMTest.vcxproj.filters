@@ -119,6 +119,9 @@
     <ClInclude Include="..\..\src\graph\structs\Vertex.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\graph\structs\Schema.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\src\functions_needed.txt" />

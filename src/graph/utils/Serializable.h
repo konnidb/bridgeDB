@@ -13,6 +13,6 @@ public:
 	ElementType objType;
 
 	Serializable();
-	virtual void load();
-	virtual void store();
+	virtual void load(ifstream* streamObj);
+	virtual void store(ofstream* streamObj);
 };

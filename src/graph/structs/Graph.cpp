@@ -2,7 +2,7 @@
 #include<iostream>
 #include<string>
 #include"Vertex.h"
-#include"Schema.cpp"
+#include"Schema.h"
 using namespace std;
 
 class Graph {

@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\graph\structs\Edge.h" />
     <ClInclude Include="..\..\src\graph\structs\Node.h" />
+    <ClInclude Include="..\..\src\graph\structs\Schema.h" />
     <ClInclude Include="..\..\src\graph\structs\Vertex.h" />
     <ClInclude Include="..\..\src\graph\utils\Serializable.h" />
     <ClInclude Include="..\..\src\query\lexer\constants.h" />

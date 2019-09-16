@@ -132,7 +132,7 @@ int main() {
 	//*
 	SerializableNode  ser2;
 	ser2.path = t;
-	ser2.load();
+	ser2.load(NULL);
 	cout << ser2.id<<endl;
 	for (unordered_map<string, string>::iterator it = ser2.properties.begin(); it != ser2.properties.end(); it++) {
 		cout << "IT " << it->first.length() << endl;

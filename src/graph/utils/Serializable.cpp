@@ -13,13 +13,19 @@ using namespace std;
 
 Serializable::Serializable() : objType(UNDEF) {}
 
-void Serializable::load() {
-	ifstream rf(this->path, ios::in | ios::binary);
+void Serializable::load(ifstream* streamObj) {
+	ifstream* rf;
+	if (streamObj == NULL)
+		rf = new ifstream(this->path, ios::in | ios::binary);
+	else
+		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
 	Serializable deserialized;
-	rf.read((char *)&deserialized, sizeof(Serializable));
-	rf.close();
-	if (!rf.good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
+	rf->read((char *)&deserialized, sizeof(Serializable));
+	if (streamObj == NULL) {
+		rf->close();
+		if (!rf->good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
+	}
 	this->properties = deserialized.properties;
 //	deserialized.deserializeProperties();
 	this->path = deserialized.path;
@@ -27,12 +33,18 @@ void Serializable::load() {
 	this->objType = deserialized.objType;
 }
 
-void Serializable::store() {
-	ofstream wf(this->path, ios::out | ios::binary);
+void Serializable::store(ofstream* streamObj) {
+	ofstream* wf;
+	if (streamObj == NULL)
+		wf = new ofstream(this->path, ios::out | ios::binary);
+	else
+		wf = streamObj;
 	if (!wf) cout << "STORE: FAILED OPENING" << endl; //ErrorMap::error_storing_object->action();
-	wf.write((char *)this, sizeof(Serializable));
-	wf.close();
-	if (!wf.good()) cout << "STORE: FAILED CLOSING" << endl;  //ErrorMap::error_storing_object->action();
+	wf->write((char *)this, sizeof(Serializable));
+	if (streamObj == NULL) {
+		wf->close();
+		if (!wf->good()) cout << "STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
+	}
 }
 
 
