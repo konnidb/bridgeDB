@@ -1,15 +1,15 @@
 jobs:
   build:
     docker:
-      - image: "debian:stretch"
-    # steps:
-    #   - checkout
-    #   - run:
-    #       name: Upgrade
-    #       command: 'apt-get update'
-    #   - run:
-    #       name: Installing SUDO
-    #       command: 'apt-get install -y sudo'
+      - image: "grpc/cxx:latest"
+    steps:
+      - checkout
+      - run:
+          name: cd
+          command: 'cd src/network'
+      - run:
+          name: 
+          command: 'make'
     #   - run:
     #       name: Installing Flex and Bison
     #       command: 'sudo apt-get install -y gcc g++ flex bison'
