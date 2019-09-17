@@ -13,11 +13,15 @@ public:
 	void store(ofstream* streamObj);
 };
 
-class Node {
+class Node : public Element {
 public:
 	Schema * schema;
 	int id;
 	unordered_map<string, string> properties;
+	Serializable* getSerializable(string path);
 	Node();
-	SerializableNode getSerializable(string path);
+	Node(int id, unordered_map<string, string> properties);
+	Node(int id);
+	Node(SerializableNode serializable);
+	static bool compareNodes(Node* node1, Node* node2);
 };

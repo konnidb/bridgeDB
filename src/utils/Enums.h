@@ -46,9 +46,11 @@ enum DataType {
 enum ConfigFileAttrbute {
 	databaseName,
 	dataDirectory,
+	schemaDirectory,
 	nodeDirectory,
 	edgeDirectory,
 	vertexDirectory,
+	schemaIndexFile,
 	nodeIndexFile,
 	edgeIndexFile,
 	vertexIndexFile,

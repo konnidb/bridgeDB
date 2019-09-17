@@ -23,16 +23,16 @@ void Schema::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	rf->read((char *)&this->id, sizeof(this->id));
-	rf->read((char *)&this->objType, sizeof(this->objType));
+	rf->get((char *)&this->id, sizeof(this->id));
+	rf->get((char *)&this->objType, sizeof(this->objType));
 	string props;
 	size_t size;
-	rf->read((char *)&size, sizeof(size));
+	rf->get((char *)&size, sizeof(size));
 	props.resize(size);
-	rf->read(&props[0], size);
+	rf->get(&props[0], size);
 	this->properties = deserializeMap(props);
-	rf->read((char *)&this->name, sizeof(this->name));
-	rf->read((char *)&this->type, sizeof(this->type));
+	rf->get((char *)&this->name, sizeof(this->name));
+	rf->get((char *)&this->type, sizeof(this->type));
 	if (streamObj == NULL){
 		rf->close();
 		if (!rf->good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();

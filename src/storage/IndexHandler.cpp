@@ -55,6 +55,6 @@ public:
 			if (max == NULL || max < tmp)
 				max = tmp;
 		}
-		return max + 1;
+		return max == NULL? 1: max + 1;
 	}
 };

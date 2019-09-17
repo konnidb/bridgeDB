@@ -8,15 +8,15 @@ SerializableVertex::SerializableVertex() {
 	this->objType = VERTEX;
 }
 
-SerializableVertex Vertex::getSerializable(string path) {
-	SerializableVertex serializable;
-	serializable.path = path;
-	serializable.id = this->id;
+Serializable* Vertex::getSerializable(string path) {
+	SerializableVertex* serializable = new SerializableVertex();
+	serializable->path = path;
+	serializable->id = this->id;
 	for (int i = 0; i < (int)this->edgesVector.size(); i++)
 	{
-		serializable.edgesIdVector.push_back(this->edgesVector[i]->id);
+		serializable->edgesIdVector.push_back(this->edgesVector[i]->id);
 	}
-	serializable.node = this->node->id;
+	serializable->node = this->node->id;
 	return serializable;
 }
 
@@ -27,15 +27,15 @@ void SerializableVertex::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	rf->read((char *)&this->id, sizeof(this->id));
-	rf->read((char *)&this->objType, sizeof(this->objType));
-	rf->read((char *)&this->node, sizeof(this->node));
+	rf->get((char *)&this->id, sizeof(this->id));
+	rf->get((char *)&this->objType, sizeof(this->objType));
+	rf->get((char *)&this->node, sizeof(this->node));
 	size_t size;
-	rf->read((char *)&size, sizeof(size));
+	rf->get((char *)&size, sizeof(size));
 	for (size_t i = 0; i < size; i++)
 	{
 		int id;
-		rf->read((char *)&id, sizeof(id));
+		rf->get((char *)&id, sizeof(id));
 		this->edgesIdVector.push_back(id);
 	}
 	if (streamObj == NULL) {
@@ -64,4 +64,11 @@ void SerializableVertex::store(ofstream* streamObj) {
 		wf->close();
 		if (!wf->good()) cout << "STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
 	}
+}
+
+
+Vertex::Vertex(){}
+Vertex::Vertex(int id, Node * node) {
+	this->id = id;
+	this->node = node;
 }

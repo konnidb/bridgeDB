@@ -14,11 +14,13 @@ public:
 	void store(ofstream* streamObj);
 };
 
-class Vertex {
+class Vertex : public Element {
 public:
 	int id;
 	Node * node;
 	vector<Edge *> edgesVector;
-	SerializableVertex getSerializable(string path);
+	Serializable* getSerializable(string path);
+	Vertex();
+	Vertex(int id, Node * node);
 };
 

@@ -16,3 +16,10 @@ public:
 	virtual void load(ifstream* streamObj);
 	virtual void store(ofstream* streamObj);
 };
+
+
+class Element {
+public:
+	int id;
+	virtual Serializable* getSerializable(string path);
+};

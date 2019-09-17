@@ -91,8 +91,8 @@ int main() {
 	n1.properties["edgarqdqwdqwd"] = "vazquez";
 	n1.properties["cristina"] = "mariscalsdcsdcs";
 
-	SerializableNode  ser = n1.getSerializable(t);
-	cout << "SER ID: " << ser.id << endl;
+	SerializableNode*  ser = dynamic_cast<SerializableNode*>(n1.getSerializable(t));
+	cout << "SER ID: " << ser->id << endl;
 	//ser.store();
 
 	//*

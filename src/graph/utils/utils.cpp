@@ -11,6 +11,27 @@ using namespace std;
 
 const char ELMNT_SEPARATOR = '~';
 const char PROP_SEPARATOR = '¬';
+/*
+template <class T >
+T* vectorFindByFn(vector<T*> vectorEvl, T* elmnt, bool (*compareFn)(T* elmnt1, T* elmnt2)) {
+	for (int i = 0; i < vectorEvl.size(); i++)
+	{
+		if (compareFn(elmnt, vectorEvl[i]))
+			return vectorEvl[i];
+	}
+	return NULL;
+}
+*/
+
+template<class T>
+T* vectorFindById(vector<T*> vectorEvl, T* elmnt) {
+	for (int i = 0; i < vectorEvl.size(); i++)
+	{
+		if (elmnt->id == vectorEvl[i]->id)
+			return vectorEvl[i];
+	}
+	return NULL;
+}
 
 string serializeMap(unordered_map<string, string> properties) {
 	string strBuilder = "";

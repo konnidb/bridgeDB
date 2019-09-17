@@ -11,13 +11,13 @@ SerializableEdge::SerializableEdge() {
 	this->objType = EDGE;
 }
 
-SerializableEdge Edge::getSerializable(string path) {
-	SerializableEdge serializable;
-	serializable.id = this->id;
-	serializable.path = path;
-	serializable.properties = this->properties;
-	serializable.originNode = this->originNode->id;
-	serializable.targetNode = this->targetNode->id;
+Serializable* Edge::getSerializable(string path) {
+	SerializableEdge* serializable = new SerializableEdge();
+	serializable->id = this->id;
+	serializable->path = path;
+	serializable->properties = this->properties;
+	serializable->originNode = this->originNode->id;
+	serializable->targetNode = this->targetNode->id;
 	return serializable;
 }
 
@@ -28,17 +28,17 @@ void SerializableEdge::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	rf->read((char *)&this->id, sizeof(this->id));
-	rf->read((char *)&this->objType, sizeof(this->objType));
+	rf->get((char *)&this->id, sizeof(this->id));
+	rf->get((char *)&this->objType, sizeof(this->objType));
 	string props;
 	size_t size;
-	rf->read((char *)&size, sizeof(size));
+	rf->get((char *)&size, sizeof(size));
 	props.resize(size);
-	rf->read(&props[0], size);
+	rf->get(&props[0], size);
 	this->properties = deserializeMap(props);
-	rf->read((char *)&this->schemaId, sizeof(this->schemaId));
-	rf->read((char *)&this->originNode, sizeof(this->originNode));
-	rf->read((char *)&this->targetNode, sizeof(this->targetNode));
+	rf->get((char *)&this->schemaId, sizeof(this->schemaId));
+	rf->get((char *)&this->originNode, sizeof(this->originNode));
+	rf->get((char *)&this->targetNode, sizeof(this->targetNode));
 	if (streamObj == NULL) {
 		rf->close();
 		if (!rf->good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -65,4 +65,28 @@ void SerializableEdge::store(ofstream* streamObj) {
 		wf->close();
 		if (!wf->good()) cout << "STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
 	}
+}
+
+Edge::Edge(){}
+Edge::Edge(int id, unordered_map<string, string> properties) {
+	this->id = id;
+	this->properties = properties;
+}
+Edge::Edge(int id, unordered_map<string, string> properties, Node * originNode, Node * targetNode) {
+	this->id = id;
+	this->properties = properties;
+	this->originNode = originNode;
+	this->targetNode = targetNode;
+}
+
+Edge::Edge(SerializableEdge serializable) {
+	this->id = serializable.id;
+	this->properties = serializable.properties;
+}
+
+bool Edge::compareEdges(Edge* edge1, Edge* edge2) { //pending more accurate implementation
+	if (edge1->id == edge2->id) {
+		return true;
+	}
+	return false;
 }

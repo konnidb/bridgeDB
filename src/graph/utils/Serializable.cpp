@@ -47,6 +47,13 @@ void Serializable::store(ofstream* streamObj) {
 	}
 }
 
+Serializable* Element::getSerializable(string path) {
+	Serializable* serializable = new Serializable();
+	serializable->id = this->id;
+	serializable->path = path;
+	return serializable;
+}
+
 
 /*
 string Serializable::serialize() {

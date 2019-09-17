@@ -23,11 +23,11 @@ public:
 
 	void storeSchemaVector();
 
-	void loadVertexVector();
+	void loadVertexVector(vector<Node*> nodeVector, vector<Edge*> edgeVector);
 
-	void loadEdgeVector();
+	vector<Edge*> loadEdgeVector(vector<Node*> nodeVector);
 
-	void loadNodeVector();
+	vector<Node*> loadNodeVector();
 
 	void loadSchemaVector();
 

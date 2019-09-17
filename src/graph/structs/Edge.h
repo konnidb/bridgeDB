@@ -17,12 +17,17 @@ public:
 	void store(ofstream* streamObj);
 };
 
-class Edge {
+class Edge : public Element {
 public:
 	Schema * schema;
 	int id;
 	unordered_map<string, string> properties;
 	Node * originNode;
 	Node * targetNode;
-	SerializableEdge getSerializable(string path);
+	Serializable* getSerializable(string path);
+	Edge();
+	Edge(int id, unordered_map<string, string> properties);
+	Edge(int id, unordered_map<string, string> properties, Node * originNode, Node * targetNode);
+	Edge(SerializableEdge serializable);
+	static bool compareEdges(Edge* edge1, Edge* edge2);
 };
