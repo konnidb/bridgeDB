@@ -1,6 +1,6 @@
 LDFLAGS = -L/usr/local/lib `pkg-config --libs protobuf grpc++`\
 		-Wl, -lgrpc++_reflection -Wl, \
-		-ldl
+		# -ldl
 
 CXX = g++
 CPPFLAGS += `pkg-config --cflags protobuf grpc`
@@ -23,5 +23,5 @@ server: network.pb.o network.grpc.pb.o server.o
 %.pb.cc: %.proto
 	protoc --cpp_out=. $<
 
-clean:
-	rm -f *.o *.pb.cc *.pb.h client server
+# clean:
+# 	rm -f *.o *.pb.cc *.pb.h client server

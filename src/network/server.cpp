@@ -1,8 +1,9 @@
 #include <iostream>
 #include <string>
-#include "network.grpc.pb.h"
-#include "network.pb.h"
+#include "generated/network.grpc.pb.h"
+#include "generated/network.pb.h"
 #include <grpc++/grpc++.h>
+#include "ServiceImplementation.cpp"
 
 using grpc::Server;
 using grpc::ServerBuilder;
@@ -20,45 +21,6 @@ using network::NetworkNode;
 using network::NetworkEdge;
 using network::SearchNodeReq;
 using network::SearchNodeResponse;
-
-class ServiceImplementation final: public QueryService::Service {
-public:
-    Status ExecuteQuery(
-        ServerContext* context,
-        const Query* query,
-        QueryResponse* response
-    ) override {
-        response->set_response("HEllo world");
-        return Status::OK;
-    };
-    Status CreateNode(
-        ServerContext* context,
-        const CreateNodeReq* req,
-        CreateNodeResponse* response
-    ) override {
-        auto fields = req->fields();
-        NetworkNode* node = response->mutable_node();
-        (*node->mutable_fields())["field"] = fields["field"];
-        return Status::OK;
-    }
-
-    Status CreateEdge(
-        ServerContext* contest,
-        const CreateEdgeReq* req,
-        CreateEdgeResponse* response
-    ) override {
-
-        return Status::OK;
-    }
-
-    Status SearchNode(
-        ServerContext* context,
-        const SearchNodeReq* req,
-        SearchNodeResponse* resp
-    ) override {
-        return Status::OK;
-    }
-};
 
 void Run()
 {
