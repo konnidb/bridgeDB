@@ -28,17 +28,17 @@ void SerializableEdge::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	rf->get((char *)&this->id, sizeof(this->id));
-	rf->get((char *)&this->objType, sizeof(this->objType));
+	rf->read((char *)&this->id, sizeof(this->id));
+	rf->read((char *)&this->objType, sizeof(this->objType));
 	string props;
 	size_t size;
-	rf->get((char *)&size, sizeof(size));
+	rf->read((char *)&size, sizeof(size));
 	props.resize(size);
-	rf->get(&props[0], size);
+	rf->read(&props[0], size);
 	this->properties = deserializeMap(props);
-	rf->get((char *)&this->schemaId, sizeof(this->schemaId));
-	rf->get((char *)&this->originNode, sizeof(this->originNode));
-	rf->get((char *)&this->targetNode, sizeof(this->targetNode));
+	rf->read((char *)&this->schemaId, sizeof(this->schemaId));
+	rf->read((char *)&this->originNode, sizeof(this->originNode));
+	rf->read((char *)&this->targetNode, sizeof(this->targetNode));
 	if (streamObj == NULL) {
 		rf->close();
 		if (!rf->good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -89,4 +89,8 @@ bool Edge::compareEdges(Edge* edge1, Edge* edge2) { //pending more accurate impl
 		return true;
 	}
 	return false;
+}
+
+Edge::Edge(int id) {
+	this->id = id;
 }

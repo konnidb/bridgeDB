@@ -26,6 +26,7 @@ public:
 	Node * targetNode;
 	Serializable* getSerializable(string path);
 	Edge();
+	Edge(int id);
 	Edge(int id, unordered_map<string, string> properties);
 	Edge(int id, unordered_map<string, string> properties, Node * originNode, Node * targetNode);
 	Edge(SerializableEdge serializable);

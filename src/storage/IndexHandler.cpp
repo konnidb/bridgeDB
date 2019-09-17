@@ -25,6 +25,7 @@ public:
 	IndexHandler(string path) {
 		this->path = path;
 	}
+
 	void loadIndex() {
 		ifstream* rf = new ifstream(this->path, ios::in | ios::binary);
 		if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
@@ -37,6 +38,7 @@ public:
 		rf->close();
 		if (!rf->good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
 	}
+
 	void storeIndex() {
 		ofstream* wf = new ofstream(this->path, ios::out | ios::binary);
 		if (!wf) cout << "STORE: FAILED OPENING" << endl; //ErrorMap::error_storing_object->action();

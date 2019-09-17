@@ -17,7 +17,7 @@ string gen_random(const int len) {
 		"0123456789"
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 		"abcdefghijklmnopqrstuvwxyz";
-
+	s.resize(len);
 	for (int i = 0; i < len; ++i) {
 		s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
 	}
@@ -26,40 +26,55 @@ string gen_random(const int len) {
 
 void generates_semi_random_graph() {
 	int id = 1;
-//	Database* db = Database::getDatabase("test");
-	//Graph g(db->name);
-	//db->graphVector.push_back(&g);
-	Graph g("");
+	string dbname = "test";
+	Database db = Database::getDatabase(dbname);
+	/*db.cfg->configFileMap[ConfigFileAttrbute::databaseName] = dbname;
+	db.cfg->configFileMap[ConfigFileAttrbute::pageExtension] = ".bdb";
+	db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\edge\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile] = "edge.ix";
+	db.cfg->configFileMap[ConfigFileAttrbute::nodeDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\node\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile] = "node.ix";
+	db.cfg->configFileMap[ConfigFileAttrbute::vertexDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\vertex\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile] = "vertex.ix";
+	db.cfg->configFileMap[ConfigFileAttrbute::schemaDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\schema\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::schemaIndexFile] = "schema.ix";
+	db.cfg->storeConfigFile();*/
+	db.cfg->loadConfigFile();
+	cout << "CONFIG EDGE DIR: " << db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] << endl;
+	//*
+	Graph g(db.name);
+	db.graphVector.push_back(&g);
 	g.name = "testGraph";
 	g.id = id++;
-	Schema s1;
-	s1.id = id++;
-	s1.name = "persona";
-	s1.type = ElementType::NODE;
+	Schema* s1 = new Schema();
+	s1->id = id++;
+	s1->name = "persona";
+	s1->type = ElementType::NODE;
 	unordered_map<string, string> properties;
 	properties["nombre"] = to_string(DataType::STR);
 	properties["edad"] = to_string(DataType::NUM);
 	properties["telefono"] = to_string(DataType::STR);
 	properties["correo"] = to_string(DataType::STR);
 	properties["pw"] = to_string(DataType::STR);
-	s1.properties = properties;
-	g.schemaVector.push_back(&s1);
+	s1->properties = properties;
+	g.schemaVector.push_back(s1);
 
 	for (int i = 0; i < 100; i++)
 	{
-		Node n;
-		n.id = id++;
+		Node* n = new Node();
+		n->id = id++;
 		for (unordered_map<string, string>::iterator it = properties.begin(); it != properties.end(); it++)
 		{
-			if (it->second._Equal(to_string(DataType::NUM)))
-				n.properties[it->first] = (rand() % 1000000000) + 1000000000;
+			if (it->second==to_string(DataType::NUM))
+				n->properties[it->first] = to_string((rand() % 1000000000) + 1000000000);
 			else
-				n.properties[it->first] = gen_random(10);
+				n->properties[it->first] = gen_random(10);
 		}
-		Vertex v;
-		v.id = id++;
-		v.node = &n;
-		g.vertexVector.push_back(&v);
+		n->schema = s1;
+		Vertex* v = new Vertex();
+		v->id = id++;
+		v->node = n;
+		g.vertexVector.push_back(v);
 	}
 
 	int size = (int)g.vertexVector.size();
@@ -67,13 +82,31 @@ void generates_semi_random_graph() {
 	{
 		for (int j = 1; j <= 3 && i + j<size; j++)
 		{
-			Edge e;
-			e.id = id++;
-			e.originNode = g.vertexVector[i]->node;
-			e.targetNode = g.vertexVector[i + j]->node;
-			g.vertexVector[i]->edgesVector.push_back(&e);
+			Edge* e = new Edge();
+			e->id = id++;
+			e->originNode = g.vertexVector[i]->node;
+			e->targetNode = g.vertexVector[i + j]->node;
+			g.vertexVector[i]->edgesVector.push_back(e);
 		}
 	}
+
+	cout << "holi" << endl;
+
+	g.storeVertexVector();
+	//*/
+}
+
+void load_graph_test() {
+	string dbname = "test";
+	Database db = Database::getDatabase(dbname);
+	if(db.cfg->configFileMap.size()==0)
+		db.cfg->loadConfigFile();
+	cout << "CONFIG EDGE DIR: " << db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] << endl;
+	Graph* g = new Graph(db.name);
+	db.graphVector.push_back(g);
+	vector<Node*> nv = g->loadNodeVector();
+	vector<Edge*> ev = g->loadEdgeVector(nv);
+	g->loadVertexVector(nv, ev);
 }
 
 
@@ -103,7 +136,7 @@ int main() {
 	for (unordered_map<string, string>::iterator it = ser2.properties.begin(); it != ser2.properties.end(); it++) {
 		cout << "IT " << it->first.length() << endl;
 		cout << "val " << it->second.length() << endl;
-		for (size_t i = 0; i < it->first.length(); i++)
+		for (int i = 0; i < it->first.length(); i++)
 		{
 			cout << it->first[i];
 		}
@@ -111,6 +144,8 @@ int main() {
 	}
 
 	//*/
+	//generates_semi_random_graph();
+	load_graph_test();
 	cout << "SALE" << endl;
 	system("pause");
 }

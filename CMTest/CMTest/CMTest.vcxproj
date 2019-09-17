@@ -120,6 +120,7 @@
     <ClCompile Include="..\..\src\cmd\Main.cpp" />
     <ClCompile Include="..\..\src\cmd\Run.cpp" />
     <ClCompile Include="..\..\src\graph\operations\Definition.cpp" />
+    <ClCompile Include="..\..\src\graph\operations\Manipulation.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Database.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Edge.cpp" />
     <ClCompile Include="..\..\src\graph\structs\Graph.cpp" />

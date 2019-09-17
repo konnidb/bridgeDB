@@ -27,15 +27,15 @@ void SerializableVertex::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	rf->get((char *)&this->id, sizeof(this->id));
-	rf->get((char *)&this->objType, sizeof(this->objType));
-	rf->get((char *)&this->node, sizeof(this->node));
+	rf->read((char *)&this->id, sizeof(this->id));
+	rf->read((char *)&this->objType, sizeof(this->objType));
+	rf->read((char *)&this->node, sizeof(this->node));
 	size_t size;
-	rf->get((char *)&size, sizeof(size));
-	for (size_t i = 0; i < size; i++)
+	rf->read((char *)&size, sizeof(size));
+	for (int i = 0; i < size; i++)
 	{
 		int id;
-		rf->get((char *)&id, sizeof(id));
+		rf->read((char *)&id, sizeof(id));
 		this->edgesIdVector.push_back(id);
 	}
 	if (streamObj == NULL) {
@@ -56,7 +56,7 @@ void SerializableVertex::store(ofstream* streamObj) {
 	wf->write((char *)&this->node, sizeof(this->node));
 	size_t size = this->edgesIdVector.size();
 	wf->write((char *)&size, sizeof(size));
-	for (size_t i = size-1; i >= 0; i--)
+	for (int i = size-1; i >= 0; i--)
 	{
 		wf->write((char *)&this->edgesIdVector[i], sizeof(this->edgesIdVector[i]));
 	}

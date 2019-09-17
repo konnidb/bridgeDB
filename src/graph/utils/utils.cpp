@@ -21,7 +21,7 @@ T* vectorFindByFn(vector<T*> vectorEvl, T* elmnt, bool (*compareFn)(T* elmnt1, T
 	}
 	return NULL;
 }
-*/
+
 
 template<class T>
 T* vectorFindById(vector<T*> vectorEvl, T* elmnt) {
@@ -32,6 +32,7 @@ T* vectorFindById(vector<T*> vectorEvl, T* elmnt) {
 	}
 	return NULL;
 }
+*/
 
 string serializeMap(unordered_map<string, string> properties) {
 	string strBuilder = "";
@@ -47,6 +48,8 @@ unordered_map<string, string> deserializeMap(string properties) {
 	string prop = "";
 
 	for (int i = 0; i < properties.length(); i++){
+		if ((int)properties[i] == 0)
+			continue;
 		if (properties[i] == PROP_SEPARATOR) {
 			propertiesVector.push_back(prop);
 			prop = "";

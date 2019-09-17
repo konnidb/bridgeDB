@@ -32,7 +32,6 @@ T* vectorFindById(vector<T*> vectorEvl, T* elmnt) {
 }
 ConfigFileHandler* getConfigFileHandler(string databaseName);
 bool fileExists(string path);
-bool compareEdges(Edge* edge1, Edge* edge2);
 
 void closeStreamsOnMap(unordered_map<string, ofstream*> pageFiles) {
 	for (unordered_map<string, ofstream*>::iterator it = pageFiles.begin(); it != pageFiles.end(); it++) {
@@ -51,24 +50,31 @@ void Graph::storeVertexVector() {
 	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
 	string vertexIndexPath = vertexDir + cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile];
 	IndexHandler index(vertexIndexPath);
+	bool newPage = false;
 	if (fileExists(vertexIndexPath))
 		index.loadIndex();
+	else
+		newPage = true;
 	//IF NOT EXISTS, CREATE NEW
 	unordered_map<string, ofstream*> pageFiles;
 	vector<Node*> nodesVector;
 	vector<Edge*> edgesVector;
+	string pageId = "";
 	for (int i = 0; i < this->vertexVector.size(); i++) {
-		string pageId;
-		if (index.indexMap.find(to_string(this->vertexVector[i]->id)) == index.indexMap.end())
+		if(newPage && pageId == "")
+			pageId = to_string(index.getNextPageId());
+		/*
+		if (index.indexMap.find(to_string(this->vertexVector[i]->id)) != index.indexMap.end())
 			pageId = index.indexMap[to_string(this->vertexVector[i]->id)];
 		else
 			pageId = to_string(index.getNextPageId());
+		*/
 		index.indexMap[to_string(this->vertexVector[i]->id)] = pageId;
 		string pagePath = vertexDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
 			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::app | ios::binary);
 		}
-		SerializableVertex* s = dynamic_cast<SerializableVertex*>( this->vertexVector[i]->getSerializable(pagePath));
+		SerializableVertex* s = dynamic_cast<SerializableVertex*>(this->vertexVector[i]->getSerializable(pagePath));
 		s->store(pageFiles[pagePath]);
 		if (find(nodesVector.begin(), nodesVector.end(), this->vertexVector[i]->node) == nodesVector.end())
 			nodesVector.push_back(this->vertexVector[i]->node);
@@ -78,6 +84,7 @@ void Graph::storeVertexVector() {
 				edgesVector.push_back(this->vertexVector[i]->edgesVector[j]);
 		}
 	}
+	index.storeIndex();
 	this->storeEdgeVector(edgesVector);
 	this->storeNodeVector(nodesVector);
 	closeStreamsOnMap(pageFiles);
@@ -88,17 +95,22 @@ void Graph::storeEdgeVector(vector<Edge*> edgesVector) {
 	string edgeDir = cfg->configFileMap[ConfigFileAttrbute::edgeDirectory];
 	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
 	string edgeIndexPath = edgeDir + cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile];
+	bool newPage = false;
 	IndexHandler index(edgeIndexPath);
 	if (fileExists(edgeIndexPath))
 		index.loadIndex();
+	else
+		newPage = true;
 	//IF NOT EXISTS, CREATE NEW
 	unordered_map<string, ofstream*> pageFiles;
+	string pageId = "";
 	for (int i = 0; i < edgesVector.size(); i++) {
-		string pageId;
-		if (index.indexMap.find(to_string(edgesVector[i]->id)) == index.indexMap.end())
+		if (newPage && pageId == "")
+			pageId = to_string(index.getNextPageId());
+		/*if (index.indexMap.find(to_string(edgesVector[i]->id)) != index.indexMap.end())
 			pageId = index.indexMap[to_string(edgesVector[i]->id)];
 		else
-			pageId = to_string(index.getNextPageId());
+			pageId = to_string(index.getNextPageId());*/
 		index.indexMap[to_string(edgesVector[i]->id)] = pageId;
 		string pagePath = edgeDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
@@ -107,6 +119,7 @@ void Graph::storeEdgeVector(vector<Edge*> edgesVector) {
 		SerializableEdge* s = dynamic_cast<SerializableEdge*>(edgesVector[i]->getSerializable(pagePath));
 		s->store(pageFiles[pagePath]);
 	}
+	index.storeIndex();
 	closeStreamsOnMap(pageFiles);
 }
 
@@ -116,24 +129,31 @@ void Graph::storeNodeVector(vector<Node*> nodesVector) {
 	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
 	string nodeIndexPath = nodeDir + cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile];
 	IndexHandler index(nodeIndexPath);
+	bool newPage = false;
 	if (fileExists(nodeIndexPath))
 		index.loadIndex();
+	else
+		newPage = true;
 	//IF NOT EXISTS, CREATE NEW
 	unordered_map<string, ofstream*> pageFiles;
+	string pageId = "";
 	for (int i = 0; i < nodesVector.size(); i++) {
-		string pageId;
-		if (index.indexMap.find(to_string(nodesVector[i]->id)) == index.indexMap.end())
+		if (newPage && pageId == "")
+			pageId = to_string(index.getNextPageId());
+		/*if (index.indexMap.find(to_string(nodesVector[i]->id)) != index.indexMap.end())
 			pageId = index.indexMap[to_string(nodesVector[i]->id)];
 		else
 			pageId = to_string(index.getNextPageId());
+			*/
 		index.indexMap[to_string(nodesVector[i]->id)] = pageId;
 		string pagePath = nodeDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
-			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::app | ios::binary);
+			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::binary); //new ofstream(pagePath, ios::out | ios::app | ios::binary);
 		}
 		SerializableNode* s = dynamic_cast<SerializableNode*>(nodesVector[i]->getSerializable(pagePath));
 		s->store(pageFiles[pagePath]);
 	}
+	index.storeIndex();
 	closeStreamsOnMap(pageFiles);
 }
 
@@ -149,7 +169,7 @@ void Graph::storeSchemaVector() {
 	unordered_map<string, ofstream*> pageFiles;
 	for (int i = 0; i < this->schemaVector.size(); i++) {
 		string pageId;
-		if (index.indexMap.find(to_string(this->schemaVector[i]->id)) == index.indexMap.end())
+		if (index.indexMap.find(to_string(this->schemaVector[i]->id)) != index.indexMap.end())
 			pageId = index.indexMap[to_string(this->schemaVector[i]->id)];
 		else
 			pageId = to_string(index.getNextPageId());
@@ -160,6 +180,7 @@ void Graph::storeSchemaVector() {
 		}
 		this->schemaVector[i]->store(pageFiles[pagePath]);
 	}
+	index.storeIndex();
 	closeStreamsOnMap(pageFiles);
 }
 
@@ -183,39 +204,26 @@ void Graph::loadVertexVector(vector<Node*> nodeVector, vector<Edge*> edgeVector)
 		while (rf) {
 			SerializableVertex s;
 			s.load(rf);
-			//Vertex v
+			Vertex* v = new Vertex();
+			v->id = s.id;
+			Node* n = vectorFindById<Node>(nodeVector, new Node(s.node));
+			if (n != NULL)
+				v->node = n;
+			else
+				cout << "FAIL: NODE NOT FOUND, ID: " << s.node << endl;
+			for (int i = 0; i < s.edgesIdVector.size(); i++)
+			{
+				Edge* e = vectorFindById<Edge>(edgeVector, new Edge(s.edgesIdVector[i]));
+				if (e != NULL)
+					v->edgesVector.push_back(e);
+				else
+					cout << "FAIL: EDGE NOT FOUND, ID: " << s.edgesIdVector[i] << endl;
+			}
+			this->vertexVector.push_back(v);
 		}
-		
+		rf->close();
+		if (!rf->good()) cout << "FAIL CLOSING FILE: " << pageIds[i] << endl;
 	}
-	/*
-	unordered_map<string, ofstream*> pageFiles;
-	vector<Node*> nodesVector;
-	vector<Edge*> edgesVector;
-	for (int i = 0; i < this->vertexVector.size(); i++) {
-		string pageId;
-		if (index.indexMap.find(to_string(this->vertexVector[i]->id)) == index.indexMap.end())
-			pageId = index.indexMap[to_string(this->vertexVector[i]->id)];
-		else
-			pageId = to_string(index.getNextPageId());
-		index.indexMap[to_string(this->vertexVector[i]->id)] = pageId;
-		string pagePath = vertexDir + pageId + pageExtension;
-		if (pageFiles.find(pagePath) == pageFiles.end()) {
-			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::app | ios::binary);
-		}
-		SerializableVertex s = this->vertexVector[i]->getSerializable(pagePath);
-		s.store(pageFiles[pagePath]);
-		if (find(nodesVector.begin(), nodesVector.end(), this->vertexVector[i]->node) == nodesVector.end())
-			nodesVector.push_back(this->vertexVector[i]->node);
-		for (int j = 0; j < this->vertexVector[i]->edgesVector.size(); j++)
-		{
-			if (find(edgesVector.begin(), edgesVector.end(), this->vertexVector[i]->edgesVector[j]) == edgesVector.end())
-				edgesVector.push_back(this->vertexVector[i]->edgesVector[j]);
-		}
-	}
-	this->storeEdgeVector(edgesVector);
-	this->storeNodeVector(nodesVector);
-	closeStreamsOnMap(pageFiles);
-	*/
 }
 
 vector<Edge*> Graph::loadEdgeVector(vector<Node*> nodeVector) {
@@ -288,6 +296,7 @@ vector<Node*> Graph::loadNodeVector() {
 	}
 	for (int i = 0; i < pageIds.size(); i++)
 	{
+		string path = nodeDir + pageIds[i] + pageExtension;
 		ifstream* rf = new ifstream(pageIds[i], ios::in | ios::binary);
 		while (rf) {
 			SerializableNode serializable;
