@@ -27,9 +27,9 @@ void SerializableNode::load(ifstream* streamObj) {
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
 	rf->read((char *)&this->id, sizeof(this->id));
-	rf->read((char *)&this->objType, sizeof(this->objType));
+	//rf->read((char *)&this->objType, sizeof(this->objType));
 	string props;
-	size_t size;
+	int size;
 	rf->read((char *)&size, sizeof(size));
 	props.resize(size);
 	rf->read(&props[0], size);
@@ -49,9 +49,9 @@ void SerializableNode::store(ofstream* streamObj) {
 		wf = streamObj;
 	if (!wf) cout << "STORE: FAILED OPENING" << endl; //ErrorMap::error_storing_object->action();
 	wf->write((char *)&this->id, sizeof(this->id));
-	wf->write((char *)&this->objType, sizeof(this->objType));
+	//wf->write((char *)&this->objType, sizeof(this->objType));
 	string props = serializeMap(this->properties);
-	size_t size = props.size();
+	int size = props.size();
 	wf->write((char *)&size, sizeof(size));
 	wf->write(&props[0], size);
 	wf->write((char *)&this->schemaId, sizeof(this->schemaId));

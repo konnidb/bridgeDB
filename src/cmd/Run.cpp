@@ -59,7 +59,7 @@ void generates_semi_random_graph() {
 	s1->properties = properties;
 	g.schemaVector.push_back(s1);
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 138; i++)
 	{
 		Node* n = new Node();
 		n->id = id++;
@@ -126,7 +126,7 @@ int main() {
 
 	SerializableNode*  ser = dynamic_cast<SerializableNode*>(n1.getSerializable(t));
 	cout << "SER ID: " << ser->id << endl;
-	//ser.store();
+	//ser->store(NULL);
 
 	//*
 	SerializableNode  ser2;
@@ -144,8 +144,40 @@ int main() {
 	}
 
 	//*/
+	//*
+	string p = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\node\\1.bdb";
+	ifstream* rf = new ifstream(p, ios::in | ios::binary);
+	cout << "SIZE OUT INT: " << sizeof(long long) << endl;
+	cout << "SIZE OUT bool: " << sizeof(bool) << endl;
+	cout << "SIZE OUT char *: " << sizeof(char *) << endl;
+	int j = 999999999999999;
+	char * ab = (char*)&j;
+	cout << "SIZE OUT int to char *: " << sizeof(ab) << endl;
+	for (int i = 0; i < sizeof(ab); i++)
+	{
+		cout << (int)ab[i]<<endl;
+	}
+	j = (int)*ab;
+	cout << "GET BACK FROM CAST: " << j<< endl;
+	rf->read(ab, sizeof(ab));
+	cout <<endl<< "AFTER READ! " << endl;
+	for (int i = 0; i < sizeof(ab); i++)
+	{
+		cout <<(int) ab[i]<<endl;
+	}
+	j = (long long)*ab;
+	cout << "NEW J: " << j << endl;
+	char o = '1';
+	while(o=='1') {
+		bool size;
+		rf->read((char *)&size, sizeof(size));
+		cout << size << endl;
+		cin >> o;
+	}
+	rf->close();
+	//*/
 	//generates_semi_random_graph();
-	load_graph_test();
+	//load_graph_test();
 	cout << "SALE" << endl;
 	system("pause");
 }

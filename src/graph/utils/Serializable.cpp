@@ -40,7 +40,7 @@ void Serializable::store(ofstream* streamObj) {
 	else
 		wf = streamObj;
 	if (!wf) cout << "STORE: FAILED OPENING" << endl; //ErrorMap::error_storing_object->action();
-	wf->write((char *)this, sizeof(Serializable));
+	wf->write((char *)&this, sizeof(Serializable));
 	if (streamObj == NULL) {
 		wf->close();
 		if (!wf->good()) cout << "STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();

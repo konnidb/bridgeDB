@@ -129,27 +129,24 @@ void Graph::storeNodeVector(vector<Node*> nodesVector) {
 	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
 	string nodeIndexPath = nodeDir + cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile];
 	IndexHandler index(nodeIndexPath);
-	bool newPage = false;
+	string pageId = "";
+	unordered_map<string, ofstream*> pageFiles;
+	string pagePath;
 	if (fileExists(nodeIndexPath))
 		index.loadIndex();
-	else
-		newPage = true;
-	//IF NOT EXISTS, CREATE NEW
-	unordered_map<string, ofstream*> pageFiles;
-	string pageId = "";
-	for (int i = 0; i < nodesVector.size(); i++) {
-		if (newPage && pageId == "")
-			pageId = to_string(index.getNextPageId());
-		/*if (index.indexMap.find(to_string(nodesVector[i]->id)) != index.indexMap.end())
-			pageId = index.indexMap[to_string(nodesVector[i]->id)];
-		else
-			pageId = to_string(index.getNextPageId());
-			*/
-		index.indexMap[to_string(nodesVector[i]->id)] = pageId;
-		string pagePath = nodeDir + pageId + pageExtension;
+	else{
+		pageId = to_string(index.getNextPageId());
+		pagePath = nodeDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
 			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::binary); //new ofstream(pagePath, ios::out | ios::app | ios::binary);
+			int size = nodesVector.size();
+			pageFiles[pagePath]->write((char *)&size, sizeof(int));
 		}
+	}
+	//IF NOT EXISTS, CREATE NEW
+	
+	for (int i = 0; i < nodesVector.size(); i++) {
+		index.indexMap[to_string(nodesVector[i]->id)] = pageId;
 		SerializableNode* s = dynamic_cast<SerializableNode*>(nodesVector[i]->getSerializable(pagePath));
 		s->store(pageFiles[pagePath]);
 	}
@@ -298,7 +295,9 @@ vector<Node*> Graph::loadNodeVector() {
 	{
 		string path = nodeDir + pageIds[i] + pageExtension;
 		ifstream* rf = new ifstream(pageIds[i], ios::in | ios::binary);
-		while (rf) {
+		int size;
+		rf->read((char *)&size, sizeof(int));
+		for (int i = 0; i < size; i++){
 			SerializableNode serializable;
 			serializable.load(rf);
 			Node* node = new Node(serializable);
