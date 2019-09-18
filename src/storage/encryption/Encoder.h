@@ -14,8 +14,8 @@ public:
     fstream* enconde(void);
     static void encode_stream(fstream* stream, string stream_name);
     static void encode_stream(fstream* stream);
-    static string encode_message(char*);
-    static char encode_character();
-    static string encode_message(string);
+    // static string encode_message(char*);
+    // static char encode_character();
+    // static string encode_message(string);
     ~Encoder();
 };
