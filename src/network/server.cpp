@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "generated/network.grpc.pb.h"
-#include "generated/network.pb.h"
+#include "network.grpc.pb.h"
+#include "network.pb.h"
 #include <grpc++/grpc++.h>
 #include "ServiceImplementation.cpp"
 
