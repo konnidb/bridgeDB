@@ -1,5 +1,5 @@
 LDFLAGS = -L/usr/local/lib `pkg-config --libs protobuf grpc++`\
-		-Wl, -lgrpc++_reflection -Wl, \
+		 -lgrpc++_reflection  \
 		# -ldl
 
 CXX = g++
