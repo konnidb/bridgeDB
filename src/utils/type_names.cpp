@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string.h>
 #define INT_NAME typeid(int).name()
