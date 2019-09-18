@@ -7,3 +7,7 @@ langbuilder:
 	./src/query/interpreter/interpreter.out
 network:
 	cd src/network && $(MAKE)
+
+crypto:
+	cd src/storage/encryption && $(MAKE)
+	./src/storage/encryption/crypt.out
