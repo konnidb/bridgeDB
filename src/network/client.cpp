@@ -18,12 +18,12 @@ class NetworkClient {
     public:
         NetworkClient(std::shared_ptr<Channel> channel) : stub_(QueryService::NewStub(channel)) {}
 
-    std::string sendRequest(std::string user, std::string password) {
+    std::string sendRequest(std::string a) {
         NetworkNode* node = new NetworkNode();
         CreateNodeReq req;
         req.set_id(12);
         auto fields = req.mutable_fields();
-        (*fields)["field"] = "value";
+        (*fields)["field"] = a;
 
         // request.set_user(user);
         // request.set_password(password);
@@ -56,12 +56,11 @@ void Run() {
     );
 
     std::string response;
+    std::string a = "";
+    std::cin >> a;
 
-    std::string user = "ivan";
-    std::string password = "123";
-
-    response = client.sendRequest(user,password);
-    std::cout << "Answer received: User - " << user << " Password - " << password << " : " << response << std::endl;
+    response = client.sendRequest(a);
+    std::cout << response << std::endl;
 }
 
 int main(int argc, char* argv[]){

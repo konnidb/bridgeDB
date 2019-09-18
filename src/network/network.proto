@@ -1,6 +1,5 @@
 syntax = "proto3";
 
-option go_package = "bridgedb";
 package network;
 
 message Query {
@@ -76,7 +75,17 @@ message SearchNodeResponse {
     repeated NetworkNode nodes = 1;
 }
 
+message Session {
+    string session_uuid = 1;
+}
+
+message SessionRequest {
+    string username = 1;
+    string password = 2;
+}
+
 service QueryService {
+    rpc CreateSession (stream SessionRequest) returns (stream Session) {};
     rpc ExecuteQuery (Query) returns (QueryResponse) {};
     rpc CreateNode (CreateNodeReq) returns (CreateNodeResponse) {};
     rpc DeleteNode (DeleteNodeReq) returns (DeleteNodeResponse) {};
