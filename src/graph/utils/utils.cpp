@@ -5,12 +5,22 @@
 #include<unordered_map>
 #include"..\..\utils\Enums.h"
 #include"..\structs\Database.h"
+#include<math.h>
 
 using namespace std;
 
 
 const char ELMNT_SEPARATOR = '~';
 const char PROP_SEPARATOR = '¬';
+
+int char_ptr_to_int(char* c) {
+	unsigned char* uc = (unsigned char*)c;
+	int result = 0;
+	for (int i = 0; i < sizeof(uc); i++){
+		result += uc[i] * pow(256, i);
+	}
+	return result;
+}
 /*
 template <class T >
 T* vectorFindByFn(vector<T*> vectorEvl, T* elmnt, bool (*compareFn)(T* elmnt1, T* elmnt2)) {
@@ -69,7 +79,7 @@ unordered_map<string, string> deserializeMap(string properties) {
 			else
 				tmp += propertiesVector[i][j];
 		}
-		cout << "key : " << key << " Value: " << tmp;
+		//cout << "key : " << key << " Value: " << tmp;
 		output[key] = tmp;
 	}
 	cout << "OUTPUT SIZE: " << output.size() << endl;

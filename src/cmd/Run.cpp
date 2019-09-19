@@ -126,7 +126,7 @@ int main() {
 
 	SerializableNode*  ser = dynamic_cast<SerializableNode*>(n1.getSerializable(t));
 	cout << "SER ID: " << ser->id << endl;
-	//ser->store(NULL);
+	ser->store(NULL);
 
 	//*
 	SerializableNode  ser2;
@@ -144,7 +144,7 @@ int main() {
 	}
 
 	//*/
-	//*
+	/*
 	string p = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\node\\1.bdb";
 	ifstream* rf = new ifstream(p, ios::in | ios::binary);
 	cout << "SIZE OUT INT: " << sizeof(long long) << endl;
@@ -177,7 +177,7 @@ int main() {
 	rf->close();
 	//*/
 	//generates_semi_random_graph();
-	//load_graph_test();
+	load_graph_test();
 	cout << "SALE" << endl;
 	system("pause");
 }

@@ -4,6 +4,8 @@
 #include"Vertex.h"
 using namespace std;
 
+int char_ptr_to_int(char* c);
+
 SerializableVertex::SerializableVertex() {
 	this->objType = VERTEX;
 }
@@ -27,16 +29,24 @@ void SerializableVertex::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	rf->read((char *)&this->id, sizeof(this->id));
-	rf->read((char *)&this->objType, sizeof(this->objType));
-	rf->read((char *)&this->node, sizeof(this->node));
-	size_t size;
-	rf->read((char *)&size, sizeof(size));
+	char* id = new char[sizeof(int)];
+	rf->read(id, sizeof(int));
+	this->id = char_ptr_to_int(id);
+	char* objType = new char[sizeof(int)];
+	rf->read(objType, sizeof(int));
+	this->objType = (ElementType)char_ptr_to_int(objType);
+	char* node = new char[sizeof(int)];
+	rf->read(node, sizeof(int));
+	this->node = char_ptr_to_int(node);
+	char* sizec = new char[sizeof(int)];
+	rf->read(sizec, sizeof(int));
+	int size = char_ptr_to_int(sizec);
 	for (int i = 0; i < size; i++)
 	{
-		int id;
-		rf->read((char *)&id, sizeof(id));
-		this->edgesIdVector.push_back(id);
+		char* eIdc = new char[sizeof(int)];
+		rf->read(eIdc, sizeof(int));
+		int eId = char_ptr_to_int(eIdc);
+		this->edgesIdVector.push_back(eId);
 	}
 	if (streamObj == NULL) {
 		rf->close();
@@ -51,14 +61,14 @@ void SerializableVertex::store(ofstream* streamObj) {
 	else
 		wf = streamObj;
 	if (!wf) cout << "STORE: FAILED OPENING" << endl; //ErrorMap::error_storing_object->action();
-	wf->write((char *)&this->id, sizeof(this->id));
-	wf->write((char *)&this->objType, sizeof(this->objType));
-	wf->write((char *)&this->node, sizeof(this->node));
-	size_t size = this->edgesIdVector.size();
-	wf->write((char *)&size, sizeof(size));
+	wf->write((char *)&this->id, sizeof(int));
+	wf->write((char *)&this->objType, sizeof(int));
+	wf->write((char *)&this->node, sizeof(int));
+	int size = this->edgesIdVector.size();
+	wf->write((char *)&size, sizeof(int));
 	for (int i = size-1; i >= 0; i--)
 	{
-		wf->write((char *)&this->edgesIdVector[i], sizeof(this->edgesIdVector[i]));
+		wf->write((char *)&this->edgesIdVector[i], sizeof(int));
 	}
 	if (streamObj == NULL) {
 		wf->close();

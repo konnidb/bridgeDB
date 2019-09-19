@@ -1,1 +1,37 @@
-﻿
+﻿  type_names.cpp
+  TextMessagesHandler.cpp
+  LogHandler.cpp
+  Identifier.cpp
+  Encrypt.cpp
+  StoreHandler.cpp
+  storage.cpp
+  IndexHandler.cpp
+  service.cpp
+  query.cpp
+  network.cpp
+  auth.cpp
+  utils.cpp
+c:\users\l440\documents\bridgedb\bridgedb\src\graph\utils\utils.cpp(20): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+  Serializable.cpp
+  Vertex.cpp
+c:\users\l440\documents\bridgedb\bridgedb\src\graph\structs\vertex.cpp(67): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+  structs.cpp
+  Schema.cpp
+  Node.cpp
+c:\users\l440\documents\bridgedb\bridgedb\src\graph\structs\node.cpp(63): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+  Graph.cpp
+c:\users\l440\documents\bridgedb\bridgedb\src\graph\structs\graph.cpp(144): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+  Edge.cpp
+  Generando código...
+  Compilando...
+  Database.cpp
+  Manipulation.cpp
+  Definition.cpp
+  Run.cpp
+  Main.cpp
+  cmd.cpp
+  ConfigFile.cpp
+  admin.cpp
+  Generando código...
+  CMTest.vcxproj -> C:\Users\L440\Documents\BRIDGEDB\bridgeDB\CMTest\x64\Debug\CMTest.exe
+  CMTest.vcxproj -> C:\Users\L440\Documents\BRIDGEDB\bridgeDB\CMTest\x64\Debug\CMTest.pdb (Partial PDB)

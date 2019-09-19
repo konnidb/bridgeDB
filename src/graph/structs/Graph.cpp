@@ -11,6 +11,8 @@
 //#include"..\..\utils\Enums.h"
 using namespace std;
 
+int char_ptr_to_int(char* c);
+
 template <class T >
 T* vectorFindByFn(vector<T*> vectorEvl, T* elmnt, bool(*compareFn)(T* elmnt1, T* elmnt2)) {
 	for (int i = 0; i < vectorEvl.size(); i++)
@@ -140,6 +142,12 @@ void Graph::storeNodeVector(vector<Node*> nodesVector) {
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
 			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::binary); //new ofstream(pagePath, ios::out | ios::app | ios::binary);
 			int size = nodesVector.size();
+			char* sizec = (char*)&size;
+			unsigned char* c = (unsigned char*)sizec;
+			for (int i = 0; i < sizeof(c); i++)
+			{
+				cout << "SIZE CHAR STORE: " << (int)c[i] << endl;
+			}
 			pageFiles[pagePath]->write((char *)&size, sizeof(int));
 		}
 	}
@@ -198,7 +206,7 @@ void Graph::loadVertexVector(vector<Node*> nodeVector, vector<Edge*> edgeVector)
 	for (int i = 0; i < pageIds.size(); i++)
 	{
 		ifstream* rf = new ifstream(pageIds[i], ios::in | ios::binary);
-		while (rf) {
+		while (rf->eof()) {
 			SerializableVertex s;
 			s.load(rf);
 			Vertex* v = new Vertex();
@@ -295,8 +303,22 @@ vector<Node*> Graph::loadNodeVector() {
 	{
 		string path = nodeDir + pageIds[i] + pageExtension;
 		ifstream* rf = new ifstream(pageIds[i], ios::in | ios::binary);
-		int size;
-		rf->read((char *)&size, sizeof(int));
+		char* sizec = new char[sizeof(int)];
+		
+		char o = '1';
+		while (o == '1') {
+			char a;
+			rf->read((char*)&a, sizeof(char));
+			cin >> o;
+		}
+
+		rf->read(sizec, sizeof(int));
+		unsigned char* c = (unsigned char*)sizec;
+		for (int i = 0; i < sizeof(c); i++)
+		{
+			cout << "SIZE CHAR: " << (int)c[i] << endl;
+		}
+		int size = char_ptr_to_int(sizec);
 		for (int i = 0; i < size; i++){
 			SerializableNode serializable;
 			serializable.load(rf);
