@@ -3,6 +3,7 @@
 #include <string>
 #include "network.grpc.pb.h"
 #include "network.pb.h"
+#include "auth/AuthService.hpp"
 #include <grpc++/grpc++.h>
 
 using grpc::Server;
