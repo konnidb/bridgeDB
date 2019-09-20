@@ -1,82 +1,102 @@
 syntax = "proto3";
 
 package network;
+option java_package="bridgedb";
+option go_package="bridgedb";
+option java_multiple_files=true;
 
 message Query {
-    int32 number = 1;
+    int64 number = 1;
     string message = 2;
+    string token = 3;
 }
 
 message QueryResponse {
     string response = 1;
+    string token = 2;
 }
 
 message NetworkNode{
     int64 id = 1;
     map<string, string> fields = 2;    
+    string token = 3;
 }
 
 message NetworkEdge {
     string label = 1;
     map<string, string> fields = 2;
+    string token = 3;
 }
 
 message CreateNodeReq {
     int64 id = 1;
     map<string, string> fields = 2;
+    string token = 3;
 }
 
 message CreateNodeResponse {
     NetworkNode node = 1;
+    string token = 2;
 }
 
 message CreateEdgeReq {
     string label = 1;
     map<string, string> fields = 2;
+    string token = 3;
 }
 
 message CreateEdgeResponse {
     NetworkEdge edge = 1;
+    string token = 2;
 }
 
 message CreateRelationReq {
     NetworkNode source = 1;
     NetworkNode destination = 2;
     NetworkEdge edgeData = 3;
+    string token = 4;
 }
 
 message CraeteRelationResponse {
     NetworkNode source = 1;
     NetworkNode destination = 2;
     NetworkEdge edge = 3;
+    string token = 4;
 }
 
 message DeleteNodeReq {
     NetworkNode node = 1;
+    string token = 2;
 }
 
 message DeleteNodeResponse {
     NetworkNode node = 1;
+    string token = 2;
 }
 
 message DeleteEdgeReq {
     NetworkEdge edge = 1;
+    string token = 2;
 }
 
 message DeleteEdgeResponse {
     NetworkEdge edge = 1;
+    string token = 2;
 }
 
 message SearchNodeReq {
     NetworkNode node = 1;
+    string token = 2;
 }
 
 message SearchNodeResponse {
     repeated NetworkNode nodes = 1;
+    string token = 2;
 }
 
 message Session {
     string session_uuid = 1;
+    string token = 2;
 }
 
 message SessionRequest {

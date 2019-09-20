@@ -7,3 +7,5 @@ langbuilder:
 	./src/query/interpreter/interpreter.out
 network:
 	cd src/network && $(MAKE)
+ntclean:
+	cd src/network && $(MAKE) clean

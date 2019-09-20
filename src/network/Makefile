@@ -23,5 +23,5 @@ server: network.pb.o network.grpc.pb.o server.o
 %.pb.cc: %.proto
 	protoc --cpp_out=. $<
 
-# clean:
-# 	rm -f *.o *.pb.cc *.pb.h client server
+clean:
+	rm -f *.o *.pb.cc *.pb.h client server
