@@ -29,7 +29,6 @@ Status ServiceImplementation::CreateSession(
     const SessionRequest *request,
     Session *response)
 {
-    response
     return Status::OK;
 };
 
