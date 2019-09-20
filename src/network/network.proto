@@ -105,7 +105,7 @@ message SessionRequest {
 }
 
 service QueryService {
-    rpc CreateSession (stream SessionRequest) returns (stream Session) {};
+    rpc CreateSession (SessionRequest) returns (Session) {};
     rpc ExecuteQuery (Query) returns (QueryResponse) {};
     rpc CreateNode (CreateNodeReq) returns (CreateNodeResponse) {};
     rpc DeleteNode (DeleteNodeReq) returns (DeleteNodeResponse) {};

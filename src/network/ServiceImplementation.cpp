@@ -21,9 +21,19 @@ using network::NetworkNode;
 using network::NetworkEdge;
 using network::SearchNodeReq;
 using network::SearchNodeResponse;
+using network::SessionRequest;
+using network::Session;
 
 class ServiceImplementation final: public QueryService::Service {
 public:
+    Status CreateSession(
+        ServerContext* context,
+        const SessionRequest* request,
+        Session* response
+    ) override {
+        return Status::OK;
+    };
+
     Status ExecuteQuery(
         ServerContext* context,
         const Query* query,

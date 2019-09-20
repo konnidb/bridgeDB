@@ -11,10 +11,10 @@ GRPC_CPP_PLUGIN_PATH ?= `which $(GRPC_CPP_PLUGIN)`
 
 all: client server
 
-client: network.pb.o network.grpc.pb.o client.o
+client: network.pb.o network.grpc.pb.o client.o auth/AuthService.o
 	$(CXX) $^ $(LDFLAGS) -o $@.out
 
-server: network.pb.o network.grpc.pb.o server.o
+server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o
 	$(CXX) $^ $(LDFLAGS) -o $@.out
 
 %.grpc.pb.cc: %.proto
