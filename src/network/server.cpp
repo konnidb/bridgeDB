@@ -3,7 +3,7 @@
 #include "network.grpc.pb.h"
 #include "network.pb.h"
 #include <grpc++/grpc++.h>
-#include "ServiceImplementation.cpp"
+#include "ServiceImplementation.hpp"
 
 using grpc::Server;
 using grpc::ServerBuilder;

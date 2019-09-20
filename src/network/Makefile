@@ -14,7 +14,7 @@ all: client server
 client: network.pb.o network.grpc.pb.o client.o auth/AuthService.o
 	$(CXX) $^ $(LDFLAGS) -o $@.out
 
-server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o
+server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o ServiceImplementation.o
 	$(CXX) $^ $(LDFLAGS) -o $@.out
 
 %.grpc.pb.cc: %.proto
