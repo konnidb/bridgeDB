@@ -31,8 +31,6 @@ void Run()
     builder.AddListeningPort(address, grpc::InsecureServerCredentials());
     builder.RegisterService(&service);
 
-    // auto chanel_creds = grpc::GoogleDefaultCredentials();
-    // auto channel = grpc::CreateChannel("grpc_server", chanel_creds);
     std::unique_ptr<Server> server(builder.BuildAndStart());
     std::cout << "Server listening on port: " << address << std::endl;
     server->Wait();
