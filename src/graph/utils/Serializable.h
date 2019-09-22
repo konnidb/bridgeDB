@@ -8,7 +8,7 @@ using namespace std;
 class Serializable {
 public:
 	unordered_map<string, string> properties;
-	int id;
+	long id;
 	string path;
 	ElementType objType;
 
@@ -20,6 +20,6 @@ public:
 
 class Element {
 public:
-	int id;
+	long id;
 	virtual Serializable* getSerializable(string path);
 };

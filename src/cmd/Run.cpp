@@ -11,21 +11,21 @@
 
 using namespace std;
 
-string gen_random(const int len) {
+string gen_random(const long len) {
 	string s;
 	static const char alphanum[] =
 		"0123456789"
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 		"abcdefghijklmnopqrstuvwxyz";
 	s.resize(len);
-	for (int i = 0; i < len; ++i) {
+	for (long i = 0; i < len; ++i) {
 		s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
 	}
 	return s;
 }
 
 void generates_semi_random_graph() {
-	int id = 1;
+	long id = 1;
 	string dbname = "test";
 	Database db = Database::getDatabase(dbname);
 	/*db.cfg->configFileMap[ConfigFileAttrbute::databaseName] = dbname;
@@ -59,7 +59,7 @@ void generates_semi_random_graph() {
 	s1->properties = properties;
 	g.schemaVector.push_back(s1);
 
-	for (int i = 0; i < 138; i++)
+	for (long i = 0; i < 138; i++)
 	{
 		Node* n = new Node();
 		n->id = id++;
@@ -77,10 +77,10 @@ void generates_semi_random_graph() {
 		g.vertexVector.push_back(v);
 	}
 
-	int size = (int)g.vertexVector.size();
-	for (int i = 0; i < size; i++)
+	long size = (int)g.vertexVector.size();
+	for (long i = 0; i < size; i++)
 	{
-		for (int j = 1; j <= 3 && i + j<size; j++)
+		for (long j = 1; j <= 3 && i + j<size; j++)
 		{
 			Edge* e = new Edge();
 			e->id = id++;
@@ -110,7 +110,7 @@ void load_graph_test() {
 }
 
 
-int main() {
+long main() {
 	string t = "test.txt";
 
 	char a = 'd';
@@ -119,7 +119,7 @@ int main() {
 
 	///*
 	Node n1;
-	n1.id = 222;
+	n1.id = 2222;
 	n1.properties["testeefwfwf"] = "holis";
 	n1.properties["edgarqdqwdqwd"] = "vazquez";
 	n1.properties["cristina"] = "mariscalsdcsdcs";
@@ -136,7 +136,7 @@ int main() {
 	for (unordered_map<string, string>::iterator it = ser2.properties.begin(); it != ser2.properties.end(); it++) {
 		cout << "IT " << it->first.length() << endl;
 		cout << "val " << it->second.length() << endl;
-		for (int i = 0; i < it->first.length(); i++)
+		for (long i = 0; i < it->first.length(); i++)
 		{
 			cout << it->first[i];
 		}
@@ -150,10 +150,10 @@ int main() {
 	cout << "SIZE OUT INT: " << sizeof(long long) << endl;
 	cout << "SIZE OUT bool: " << sizeof(bool) << endl;
 	cout << "SIZE OUT char *: " << sizeof(char *) << endl;
-	int j = 999999999999999;
+	long j = 999999999999999;
 	char * ab = (char*)&j;
-	cout << "SIZE OUT int to char *: " << sizeof(ab) << endl;
-	for (int i = 0; i < sizeof(ab); i++)
+	cout << "SIZE OUT long to char *: " << sizeof(ab) << endl;
+	for (long i = 0; i < sizeof(ab); i++)
 	{
 		cout << (int)ab[i]<<endl;
 	}
@@ -161,7 +161,7 @@ int main() {
 	cout << "GET BACK FROM CAST: " << j<< endl;
 	rf->read(ab, sizeof(ab));
 	cout <<endl<< "AFTER READ! " << endl;
-	for (int i = 0; i < sizeof(ab); i++)
+	for (long i = 0; i < sizeof(ab); i++)
 	{
 		cout <<(int) ab[i]<<endl;
 	}
@@ -177,14 +177,14 @@ int main() {
 	rf->close();
 	//*/
 	//generates_semi_random_graph();
-	load_graph_test();
+	//load_graph_test();
 	cout << "SALE" << endl;
 	system("pause");
 }
 
 /*
-int main(string args[]) {
-for (int i = 0; i < sizeof(args)/sizeof(string); i++)
+long main(string args[]) {
+for (long i = 0; i < sizeof(args)/sizeof(string); i++)
 {
 //if(.compare(args[i]))
 }

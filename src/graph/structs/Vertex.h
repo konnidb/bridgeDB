@@ -8,7 +8,7 @@ using namespace std;
 class SerializableVertex : public Serializable {
 public:
 	vector<int> edgesIdVector;
-	int node;
+	long node;
 	SerializableVertex();
 	void load(ifstream* streamObj);
 	void store(ofstream* streamObj);
@@ -16,11 +16,11 @@ public:
 
 class Vertex : public Element {
 public:
-	int id;
+	long id;
 	Node * node;
 	vector<Edge *> edgesVector;
 	Serializable* getSerializable(string path);
 	Vertex();
-	Vertex(int id, Node * node);
+	Vertex(long id, Node * node);
 };
 

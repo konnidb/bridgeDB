@@ -75,11 +75,11 @@ string Serializable::serialize() {
 
 void Serializable::setProperties(unordered_map<string, string> properties) {
 	for (unordered_map<string, string>::iterator it = properties.begin(); it != properties.end(); it++) {
-		const int lk = ((int)it->first.length()+1);
+		const long lk = ((int)it->first.length()+1);
 		char* key = new char[lk];
 		cout << "SET PROP, KEY SIZE: " << strlen(key) << endl;
 		strcpy_s(key, lk, it->first.c_str());
-		int lv = ((int)it->second.length()+1);
+		long lv = ((int)it->second.length()+1);
 		char* value = new char[lv];
 		strcpy_s(value, lv, it->second.c_str());
 		cout << "SET PROP, VAL SIZE: " << sizeof(key) << endl;

@@ -11,10 +11,10 @@ unordered_map<string, string> deserializeMap(string properties);
 
 class Index {
 public:
-	int id;
+	long id;
 	string page;
-	int grouperField = NULL;
-	int grouperContent = NULL;
+	long grouperField = NULL;
+	long grouperContent = NULL;
 };
 
 class IndexHandler {
@@ -50,10 +50,10 @@ public:
 		if (!wf->good()) cout << "STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
 	}
 
-	int getNextPageId() {
-		int max = NULL;
+	long getNextPageId() {
+		long max = NULL;
 		for (unordered_map<string, string>::iterator it = this->indexMap.begin(); it != this->indexMap.end(); it++) {
-			int tmp = stoi(it->second);
+			long tmp = stoi(it->second);
 			if (max == NULL || max < tmp)
 				max = tmp;
 		}

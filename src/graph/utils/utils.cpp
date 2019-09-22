@@ -13,10 +13,10 @@ using namespace std;
 const char ELMNT_SEPARATOR = '~';
 const char PROP_SEPARATOR = '¬';
 
-int char_ptr_to_int(char* c) {
+long char_ptr_to_int(char* c) {
 	unsigned char* uc = (unsigned char*)c;
-	int result = 0;
-	for (int i = 0; i < sizeof(uc); i++){
+	long result = 0;
+	for (long i = 0; i < sizeof(uc); i++){
 		result += uc[i] * pow(256, i);
 	}
 	return result;
@@ -24,7 +24,7 @@ int char_ptr_to_int(char* c) {
 /*
 template <class T >
 T* vectorFindByFn(vector<T*> vectorEvl, T* elmnt, bool (*compareFn)(T* elmnt1, T* elmnt2)) {
-	for (int i = 0; i < vectorEvl.size(); i++)
+	for (long i = 0; i < vectorEvl.size(); i++)
 	{
 		if (compareFn(elmnt, vectorEvl[i]))
 			return vectorEvl[i];
@@ -35,7 +35,7 @@ T* vectorFindByFn(vector<T*> vectorEvl, T* elmnt, bool (*compareFn)(T* elmnt1, T
 
 template<class T>
 T* vectorFindById(vector<T*> vectorEvl, T* elmnt) {
-	for (int i = 0; i < vectorEvl.size(); i++)
+	for (long i = 0; i < vectorEvl.size(); i++)
 	{
 		if (elmnt->id == vectorEvl[i]->id)
 			return vectorEvl[i];
@@ -57,7 +57,7 @@ unordered_map<string, string> deserializeMap(string properties) {
 	vector<string> propertiesVector;
 	string prop = "";
 
-	for (int i = 0; i < properties.length(); i++){
+	for (long i = 0; i < properties.length(); i++){
 		if ((int)properties[i] == 0)
 			continue;
 		if (properties[i] == PROP_SEPARATOR) {
@@ -68,10 +68,10 @@ unordered_map<string, string> deserializeMap(string properties) {
 			prop += properties[i];
 	}
 
-	for (int i = 0; i < propertiesVector.size(); i++){
+	for (long i = 0; i < propertiesVector.size(); i++){
 		string key = "";
 		string tmp = "";
-		for (int j = 0; j < propertiesVector[i].length(); j++){
+		for (long j = 0; j < propertiesVector[i].length(); j++){
 			if (propertiesVector[i][j] == ELMNT_SEPARATOR) {
 				key = tmp;
 				tmp = "";

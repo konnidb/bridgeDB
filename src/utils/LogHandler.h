@@ -8,13 +8,13 @@ using namespace std;
 
 class Log {
 public:
-	int logCode;
+	long logCode;
 	string logName;
 	string description;
 	LogType logType;
 	void(*action)();
 
-	Log(int logCode, string logName, string description, LogType logType, void(*action)());
+	Log(long logCode, string logName, string description, LogType logType, void(*action)());
 };
 
 class LogActions {

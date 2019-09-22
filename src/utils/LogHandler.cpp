@@ -6,7 +6,7 @@
 using namespace std;
 
 
-Log::Log(int logCode, string logName, string description, LogType logType, void(*action)()) {
+Log::Log(long logCode, string logName, string description, LogType logType, void(*action)()) {
 	this->logCode = logCode;
 	this->logName = logName;
 	this->description = description;
