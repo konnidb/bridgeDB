@@ -14,7 +14,7 @@ Serializable* Vertex::getSerializable(string path) {
 	SerializableVertex* serializable = new SerializableVertex();
 	serializable->path = path;
 	serializable->id = this->id;
-	for (long i = 0; i < (int)this->edgesVector.size(); i++)
+	for (long i = 0; i < (long)this->edgesVector.size(); i++)
 	{
 		serializable->edgesIdVector.push_back(this->edgesVector[i]->id);
 	}
@@ -29,25 +29,27 @@ void SerializableVertex::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	/*char* id = new char[sizeof(int)];
-	rf->read(id, sizeof(int));
+	//*
+	char* id = new char[sizeof(long)];
+	rf->read(id, sizeof(long));
 	this->id = char_ptr_to_int(id);
-	char* objType = new char[sizeof(int)];
-	rf->read(objType, sizeof(int));
+	char* objType = new char[sizeof(long)];
+	rf->read(objType, sizeof(long));
 	this->objType = (ElementType)char_ptr_to_int(objType);
-	char* node = new char[sizeof(int)];
-	rf->read(node, sizeof(int));
+	char* node = new char[sizeof(long)];
+	rf->read(node, sizeof(long));
 	this->node = char_ptr_to_int(node);
-	char* sizec = new char[sizeof(int)];
-	rf->read(sizec, sizeof(int));
+	char* sizec = new char[sizeof(long)];
+	rf->read(sizec, sizeof(long));
 	long size = char_ptr_to_int(sizec);
 	for (long i = 0; i < size; i++)
 	{
-		char* eIdc = new char[sizeof(int)];
-		rf->read(eIdc, sizeof(int));
+		char* eIdc = new char[sizeof(long)];
+		rf->read(eIdc, sizeof(long));
 		long eId = char_ptr_to_int(eIdc);
 		this->edgesIdVector.push_back(eId);
-	}*/
+	}
+	/*/
 	*rf >> this->id;
 	long objType;
 	*rf >> objType;
@@ -61,6 +63,7 @@ void SerializableVertex::load(ifstream* streamObj) {
 		*rf >> edge;
 		this->edgesIdVector.push_back(edge);
 	}
+	*/
 	if (streamObj == NULL) {
 		rf->close();
 		if (!rf->good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -74,16 +77,17 @@ void SerializableVertex::store(ofstream* streamObj) {
 	else
 		wf = streamObj;
 	if (!wf) cout << "STORE: FAILED OPENING" << endl; //ErrorMap::error_storing_object->action();
-	/*
-	wf->write((char *)&this->id, sizeof(int));
-	wf->write((char *)&this->objType, sizeof(int));
-	wf->write((char *)&this->node, sizeof(int));
+	//*
+	wf->write((char *)&this->id, sizeof(long));
+	wf->write((char *)&this->objType, sizeof(long));
+	wf->write((char *)&this->node, sizeof(long));
 	long size = this->edgesIdVector.size();
-	wf->write((char *)&size, sizeof(int));
+	wf->write((char *)&size, sizeof(long));
 	for (long i = size-1; i >= 0; i--)
 	{
-		wf->write((char *)&this->edgesIdVector[i], sizeof(int));
-	}*/
+		wf->write((char *)&this->edgesIdVector[i], sizeof(long));
+	}
+	/*/
 	*wf << this->id;
 	long objType = this->objType;
 	*wf << objType;
@@ -94,9 +98,10 @@ void SerializableVertex::store(ofstream* streamObj) {
 	{
 		*wf << edgesIdVector[i];
 	}
+	*/
 	if (streamObj == NULL) {
 		wf->close();
-		if (!wf->good()) cout << "STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
+		if (!wf->good()) cout << "VERTEX STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
 	}
 }
 

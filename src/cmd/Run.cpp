@@ -28,17 +28,19 @@ void generates_semi_random_graph() {
 	long id = 1;
 	string dbname = "test";
 	Database db = Database::getDatabase(dbname);
-	/*db.cfg->configFileMap[ConfigFileAttrbute::databaseName] = dbname;
+	/*
+	db.cfg->configFileMap[ConfigFileAttrbute::databaseName] = dbname;
 	db.cfg->configFileMap[ConfigFileAttrbute::pageExtension] = ".bdb";
-	db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\edge\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\edge\\";
 	db.cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile] = "edge.ix";
-	db.cfg->configFileMap[ConfigFileAttrbute::nodeDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\node\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::nodeDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\node\\";
 	db.cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile] = "node.ix";
-	db.cfg->configFileMap[ConfigFileAttrbute::vertexDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\vertex\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::vertexDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\vertex\\";
 	db.cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile] = "vertex.ix";
-	db.cfg->configFileMap[ConfigFileAttrbute::schemaDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\schema\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::schemaDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\schema\\";
 	db.cfg->configFileMap[ConfigFileAttrbute::schemaIndexFile] = "schema.ix";
-	db.cfg->storeConfigFile();*/
+	db.cfg->storeConfigFile();
+	//*/
 	db.cfg->loadConfigFile();
 	cout << "CONFIG EDGE DIR: " << db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] << endl;
 	//*
@@ -77,7 +79,7 @@ void generates_semi_random_graph() {
 		g.vertexVector.push_back(v);
 	}
 
-	long size = (int)g.vertexVector.size();
+	long size = (long)g.vertexVector.size();
 	for (long i = 0; i < size; i++)
 	{
 		for (long j = 1; j <= 3 && i + j<size; j++)
@@ -155,15 +157,15 @@ long main() {
 	cout << "SIZE OUT long to char *: " << sizeof(ab) << endl;
 	for (long i = 0; i < sizeof(ab); i++)
 	{
-		cout << (int)ab[i]<<endl;
+		cout << (long)ab[i]<<endl;
 	}
-	j = (int)*ab;
+	j = (long)*ab;
 	cout << "GET BACK FROM CAST: " << j<< endl;
 	rf->read(ab, sizeof(ab));
 	cout <<endl<< "AFTER READ! " << endl;
 	for (long i = 0; i < sizeof(ab); i++)
 	{
-		cout <<(int) ab[i]<<endl;
+		cout <<(long) ab[i]<<endl;
 	}
 	j = (long long)*ab;
 	cout << "NEW J: " << j << endl;
@@ -176,8 +178,8 @@ long main() {
 	}
 	rf->close();
 	//*/
-	//generates_semi_random_graph();
-	//load_graph_test();
+	generates_semi_random_graph();
+	load_graph_test();
 	cout << "SALE" << endl;
 	system("pause");
 }

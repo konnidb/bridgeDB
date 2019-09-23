@@ -2,7 +2,7 @@
 #include<iostream>
 //#include<unordered_map>
 #include"..\utils\Serializable.h"
-#include"..\structs\Schema.h"
+#include"Schema.h"
 using namespace std;
 
 class SerializableNode : public Serializable {

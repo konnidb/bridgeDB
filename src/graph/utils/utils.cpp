@@ -79,10 +79,8 @@ unordered_map<string, string> deserializeMap(string properties) {
 			else
 				tmp += propertiesVector[i][j];
 		}
-		//cout << "key : " << key << " Value: " << tmp;
 		output[key] = tmp;
 	}
-	cout << "OUTPUT SIZE: " << output.size() << endl;
 	return output;
 }
 

@@ -26,7 +26,7 @@ void Schema::load(ifstream* streamObj) {
 	rf->read((char *)&this->id, sizeof(this->id));
 	rf->read((char *)&this->objType, sizeof(this->objType));
 	string props;
-	size_t size;
+	long size;
 	rf->read((char *)&size, sizeof(size));
 	props.resize(size);
 	rf->read(&props[0], size);
@@ -49,7 +49,7 @@ void Schema::store(ofstream* streamObj) {
 	wf->write((char *)&this->id, sizeof(this->id));
 	wf->write((char *)&this->objType, sizeof(this->objType));
 	string props = serializeMap(this->properties);
-	size_t size = props.size();
+	long size = props.size();
 	wf->write((char *)&size, sizeof(size));
 	wf->write(&props[0], size);
 	wf->write((char *)&this->name, sizeof(this->name));
