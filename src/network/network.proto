@@ -104,6 +104,16 @@ message SessionRequest {
     string password = 2;
 }
 
+message SpanTreeReq {
+    string token = 1;
+}
+
+message SpanTreeResponse {
+    string token = 1;
+    repeated NetworkNode nodes = 2;
+    repeated NetworkEdge edges = 3;
+}
+
 service QueryService {
     rpc CreateSession (SessionRequest) returns (Session) {};
     rpc ExecuteQuery (Query) returns (QueryResponse) {};
@@ -113,4 +123,5 @@ service QueryService {
     rpc CreateEdge (CreateEdgeReq) returns (CreateEdgeResponse) {};
     rpc DeleteEdge (DeleteEdgeReq) returns (DeleteEdgeResponse) {};
     rpc SearchNode (SearchNodeReq) returns (SearchNodeResponse) {};
+    rpc SpanTree (SpanTreeReq) returns (SpanTreeResponse) {};
 }
