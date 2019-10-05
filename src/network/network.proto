@@ -136,11 +136,11 @@ message GetPatternRequest {
     string token = 3;
 }
 
-message NetworkNodeList {
+message NtNodeArr {
     repeated NetworkNode nodes = 1;
 }
 
-message NetworkEdgeList {
+message NtEdgeArr {
     repeated NetworkEdge edges = 1;
 }
 
@@ -148,8 +148,8 @@ message GetPatternResponse {
     repeated NetworkNode nodes = 1;
     repeated NetworkEdge edges = 2;
     string token = 3;
-    map<string, NetworkNodeList> nodeList = 4;
-    map<string, NetworkEdgeList> edgeList = 5;
+    map<string, NtNodeArr> nodeList = 4;
+    map<string, NtEdgeArr> edgeList = 5;
 }
 
 service QueryService {

@@ -23,6 +23,12 @@ using network::SearchNodeReq;
 using network::SearchNodeResponse;
 using network::Session;
 using network::SessionRequest;
+using network::GetPatternRequest;
+using network::GetPatternResponse;
+using network::PatternNode;
+using network::PatternEdge;
+using network::SpanTreeReq;
+using network::SpanTreeResponse;
 
 Status ServiceImplementation::CreateSession(
     ServerContext *context,
@@ -64,6 +70,22 @@ Status ServiceImplementation::SearchNode(
     ServerContext *context,
     const SearchNodeReq *req,
     SearchNodeResponse *resp)
+{
+    return Status::OK;
+}
+
+Status ServiceImplementation::GetPattern(
+    ServerContext *context,
+    const GetPatternRequest *req,
+    GetPatternResponse *resp)
+{
+    return Status::OK;
+}
+
+Status ServiceImplementation::SpanTree(
+    ServerContext *ctx,
+    const SpanTreeReq *req,
+    SpanTreeResponse *response)
 {
     return Status::OK;
 }

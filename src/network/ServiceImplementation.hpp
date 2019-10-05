@@ -28,6 +28,8 @@ using network::SearchNodeReq;
 using network::SearchNodeResponse;
 using network::Session;
 using network::SessionRequest;
+using network::SpanTreeReq;
+using network::SpanTreeResponse;
 
 class ServiceImplementation final : public QueryService::Service
 {
@@ -57,4 +59,8 @@ public:
         ServerContext *ctx,
         const GetPatternRequest *req,
         GetPatternResponse *response) override;
+    Status SpanTree(
+        ServerContext *ctx,
+        const SpanTreeReq *req,
+        SpanTreeResponse *response) override;
 };
