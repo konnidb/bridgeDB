@@ -14,8 +14,16 @@ using network::CreateEdgeReq;
 using network::CreateEdgeResponse;
 using network::CreateNodeReq;
 using network::CreateNodeResponse;
+using network::GetPatternRequest;
+using network::GetPatternResponse;
 using network::NetworkEdge;
+using network::NetworkGraphRequest;
+using network::NetworkGraphResponse;
 using network::NetworkNode;
+using network::NtEdgeArr;
+using network::NtNodeArr;
+using network::PatternEdge;
+using network::PatternNode;
 using network::Query;
 using network::QueryResponse;
 using network::QueryService;
@@ -23,10 +31,6 @@ using network::SearchNodeReq;
 using network::SearchNodeResponse;
 using network::Session;
 using network::SessionRequest;
-using network::GetPatternRequest;
-using network::GetPatternResponse;
-using network::PatternNode;
-using network::PatternEdge;
 using network::SpanTreeReq;
 using network::SpanTreeResponse;
 
@@ -87,5 +91,6 @@ Status ServiceImplementation::SpanTree(
     const SpanTreeReq *req,
     SpanTreeResponse *response)
 {
+
     return Status::OK;
 }

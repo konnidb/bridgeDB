@@ -152,6 +152,16 @@ message GetPatternResponse {
     map<string, NtEdgeArr> edgeList = 5;
 }
 
+message NetworkGraphRequest {
+    string token = 1;
+}
+
+message NetworkGraphResponse {
+    string token = 1;
+    NtNodeArr nodes = 2;
+    NtEdgeArr edges = 3;
+}
+
 service QueryService {
     rpc CreateSession (SessionRequest) returns (Session) {};
     rpc ExecuteQuery (Query) returns (QueryResponse) {};
@@ -163,4 +173,5 @@ service QueryService {
     rpc SearchNode (SearchNodeReq) returns (SearchNodeResponse) {};
     rpc SpanTree (SpanTreeReq) returns (SpanTreeResponse) {};
     rpc GetPattern (GetPatternRequest) returns (GetPatternResponse) {};
+    rpc GetGraph (NetworkGraphRequest) returns (NetworkGraphResponse);
 }
