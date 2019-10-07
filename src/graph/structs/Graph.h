@@ -7,7 +7,7 @@ using namespace std;
 
 class Graph {
 public:
-	int id;
+	long id;
 	string databaseName;
 	string name;
 	vector<Schema*> schemaVector;

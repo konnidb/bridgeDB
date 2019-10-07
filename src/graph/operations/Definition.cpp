@@ -48,7 +48,7 @@
 //		Database db = Database::getDatabase(databaseName);
 //		db.cfg->loadConfigFile();
 //		Graph* g = NULL;
-//		for (int i = 0; i < db.graphVector.size(); i++)
+//		for (long i = 0; i < db.graphVector.size(); i++)
 //		{
 //			if (db.graphVector[i]->name == graphName)
 //				g = db.graphVector[i];
@@ -64,7 +64,7 @@
 //
 //	void loadGraph(string name) {
 //		Graph* g = NULL;
-//		for (int i = 0; i < this->database.graphVector.size(); i++)
+//		for (long i = 0; i < this->database.graphVector.size(); i++)
 //		{
 //			if (this->database.graphVector[i]->name == name)
 //				g = this->database.graphVector[i];

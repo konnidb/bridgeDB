@@ -6,6 +6,7 @@ using namespace std;
 
 string serializeMap(unordered_map<string, string> properties);
 unordered_map<string, string> deserializeMap(string properties);
+long char_ptr_to_int(char* c);
 
 SerializableEdge::SerializableEdge() {
 	this->objType = EDGE;
@@ -28,17 +29,44 @@ void SerializableEdge::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	rf->read((char *)&this->id, sizeof(this->id));
-	rf->read((char *)&this->objType, sizeof(this->objType));
+	//*
+	char* id = new char[sizeof(long)];
+	rf->read(id, sizeof(long));
+	this->id = char_ptr_to_int(id);
+	char*  objType = new char[sizeof(long)];
+	rf->read(objType, sizeof(long));
+	this->objType = (ElementType)char_ptr_to_int(objType);
 	string props;
-	size_t size;
-	rf->read((char *)&size, sizeof(size));
+	char* sizec = new char[sizeof(long)];
+	rf->read(sizec, sizeof(long));
+	long size = char_ptr_to_int(sizec);
 	props.resize(size);
 	rf->read(&props[0], size);
 	this->properties = deserializeMap(props);
-	rf->read((char *)&this->schemaId, sizeof(this->schemaId));
-	rf->read((char *)&this->originNode, sizeof(this->originNode));
-	rf->read((char *)&this->targetNode, sizeof(this->targetNode));
+	char* schemaId = new char[sizeof(long)];
+	rf->read(schemaId, sizeof(long));
+	this->schemaId = char_ptr_to_int(schemaId);
+	char* originNode = new char[sizeof(long)];
+	rf->read(originNode, sizeof(long));
+	this->originNode = char_ptr_to_int(originNode);
+	char* targetNode = new char[sizeof(long)];
+	rf->read(targetNode, sizeof(long));
+	this->targetNode = char_ptr_to_int(targetNode);
+	/*/
+	*rf >> this->id;
+	long objType;
+	*rf >> objType;
+	this->objType = (ElementType)objType;
+	string props;
+	//long size;
+	//*rf >> size;
+	//props.resize(size);
+	*rf >> props;
+	this->properties = deserializeMap(props);
+	*rf >> this->schemaId;
+	*rf >> this->originNode;
+	*rf >> this->targetNode;
+	*/
 	if (streamObj == NULL) {
 		rf->close();
 		if (!rf->good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -52,27 +80,41 @@ void SerializableEdge::store(ofstream* streamObj) {
 	else
 		wf = streamObj;
 	if (!wf) cout << "STORE: FAILED OPENING" << endl; //ErrorMap::error_storing_object->action();
-	wf->write((char *)&this->id, sizeof(this->id));
-	wf->write((char *)&this->objType, sizeof(this->objType));
+	//*
+	wf->write((char *)&this->id, sizeof(long));
+	wf->write((char *)&this->objType, sizeof(long));
 	string props = serializeMap(this->properties);
-	size_t size = props.size();
-	wf->write((char *)&size, sizeof(size));
+	long size = props.size();
+	wf->write((char *)&size, sizeof(long));
 	wf->write(&props[0], size);
-	wf->write((char *)&this->schemaId, sizeof(this->schemaId));
-	wf->write((char *)&this->originNode, sizeof(this->originNode));
-	wf->write((char *)&this->targetNode, sizeof(this->targetNode));
+	wf->write((char *)&this->schemaId, sizeof(long));
+	wf->write((char *)&this->originNode, sizeof(long));
+	wf->write((char *)&this->targetNode, sizeof(long));
+	/*/
+	*wf << this->id;
+	long objType = this->objType;
+	*wf << objType;
+	string props = serializeMap(this->properties);
+	//long size;
+	//*rf >> size;
+	//props.resize(size);
+	*wf << props;
+	*wf << this->schemaId;
+	*wf << this->originNode;
+	*wf << this->targetNode;
+	*/
 	if (streamObj == NULL) {
 		wf->close();
-		if (!wf->good()) cout << "STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
+		if (!wf->good()) cout << "EDGE STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
 	}
 }
 
 Edge::Edge(){}
-Edge::Edge(int id, unordered_map<string, string> properties) {
+Edge::Edge(long id, unordered_map<string, string> properties) {
 	this->id = id;
 	this->properties = properties;
 }
-Edge::Edge(int id, unordered_map<string, string> properties, Node * originNode, Node * targetNode) {
+Edge::Edge(long id, unordered_map<string, string> properties, Node * originNode, Node * targetNode) {
 	this->id = id;
 	this->properties = properties;
 	this->originNode = originNode;
@@ -91,6 +133,6 @@ bool Edge::compareEdges(Edge* edge1, Edge* edge2) { //pending more accurate impl
 	return false;
 }
 
-Edge::Edge(int id) {
+Edge::Edge(long id) {
 	this->id = id;
 }

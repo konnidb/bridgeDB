@@ -8,10 +8,10 @@ using namespace std;
 
 class SerializableEdge : public Serializable {
 public:
-	int id;
-	int schemaId;
-	int originNode;
-	int targetNode;
+	long id;
+	long schemaId;
+	long originNode;
+	long targetNode;
 	SerializableEdge();
 	void load(ifstream* streamObj);
 	void store(ofstream* streamObj);
@@ -20,15 +20,15 @@ public:
 class Edge : public Element {
 public:
 	Schema * schema;
-	int id;
+	long id;
 	unordered_map<string, string> properties;
 	Node * originNode;
 	Node * targetNode;
 	Serializable* getSerializable(string path);
 	Edge();
-	Edge(int id);
-	Edge(int id, unordered_map<string, string> properties);
-	Edge(int id, unordered_map<string, string> properties, Node * originNode, Node * targetNode);
+	Edge(long id);
+	Edge(long id, unordered_map<string, string> properties);
+	Edge(long id, unordered_map<string, string> properties, Node * originNode, Node * targetNode);
 	Edge(SerializableEdge serializable);
 	static bool compareEdges(Edge* edge1, Edge* edge2);
 };

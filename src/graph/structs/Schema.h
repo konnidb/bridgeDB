@@ -8,7 +8,7 @@ using namespace std;
 
 class Schema : public Serializable {
 public:
-	int id;
+	long id;
 	string name;
 	ElementType type;
 

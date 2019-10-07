@@ -37,7 +37,7 @@
 //		if (originNode == NULL || targetNode == NULL)
 //			return NULL;
 //		Edge* e = new Edge(NULL, properties, originNode, targetNode); //assign ids
-//		for (int i = 0; i < Manipulation::graph->vertexVector.size(); i++)
+//		for (long i = 0; i < Manipulation::graph->vertexVector.size(); i++)
 //		{
 //			if (Manipulation::graph->vertexVector[i]->node == originNode)
 //				Manipulation::graph->vertexVector[i]->edgesVector.push_back(e);
@@ -49,10 +49,10 @@
 //		unordered_map<string, string> props = deserializeMap(properties);
 //		return Manipulation::createEdge(originNode, targetNode, props);
 //	}
-//	static Edge* createEdge(int originNodeId, int targetNodeId, unordered_map<string, string> properties) {
+//	static Edge* createEdge(long originNodeId, long targetNodeId, unordered_map<string, string> properties) {
 //		Node* originNode = NULL;
 //		Node* targetNode = NULL;
-//		for (int i = 0; i < Manipulation::graph->vertexVector.size(); i++)
+//		for (long i = 0; i < Manipulation::graph->vertexVector.size(); i++)
 //		{
 //			if (Manipulation::graph->vertexVector[i]->node->id == originNodeId)
 //				originNode = Manipulation::graph->vertexVector[i]->node;
@@ -61,10 +61,10 @@
 //		}
 //		return Manipulation::createEdge(originNode, targetNode, properties);
 //	}
-//	static Edge* createEdge(int originNodeId, int targetNodeId, string properties) {
+//	static Edge* createEdge(long originNodeId, long targetNodeId, string properties) {
 //		Node* originNode = NULL;
 //		Node* targetNode = NULL;
-//		for (int i = 0; i < Manipulation::graph->vertexVector.size(); i++)
+//		for (long i = 0; i < Manipulation::graph->vertexVector.size(); i++)
 //		{
 //			if (Manipulation::graph->vertexVector[i]->node->id == originNodeId)
 //				originNode = Manipulation::graph->vertexVector[i]->node;
@@ -75,17 +75,17 @@
 //		return Manipulation::createEdge(originNode, targetNode, props);
 //	}
 //	/*
-//	static void deleteNode(int id) {}
+//	static void deleteNode(long id) {}
 //	static void deleteNode(Node node) {}
 //	static void deleteNodes(unordered_map<string, string> properties) {}
 //	static void deleteEdge(Edge edge) {}
 //	static void deleteEdges(unordered_map<string, string> properties) {}
 //	*/
 //	static void createRelation(Node nodeSrc, Node nodeTgt) {}
-//	static void createRelation(int nodeSrc, int nodeTgt) {}
+//	static void createRelation(long nodeSrc, long nodeTgt) {}
 //	static void createRelation(Node nodeSrc, Node nodeTgt, unordered_map<string, string> edgeProperties) {}
-//	static void createRelation(int nodeSrcId, int nodeTgtId, unordered_map<string, string> edgeProperties) {}
-//	static Node searchNodeById(int node) {}
+//	static void createRelation(long nodeSrcId, long nodeTgtId, unordered_map<string, string> edgeProperties) {}
+//	static Node searchNodeById(long node) {}
 //	static Node searchNodeByCondition(vector<Comparison> comp) {}
 //	static vector<Node> searchNodesByCondition(vector<Comparison> comp) {}
 //	static void searchNode(Node node) {}

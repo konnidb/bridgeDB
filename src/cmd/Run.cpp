@@ -11,34 +11,36 @@
 
 using namespace std;
 
-string gen_random(const int len) {
+string gen_random(const long len) {
 	string s;
 	static const char alphanum[] =
 		"0123456789"
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 		"abcdefghijklmnopqrstuvwxyz";
 	s.resize(len);
-	for (int i = 0; i < len; ++i) {
+	for (long i = 0; i < len; ++i) {
 		s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
 	}
 	return s;
 }
 
 void generates_semi_random_graph() {
-	int id = 1;
+	long id = 1;
 	string dbname = "test";
 	Database db = Database::getDatabase(dbname);
-	/*db.cfg->configFileMap[ConfigFileAttrbute::databaseName] = dbname;
+	/*
+	db.cfg->configFileMap[ConfigFileAttrbute::databaseName] = dbname;
 	db.cfg->configFileMap[ConfigFileAttrbute::pageExtension] = ".bdb";
-	db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\edge\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\edge\\";
 	db.cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile] = "edge.ix";
-	db.cfg->configFileMap[ConfigFileAttrbute::nodeDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\node\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::nodeDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\node\\";
 	db.cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile] = "node.ix";
-	db.cfg->configFileMap[ConfigFileAttrbute::vertexDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\vertex\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::vertexDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\vertex\\";
 	db.cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile] = "vertex.ix";
-	db.cfg->configFileMap[ConfigFileAttrbute::schemaDirectory] = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\schema\\";
+	db.cfg->configFileMap[ConfigFileAttrbute::schemaDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\schema\\";
 	db.cfg->configFileMap[ConfigFileAttrbute::schemaIndexFile] = "schema.ix";
-	db.cfg->storeConfigFile();*/
+	db.cfg->storeConfigFile();
+	//*/
 	db.cfg->loadConfigFile();
 	cout << "CONFIG EDGE DIR: " << db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] << endl;
 	//*
@@ -59,7 +61,7 @@ void generates_semi_random_graph() {
 	s1->properties = properties;
 	g.schemaVector.push_back(s1);
 
-	for (int i = 0; i < 100; i++)
+	for (long i = 0; i < 138; i++)
 	{
 		Node* n = new Node();
 		n->id = id++;
@@ -77,10 +79,10 @@ void generates_semi_random_graph() {
 		g.vertexVector.push_back(v);
 	}
 
-	int size = (int)g.vertexVector.size();
-	for (int i = 0; i < size; i++)
+	long size = (long)g.vertexVector.size();
+	for (long i = 0; i < size; i++)
 	{
-		for (int j = 1; j <= 3 && i + j<size; j++)
+		for (long j = 1; j <= 3 && i + j<size; j++)
 		{
 			Edge* e = new Edge();
 			e->id = id++;
@@ -110,7 +112,7 @@ void load_graph_test() {
 }
 
 
-int main() {
+long main() {
 	string t = "test.txt";
 
 	char a = 'd';
@@ -119,14 +121,14 @@ int main() {
 
 	///*
 	Node n1;
-	n1.id = 222;
+	n1.id = 2222;
 	n1.properties["testeefwfwf"] = "holis";
 	n1.properties["edgarqdqwdqwd"] = "vazquez";
 	n1.properties["cristina"] = "mariscalsdcsdcs";
 
 	SerializableNode*  ser = dynamic_cast<SerializableNode*>(n1.getSerializable(t));
 	cout << "SER ID: " << ser->id << endl;
-	//ser.store();
+	ser->store(NULL);
 
 	//*
 	SerializableNode  ser2;
@@ -136,7 +138,7 @@ int main() {
 	for (unordered_map<string, string>::iterator it = ser2.properties.begin(); it != ser2.properties.end(); it++) {
 		cout << "IT " << it->first.length() << endl;
 		cout << "val " << it->second.length() << endl;
-		for (int i = 0; i < it->first.length(); i++)
+		for (long i = 0; i < it->first.length(); i++)
 		{
 			cout << it->first[i];
 		}
@@ -144,15 +146,47 @@ int main() {
 	}
 
 	//*/
-	//generates_semi_random_graph();
+	/*
+	string p = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\node\\1.bdb";
+	ifstream* rf = new ifstream(p, ios::in | ios::binary);
+	cout << "SIZE OUT INT: " << sizeof(long long) << endl;
+	cout << "SIZE OUT bool: " << sizeof(bool) << endl;
+	cout << "SIZE OUT char *: " << sizeof(char *) << endl;
+	long j = 999999999999999;
+	char * ab = (char*)&j;
+	cout << "SIZE OUT long to char *: " << sizeof(ab) << endl;
+	for (long i = 0; i < sizeof(ab); i++)
+	{
+		cout << (long)ab[i]<<endl;
+	}
+	j = (long)*ab;
+	cout << "GET BACK FROM CAST: " << j<< endl;
+	rf->read(ab, sizeof(ab));
+	cout <<endl<< "AFTER READ! " << endl;
+	for (long i = 0; i < sizeof(ab); i++)
+	{
+		cout <<(long) ab[i]<<endl;
+	}
+	j = (long long)*ab;
+	cout << "NEW J: " << j << endl;
+	char o = '1';
+	while(o=='1') {
+		bool size;
+		rf->read((char *)&size, sizeof(size));
+		cout << size << endl;
+		cin >> o;
+	}
+	rf->close();
+	//*/
+	generates_semi_random_graph();
 	load_graph_test();
 	cout << "SALE" << endl;
 	system("pause");
 }
 
 /*
-int main(string args[]) {
-for (int i = 0; i < sizeof(args)/sizeof(string); i++)
+long main(string args[]) {
+for (long i = 0; i < sizeof(args)/sizeof(string); i++)
 {
 //if(.compare(args[i]))
 }
