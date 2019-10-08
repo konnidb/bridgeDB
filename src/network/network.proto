@@ -152,6 +152,11 @@ message GetPatternResponse {
     map<string, NtEdgeArr> edgeList = 5;
 }
 
+message NetworkGraph {
+    repeated NetworkEdge edges = 1;
+    repeated NetworkNode nodes = 2;
+}
+
 message NetworkGraphRequest {
     string token = 1;
 }
