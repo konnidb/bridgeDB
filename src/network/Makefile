@@ -12,10 +12,10 @@ GRPC_CPP_PLUGIN_PATH ?= `which $(GRPC_CPP_PLUGIN)`
 all: client server
 
 client: network.pb.o network.grpc.pb.o client.o auth/AuthService.o
-	$(CXX) $^ $(LDFLAGS) -o $@.out
+	$(CXX) $^ $(LDFLAGS) -o build/$@.out
 
 server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o ServiceImplementation.o
-	$(CXX) $^ $(LDFLAGS) -o $@.out
+	$(CXX) $^ $(LDFLAGS) -o build/$@.out
 
 %.grpc.pb.cc: %.proto
 	protoc --grpc_out=. --plugin=protoc-gen-grpc=$(GRPC_CPP_PLUGIN_PATH) $<
