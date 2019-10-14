@@ -9,6 +9,7 @@ class SerializableNode : public Serializable {
 public:
 	long schemaId;
 	SerializableNode();
+	~SerializableNode();
 	void load(ifstream* streamObj);
 	void store(ofstream* streamObj);
 };
@@ -20,6 +21,7 @@ public:
 	unordered_map<string, string> properties;
 	Serializable* getSerializable(string path);
 	Node();
+	~Node();
 	Node(long id, unordered_map<string, string> properties);
 	Node(long id);
 	Node(SerializableNode serializable);

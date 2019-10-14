@@ -59,7 +59,7 @@ void generates_semi_random_graph() {
 	properties["correo"] = to_string(DataType::STR);
 	properties["pw"] = to_string(DataType::STR);
 	s1->properties = properties;
-	g.schemaVector.push_back(s1);
+	//g.schemaVector.push_back(s1);
 
 	for (long i = 0; i < 138; i++)
 	{
@@ -76,25 +76,32 @@ void generates_semi_random_graph() {
 		Vertex* v = new Vertex();
 		v->id = id++;
 		v->node = n;
-		g.vertexVector.push_back(v);
+		g.vertexMap[n]=v;
 	}
 
-	long size = (long)g.vertexVector.size();
-	for (long i = 0; i < size; i++)
+	long size = (long)g.vertexMap.size();
+	unordered_map<Node*, Vertex*>::iterator* i1 = NULL;
+	unordered_map<Node*, Vertex*>::iterator* i2 = NULL;
+	/*for (unordered_map<Node*, Vertex*>::iterator it = g.vertexMap.begin(); it != g.vertexMap.end(); it++) {
 	{
-		for (long j = 1; j <= 3 && i + j<size; j++)
+		for (long j = 0; j < 3 && i1!=NULL && i2 != NULL; j++)
 		{
 			Edge* e = new Edge();
 			e->id = id++;
-			e->originNode = g.vertexVector[i]->node;
+			e->originNode = it->first;
 			e->targetNode = g.vertexVector[i + j]->node;
 			g.vertexVector[i]->edgesVector.push_back(e);
 		}
-	}
+		if (i1 == NULL && i2 == NULL)
+			i1 = &it;
+		if (i1 != NULL && i2 == NULL)
+			i2 = &it;
+		if()
+	}*/
 
 	cout << "holi" << endl;
 
-	g.storeVertexVector();
+	g.storeVertexMap();
 	//*/
 }
 
@@ -108,7 +115,7 @@ void load_graph_test() {
 	db.graphVector.push_back(g);
 	vector<Node*> nv = g->loadNodeVector();
 	vector<Edge*> ev = g->loadEdgeVector(nv);
-	g->loadVertexVector(nv, ev);
+	g->loadVertexMap(nv, ev);
 }
 
 
@@ -118,8 +125,16 @@ long main() {
 	char a = 'd';
 	string s = "holi";
 	cout << s + a + s << endl;
+	unordered_map<string, string> mapT;
 
-	///*
+	mapT["h"] = "holis";
+	mapT["j"] = "holis";
+	mapT["k"] = "holis";
+	mapT["l"] = "holis";
+
+
+
+	/*
 	Node n1;
 	n1.id = 2222;
 	n1.properties["testeefwfwf"] = "holis";
@@ -178,8 +193,8 @@ long main() {
 	}
 	rf->close();
 	//*/
-	generates_semi_random_graph();
-	load_graph_test();
+	//generates_semi_random_graph();
+	//load_graph_test();
 	cout << "SALE" << endl;
 	system("pause");
 }
@@ -229,16 +244,10 @@ configuration file that should contains :
 - database data files
 - backup files
 - installatio
+- CREATE A LIST OF EDGES TO IMPROVE COMPLEXITY OF MANIPULATION OPS
+- elements (node, edge and vertex) should be created with id=NULL (for comparision proupuses)
+-arquitectura en comparisions
+-comparar nodos dinamicamente map_contains_values?
+
 */
 
-
-//how to use it?
-/*
-for (const auto&[key, val] : s1.properties)
-{
-std::cout << key         // string (key)
-<< ':'
-<< val        // string's value
-<< std::endl;
-}
-*/

@@ -7,6 +7,7 @@ using namespace std;
 string serializeMap(unordered_map<string, string> properties);
 unordered_map<string, string> deserializeMap(string properties);
 long char_ptr_to_int(char* c);
+bool map_contains_values(unordered_map<string, string> properties, unordered_map<string, string> toMatch);
 
 SerializableNode::SerializableNode() {
 	this->objType = NODE;
@@ -134,7 +135,13 @@ Node::Node(SerializableNode serializable) {
 	this->properties = serializable.properties;
 }
 bool Node::compareNodes(Node* node1, Node* node2) { //pending more accurate implementation
-	if (node1->id == node2->id)
-		return true;
+	if (node1->id != NULL && node2->id != NULL){
+		if (node1->id == node2->id)
+			return true;
+	}
+	else {
+		if (map_contains_values(node1->properties, node2->properties))
+			return true;
+	}
 	return false;
 }

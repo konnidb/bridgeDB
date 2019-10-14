@@ -5,7 +5,8 @@ enum LogicOperator {
 	OR,
 	NAND,
 	NOR,
-	NOT
+	NOT,
+	NONE
 };
 
 enum LogType {

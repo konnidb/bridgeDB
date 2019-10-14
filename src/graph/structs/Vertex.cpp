@@ -49,21 +49,6 @@ void SerializableVertex::load(ifstream* streamObj) {
 		long eId = char_ptr_to_int(eIdc);
 		this->edgesIdVector.push_back(eId);
 	}
-	/*/
-	*rf >> this->id;
-	long objType;
-	*rf >> objType;
-	this->objType = (ElementType)objType;
-	*rf >> this->node;
-	long size;
-	*rf >> size;
-	for (long i = 0; i < size; i++)
-	{
-		long edge;
-		*rf >> edge;
-		this->edgesIdVector.push_back(edge);
-	}
-	*/
 	if (streamObj == NULL) {
 		rf->close();
 		if (!rf->good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -87,18 +72,6 @@ void SerializableVertex::store(ofstream* streamObj) {
 	{
 		wf->write((char *)&this->edgesIdVector[i], sizeof(long));
 	}
-	/*/
-	*wf << this->id;
-	long objType = this->objType;
-	*wf << objType;
-	*wf << this->node;
-	long size = this->edgesIdVector.size();
-	*wf << size;
-	for (long i = size - 1; i >= 0; i--)
-	{
-		*wf << edgesIdVector[i];
-	}
-	*/
 	if (streamObj == NULL) {
 		wf->close();
 		if (!wf->good()) cout << "VERTEX STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -110,4 +83,41 @@ Vertex::Vertex(){}
 Vertex::Vertex(long id, Node * node) {
 	this->id = id;
 	this->node = node;
+	this->selfDW = NULL;
+}
+
+bool Vertex::compare(Vertex* vertex) {
+	if (vertex == this || vertex->id == this->id)
+		return true;
+	bool matchesNodeId = false;
+	if(vertex->node!=NULL? vertex->node->id==this->node->id:false)
+		matchesNodeId = true;
+	bool matchesEdgeIds = true;
+	for (long i = 0; i < vertex->edgesVector.size(); i++)
+	{
+		bool matches = false;
+		for (long j = 0; j < this->edgesVector.size(); j++)
+		{
+			if (vertex->edgesVector[i]->id == this->edgesVector[j]->id) {
+				matches = true;
+				break;
+			}
+		}
+		if (!matches)
+			matchesEdgeIds = false;
+	}
+	if(matchesEdgeIds && vertex->edgesVector.size()<=0)
+		matchesEdgeIds = false;
+	if (matchesEdgeIds || matchesNodeId)
+		return true;
+	return false;
+}
+
+DijkstraWrapper* Vertex::getDijkstraWrapper(){
+	if (this->selfDW != NULL)
+		return selfDW;
+	DijkstraWrapper* dw = (DijkstraWrapper*)this;
+	dw->weight = NULL;
+	dw->previousVertex = NULL;
+	return dw;
 }
