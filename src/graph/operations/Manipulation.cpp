@@ -157,9 +157,9 @@ Node* Manipulation::getNode(Node node) {
 }
 
 vector<Node*> Manipulation::getNodesByCondition(vector<Comparison> comp) {
-	if (comp.size() <= 0)
-		return;
 	vector<Node*> NodeVector;
+	if (comp.size() <= 0)
+		return NodeVector;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
 		if (map_eval_values(it->first->properties, comp))
 			NodeVector.push_back(it->first);
@@ -168,9 +168,9 @@ vector<Node*> Manipulation::getNodesByCondition(vector<Comparison> comp) {
 }
 
 vector<Node*> Manipulation::getNodes(Node node) {
-	if (node.properties.size() <= 0)
-		return;
 	vector<Node*> NodeVector;
+	if (node.properties.size() <= 0)
+		return NodeVector;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
 		if (map_contains_values(it->first->properties, node.properties))
 			NodeVector.push_back(it->first);
@@ -221,9 +221,9 @@ Edge* Manipulation::getEdge(Edge edge) {
 }
 
 vector<Edge*> Manipulation::getEdgesByCondition(vector<Comparison> comp) {
-	if (comp.size() <= 0)
-		return;
 	vector<Edge*> edgeVector;
+	if (comp.size() <= 0)
+		return edgeVector;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
 		for (long i = 0; i < it->second->edgesVector.size(); i++)
 		{
@@ -235,9 +235,9 @@ vector<Edge*> Manipulation::getEdgesByCondition(vector<Comparison> comp) {
 }
 
 vector<Edge*> Manipulation::getEdges(Edge edge) {
-	if (edge.properties.size() <= 0)
-		return;
 	vector<Edge*> edgeVector;
+	if (edge.properties.size() <= 0)
+		return edgeVector;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
 		for (long i = 0; i < it->second->edgesVector.size(); i++)
 		{
@@ -273,9 +273,9 @@ Vertex* Manipulation::getVertex(Vertex vertex) {
 //vector<Vertex*> Manipulation::getVertexesByCondition(vector<Comparison> comp) {}
 
 vector<Vertex*> Manipulation::getVertexes(Vertex vertex) {
-	if (vertex.node == NULL && vertex.edgesVector.size() <= 0 && vertex.id == NULL)
-		return;
 	vector<Vertex*> vertexVector;
+	if (vertex.node == NULL && vertex.edgesVector.size() <= 0 && vertex.id == NULL)
+		return vertexVector;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
 		if (it->second->compare(&vertex))
 			vertexVector.push_back(it->second);
@@ -285,14 +285,15 @@ vector<Vertex*> Manipulation::getVertexes(Vertex vertex) {
 
 
 vector<Vertex*> Manipulation::getPathByProp(long rootNode, long tgtNode, string edgePropKey, bool isShortest) {
-
+	vector<Vertex*> vertexVector;
+	return vertexVector;
 }
 
 //vector<Vertex*> Manipulation::getPathByProp(Node* rootNode, Node* tgtNode, string propKey, bool isShortest) {}
 
 
 Vertex* Manipulation::getPathByPattern(long rootNode, long tgtNode, Vertex pattern, bool isShortest) {
-
+	return NULL;
 }
 
 DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int id, string edgePropKey, vector<DijkstraWrapper*>* toValidate, vector<DijkstraWrapper*>* validated)
@@ -314,7 +315,7 @@ DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int 
 		for (int i = 0; i < root->edgesVector.size(); i++)
 		{
 			double value = (root->weight == NULL ? 0 : root->weight) + stod(root->edgesVector[i]->properties[edgePropKey]);
-			DijkstraWrapper* tgtVertex = this->graph->vertexMap[root->node].getDijkstraWrapper();
+			DijkstraWrapper* tgtVertex = this->graph->vertexMap[root->node]->getDijkstraWrapper();
 			if (tgtVertex->weight == NULL || tgtVertex->weight > value)
 			{
 				tgtVertex->previousVertex = root;
@@ -344,6 +345,7 @@ DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int 
 	return aux;
 }
 
+void Manipulation::SortVertexListByWeight(vector<DijkstraWrapper*>* toValidate, bool isShortest){}
 
 
 

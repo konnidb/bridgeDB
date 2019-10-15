@@ -13,6 +13,10 @@ SerializableNode::SerializableNode() {
 	this->objType = NODE;
 }
 
+SerializableNode::~SerializableNode() {
+	delete this;
+}
+
 Serializable* Node::getSerializable(string path) {
 	SerializableNode* serializable = new SerializableNode();
 	serializable->path = path;
@@ -28,20 +32,6 @@ void SerializableNode::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	/*char o = '1';
-	char a = 'a';
-	int t = 222;
-	cout << "SIZE OF INT: " << sizeof(long) << endl;
-	cout << "SIZE OF CHAR: " << sizeof(char) << endl;
-	cout << "SIZE OF ID: " << sizeof(this->id) << endl;
-	cout << "SIZE OF int 222 to char *: " << sizeof((char*)t) << endl;
-	cout << "SIZE OF ID to char *: " << sizeof((char*)this->id) << endl;
-	while (o == '1') {
-		cout << "CHAR: " <<(long) (unsigned char) a << "    "<< a<< endl;
-		rf->read((char*)&a, sizeof(char));
-		cin >> o;
-	}
-	///*/
 	char* id = new char[sizeof((char*)this->id)];
 	rf->read(id, sizeof(id));
 	this->id = char_ptr_to_int(id);
@@ -58,21 +48,6 @@ void SerializableNode::load(ifstream* streamObj) {
 	char* schemaId = new char[sizeof(long)];
 	rf->read(schemaId, sizeof(long));
 	this->schemaId = char_ptr_to_int(schemaId);
-	//cout << "SALE" << endl;
-	//*/
-	/*
-	*rf >> this->id;
-	long objType;
-	*rf >> objType;
-	this->objType = (ElementType)objType;
-	string props;
-	//long size;
-	//*rf >> size;
-	//props.resize(size);
-	*rf >> props;
-	this->properties = deserializeMap(props);
-	*rf >> this->schemaId;
-	*/
 	if (streamObj == NULL) {
 		rf->close();
 		if (!rf->good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -86,13 +61,6 @@ void SerializableNode::store(ofstream* streamObj) {
 	else
 		wf = streamObj;
 	if (!wf) cout << "STORE: FAILED OPENING" << endl; //ErrorMap::error_storing_object->action();
-	/*
-	cout << "SIZE OF long STORE: " << sizeof(long) << endl;
-	cout << "TYPE OF long long ID: " << sizeof(this->id) << endl;
-	long ff = 2;
-	cout << "SIZE OF char id: " << sizeof((char *)&ff) << endl;
-	cout << "SIZE OF long id: " << sizeof(this->id) << endl;
-	*/
 	wf->write((char *)&this->id, sizeof(long));
 	wf->write((char *)&this->objType, sizeof(long));
 	string props = serializeMap(this->properties);
@@ -100,17 +68,6 @@ void SerializableNode::store(ofstream* streamObj) {
 	wf->write((char *)&size, sizeof(long));
 	wf->write(&props[0], size);
 	wf->write((char *)&this->schemaId, sizeof(long));
-	/*/
-	*wf << this->id;
-	long objType = this->objType;
-	*wf << objType;
-	string props = serializeMap(this->properties);
-	//long size;
-	//*rf >> size;
-	//props.resize(size);
-	*wf << props;
-	*wf << this->schemaId;
-	*/
 	if (streamObj == NULL) {
 		wf->close();
 		if (!wf->good()) cout << "NODE STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -144,4 +101,8 @@ bool Node::compareNodes(Node* node1, Node* node2) { //pending more accurate impl
 			return true;
 	}
 	return false;
+}
+
+Node::~Node() {
+	delete this;
 }

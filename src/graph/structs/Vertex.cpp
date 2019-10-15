@@ -10,6 +10,10 @@ SerializableVertex::SerializableVertex() {
 	this->objType = VERTEX;
 }
 
+SerializableVertex::~SerializableVertex() {
+	delete this;
+}
+
 Serializable* Vertex::getSerializable(string path) {
 	SerializableVertex* serializable = new SerializableVertex();
 	serializable->path = path;
@@ -80,6 +84,9 @@ void SerializableVertex::store(ofstream* streamObj) {
 
 
 Vertex::Vertex(){}
+Vertex::~Vertex() {
+	delete this;
+}
 Vertex::Vertex(long id, Node * node) {
 	this->id = id;
 	this->node = node;

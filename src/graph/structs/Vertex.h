@@ -5,6 +5,8 @@
 #include"Node.h"
 using namespace std;
 
+class DijkstraWrapper;
+
 class SerializableVertex : public Serializable {
 public:
 	vector<int> edgesIdVector;

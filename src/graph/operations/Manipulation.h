@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include"../structs/Graph.h"
+#include"../utils/Comparison.h"
 
 using namespace std;
 

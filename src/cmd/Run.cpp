@@ -120,7 +120,7 @@ void load_graph_test() {
 
 
 long main() {
-	string t = "test.txt";
+	/*string t = "test.txt";
 
 	char a = 'd';
 	string s = "holi";
@@ -134,7 +134,7 @@ long main() {
 
 
 
-	/*
+	
 	Node n1;
 	n1.id = 2222;
 	n1.properties["testeefwfwf"] = "holis";
