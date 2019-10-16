@@ -12,6 +12,10 @@ SerializableEdge::SerializableEdge() {
 	this->objType = EDGE;
 }
 
+SerializableEdge::~SerializableEdge() {
+	delete this;
+}
+
 Serializable* Edge::getSerializable(string path) {
 	SerializableEdge* serializable = new SerializableEdge();
 	serializable->id = this->id;
@@ -29,7 +33,6 @@ void SerializableEdge::load(ifstream* streamObj) {
 	else
 		rf = streamObj;
 	if (!rf) cout << "LOAD: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
-	//*
 	char* id = new char[sizeof(long)];
 	rf->read(id, sizeof(long));
 	this->id = char_ptr_to_int(id);
@@ -52,21 +55,6 @@ void SerializableEdge::load(ifstream* streamObj) {
 	char* targetNode = new char[sizeof(long)];
 	rf->read(targetNode, sizeof(long));
 	this->targetNode = char_ptr_to_int(targetNode);
-	/*/
-	*rf >> this->id;
-	long objType;
-	*rf >> objType;
-	this->objType = (ElementType)objType;
-	string props;
-	//long size;
-	//*rf >> size;
-	//props.resize(size);
-	*rf >> props;
-	this->properties = deserializeMap(props);
-	*rf >> this->schemaId;
-	*rf >> this->originNode;
-	*rf >> this->targetNode;
-	*/
 	if (streamObj == NULL) {
 		rf->close();
 		if (!rf->good()) cout << "LOAD: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -80,7 +68,6 @@ void SerializableEdge::store(ofstream* streamObj) {
 	else
 		wf = streamObj;
 	if (!wf) cout << "STORE: FAILED OPENING" << endl; //ErrorMap::error_storing_object->action();
-	//*
 	wf->write((char *)&this->id, sizeof(long));
 	wf->write((char *)&this->objType, sizeof(long));
 	string props = serializeMap(this->properties);
@@ -90,19 +77,6 @@ void SerializableEdge::store(ofstream* streamObj) {
 	wf->write((char *)&this->schemaId, sizeof(long));
 	wf->write((char *)&this->originNode, sizeof(long));
 	wf->write((char *)&this->targetNode, sizeof(long));
-	/*/
-	*wf << this->id;
-	long objType = this->objType;
-	*wf << objType;
-	string props = serializeMap(this->properties);
-	//long size;
-	//*rf >> size;
-	//props.resize(size);
-	*wf << props;
-	*wf << this->schemaId;
-	*wf << this->originNode;
-	*wf << this->targetNode;
-	*/
 	if (streamObj == NULL) {
 		wf->close();
 		if (!wf->good()) cout << "EDGE STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -110,6 +84,9 @@ void SerializableEdge::store(ofstream* streamObj) {
 }
 
 Edge::Edge(){}
+Edge::~Edge() {
+	delete this;
+}
 Edge::Edge(long id, unordered_map<string, string> properties) {
 	this->id = id;
 	this->properties = properties;

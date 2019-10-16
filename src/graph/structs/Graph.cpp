@@ -46,7 +46,7 @@ Graph::Graph(string databaseName) {
 	this->databaseName = databaseName;
 }
 
-void Graph::storeVertexVector() {
+void Graph::storeVertexMap() {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string vertexDir = cfg->configFileMap[ConfigFileAttrbute::vertexDirectory];
 	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
@@ -62,7 +62,7 @@ void Graph::storeVertexVector() {
 		pagePath = vertexDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
 			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::binary); //new ofstream(pagePath, ios::out | ios::app | ios::binary);
-			long size = vertexVector.size();
+			long size = this->vertexMap.size();
 			char* sizec = (char*)& size;
 			unsigned char* c = (unsigned char*)sizec;
 			pageFiles[pagePath]->write((char*)& size, sizeof(long));
@@ -71,16 +71,16 @@ void Graph::storeVertexVector() {
 	//IF NOT EXISTS, CREATE NEW
 	vector<Node*> nodesVector;
 	vector<Edge*> edgesVector;
-
-	for (long i = 0; i < vertexVector.size(); i++) {
-		index.indexMap[to_string(vertexVector[i]->id)] = pageId;
-		SerializableVertex* s = dynamic_cast<SerializableVertex*>(vertexVector[i]->getSerializable(pagePath));
-		s->store(pageFiles[pagePath]); if (find(nodesVector.begin(), nodesVector.end(), this->vertexVector[i]->node) == nodesVector.end())
-			nodesVector.push_back(this->vertexVector[i]->node);
-		for (long j = 0; j < this->vertexVector[i]->edgesVector.size(); j++)
+	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap.begin(); it != this->vertexMap.end(); it++) {
+		index.indexMap[to_string(it->second->id)] = pageId;
+		SerializableVertex* s = dynamic_cast<SerializableVertex*>(it->second->getSerializable(pagePath));
+		s->store(pageFiles[pagePath]); 
+		if (find(nodesVector.begin(), nodesVector.end(), it->first) == nodesVector.end())
+			nodesVector.push_back(it->first);
+		for (long j = 0; j < it->second->edgesVector.size(); j++)
 		{
-			if (find(edgesVector.begin(), edgesVector.end(), this->vertexVector[i]->edgesVector[j]) == edgesVector.end())
-				edgesVector.push_back(this->vertexVector[i]->edgesVector[j]);
+			if (find(edgesVector.begin(), edgesVector.end(), it->second->edgesVector[j]) == edgesVector.end())
+				edgesVector.push_back(it->second->edgesVector[j]);
 		}
 	}
 	index.storeIndex();
@@ -183,7 +183,7 @@ void Graph::storeSchemaVector() {
 	closeStreamsOnMap(pageFiles);*/
 }
 
-void Graph::loadVertexVector(vector<Node*> nodeVector, vector<Edge*> edgeVector) {
+void Graph::loadVertexMap(vector<Node*> nodeVector, vector<Edge*> edgeVector) {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string vertexDir = cfg->configFileMap[ConfigFileAttrbute::vertexDirectory];
 	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
@@ -224,7 +224,7 @@ void Graph::loadVertexVector(vector<Node*> nodeVector, vector<Edge*> edgeVector)
 				else
 					cout << "FAIL: EDGE NOT FOUND, ID: " << s.edgesIdVector[i] << endl;
 			}
-			this->vertexVector.push_back(v);
+			this->vertexMap[n] = v;
 		}
 		rf->close();
 		if (!rf->good()) cout << "FAIL CLOSING FILE: " << pageIds[i] << endl;
@@ -327,8 +327,4 @@ vector<Node*> Graph::loadNodeVector() {
 		if (rf->fail()) cout << "loadNodeVector: fail closing ifstream on file: " << pageIds[i] << endl;
 	}
 	return nodeVector;
-}
-
-void Graph::loadSchemaVector() {
-
 }

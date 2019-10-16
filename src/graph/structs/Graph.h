@@ -10,12 +10,12 @@ public:
 	long id;
 	string databaseName;
 	string name;
-	vector<Schema*> schemaVector;
-	vector<Vertex*> vertexVector;
+	//vector<Schema*> schemaVector;
+	unordered_map<Node*, Vertex*> vertexMap;
 
 	Graph(string databaseName);
 
-	void storeVertexVector();
+	void storeVertexMap();
 
 	void storeEdgeVector(vector<Edge*> edgesVector);
 
@@ -23,13 +23,13 @@ public:
 
 	void storeSchemaVector();
 
-	void loadVertexVector(vector<Node*> nodeVector, vector<Edge*> edgeVector);
+	void loadVertexMap(vector<Node*> nodeVector, vector<Edge*> edgeVector);
 
 	vector<Edge*> loadEdgeVector(vector<Node*> nodeVector);
 
 	vector<Node*> loadNodeVector();
 
-	void loadSchemaVector();
+	//void loadSchemaVector();
 
 
 };

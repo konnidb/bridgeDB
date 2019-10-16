@@ -13,6 +13,7 @@ public:
 	long originNode;
 	long targetNode;
 	SerializableEdge();
+	~SerializableEdge();
 	void load(ifstream* streamObj);
 	void store(ofstream* streamObj);
 };
@@ -26,6 +27,7 @@ public:
 	Node * targetNode;
 	Serializable* getSerializable(string path);
 	Edge();
+	~Edge();
 	Edge(long id);
 	Edge(long id, unordered_map<string, string> properties);
 	Edge(long id, unordered_map<string, string> properties, Node * originNode, Node * targetNode);
