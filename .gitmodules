@@ -1,3 +1,6 @@
 [submodule "src/cryptopp"]
 	path = src/cryptopp
 	url = https://github.com/weidai11/cryptopp
+[submodule "src/jwt-cpp"]
+	path = src/jwt-cpp
+	url = https://github.com/Thalhammer/jwt-cpp
