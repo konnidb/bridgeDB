@@ -10,7 +10,7 @@ private:
 public:
     AuthService();
     bool validate_credentials(string username, string password);
-    string generate_token(void);
+    string generate_token(string, string);
     bool validate_token(string);
     ~AuthService();
 };
