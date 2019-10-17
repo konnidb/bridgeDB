@@ -1,6 +1,6 @@
-#pragma once
 #include<iostream>
 #include<string>
+#include <vector>
 #include"Vertex.h"
 #include"Schema.h"
 using namespace std;

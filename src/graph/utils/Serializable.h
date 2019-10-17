@@ -2,7 +2,7 @@
 #include<iostream>
 #include<unordered_map>
 #include<string>
-#include"..\..\utils\Enums.h"
+#include"../../utils/Enums.h"
 using namespace std;
 
 class Serializable {

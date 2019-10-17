@@ -1,7 +1,7 @@
 #pragma once
 #include<string>
 #include<iostream>
-#include"..\..\utils\Enums.h"
+#include"../../utils/Enums.h"
 
 using namespace std;
 

@@ -1,4 +1,3 @@
-#pragma once
 #include"Database.h"
 
 unordered_map<string, Database> Database::instances;

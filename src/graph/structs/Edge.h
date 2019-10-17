@@ -3,7 +3,7 @@
 //#include<unordered_map>
 #include"Node.h"
 #include"Schema.h"
-#include"..\utils\Serializable.h"
+#include"../utils/Serializable.h"
 using namespace std;
 
 class SerializableEdge : public Serializable {

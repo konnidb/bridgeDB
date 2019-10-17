@@ -1,4 +1,3 @@
-#pragma once
 #include<iostream>
 #include<unordered_map>
 #include<fstream>
@@ -7,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include"Serializable.h"
-#include"..\..\utils\LogHandler.h"
+#include"../../utils/LogHandler.h"
 using namespace std;
 
 

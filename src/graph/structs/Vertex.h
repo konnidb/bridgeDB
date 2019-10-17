@@ -1,7 +1,8 @@
 #pragma once
 #include<iostream>
-#include"..\utils\Serializable.h"
+#include"../utils/Serializable.h"
 #include"Edge.h"
+#include <vector>
 #include"Node.h"
 using namespace std;
 

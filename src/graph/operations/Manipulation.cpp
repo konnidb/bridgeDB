@@ -1,7 +1,7 @@
 #pragma once
 #include<iostream>
 #include"Manipulation.h"
-#include"..\utils\Comparison.h"
+#include"../utils/Comparison.h"
 
 using namespace std;
 
@@ -12,7 +12,7 @@ using namespace std;
 Node* Manipulation::createNode(unordered_map<string, string> properties) {
 	Vertex* v = new Vertex();
 	Node* n = new Node();
-	n->properties = properties; //validate that doesn´t exists
+	n->properties = properties; //validate that doesnï¿½t exists
 	//ASSIGN ID TO NODE
 	//ASSIGN ID TO VERTEX
 	v->node = n;
@@ -31,7 +31,7 @@ Edge* Manipulation::createEdge(Node* originNode, Node* targetNode, unordered_map
 	{
 		if (it->first == originNode)
 			this->graph->vertexMap[it->first]->edgesVector.push_back(e);
-		//break? it shouldn´t contains more than one vertex with the same node
+		//break? it shouldnï¿½t contains more than one vertex with the same node
 	}
 	this->graph->vertexMap[originNode]->edgesVector.push_back(e);
 	if(!isDigraph)

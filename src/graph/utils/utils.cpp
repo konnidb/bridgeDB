@@ -1,18 +1,18 @@
-#pragma once
 #include<iostream>
 #include<string>
 #include<fstream>
 #include<unordered_map>
-#include"..\..\utils\Enums.h"
-#include"..\structs\Database.h"
+#include"../../utils/Enums.h"
+#include"../structs/Database.h"
 #include"Comparison.h"
 #include<math.h>
+#include <vector>
 
 using namespace std;
 
 
 const char ELMNT_SEPARATOR = '~';
-const char PROP_SEPARATOR = '¬';
+const char PROP_SEPARATOR = 'ï¿½';
 
 long char_ptr_to_int(char* c) {
 	unsigned char* uc = (unsigned char*)c;

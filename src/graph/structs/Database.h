@@ -1,7 +1,7 @@
-#pragma once
 #include<iostream>
 #include"Graph.h"
-#include"..\..\admin\ConfigFile.cpp"
+#include"../../admin/ConfigFile.cpp"
+#include <vector>
 using namespace std;
 
 class Database {

@@ -1,14 +1,13 @@
-#pragma once
 #include<iostream>
 #include<string>
-#include<filesystem>
 #include"Vertex.h"
 #include"Schema.h"
 #include"Graph.h"
-#include"..\..\storage\IndexHandler.cpp"
-#include"..\..\admin\ConfigFile.cpp"
-//#include<dynamic>
-//#include"..\..\utils\Enums.h"
+#include <vector>
+#include"../../storage/IndexHandler.cpp"
+#include"../../admin/ConfigFile.cpp"
+#include"../../utils/Enums.h"
+#include<streambuf>
 using namespace std;
 
 long char_ptr_to_int(char* c);
