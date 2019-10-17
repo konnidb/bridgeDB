@@ -11,7 +11,7 @@ SerializableVertex::SerializableVertex() {
 }
 
 SerializableVertex::~SerializableVertex() {
-	delete this;
+	//delete this;
 }
 
 Serializable* Vertex::getSerializable(string path) {
@@ -85,7 +85,7 @@ void SerializableVertex::store(ofstream* streamObj) {
 
 Vertex::Vertex(){}
 Vertex::~Vertex() {
-	delete this;
+	//delete this;
 }
 Vertex::Vertex(long id, Node * node) {
 	this->id = id;

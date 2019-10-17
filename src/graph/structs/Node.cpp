@@ -14,7 +14,7 @@ SerializableNode::SerializableNode() {
 }
 
 SerializableNode::~SerializableNode() {
-	delete this;
+	//delete this;
 }
 
 Serializable* Node::getSerializable(string path) {
@@ -104,5 +104,5 @@ bool Node::compareNodes(Node* node1, Node* node2) { //pending more accurate impl
 }
 
 Node::~Node() {
-	delete this;
+	//delete this;
 }

@@ -16,7 +16,7 @@ Node* Manipulation::createNode(unordered_map<string, string> properties) {
 	//ASSIGN ID TO NODE
 	//ASSIGN ID TO VERTEX
 	v->node = n;
-	this->graph->vertexMap[n] = v;
+	this->graph->vertexMap->insert({ n, v });
 	return n;
 }
 Node* Manipulation::createNode(string properties) {
@@ -27,15 +27,15 @@ Edge* Manipulation::createEdge(Node* originNode, Node* targetNode, unordered_map
 	if (originNode == NULL || targetNode == NULL)
 		return NULL;
 	Edge* e = new Edge(NULL, properties, originNode, targetNode); //assign ids
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) 
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) 
 	{
 		if (it->first == originNode)
-			this->graph->vertexMap[it->first]->edgesVector.push_back(e);
+			this->graph->vertexMap->at(it->first)->edgesVector.push_back(e);
 		//break? it shouldn´t contains more than one vertex with the same node
 	}
-	this->graph->vertexMap[originNode]->edgesVector.push_back(e);
+	this->graph->vertexMap->at(originNode)->edgesVector.push_back(e);
 	if(!isDigraph)
-		this->graph->vertexMap[targetNode]->edgesVector.push_back(e);
+		this->graph->vertexMap->at(targetNode)->edgesVector.push_back(e);
 	return e;
 }
 
@@ -47,7 +47,7 @@ Edge* Manipulation::createEdge(Node * originNode, Node * targetNode, string prop
 Edge* Manipulation::createEdge(long originNodeId, long targetNodeId, unordered_map<string, string> properties, bool isDigraph) {
 	Node* originNode = NULL;
 	Node* targetNode = NULL;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++)
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++)
 	{
 		if (it->first->id == originNodeId)
 			originNode = it->first;
@@ -62,7 +62,7 @@ Edge* Manipulation::createEdge(long originNodeId, long targetNodeId, string prop
 }
 void Manipulation::deleteNode(long id) {
 	Node* n = NULL;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++)
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++)
 	{
 		if (it->first->id == id)
 			n = it->first;
@@ -72,25 +72,25 @@ void Manipulation::deleteNode(long id) {
 void Manipulation::deleteNode(Node* node) {
 	if (node == NULL)
 		return;
-	for (int i = 0; i < this->graph->vertexMap[node]->edgesVector.size(); i++)
+	for (int i = 0; i < this->graph->vertexMap->at(node)->edgesVector.size(); i++)
 	{
-		this->graph->vertexMap[node]->edgesVector[i]->~Edge();
+		this->graph->vertexMap->at(node)->edgesVector[i]->~Edge();
 	}
-	this->graph->vertexMap[node]->~Vertex();
-	this->graph->vertexMap.erase(node);
+	this->graph->vertexMap->at(node)->~Vertex();
+	this->graph->vertexMap->erase(node);
 	node->~Node();
 }
 void Manipulation::deleteNodes(unordered_map<string, string> toMatch) {
 	if(toMatch.size() <= 0)
 		return;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (map_contains_values(it->first->properties, toMatch))
 			Manipulation::deleteNode(it->first);
 	}
 }
 void Manipulation::deleteEdge(long id) {
 	Edge* e = NULL;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		for (long i = 0; i < it->second->edgesVector.size(); i++)
 		{
 			if (it->second->edgesVector[i]->id == id) {
@@ -106,7 +106,7 @@ void Manipulation::deleteEdge(long id) {
 void Manipulation::deleteEdge(Edge* edge) {
 	if (edge == NULL)
 		return;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		for (long i = 0; i < it->second->edgesVector.size(); i++)
 		{
 			if (it->second->edgesVector[i]==edge) {
@@ -120,7 +120,7 @@ void Manipulation::deleteEdge(Edge* edge) {
 void Manipulation::deleteEdges(unordered_map<string, string> toMatch) {
 	if(toMatch.size() <= 0)
 		return;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		for (long i = 0; i < it->second->edgesVector.size(); i++)
 		{
 			if (map_contains_values(it->second->edgesVector[i]->properties, toMatch))
@@ -129,7 +129,7 @@ void Manipulation::deleteEdges(unordered_map<string, string> toMatch) {
 	}
 }
 Node* Manipulation::getNodeById(long node) {
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (it->first->id == node)
 			return it->first;
 	}
@@ -139,7 +139,7 @@ Node* Manipulation::getNodeById(long node) {
 Node* Manipulation::getNodeByCondition(vector<Comparison> comp) {
 	if (comp.size() <= 0)
 		return NULL;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (map_eval_values(it->first->properties, comp))
 			return it->first;
 	}
@@ -149,7 +149,7 @@ Node* Manipulation::getNodeByCondition(vector<Comparison> comp) {
 Node* Manipulation::getNode(Node node) {
 	if (node.properties.size() <= 0)
 		return NULL;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (map_contains_values(it->first->properties, node.properties))
 			return it->first;
 	}
@@ -160,7 +160,7 @@ vector<Node*> Manipulation::getNodesByCondition(vector<Comparison> comp) {
 	vector<Node*> NodeVector;
 	if (comp.size() <= 0)
 		return NodeVector;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (map_eval_values(it->first->properties, comp))
 			NodeVector.push_back(it->first);
 	}
@@ -171,7 +171,7 @@ vector<Node*> Manipulation::getNodes(Node node) {
 	vector<Node*> NodeVector;
 	if (node.properties.size() <= 0)
 		return NodeVector;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (map_contains_values(it->first->properties, node.properties))
 			NodeVector.push_back(it->first);
 	}
@@ -181,7 +181,7 @@ vector<Node*> Manipulation::getNodes(Node node) {
 Edge* Manipulation::getEdgeById(long edge) {
 	if (edge == NULL)
 		return NULL;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		for (long i = 0; i < it->second->edgesVector.size(); i++)
 		{
 			if (it->second->edgesVector[i]->id == edge) {
@@ -195,7 +195,7 @@ Edge* Manipulation::getEdgeById(long edge) {
 Edge* Manipulation::getEdgeByCondition(vector<Comparison> comp) {
 	if (comp.size() <= 0)
 		return NULL;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		for (long i = 0; i < it->second->edgesVector.size(); i++)
 		{
 			if (map_eval_values(it->second->edgesVector[i]->properties, comp))
@@ -208,7 +208,7 @@ Edge* Manipulation::getEdgeByCondition(vector<Comparison> comp) {
 Edge* Manipulation::getEdge(Edge edge) {
 	if (edge.properties.size() <= 0)
 		return NULL;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		for (long i = 0; i < it->second->edgesVector.size(); i++)
 		{
 			if (map_contains_values(it->second->edgesVector[i]->properties, edge.properties) && 
@@ -224,7 +224,7 @@ vector<Edge*> Manipulation::getEdgesByCondition(vector<Comparison> comp) {
 	vector<Edge*> edgeVector;
 	if (comp.size() <= 0)
 		return edgeVector;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		for (long i = 0; i < it->second->edgesVector.size(); i++)
 		{
 			if (map_eval_values(it->second->edgesVector[i]->properties, comp))
@@ -238,7 +238,7 @@ vector<Edge*> Manipulation::getEdges(Edge edge) {
 	vector<Edge*> edgeVector;
 	if (edge.properties.size() <= 0)
 		return edgeVector;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		for (long i = 0; i < it->second->edgesVector.size(); i++)
 		{
 			if (map_contains_values(it->second->edgesVector[i]->properties, edge.properties) &&
@@ -251,7 +251,7 @@ vector<Edge*> Manipulation::getEdges(Edge edge) {
 }
 
 Vertex* Manipulation::getVertexById(long vertex) {
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (it->second->id == vertex)
 			return it->second;
 	}
@@ -263,7 +263,7 @@ Vertex* Manipulation::getVertexById(long vertex) {
 Vertex* Manipulation::getVertex(Vertex vertex) {
 	if (vertex.node == NULL && vertex.edgesVector.size() <= 0 && vertex.id == NULL)
 		return NULL;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (it->second->compare(&vertex))
 			return it->second;
 	}
@@ -276,7 +276,7 @@ vector<Vertex*> Manipulation::getVertexes(Vertex vertex) {
 	vector<Vertex*> vertexVector;
 	if (vertex.node == NULL && vertex.edgesVector.size() <= 0 && vertex.id == NULL)
 		return vertexVector;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap.begin(); it != this->graph->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (it->second->compare(&vertex))
 			vertexVector.push_back(it->second);
 	}
@@ -315,7 +315,7 @@ DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int 
 		for (int i = 0; i < root->edgesVector.size(); i++)
 		{
 			double value = (root->weight == NULL ? 0 : root->weight) + stod(root->edgesVector[i]->properties[edgePropKey]);
-			DijkstraWrapper* tgtVertex = this->graph->vertexMap[root->node]->getDijkstraWrapper();
+			DijkstraWrapper* tgtVertex = this->graph->vertexMap->at(root->node)->getDijkstraWrapper();
 			if (tgtVertex->weight == NULL || tgtVertex->weight > value)
 			{
 				tgtVertex->previousVertex = root;
@@ -325,7 +325,7 @@ DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int 
 			bool validatedContainsRoot = false;
 			for (long i = 0; i < validated->size(); i++)
 			{
-				if ((*validated)[i] == tgtVertex) {
+				if (validated->at(i) == tgtVertex) {
 					validatedContainsRoot = true;
 					break;
 				}
@@ -338,7 +338,7 @@ DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int 
 	}
 	if (toValidate->size() > 0)
 	{
-		DijkstraWrapper* tmp = (*toValidate)[0];
+		DijkstraWrapper* tmp = toValidate->at(0);
 		toValidate->erase(toValidate->begin());
 		aux = this->UniformCostSearchById(tmp, id, edgePropKey, toValidate, validated);
 	}

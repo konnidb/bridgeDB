@@ -44,6 +44,7 @@ void closeStreamsOnMap(unordered_map<string, ofstream*> pageFiles) {
 
 Graph::Graph(string databaseName) {
 	this->databaseName = databaseName;
+	vertexMap = new unordered_map<Node*, Vertex*>();
 }
 
 void Graph::storeVertexMap() {
@@ -62,7 +63,7 @@ void Graph::storeVertexMap() {
 		pagePath = vertexDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
 			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::binary); //new ofstream(pagePath, ios::out | ios::app | ios::binary);
-			long size = this->vertexMap.size();
+			long size = this->vertexMap->size();
 			char* sizec = (char*)& size;
 			unsigned char* c = (unsigned char*)sizec;
 			pageFiles[pagePath]->write((char*)& size, sizeof(long));
@@ -71,7 +72,7 @@ void Graph::storeVertexMap() {
 	//IF NOT EXISTS, CREATE NEW
 	vector<Node*> nodesVector;
 	vector<Edge*> edgesVector;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap.begin(); it != this->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
 		index.indexMap[to_string(it->second->id)] = pageId;
 		SerializableVertex* s = dynamic_cast<SerializableVertex*>(it->second->getSerializable(pagePath));
 		s->store(pageFiles[pagePath]); 
@@ -224,7 +225,7 @@ void Graph::loadVertexMap(vector<Node*> nodeVector, vector<Edge*> edgeVector) {
 				else
 					cout << "FAIL: EDGE NOT FOUND, ID: " << s.edgesIdVector[i] << endl;
 			}
-			this->vertexMap[n] = v;
+			this->vertexMap->insert({ n, v });
 		}
 		rf->close();
 		if (!rf->good()) cout << "FAIL CLOSING FILE: " << pageIds[i] << endl;

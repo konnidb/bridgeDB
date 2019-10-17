@@ -24,9 +24,8 @@ string gen_random(const long len) {
 	return s;
 }
 
-void generates_semi_random_graph() {
+void generates_semi_random_graph(string dbname) {
 	long id = 1;
-	string dbname = "test";
 	Database db = Database::getDatabase(dbname);
 	/*
 	db.cfg->configFileMap[ConfigFileAttrbute::databaseName] = dbname;
@@ -43,9 +42,8 @@ void generates_semi_random_graph() {
 	//*/
 	db.cfg->loadConfigFile();
 	cout << "CONFIG EDGE DIR: " << db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] << endl;
-	//*
 	Graph g(db.name);
-	db.graphVector.push_back(&g);
+	db.graphVector->push_back(&g);
 	g.name = "testGraph";
 	g.id = id++;
 	Schema* s1 = new Schema();
@@ -60,6 +58,7 @@ void generates_semi_random_graph() {
 	properties["pw"] = to_string(DataType::STR);
 	s1->properties = properties;
 	//g.schemaVector.push_back(s1);
+	vector<Node*> nodeVec;
 
 	for (long i = 0; i < 138; i++)
 	{
@@ -67,7 +66,7 @@ void generates_semi_random_graph() {
 		n->id = id++;
 		for (unordered_map<string, string>::iterator it = properties.begin(); it != properties.end(); it++)
 		{
-			if (it->second==to_string(DataType::NUM))
+			if (it->second == to_string(DataType::NUM))
 				n->properties[it->first] = to_string((rand() % 1000000000) + 1000000000);
 			else
 				n->properties[it->first] = gen_random(10);
@@ -76,48 +75,79 @@ void generates_semi_random_graph() {
 		Vertex* v = new Vertex();
 		v->id = id++;
 		v->node = n;
-		g.vertexMap[n]=v;
+		nodeVec.push_back(n);
+		g.vertexMap->insert({ n, v });
 	}
 
-	long size = (long)g.vertexMap.size();
-	unordered_map<Node*, Vertex*>::iterator* i1 = NULL;
-	unordered_map<Node*, Vertex*>::iterator* i2 = NULL;
-	/*for (unordered_map<Node*, Vertex*>::iterator it = g.vertexMap.begin(); it != g.vertexMap.end(); it++) {
-	{
-		for (long j = 0; j < 3 && i1!=NULL && i2 != NULL; j++)
+	int count = 1;
+	for (unordered_map<Node*, Vertex*>::iterator it = g.vertexMap->begin(); it != g.vertexMap->end(); it++) {
 		{
-			Edge* e = new Edge();
-			e->id = id++;
-			e->originNode = it->first;
-			e->targetNode = g.vertexVector[i + j]->node;
-			g.vertexVector[i]->edgesVector.push_back(e);
+			for (long j = count; j < 3 && j < nodeVec.size(); j++)
+			{
+				Edge* e = new Edge();
+				e->id = id++;
+				e->originNode = it->first;
+				e->targetNode = nodeVec[j];
+				it->second->edgesVector.push_back(e);
+			}
+			count++;
 		}
-		if (i1 == NULL && i2 == NULL)
-			i1 = &it;
-		if (i1 != NULL && i2 == NULL)
-			i2 = &it;
-		if()
-	}*/
+	}
 
-	cout << "holi" << endl;
+		cout << "holi" << endl;
 
-	g.storeVertexMap();
-	//*/
+		g.storeVertexMap();
+		//*/
+	
 }
 
-void load_graph_test() {
-	string dbname = "test";
+void load_graph_test(string dbname) {
 	Database db = Database::getDatabase(dbname);
 	if(db.cfg->configFileMap.size()==0)
 		db.cfg->loadConfigFile();
 	cout << "CONFIG EDGE DIR: " << db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] << endl;
 	Graph* g = new Graph(db.name);
-	db.graphVector.push_back(g);
+	db.graphVector->push_back(g);
 	vector<Node*> nv = g->loadNodeVector();
 	vector<Edge*> ev = g->loadEdgeVector(nv);
 	g->loadVertexMap(nv, ev);
 }
 
+string getSimpleNodesJson(string dbname){
+	Database db = Database::getDatabase(dbname);
+	string output= "";
+	for (unordered_map<Node*, Vertex*>::iterator it = db.graphVector->at(0)->vertexMap->begin(); it != db.graphVector->at(0)->vertexMap->end(); it++) {
+		if (output.empty()) {
+			output = "[";
+			output += "{ \"id\": \"" + to_string(it->first->id) + "\", \"group\": 1 }";
+		}else
+			output += ",{ \"id\": \"" + to_string(it->first->id) + "\", \"group\": 1 }";
+		
+	}
+	if(!output.empty()) output += "]";
+	return output;
+}
+
+string getSimpleLinksJson(string dbname) {
+	Database db = Database::getDatabase(dbname);
+	string output = "";
+	for (unordered_map<Node*, Vertex*>::iterator it = db.graphVector->at(0)->vertexMap->begin(); it != db.graphVector->at(0)->vertexMap->end(); it++) {
+		for (int i = 0; i < it->second->edgesVector.size(); i++)
+		{
+			Edge* e = it->second->edgesVector[i];
+			if (output.empty()) {
+				output = "[";
+				output += "{ \"source\": \"" + to_string(e->originNode->id) + "\", \"target\": \"" + to_string(e->targetNode->id) + "\", \"value\":1 }";
+			}
+			else
+				output += ",{ \"source\": \"" + to_string(e->targetNode->id) + "\", \"target\": \"" + to_string(e->targetNode->id) + "\", \"value\":1 }";
+		}
+		
+
+	}
+	if (!output.empty()) output += "]";
+	return output;
+}
 
 long main() {
 	/*string t = "test.txt";
@@ -194,7 +224,11 @@ long main() {
 	rf->close();
 	//*/
 	//generates_semi_random_graph();
-	//load_graph_test();
+	load_graph_test("test");
+	string nodejson = getSimpleNodesJson("test");
+	string linkjson = getSimpleLinksJson("test");
+	cout << "NODE: " << nodejson << endl;
+	cout << "LINK: " << linkjson<<endl;
 	cout << "SALE" << endl;
 	system("pause");
 }

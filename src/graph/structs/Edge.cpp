@@ -13,7 +13,7 @@ SerializableEdge::SerializableEdge() {
 }
 
 SerializableEdge::~SerializableEdge() {
-	delete this;
+	//delete this;
 }
 
 Serializable* Edge::getSerializable(string path) {
@@ -85,7 +85,7 @@ void SerializableEdge::store(ofstream* streamObj) {
 
 Edge::Edge(){}
 Edge::~Edge() {
-	delete this;
+	//delete this;
 }
 Edge::Edge(long id, unordered_map<string, string> properties) {
 	this->id = id;
