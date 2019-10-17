@@ -5,6 +5,7 @@ LDFLAGS = -L/usr/local/lib `pkg-config --libs protobuf grpc++`\
 CXX = g++
 CPPFLAGS += `pkg-config --cflags protobuf grpc`
 CXXFLAGS += -std=c++11
+CXXFLAGS += -I ../../
 
 GRPC_CPP_PLUGIN = grpc_cpp_plugin
 GRPC_CPP_PLUGIN_PATH ?= `which $(GRPC_CPP_PLUGIN)`
