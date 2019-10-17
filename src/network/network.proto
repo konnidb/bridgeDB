@@ -103,6 +103,7 @@ message Session {
 message SessionRequest {
     string username = 1;
     string password = 2;
+    string database = 3;
 }
 
 message SpanTreeReq {

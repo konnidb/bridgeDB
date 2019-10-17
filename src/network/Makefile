@@ -1,5 +1,5 @@
 LDFLAGS = -L/usr/local/lib `pkg-config --libs protobuf grpc++`\
-		 -lgrpc++_reflection  \
+		 -lgrpc++_reflection -lcrypto  \
 		# -ldl
 
 CXX = g++
@@ -8,6 +8,11 @@ CXXFLAGS += -std=c++11
 
 GRPC_CPP_PLUGIN = grpc_cpp_plugin
 GRPC_CPP_PLUGIN_PATH ?= `which $(GRPC_CPP_PLUGIN)`
+
+SRC_DIR := .
+OBJ_DIR := build
+SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 all: client server
 

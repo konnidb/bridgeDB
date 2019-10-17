@@ -9,8 +9,8 @@ private:
     /* data */
 public:
     AuthService();
-    bool validate_credentials(string username, string password);
-    string generate_token(string, string);
-    bool validate_token(string);
+    static bool validate_credentials(string username, string password);
+    static string generate_token(string, string);
+    static bool validate_token(string);
     ~AuthService();
 };

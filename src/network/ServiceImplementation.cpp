@@ -39,6 +39,16 @@ Status ServiceImplementation::CreateSession(
     const SessionRequest *request,
     Session *response)
 {
+    string username = request->username();
+    string password = request->password();
+    string database = request->database();
+    cout << username << endl;
+    // if (AuthService::validate_credentials(username, password)) {
+    //     return Status::CANCELLED;
+    // }
+    string token = AuthService::generate_token(username, database).c_str();
+    string* tkn = response->mutable_token();
+    *tkn = token;
     return Status::OK;
 };
 
@@ -57,6 +67,7 @@ Status ServiceImplementation::CreateNode(
 {
     auto fields = req->fields();
     NetworkNode *node = response->mutable_node();
+    
     (*node->mutable_fields())["field"] = fields["field"];
     return Status::OK;
 }

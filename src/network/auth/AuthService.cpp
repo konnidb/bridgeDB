@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "AuthService.hpp"
-#include "../../jwt-cpp/jwt.h"
+#include "jwt-cpp/jwt.h"
 
 AuthService::AuthService()
 {
@@ -19,10 +19,11 @@ std::string AuthService::generate_token(std::string username, std::string databa
                      .set_issuer("auth0")
                      .set_type("JWS")
                      .set_payload_claim(c_username, jwt::claim(std::string("username")))
-                    //  .set_payload_claim(c_username, std::string("username"))
-                    //  .set_payload_claim("database", std::std::string("database"))
+                     .set_payload_claim(c_database, jwt::claim(std::string("database")))
+                     //  .set_payload_claim(c_username, std::string("username"))
+                     //  .set_payload_claim("database", std::std::string("database"))
                      .sign(jwt::algorithm::hs256{"supersecret"});
-    return "THIS_IS_A_TOKEN";
+    return token;
 }
 
 bool AuthService::validate_credentials(std::string username, std::string password)
