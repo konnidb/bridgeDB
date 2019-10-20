@@ -1,4 +1,3 @@
-#pragma once
 #include<iostream>
 #include"Manipulation.h"
 #include"../utils/Comparison.h"

@@ -2,6 +2,9 @@
 #include"Graph.h"
 #include"../../admin/ConfigFile.cpp"
 #include <vector>
+#include <string>
+#include <unordered_map>
+
 using namespace std;
 
 class Database {

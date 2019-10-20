@@ -12,7 +12,7 @@ using namespace std;
 
 
 const char ELMNT_SEPARATOR = '~';
-const char PROP_SEPARATOR = '�';
+const char PROP_SEPARATOR = ' ';
 
 long char_ptr_to_int(char* c) {
 	unsigned char* uc = (unsigned char*)c;
@@ -180,19 +180,19 @@ unordered_map<string, string> deserializeMap(string properties) {
 	return output;
 }
 
-bool fileExists(string path){
-	fstream stream;
-	stream.open(path);
-	if (stream.fail())
-		return false;
-	stream.close();
-	return true;
-}
+// bool fileExists(string path){
+// 	fstream stream;
+// 	stream.open(path);
+// 	if (stream.fail())
+// 		return false;
+// 	stream.close();
+// 	return true;
+// }
 
-ConfigFileHandler* getConfigFileHandler(string databaseName) {
-	Database db = Database::getDatabase(databaseName);
-	return db.cfg;
-}
+// ConfigFileHandler* getConfigFileHandler(string databaseName) {
+// 	Database db = Database::getDatabase(databaseName);
+// 	return db.cfg;
+// }
 /*
 string buildIndexPath(string databaseName, ElementType element) {
 	Database db = Database::getDatabase(databaseName);

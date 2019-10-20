@@ -1,6 +1,8 @@
 #include<iostream>
 #include<fstream>
 #include"Edge.h"
+#include <string>
+#include <unordered_map>
 using namespace std;
 
 string serializeMap(unordered_map<string, string> properties);

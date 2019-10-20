@@ -1,4 +1,7 @@
 #include"Database.h"
+#include <string>
+#include <unordered_map>
+#include "src/admin/ConfigFile.h"
 
 unordered_map<string, Database> Database::instances;
 
