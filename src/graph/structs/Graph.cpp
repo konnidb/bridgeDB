@@ -268,22 +268,25 @@ vector<Edge*> Graph::loadEdgeVector(vector<Node*> nodeVector) {
 			else
 				edge = result;
 			if (edge->originNode == NULL) {
-				//Node* originNode = vectorFindById<Node>(nodeVector, new Node(serializable.originNode));
-				Node* originNode = vectorFindByFn<Node>(nodeVector, new Node(serializable.originNode), Node::compareNodes);
+				Node* originNode = vectorFindById<Node>(nodeVector, new Node(serializable.originNode));
+				//Node* originNode = vectorFindByFn<Node>(nodeVector, new Node(serializable.originNode), Node::compareNodes);
 				if (originNode == NULL)
-					cout << "ERROR! NODO ORIGEN NO ENCONTRADO!" << endl;
+					cout << "ERROR! NODO ORIGEN NO ENCONTRADO! ID: "<< serializable.originNode << endl;
 				else
 					edge->originNode = originNode;
 			}
 
 			if (edge->targetNode == NULL) {
-				//Node* targetNode = vectorFindById<Node>(nodeVector, new Node(serializable.targetNode));
-				Node* targetNode = vectorFindByFn<Node>(nodeVector, new Node(serializable.targetNode), Node::compareNodes);
+				Node* targetNode = vectorFindById<Node>(nodeVector, new Node(serializable.targetNode));
+				//Node* targetNode = vectorFindByFn<Node>(nodeVector, new Node(serializable.targetNode), Node::compareNodes);
 				if (targetNode == NULL)
-					cout << "ERROR! NODO ORIGEN NO ENCONTRADO!" << endl;
+					cout << "ERROR! NODO ORIGEN NO ENCONTRADO! ID: " << serializable.targetNode << endl;
 				else
 					edge->targetNode = targetNode;
 			}
+
+			if (edge->targetNode == NULL || edge->originNode == NULL)
+				edgeVector.pop_back();
 		}
 		rf->close();
 		if (rf->fail()) cout << "loadEdgeVector: fail closing ifstream on file: " << pageIds[i] << endl;

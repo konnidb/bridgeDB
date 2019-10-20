@@ -8,6 +8,7 @@
 //#include"..\graph\structs\Vertex.h"
 #include"..\graph\structs\Database.h"
 #include"..\utils\Enums.h"
+#include"..\graph\operations\Manipulation.h"
 
 using namespace std;
 
@@ -60,10 +61,13 @@ void generates_semi_random_graph(string dbname) {
 	//g.schemaVector.push_back(s1);
 	vector<Node*> nodeVec;
 
-	for (long i = 0; i < 138; i++)
+	int nodeId = 0;
+	int edgeId = 0;
+	int vertexId = 0;
+	for (long i = 0; i < 16; i++)
 	{
 		Node* n = new Node();
-		n->id = id++;
+		n->id = nodeId++;
 		for (unordered_map<string, string>::iterator it = properties.begin(); it != properties.end(); it++)
 		{
 			if (it->second == to_string(DataType::NUM))
@@ -73,19 +77,18 @@ void generates_semi_random_graph(string dbname) {
 		}
 		n->schema = s1;
 		Vertex* v = new Vertex();
-		v->id = id++;
+		v->id = vertexId++;
 		v->node = n;
 		nodeVec.push_back(n);
 		g.vertexMap->insert({ n, v });
 	}
-
-	int count = 1;
+	int count = 0;
 	for (unordered_map<Node*, Vertex*>::iterator it = g.vertexMap->begin(); it != g.vertexMap->end(); it++) {
 		{
-			for (long j = count; j < 3 && j < nodeVec.size(); j++)
+			for (long j = count; j < count+3 && j < nodeVec.size(); j++)
 			{
 				Edge* e = new Edge();
-				e->id = id++;
+				e->id = edgeId++;
 				e->originNode = it->first;
 				e->targetNode = nodeVec[j];
 				it->second->edgesVector.push_back(e);
@@ -93,12 +96,8 @@ void generates_semi_random_graph(string dbname) {
 			count++;
 		}
 	}
-
 		cout << "holi" << endl;
-
 		g.storeVertexMap();
-		//*/
-	
 }
 
 void load_graph_test(string dbname) {
@@ -119,10 +118,9 @@ string getSimpleNodesJson(string dbname){
 	for (unordered_map<Node*, Vertex*>::iterator it = db.graphVector->at(0)->vertexMap->begin(); it != db.graphVector->at(0)->vertexMap->end(); it++) {
 		if (output.empty()) {
 			output = "[";
-			output += "{ \"id\": \"" + to_string(it->first->id) + "\", \"group\": 1 }";
+			output += "{ \"name\": \"" + it->first->properties["nombre"] + "\" }";// , \"group\":  " + it->first->properties["group"] + " }";
 		}else
-			output += ",{ \"id\": \"" + to_string(it->first->id) + "\", \"group\": 1 }";
-		
+			output += ",{ \"name\": \"" + it->first->properties["nombre"] + "\" }";// , \"group\": " + it->first->properties["group"] + " }";
 	}
 	if(!output.empty()) output += "]";
 	return output;
@@ -137,16 +135,25 @@ string getSimpleLinksJson(string dbname) {
 			Edge* e = it->second->edgesVector[i];
 			if (output.empty()) {
 				output = "[";
-				output += "{ \"source\": \"" + to_string(e->originNode->id) + "\", \"target\": \"" + to_string(e->targetNode->id) + "\", \"value\":1 }";
+				output += "{ \"source\": " + to_string(e->originNode->id) + ", \"target\": " + to_string(e->targetNode->id) + " }"; // , \"value\": " + e->properties["value"] + " }";
 			}
 			else
-				output += ",{ \"source\": \"" + to_string(e->targetNode->id) + "\", \"target\": \"" + to_string(e->targetNode->id) + "\", \"value\":1 }";
+				output += ",{ \"source\": " + to_string(e->originNode->id) + ", \"target\": " + to_string(e->targetNode->id) + " }"; // , \"value\": " + e->properties["value"] + " }";
 		}
 		
 
 	}
 	if (!output.empty()) output += "]";
 	return output;
+}
+
+void createDatasetHtml() {
+	string nodejson = getSimpleNodesJson("test");
+	string linkjson = getSimpleLinksJson("test");
+	string dataset = "var dataset = { nodes: " + nodejson + " , edges: " + linkjson + "};";
+	ofstream out("C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\bridgeDB\\html_test\\dataset.js");
+	out << dataset;
+	out.close();
 }
 
 long main() {
@@ -223,12 +230,13 @@ long main() {
 	}
 	rf->close();
 	//*/
-	//generates_semi_random_graph();
+	//generates_semi_random_graph("test");
 	load_graph_test("test");
-	string nodejson = getSimpleNodesJson("test");
-	string linkjson = getSimpleLinksJson("test");
-	cout << "NODE: " << nodejson << endl;
-	cout << "LINK: " << linkjson<<endl;
+	//createDatasetHtml();
+	Database db = Database::getDatabase("test");
+	Manipulation* m = new Manipulation(db.graphVector->at(0));
+	m->deleteNode(15);
+	createDatasetHtml();
 	cout << "SALE" << endl;
 	system("pause");
 }

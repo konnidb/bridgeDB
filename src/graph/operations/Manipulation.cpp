@@ -8,7 +8,9 @@ using namespace std;
 //string serializeMap(unordered_map<string, string> properties);
 //unordered_map<string, string> deserializeMap(string properties);
 
-
+Manipulation::Manipulation(Graph* g) {
+	this->graph = g;
+}
 Node* Manipulation::createNode(unordered_map<string, string> properties) {
 	Vertex* v = new Vertex();
 	Node* n = new Node();
@@ -75,6 +77,15 @@ void Manipulation::deleteNode(Node* node) {
 	for (int i = 0; i < this->graph->vertexMap->at(node)->edgesVector.size(); i++)
 	{
 		this->graph->vertexMap->at(node)->edgesVector[i]->~Edge();
+	}
+	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
+		for (int i = 0; i < it->second->edgesVector.size(); i++)
+		{
+			if (it->second->edgesVector[i]->targetNode == node) {
+				this->deleteEdge(it->second->edgesVector[i]);
+			}
+				
+		}
 	}
 	this->graph->vertexMap->at(node)->~Vertex();
 	this->graph->vertexMap->erase(node);

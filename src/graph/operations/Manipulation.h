@@ -13,6 +13,7 @@ bool map_eval_values(unordered_map<string, string> properties, vector<Comparison
 class Manipulation {
 public:
 	Graph* graph;
+	Manipulation(Graph* g);
 	Node* createNode(unordered_map<string, string> properties);
 	Node* createNode(string properties);
 	Edge* createEdge(Node* originNode, Node* targetNode, unordered_map<string, string> properties, bool isDigraph);
