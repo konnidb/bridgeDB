@@ -2,10 +2,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "src/graph/structs/Graph.cpp"
-#include "src/graph/structs/Edge.cpp"
-#include "src/graph/structs/Vertex.cpp"
-#include "src/graph/structs/Node.cpp"
+#include "src/graph/structs/Graph.h"
+#include "src/graph/structs/Edge.h"
+#include "src/graph/structs/Vertex.h"
+#include "src/graph/structs/Node.h"
 #include "src/network/network.grpc.pb.h"
 #include "src/network/network.pb.h"
 #include "grpc++/grpc++.h"
@@ -23,7 +23,7 @@ private:
     
 public:
     GraphToGrpc();
-    static NetworkNode parse_node(Node* node);
+    static NetworkNode parse_node(Node* node, NetworkNode*);
 
     static vector<NetworkNode*> parse_node_vector(vector<Node*> nodes);
     

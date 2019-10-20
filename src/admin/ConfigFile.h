@@ -4,7 +4,7 @@
 #include<fstream>
 #include<string>
 #include <ios>
-#include "../utils/Enums.h"
+#include "src/utils/Enums.h"
 using namespace std;
 
 string serializeMap(unordered_map<string, string> properties);

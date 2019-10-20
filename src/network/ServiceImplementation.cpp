@@ -5,6 +5,8 @@
 #include "auth/AuthService.hpp"
 #include <grpc++/grpc++.h>
 #include "ServiceImplementation.hpp"
+#include "graph/GraphToGrpc.h"
+#include "src/graph/structs/Node.h"
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
@@ -66,9 +68,11 @@ Status ServiceImplementation::CreateNode(
     CreateNodeResponse *response)
 {
     auto fields = req->fields();
+    Node* n = new Node();
+    n->properties["field1"] = "Prop1";
     NetworkNode *node = response->mutable_node();
-    
-    (*node->mutable_fields())["field"] = fields["field"];
+    GraphToGrpc::parse_node(n, node);
+    (*node->mutable_fields())["field"] = "ASDASDAsd";
     return Status::OK;
 }
 

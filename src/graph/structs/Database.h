@@ -1,6 +1,7 @@
+#pragma once
 #include<iostream>
 #include"Graph.h"
-#include"../../admin/ConfigFile.cpp"
+#include"../../admin/ConfigFile.h"
 #include <vector>
 #include <string>
 #include <unordered_map>

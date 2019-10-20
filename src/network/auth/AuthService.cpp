@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "AuthService.hpp"
-#include "jwt-cpp/jwt.h"
+#include "src/jwt-cpp/include/jwt-cpp/jwt.h"
 
 AuthService::AuthService()
 {

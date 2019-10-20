@@ -1,5 +1,4 @@
 #pragma once
-
 enum LogicOperator {
 	AND,
 	OR,

@@ -2,7 +2,7 @@
 #include<string>
 #include<fstream>
 #include<unordered_map>
-#include"../../utils/Enums.h"
+#include"src/utils/Enums.h"
 #include"../structs/Database.h"
 #include"Comparison.h"
 #include<math.h>
@@ -180,19 +180,19 @@ unordered_map<string, string> deserializeMap(string properties) {
 	return output;
 }
 
-// bool fileExists(string path){
-// 	fstream stream;
-// 	stream.open(path);
-// 	if (stream.fail())
-// 		return false;
-// 	stream.close();
-// 	return true;
-// }
+bool fileExists(string path){
+	fstream stream;
+	stream.open(path);
+	if (stream.fail())
+		return false;
+	stream.close();
+	return true;
+}
 
-// ConfigFileHandler* getConfigFileHandler(string databaseName) {
-// 	Database db = Database::getDatabase(databaseName);
-// 	return db.cfg;
-// }
+ConfigFileHandler* getConfigFileHandler(string databaseName) {
+	Database db = Database::getDatabase(databaseName);
+	return db.cfg;
+}
 /*
 string buildIndexPath(string databaseName, ElementType element) {
 	Database db = Database::getDatabase(databaseName);
