@@ -13,7 +13,7 @@ public:
 	long originNode;
 	long targetNode;
 	SerializableEdge();
-	~SerializableEdge();
+	//~SerializableEdge();
 	void load(ifstream* streamObj);
 	void store(ofstream* streamObj);
 };

@@ -29,6 +29,10 @@ public:
 
 	vector<Node*> loadNodeVector();
 
+	long getNextVertexId();
+	long getNextNodeId();
+	long getNextEdgeId();
+
 	//void loadSchemaVector();
 
 

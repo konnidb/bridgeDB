@@ -332,3 +332,33 @@ vector<Node*> Graph::loadNodeVector() {
 	}
 	return nodeVector;
 }
+
+long Graph::getNextVertexId() {
+	long max = -1;
+	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
+		if (it->second->id > max)
+			max = it->second->id;
+	}
+	return ++max;
+}
+
+long Graph::getNextNodeId() {
+	long max = -1;
+	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
+		if (it->second->id > max)
+			max = it->second->id;
+	}
+	return ++max;
+}
+
+long Graph::getNextEdgeId() {
+	long max = -1;
+	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
+		for (int i = 0; i < it->second->edgesVector.size(); i++)
+		{
+			if (it->second->edgesVector[i]->id > max)
+				max = it->second->edgesVector[i]->id;
+		}
+	}
+	return ++max;
+}

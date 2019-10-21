@@ -45,8 +45,8 @@ public:
 	vector<Vertex*> getPathByProp(long rootNode, long tgtNode, string edgePropKey, bool isShortest);
 	//vector<Vertex*> getPathByProp(Node* rootNode, Node* tgtNode, string propKey, bool isShortest);
 
-	Vertex* getPathByPattern(long rootNode, long tgtNode, Vertex pattern, bool isShortest);
+	Vertex* getPathByPattern(Vertex pattern, bool isShortest);
 	DijkstraWrapper* UniformCostSearchById(DijkstraWrapper* root, int id, string edgePropKey, vector<DijkstraWrapper*>* toValidate, vector<DijkstraWrapper*>* validated);
-	void SortVertexListByWeight(vector<DijkstraWrapper*>* toValidate, bool isShortest);
-
+	//void SortVertexListByWeight(vector<DijkstraWrapper*>* toValidate, bool isShortest);
+	void QuickSort(vector<DijkstraWrapper*>* toValidate, int min, int max, const short isShortest); //1=asc -1=desc
 };

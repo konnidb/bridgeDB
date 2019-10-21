@@ -13,9 +13,7 @@ SerializableNode::SerializableNode() {
 	this->objType = NODE;
 }
 
-SerializableNode::~SerializableNode() {
-	//delete this;
-}
+//SerializableNode::~SerializableNode() {}
 
 Serializable* Node::getSerializable(string path) {
 	SerializableNode* serializable = new SerializableNode();
@@ -103,6 +101,4 @@ bool Node::compareNodes(Node* node1, Node* node2) { //pending more accurate impl
 	return false;
 }
 
-Node::~Node() {
-	//delete this;
-}
+//Node::~Node() {}

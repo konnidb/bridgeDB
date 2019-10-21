@@ -15,8 +15,8 @@ Node* Manipulation::createNode(unordered_map<string, string> properties) {
 	Vertex* v = new Vertex();
 	Node* n = new Node();
 	n->properties = properties; //validate that doesn´t exists
-	//ASSIGN ID TO NODE
-	//ASSIGN ID TO VERTEX
+	n->id = this->graph->getNextNodeId();
+	v->id = this->graph->getNextVertexId();
 	v->node = n;
 	this->graph->vertexMap->insert({ n, v });
 	return n;
@@ -28,16 +28,14 @@ Node* Manipulation::createNode(string properties) {
 Edge* Manipulation::createEdge(Node* originNode, Node* targetNode, unordered_map<string, string> properties, bool isDigraph) {
 	if (originNode == NULL || targetNode == NULL)
 		return NULL;
-	Edge* e = new Edge(NULL, properties, originNode, targetNode); //assign ids
-	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) 
-	{
-		if (it->first == originNode)
-			this->graph->vertexMap->at(it->first)->edgesVector.push_back(e);
-		//break? it shouldn´t contains more than one vertex with the same node
-	}
+	long id = this->graph->getNextEdgeId();
+	Edge* e = new Edge(id, properties, originNode, targetNode); 
 	this->graph->vertexMap->at(originNode)->edgesVector.push_back(e);
-	if(!isDigraph)
-		this->graph->vertexMap->at(targetNode)->edgesVector.push_back(e);
+	if (!isDigraph) {
+		long id2 = this->graph->getNextEdgeId();
+		Edge* e2 = new Edge(id2, properties, targetNode, originNode);
+		this->graph->vertexMap->at(targetNode)->edgesVector.push_back(e2);
+	}
 	return e;
 }
 
@@ -303,12 +301,13 @@ vector<Vertex*> Manipulation::getPathByProp(long rootNode, long tgtNode, string 
 //vector<Vertex*> Manipulation::getPathByProp(Node* rootNode, Node* tgtNode, string propKey, bool isShortest) {}
 
 
-Vertex* Manipulation::getPathByPattern(long rootNode, long tgtNode, Vertex pattern, bool isShortest) {
+Vertex* Manipulation::getPathByPattern(Vertex pattern, bool isShortest) {
 	return NULL;
 }
 
 DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int id, string edgePropKey, vector<DijkstraWrapper*>* toValidate, vector<DijkstraWrapper*>* validated)
 {
+	cout << endl << "ENTRA BUSQUEDA DIJSTRA!! root: " << root->node->id << endl;
 	DijkstraWrapper* aux = NULL;
 	if (toValidate == NULL)
 		toValidate = new vector<DijkstraWrapper*>();
@@ -325,27 +324,52 @@ DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int 
 
 		for (int i = 0; i < root->edgesVector.size(); i++)
 		{
-			double value = (root->weight == NULL ? 0 : root->weight) + stod(root->edgesVector[i]->properties[edgePropKey]);
-			DijkstraWrapper* tgtVertex = this->graph->vertexMap->at(root->node)->getDijkstraWrapper();
+			double edgeW = stod(root->edgesVector[i]->properties[edgePropKey]);
+			double value = (root->weight == NULL ? 0 : root->weight) + edgeW;
+			DijkstraWrapper* tgtVertex = this->graph->vertexMap->at(root->edgesVector[i]->targetNode)->getDijkstraWrapper();
+			bool validatedtgtVertex = false;
+			for (long i = 0; i < validated->size(); i++)
+			{
+				if (validated->at(i)->node->id == tgtVertex->node->id) {
+					validatedtgtVertex = true;
+					break;
+				}
+			}
+			if (validatedtgtVertex) continue;
 			if (tgtVertex->weight == NULL || tgtVertex->weight > value)
 			{
+				if (tgtVertex->node->id == 0)
+					cout << "HOLI";
+				if (tgtVertex->weight != NULL)
+					cout << endl << "TGT: " << tgtVertex->node->id << endl
+					<< "tgt parent: " << (tgtVertex->previousVertex != NULL? tgtVertex->previousVertex->node->id:NULL) << endl
+					<< "tgt prev weight: " << tgtVertex->weight << endl
+					<< "new value: " << value << endl
+					<< "root: " << root->node->id << endl
+					<< "root prev: " << ((root->previousVertex != NULL )? root->previousVertex->node->id : NULL)<< endl;
 				tgtVertex->previousVertex = root;
 				tgtVertex->weight = value;
 			}
 
-			bool validatedContainsRoot = false;
-			for (long i = 0; i < validated->size(); i++)
+			bool toValidatetgtVertex = false;
+			for (long i = 0; i < toValidate->size(); i++)
 			{
-				if (validated->at(i) == tgtVertex) {
-					validatedContainsRoot = true;
+				if (toValidate->at(i)->node->id == tgtVertex->node->id) {
+					toValidatetgtVertex = true;
 					break;
 				}
 			}
 
-			if (!validatedContainsRoot)
+			if (!toValidatetgtVertex)
 				toValidate->push_back(tgtVertex);
 		}
-		SortVertexListByWeight(toValidate, true);
+		cout << endl << "VALIDATED CONTENT: " << endl;
+		for (long i = 0; i < validated->size(); i++) cout << "validated id: " << validated->at(i)->id << endl;
+		//cout << endl << "TO VALIDATE BEFORE SORT CONTENT: " << endl;
+		//for (long i = 0; i < toValidate->size(); i++) cout << "toVal bef id: " << toValidate->at(i)->id << endl;
+		QuickSort(toValidate, 0, toValidate->size()-1, 1);
+		cout << endl << "TO VALIDATE AFTER SORT CONTENT: " << endl;
+		for (long i = 0; i < toValidate->size(); i++) cout << "toVal af id: " << toValidate->at(i)->id << endl;
 	}
 	if (toValidate->size() > 0)
 	{
@@ -356,7 +380,54 @@ DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int 
 	return aux;
 }
 
-void Manipulation::SortVertexListByWeight(vector<DijkstraWrapper*>* toValidate, bool isShortest){}
+//void Manipulation::SortVertexListByWeight(vector<DijkstraWrapper*>* toValidate, bool isShortest){}
+
+void Manipulation::QuickSort(vector<DijkstraWrapper*>* toValidate, int min, int max, const short isShortest) //1=asc -1=desc
+{
+	int p = (max + min) / 2;
+	double pivot;
+	if (toValidate->at(p)->weight == NULL)
+		pivot = 0;
+	else
+		pivot = toValidate->at(p)->weight * isShortest;
+	int i = min - 1;
+	int j = max + 1;
+	do
+	{
+		double pivotMin = NULL;
+		double pivotMax = NULL;
+		do
+		{
+			i++;
+			if (toValidate->at(i)->weight == NULL)
+				pivotMin = 0;
+			else
+				pivotMin = toValidate->at(i)->weight * isShortest;
+		} while (pivot > pivotMin);
+		do
+		{
+			j--;
+			if (toValidate->at(j)->weight == NULL)
+				pivotMax = 0;
+			else
+				pivotMax = toValidate->at(j)->weight * isShortest;
+		} while (pivot < pivotMax);
+
+		if (i <= j)
+		{
+			DijkstraWrapper* aux = toValidate->at(i);
+			toValidate->at(i) = toValidate->at(j);
+			toValidate->at(j) = aux;
+			i++;
+			j--;
+		}
+
+	} while (i <= j);
+	if (min < j)
+		QuickSort(toValidate, min, j, isShortest);
+	if (max > i)
+		QuickSort(toValidate, i, max, isShortest);
+}
 
 
 

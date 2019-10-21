@@ -10,9 +10,7 @@ SerializableVertex::SerializableVertex() {
 	this->objType = VERTEX;
 }
 
-SerializableVertex::~SerializableVertex() {
-	//delete this;
-}
+//SerializableVertex::~SerializableVertex() {}
 
 Serializable* Vertex::getSerializable(string path) {
 	SerializableVertex* serializable = new SerializableVertex();
@@ -85,7 +83,7 @@ void SerializableVertex::store(ofstream* streamObj) {
 
 Vertex::Vertex(){}
 Vertex::~Vertex() {
-	//delete this;
+	this->node = NULL;
 }
 Vertex::Vertex(long id, Node * node) {
 	this->id = id;
@@ -126,5 +124,6 @@ DijkstraWrapper* Vertex::getDijkstraWrapper(){
 	DijkstraWrapper* dw = (DijkstraWrapper*)this;
 	dw->weight = NULL;
 	dw->previousVertex = NULL;
+	this->selfDW = dw;
 	return dw;
 }

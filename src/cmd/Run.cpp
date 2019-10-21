@@ -89,6 +89,7 @@ void generates_semi_random_graph(string dbname) {
 			{
 				Edge* e = new Edge();
 				e->id = edgeId++;
+				e->properties["t"] = to_string((rand() % 20) + 0);
 				e->originNode = it->first;
 				e->targetNode = nodeVec[j];
 				it->second->edgesVector.push_back(e);
@@ -116,11 +117,12 @@ string getSimpleNodesJson(string dbname){
 	Database db = Database::getDatabase(dbname);
 	string output= "";
 	for (unordered_map<Node*, Vertex*>::iterator it = db.graphVector->at(0)->vertexMap->begin(); it != db.graphVector->at(0)->vertexMap->end(); it++) {
+		string name = to_string(it->first->id);//it->first->properties["nombre"]
 		if (output.empty()) {
 			output = "[";
-			output += "{ \"name\": \"" + it->first->properties["nombre"] + "\" }";// , \"group\":  " + it->first->properties["group"] + " }";
+			output += "{ \"name\": \"" + name + "\" }";// , \"group\":  " + it->first->properties["group"] + " }";
 		}else
-			output += ",{ \"name\": \"" + it->first->properties["nombre"] + "\" }";// , \"group\": " + it->first->properties["group"] + " }";
+			output += ",{ \"name\": \"" + name + "\" }";// , \"group\": " + it->first->properties["group"] + " }";
 	}
 	if(!output.empty()) output += "]";
 	return output;
@@ -135,10 +137,10 @@ string getSimpleLinksJson(string dbname) {
 			Edge* e = it->second->edgesVector[i];
 			if (output.empty()) {
 				output = "[";
-				output += "{ \"source\": " + to_string(e->originNode->id) + ", \"target\": " + to_string(e->targetNode->id) + " }"; // , \"value\": " + e->properties["value"] + " }";
+				output += "{ \"source\": " + to_string(e->originNode->id) + ", \"target\": " + to_string(e->targetNode->id) + "  , \"value\": " + e->properties["t"] + " }";
 			}
 			else
-				output += ",{ \"source\": " + to_string(e->originNode->id) + ", \"target\": " + to_string(e->targetNode->id) + " }"; // , \"value\": " + e->properties["value"] + " }";
+				output += ",{ \"source\": " + to_string(e->originNode->id) + ", \"target\": " + to_string(e->targetNode->id) + " , \"value\": " + e->properties["t"] + " }";
 		}
 		
 
@@ -157,86 +159,31 @@ void createDatasetHtml() {
 }
 
 long main() {
-	/*string t = "test.txt";
-
-	char a = 'd';
-	string s = "holi";
-	cout << s + a + s << endl;
-	unordered_map<string, string> mapT;
-
-	mapT["h"] = "holis";
-	mapT["j"] = "holis";
-	mapT["k"] = "holis";
-	mapT["l"] = "holis";
-
-
-
-	
-	Node n1;
-	n1.id = 2222;
-	n1.properties["testeefwfwf"] = "holis";
-	n1.properties["edgarqdqwdqwd"] = "vazquez";
-	n1.properties["cristina"] = "mariscalsdcsdcs";
-
-	SerializableNode*  ser = dynamic_cast<SerializableNode*>(n1.getSerializable(t));
-	cout << "SER ID: " << ser->id << endl;
-	ser->store(NULL);
-
-	//*
-	SerializableNode  ser2;
-	ser2.path = t;
-	ser2.load(NULL);
-	cout << ser2.id << endl;
-	for (unordered_map<string, string>::iterator it = ser2.properties.begin(); it != ser2.properties.end(); it++) {
-		cout << "IT " << it->first.length() << endl;
-		cout << "val " << it->second.length() << endl;
-		for (long i = 0; i < it->first.length(); i++)
-		{
-			cout << it->first[i];
-		}
-		cout << endl;
-	}
-
-	//*/
-	/*
-	string p = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\node\\1.bdb";
-	ifstream* rf = new ifstream(p, ios::in | ios::binary);
-	cout << "SIZE OUT INT: " << sizeof(long long) << endl;
-	cout << "SIZE OUT bool: " << sizeof(bool) << endl;
-	cout << "SIZE OUT char *: " << sizeof(char *) << endl;
-	long j = 999999999999999;
-	char * ab = (char*)&j;
-	cout << "SIZE OUT long to char *: " << sizeof(ab) << endl;
-	for (long i = 0; i < sizeof(ab); i++)
-	{
-		cout << (long)ab[i]<<endl;
-	}
-	j = (long)*ab;
-	cout << "GET BACK FROM CAST: " << j<< endl;
-	rf->read(ab, sizeof(ab));
-	cout <<endl<< "AFTER READ! " << endl;
-	for (long i = 0; i < sizeof(ab); i++)
-	{
-		cout <<(long) ab[i]<<endl;
-	}
-	j = (long long)*ab;
-	cout << "NEW J: " << j << endl;
-	char o = '1';
-	while(o=='1') {
-		bool size;
-		rf->read((char *)&size, sizeof(size));
-		cout << size << endl;
-		cin >> o;
-	}
-	rf->close();
-	//*/
 	//generates_semi_random_graph("test");
+	//*
 	load_graph_test("test");
-	//createDatasetHtml();
+	createDatasetHtml();
 	Database db = Database::getDatabase("test");
 	Manipulation* m = new Manipulation(db.graphVector->at(0));
-	m->deleteNode(15);
+	/*m->deleteNode(4);
 	createDatasetHtml();
+	m->createEdge(3, 0, "", true);
+	createDatasetHtml();
+	Node* n = m->getNodeById(0);
+	Node* nw = m->createNode(n->properties);
+	createDatasetHtml();
+	Edge* e1 = m->createEdge(nw, n, "", false);
+	createDatasetHtml();*/
+	Node* n = m->getNodeById(0);
+	DijkstraWrapper* dg = db.graphVector->at(0)->vertexMap->at(n)->getDijkstraWrapper();
+	DijkstraWrapper* r = m->UniformCostSearchById(dg, 2, "t", NULL, NULL);
+	DijkstraWrapper* curr = r;
+	cout << endl << "RESULT!!" << endl << endl;
+	while (curr->previousVertex!=NULL) {
+		cout << "current: " << curr->node->id << endl;
+		curr = curr->previousVertex;
+	}
+	//*/
 	cout << "SALE" << endl;
 	system("pause");
 }

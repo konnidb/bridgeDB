@@ -88,7 +88,7 @@
     edgelabels.append('textPath')
         .attr('xlink:href',function(d,i) {return '#edgepath'+i})
         .style("pointer-events", "none")
-        .text(function(d,i){return 'label '+i});
+        .text(function(d,i){return ''+d.value});
 
 
     svg.append('defs').append('marker')
