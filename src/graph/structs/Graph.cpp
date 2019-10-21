@@ -4,6 +4,7 @@
 #include"Schema.h"
 #include"Graph.h"
 #include <vector>
+#include <ios>
 #include"../../storage/IndexHandler.cpp"
 #include"../../admin/ConfigFile.cpp"
 #include"../../utils/Enums.h"

@@ -30,6 +30,8 @@ using network::Session;
 using network::SessionRequest;
 using network::SpanTreeReq;
 using network::SpanTreeResponse;
+using network::CreateRelationReq;
+using network::CreateRelationResponse;
 
 class ServiceImplementation final : public QueryService::Service
 {
@@ -63,4 +65,8 @@ public:
         ServerContext *ctx,
         const SpanTreeReq *req,
         SpanTreeResponse *response) override;
+    Status CreateRelation(
+        ServerContext* ctx,
+        const CreateRelationReq* req,
+        CreateRelationResponse* response) override;
 };

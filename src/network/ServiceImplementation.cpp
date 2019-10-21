@@ -5,6 +5,7 @@
 #include "auth/AuthService.hpp"
 #include <grpc++/grpc++.h>
 #include "ServiceImplementation.hpp"
+#include "src/graph/structs/Edge.h"
 #include "graph/GraphToGrpc.h"
 #include "src/graph/structs/Node.h"
 using grpc::Server;
@@ -35,6 +36,8 @@ using network::Session;
 using network::SessionRequest;
 using network::SpanTreeReq;
 using network::SpanTreeResponse;
+using network::CreateRelationReq;
+using network::CreateRelationResponse;
 
 Status ServiceImplementation::CreateSession(
     ServerContext *context,
@@ -107,5 +110,19 @@ Status ServiceImplementation::SpanTree(
     SpanTreeResponse *response)
 {
 
+    return Status::OK;
+}
+
+Status ServiceImplementation::CreateRelation(
+    ServerContext *ctx,
+    const CreateRelationReq *req,
+    CreateRelationResponse *response
+) {
+    auto source = req->source();
+    auto destination = req->destination();
+    auto attrs = req->rel_attrs();
+    Edge* edge = new Edge();
+    edge->properties["prop"] = "Shida";
+    GraphToGrpc::parse_edge(edge, response->mutable_edge());
     return Status::OK;
 }

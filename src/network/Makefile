@@ -21,7 +21,7 @@ client: network.pb.o network.grpc.pb.o client.o auth/AuthService.o
 	$(CXX) $^ $(LDFLAGS) -o build/$@.out
 
 server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o ServiceImplementation.o graph/GraphToGrpc.o
-	$(CXX) $^ $(LDFLAGS) -o build/$@.out ../graph/structs.o ../graph/Node.o ../graph/utils.o ../graph/Serializable.o ../graph/Database.o
+	$(CXX) $^ $(LDFLAGS) -o build/$@.out ../graph/structs.o ../graph/Node.o ../graph/Edge.o ../graph/utils.o ../graph/Serializable.o ../graph/Database.o
 	#$(UTILS_OBJS) $(ADMIN_OBJS)
 
 %.grpc.pb.cc: %.proto

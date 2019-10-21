@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
-//#include<unordered_map>
+#include<unordered_map>
+#include<string>
 #include"Node.h"
 #include"Schema.h"
 #include"../utils/Serializable.h"
@@ -21,6 +22,7 @@ public:
 class Edge : public Element {
 public:
 	Schema * schema;
+	string label;
 	long id;
 	unordered_map<string, string> properties;
 	Node * originNode;

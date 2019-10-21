@@ -4,7 +4,7 @@ CXXFLAGS += -I ../../
 CXXFLAGS += -std=c++17
 FILES = $(wildcard *.cpp)
 all: Enums.o
-	$(CXX) $^ -o utils.o
+	$(CXX) -c $(FILES)
 
 *.o:
 	$(CXX) $(CXXFLAGS) -c %.cpp

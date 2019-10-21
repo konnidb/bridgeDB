@@ -22,13 +22,13 @@ message NetworkNode{
     int64 id = 1;
     map<string, string> fields = 2;    
     repeated NetworkEdge connections = 3;
-    string token = 4;
 }
 
 message NetworkEdge {
     string label = 1;
     map<string, string> fields = 2;
-    string token = 3;
+    NetworkNode origin = 3;
+    NetworkNode destination = 4;
 }
 
 message CreateNodeReq {
@@ -43,9 +43,8 @@ message CreateNodeResponse {
 }
 
 message CreateEdgeReq {
-    string label = 1;
-    map<string, string> fields = 2;
-    string token = 3;
+    NetworkEdge edge = 1;
+    string token = 2;
 }
 
 message CreateEdgeResponse {
@@ -56,14 +55,12 @@ message CreateEdgeResponse {
 message CreateRelationReq {
     NetworkNode source = 1;
     NetworkNode destination = 2;
-    NetworkEdge edgeData = 3;
+    map<string, string> rel_attrs =3;
     string token = 4;
 }
 
-message CraeteRelationResponse {
-    NetworkNode source = 1;
-    NetworkNode destination = 2;
-    NetworkEdge edge = 3;
+message CreateRelationResponse {
+    NetworkEdge edge = 1;
     string token = 4;
 }
 
@@ -175,7 +172,7 @@ service QueryService {
     rpc ExecuteQuery (Query) returns (QueryResponse) {};
     rpc CreateNode (CreateNodeReq) returns (CreateNodeResponse) {};
     rpc DeleteNode (DeleteNodeReq) returns (DeleteNodeResponse) {};
-    rpc CreateRelation (CreateRelationReq) returns (CraeteRelationResponse) {};
+    rpc CreateRelation (CreateRelationReq) returns (CreateRelationResponse) {};
     rpc CreateEdge (CreateEdgeReq) returns (CreateEdgeResponse) {};
     rpc DeleteEdge (DeleteEdgeReq) returns (DeleteEdgeResponse) {};
     rpc SearchNode (SearchNodeReq) returns (SearchNodeResponse) {};

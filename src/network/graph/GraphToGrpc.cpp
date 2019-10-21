@@ -33,6 +33,18 @@ NetworkNode GraphToGrpc::parse_node(Node* node, NetworkNode* n) {
     return *n;
 };
 
+NetworkEdge GraphToGrpc::parse_edge(Edge* edge, NetworkEdge* e) {
+    auto fields = e->mutable_fields();
+    auto props = edge->properties;
+    e->set_label(edge->label);
+    for_each(props.begin(), props.end(), [fields](pair<string, string> element) {
+        auto key = element.first;
+        auto value = element.second;
+        (*fields)[key] = value;
+    });
+    return *e;
+}
+
 vector<NetworkNode*> GraphToGrpc::parse_node_vector(vector<Node*> nodes) {
 
 };
