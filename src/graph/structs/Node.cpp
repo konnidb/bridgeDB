@@ -100,5 +100,9 @@ bool Node::compareNodes(Node* node1, Node* node2) { //pending more accurate impl
 	}
 	return false;
 }
-
+bool Node::isEmpty() {
+	if (this->properties.size() <= 0)
+		return true;
+	return false;
+}
 //Node::~Node() {}

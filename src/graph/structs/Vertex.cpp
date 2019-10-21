@@ -127,3 +127,15 @@ DijkstraWrapper* Vertex::getDijkstraWrapper(){
 	this->selfDW = dw;
 	return dw;
 }
+
+bool Vertex::isEmpty() {
+	bool isEmpty = false;
+	if (this->node!=NULL?this->node->isEmpty():false)
+		isEmpty = true;
+	for (long i = 0; i < this->edgesVector.size(); i++)
+	{
+		if (this->edgesVector[i] != NULL ? this->edgesVector[i]->isEmpty() : false)
+			isEmpty = true;
+	}
+	return isEmpty;
+}

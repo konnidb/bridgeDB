@@ -270,7 +270,7 @@ Vertex* Manipulation::getVertexById(long vertex) {
 //Vertex* Manipulation::getVertexByCondition(vector<Comparison> comp) {}
 
 Vertex* Manipulation::getVertex(Vertex vertex) {
-	if (vertex.node == NULL && vertex.edgesVector.size() <= 0 && vertex.id == NULL)
+	if (vertex.node == NULL && vertex.edgesVector.size() <= 0)
 		return NULL;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (it->second->compare(&vertex))
@@ -283,7 +283,7 @@ Vertex* Manipulation::getVertex(Vertex vertex) {
 
 vector<Vertex*> Manipulation::getVertexes(Vertex vertex) {
 	vector<Vertex*> vertexVector;
-	if (vertex.node == NULL && vertex.edgesVector.size() <= 0 && vertex.id == NULL)
+	if (vertex.node == NULL && vertex.edgesVector.size() <= 0)
 		return vertexVector;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
 		if (it->second->compare(&vertex))
@@ -301,7 +301,39 @@ vector<Vertex*> Manipulation::getPathByProp(long rootNode, long tgtNode, string 
 //vector<Vertex*> Manipulation::getPathByProp(Node* rootNode, Node* tgtNode, string propKey, bool isShortest) {}
 
 
-Vertex* Manipulation::getPathByPattern(Vertex pattern, bool isShortest) {
+vector<Vertex*>* Manipulation::getPathByPattern(vector<Vertex*> pattern) {
+	vector<Vertex*>* result = new vector<Vertex*>();
+	for (long i = 0; i < pattern.size(); i++){
+		if (pattern[i]->isEmpty())
+			return NULL;
+		Vertex* matchingVertex = NULL;
+		for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++) {
+			if (!pattern[i]->node->isEmpty() && Node::compareNodes(it->first, pattern[i]->node))
+				matchingVertex = it->second;
+			else
+				continue;
+			for (long j = 0; j < pattern[i]->edgesVector.size(); j++){
+				if (!pattern[i]->edgesVector[j]->isEmpty()) {
+					bool matchesEdge = false;
+					for (long k = 0; k < it->second->edgesVector.size(); k++) {
+						if (Edge::compareEdges(it->second->edgesVector[k], pattern[i]->edgesVector[j])) {
+							matchesEdge = true;
+							break;
+						}
+					}
+					if (!matchesEdge) {
+						matchingVertex = NULL;
+						break;
+					}
+				}
+			}
+		}
+		if (matchingVertex == NULL)
+			return NULL;
+		result->push_back(matchingVertex);
+	}
+	if (result->size() > 0)
+		return result;
 	return NULL;
 }
 
@@ -338,15 +370,13 @@ DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int 
 			if (validatedtgtVertex) continue;
 			if (tgtVertex->weight == NULL || tgtVertex->weight > value)
 			{
-				if (tgtVertex->node->id == 0)
-					cout << "HOLI";
-				if (tgtVertex->weight != NULL)
+				/*if (tgtVertex->weight != NULL)
 					cout << endl << "TGT: " << tgtVertex->node->id << endl
 					<< "tgt parent: " << (tgtVertex->previousVertex != NULL? tgtVertex->previousVertex->node->id:NULL) << endl
 					<< "tgt prev weight: " << tgtVertex->weight << endl
 					<< "new value: " << value << endl
 					<< "root: " << root->node->id << endl
-					<< "root prev: " << ((root->previousVertex != NULL )? root->previousVertex->node->id : NULL)<< endl;
+					<< "root prev: " << ((root->previousVertex != NULL )? root->previousVertex->node->id : NULL)<< endl;*/
 				tgtVertex->previousVertex = root;
 				tgtVertex->weight = value;
 			}
@@ -363,13 +393,7 @@ DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int 
 			if (!toValidatetgtVertex)
 				toValidate->push_back(tgtVertex);
 		}
-		cout << endl << "VALIDATED CONTENT: " << endl;
-		for (long i = 0; i < validated->size(); i++) cout << "validated id: " << validated->at(i)->id << endl;
-		//cout << endl << "TO VALIDATE BEFORE SORT CONTENT: " << endl;
-		//for (long i = 0; i < toValidate->size(); i++) cout << "toVal bef id: " << toValidate->at(i)->id << endl;
 		QuickSort(toValidate, 0, toValidate->size()-1, 1);
-		cout << endl << "TO VALIDATE AFTER SORT CONTENT: " << endl;
-		for (long i = 0; i < toValidate->size(); i++) cout << "toVal af id: " << toValidate->at(i)->id << endl;
 	}
 	if (toValidate->size() > 0)
 	{

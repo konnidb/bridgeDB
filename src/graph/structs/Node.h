@@ -27,4 +27,5 @@ public:
 	Node(long id);
 	Node(SerializableNode serializable);
 	static bool compareNodes(Node* node1, Node* node2);
+	bool isEmpty();
 };

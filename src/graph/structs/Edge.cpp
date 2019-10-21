@@ -7,6 +7,7 @@ using namespace std;
 string serializeMap(unordered_map<string, string> properties);
 unordered_map<string, string> deserializeMap(string properties);
 long char_ptr_to_int(char* c);
+bool map_contains_values(unordered_map<string, string> properties, unordered_map<string, string> toMatch);
 
 SerializableEdge::SerializableEdge() {
 	this->objType = EDGE;
@@ -103,12 +104,21 @@ Edge::Edge(SerializableEdge serializable) {
 }
 
 bool Edge::compareEdges(Edge* edge1, Edge* edge2) { //pending more accurate implementation
-	if (edge1->id == edge2->id) {
+	if (edge1->id == edge2->id)
 		return true;
-	}
+	if (map_contains_values(edge1->properties, edge2->properties))
+		return true;
 	return false;
 }
 
 Edge::Edge(long id) {
 	this->id = id;
+}
+
+bool Edge::isEmpty() {
+	if (this->properties.size() <= 0 && 
+		(this->originNode == NULL ? true : this->originNode->isEmpty()) &&
+		(this->targetNode == NULL ? true : this->targetNode->isEmpty()))
+		return true;
+	return false;
 }

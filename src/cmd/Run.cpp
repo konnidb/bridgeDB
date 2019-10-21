@@ -184,6 +184,9 @@ long main() {
 		curr = curr->previousVertex;
 	}
 	//*/
+	vector<Vertex*> pattern;
+	pattern.push_back(db.graphVector->at(0)->vertexMap->at(n));
+	vector<Vertex*>* resVec = m->getPathByPattern(pattern);
 	cout << "SALE" << endl;
 	system("pause");
 }
