@@ -8,7 +8,8 @@
 #include"../../storage/IndexHandler.cpp"
 #include"../../admin/ConfigFile.cpp"
 #include"../../utils/Enums.h"
-#include<streambuf>
+#include <bits/stdc++.h>
+#include <streambuf>
 using namespace std;
 
 long char_ptr_to_int(char* c);
