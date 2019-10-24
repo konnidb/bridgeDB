@@ -8,6 +8,7 @@
 //#include"..\graph\structs\Vertex.h"
 #include"..\graph\structs\Database.h"
 #include"..\utils\Enums.h"
+#include"..\graph\operations\Manipulation.h"
 
 using namespace std;
 
@@ -24,9 +25,8 @@ string gen_random(const long len) {
 	return s;
 }
 
-void generates_semi_random_graph() {
+void generates_semi_random_graph(string dbname) {
 	long id = 1;
-	string dbname = "test";
 	Database db = Database::getDatabase(dbname);
 	/*
 	db.cfg->configFileMap[ConfigFileAttrbute::databaseName] = dbname;
@@ -43,9 +43,8 @@ void generates_semi_random_graph() {
 	//*/
 	db.cfg->loadConfigFile();
 	cout << "CONFIG EDGE DIR: " << db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] << endl;
-	//*
 	Graph g(db.name);
-	db.graphVector.push_back(&g);
+	db.graphVector->push_back(&g);
 	g.name = "testGraph";
 	g.id = id++;
 	Schema* s1 = new Schema();
@@ -60,141 +59,134 @@ void generates_semi_random_graph() {
 	properties["pw"] = to_string(DataType::STR);
 	s1->properties = properties;
 	//g.schemaVector.push_back(s1);
+	vector<Node*> nodeVec;
 
-	for (long i = 0; i < 138; i++)
+	int nodeId = 0;
+	int edgeId = 0;
+	int vertexId = 0;
+	for (long i = 0; i < 16; i++)
 	{
 		Node* n = new Node();
-		n->id = id++;
+		n->id = nodeId++;
 		for (unordered_map<string, string>::iterator it = properties.begin(); it != properties.end(); it++)
 		{
-			if (it->second==to_string(DataType::NUM))
+			if (it->second == to_string(DataType::NUM))
 				n->properties[it->first] = to_string((rand() % 1000000000) + 1000000000);
 			else
 				n->properties[it->first] = gen_random(10);
 		}
 		n->schema = s1;
 		Vertex* v = new Vertex();
-		v->id = id++;
+		v->id = vertexId++;
 		v->node = n;
-		g.vertexMap[n]=v;
+		nodeVec.push_back(n);
+		g.vertexMap->insert({ n, v });
 	}
-
-	long size = (long)g.vertexMap.size();
-	unordered_map<Node*, Vertex*>::iterator* i1 = NULL;
-	unordered_map<Node*, Vertex*>::iterator* i2 = NULL;
-	/*for (unordered_map<Node*, Vertex*>::iterator it = g.vertexMap.begin(); it != g.vertexMap.end(); it++) {
-	{
-		for (long j = 0; j < 3 && i1!=NULL && i2 != NULL; j++)
+	int count = 0;
+	for (unordered_map<Node*, Vertex*>::iterator it = g.vertexMap->begin(); it != g.vertexMap->end(); it++) {
 		{
-			Edge* e = new Edge();
-			e->id = id++;
-			e->originNode = it->first;
-			e->targetNode = g.vertexVector[i + j]->node;
-			g.vertexVector[i]->edgesVector.push_back(e);
+			for (long j = count; j < count+3 && j < nodeVec.size(); j++)
+			{
+				Edge* e = new Edge();
+				e->id = edgeId++;
+				e->properties["t"] = to_string((rand() % 20) + 0);
+				e->originNode = it->first;
+				e->targetNode = nodeVec[j];
+				it->second->edgesVector.push_back(e);
+			}
+			count++;
 		}
-		if (i1 == NULL && i2 == NULL)
-			i1 = &it;
-		if (i1 != NULL && i2 == NULL)
-			i2 = &it;
-		if()
-	}*/
-
-	cout << "holi" << endl;
-
-	g.storeVertexMap();
-	//*/
+	}
+		cout << "holi" << endl;
+		g.storeVertexMap();
 }
 
-void load_graph_test() {
-	string dbname = "test";
+void load_graph_test(string dbname) {
 	Database db = Database::getDatabase(dbname);
 	if(db.cfg->configFileMap.size()==0)
 		db.cfg->loadConfigFile();
 	cout << "CONFIG EDGE DIR: " << db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] << endl;
 	Graph* g = new Graph(db.name);
-	db.graphVector.push_back(g);
+	db.graphVector->push_back(g);
 	vector<Node*> nv = g->loadNodeVector();
 	vector<Edge*> ev = g->loadEdgeVector(nv);
 	g->loadVertexMap(nv, ev);
 }
 
+string getSimpleNodesJson(string dbname){
+	Database db = Database::getDatabase(dbname);
+	string output= "";
+	for (unordered_map<Node*, Vertex*>::iterator it = db.graphVector->at(0)->vertexMap->begin(); it != db.graphVector->at(0)->vertexMap->end(); it++) {
+		string name = to_string(it->first->id);//it->first->properties["nombre"]
+		if (output.empty()) {
+			output = "[";
+			output += "{ \"name\": \"" + name + "\" }";// , \"group\":  " + it->first->properties["group"] + " }";
+		}else
+			output += ",{ \"name\": \"" + name + "\" }";// , \"group\": " + it->first->properties["group"] + " }";
+	}
+	if(!output.empty()) output += "]";
+	return output;
+}
+
+string getSimpleLinksJson(string dbname) {
+	Database db = Database::getDatabase(dbname);
+	string output = "";
+	for (unordered_map<Node*, Vertex*>::iterator it = db.graphVector->at(0)->vertexMap->begin(); it != db.graphVector->at(0)->vertexMap->end(); it++) {
+		for (int i = 0; i < it->second->edgesVector.size(); i++)
+		{
+			Edge* e = it->second->edgesVector[i];
+			if (output.empty()) {
+				output = "[";
+				output += "{ \"source\": " + to_string(e->originNode->id) + ", \"target\": " + to_string(e->targetNode->id) + "  , \"value\": " + e->properties["t"] + " }";
+			}
+			else
+				output += ",{ \"source\": " + to_string(e->originNode->id) + ", \"target\": " + to_string(e->targetNode->id) + " , \"value\": " + e->properties["t"] + " }";
+		}
+		
+
+	}
+	if (!output.empty()) output += "]";
+	return output;
+}
+
+void createDatasetHtml() {
+	string nodejson = getSimpleNodesJson("test");
+	string linkjson = getSimpleLinksJson("test");
+	string dataset = "var dataset = { nodes: " + nodejson + " , edges: " + linkjson + "};";
+	ofstream out("C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\bridgeDB\\html_test\\dataset.js");
+	out << dataset;
+	out.close();
+}
 
 long main() {
-	/*string t = "test.txt";
-
-	char a = 'd';
-	string s = "holi";
-	cout << s + a + s << endl;
-	unordered_map<string, string> mapT;
-
-	mapT["h"] = "holis";
-	mapT["j"] = "holis";
-	mapT["k"] = "holis";
-	mapT["l"] = "holis";
-
-
-
-	
-	Node n1;
-	n1.id = 2222;
-	n1.properties["testeefwfwf"] = "holis";
-	n1.properties["edgarqdqwdqwd"] = "vazquez";
-	n1.properties["cristina"] = "mariscalsdcsdcs";
-
-	SerializableNode*  ser = dynamic_cast<SerializableNode*>(n1.getSerializable(t));
-	cout << "SER ID: " << ser->id << endl;
-	ser->store(NULL);
-
+	//generates_semi_random_graph("test");
 	//*
-	SerializableNode  ser2;
-	ser2.path = t;
-	ser2.load(NULL);
-	cout << ser2.id << endl;
-	for (unordered_map<string, string>::iterator it = ser2.properties.begin(); it != ser2.properties.end(); it++) {
-		cout << "IT " << it->first.length() << endl;
-		cout << "val " << it->second.length() << endl;
-		for (long i = 0; i < it->first.length(); i++)
-		{
-			cout << it->first[i];
-		}
-		cout << endl;
+	load_graph_test("test");
+	createDatasetHtml();
+	Database db = Database::getDatabase("test");
+	Manipulation* m = new Manipulation(db.graphVector->at(0));
+	/*m->deleteNode(4);
+	createDatasetHtml();
+	m->createEdge(3, 0, "", true);
+	createDatasetHtml();
+	Node* n = m->getNodeById(0);
+	Node* nw = m->createNode(n->properties);
+	createDatasetHtml();
+	Edge* e1 = m->createEdge(nw, n, "", false);
+	createDatasetHtml();*/
+	Node* n = m->getNodeById(0);
+	DijkstraWrapper* dg = db.graphVector->at(0)->vertexMap->at(n)->getDijkstraWrapper();
+	DijkstraWrapper* r = m->UniformCostSearchById(dg, 2, "t", NULL, NULL);
+	DijkstraWrapper* curr = r;
+	cout << endl << "RESULT!!" << endl << endl;
+	while (curr->previousVertex!=NULL) {
+		cout << "current: " << curr->node->id << endl;
+		curr = curr->previousVertex;
 	}
-
 	//*/
-	/*
-	string p = "C:\\Users\\L440\\Documents\\BRIDGEDB\\bridgeDB\\dataTests\\node\\1.bdb";
-	ifstream* rf = new ifstream(p, ios::in | ios::binary);
-	cout << "SIZE OUT INT: " << sizeof(long long) << endl;
-	cout << "SIZE OUT bool: " << sizeof(bool) << endl;
-	cout << "SIZE OUT char *: " << sizeof(char *) << endl;
-	long j = 999999999999999;
-	char * ab = (char*)&j;
-	cout << "SIZE OUT long to char *: " << sizeof(ab) << endl;
-	for (long i = 0; i < sizeof(ab); i++)
-	{
-		cout << (long)ab[i]<<endl;
-	}
-	j = (long)*ab;
-	cout << "GET BACK FROM CAST: " << j<< endl;
-	rf->read(ab, sizeof(ab));
-	cout <<endl<< "AFTER READ! " << endl;
-	for (long i = 0; i < sizeof(ab); i++)
-	{
-		cout <<(long) ab[i]<<endl;
-	}
-	j = (long long)*ab;
-	cout << "NEW J: " << j << endl;
-	char o = '1';
-	while(o=='1') {
-		bool size;
-		rf->read((char *)&size, sizeof(size));
-		cout << size << endl;
-		cin >> o;
-	}
-	rf->close();
-	//*/
-	//generates_semi_random_graph();
-	//load_graph_test();
+	vector<Vertex*> pattern;
+	pattern.push_back(db.graphVector->at(0)->vertexMap->at(n));
+	vector<Vertex*>* resVec = m->getPathByPattern(pattern);
 	cout << "SALE" << endl;
 	system("pause");
 }

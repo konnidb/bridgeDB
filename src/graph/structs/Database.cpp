@@ -8,6 +8,8 @@ unordered_map<string, Database> Database::instances;
 Database::Database(string name) {
 	this->name = name;
 	this->cfg = new ConfigFileHandler(name);
+	graphVector = new vector<Graph*>();
+	schemaVector = new vector<Schema*>();
 	//this->cfg(this->name);
 }
 

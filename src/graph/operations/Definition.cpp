@@ -20,12 +20,12 @@ Graph* Definition::createGraph(string graphName, string databaseName){
 	Database db = Database::getDatabase(databaseName);
 	db.cfg->loadConfigFile();
 	Graph* g = new Graph(graphName);
-	db.graphVector.push_back(g);
+	db.graphVector->push_back(g);
 	return g;
 }
 Graph* Definition::createGraph(string name) {
 	Graph* g = new Graph(name);
-	this->database.graphVector.push_back(g);
+	this->database.graphVector->push_back(g);
 	return g;
 }
 Schema* Definition::createSchema(string schemaName, string databaseName) {
@@ -45,14 +45,14 @@ void Definition::loadGraph(string graphName, string databaseName){
 	Database db = Database::getDatabase(databaseName);
 	db.cfg->loadConfigFile();
 	Graph* g = NULL;
-	for (long i = 0; i < db.graphVector.size(); i++)
+	for (long i = 0; i < (*db.graphVector).size(); i++)
 	{
-		if (db.graphVector[i]->name == graphName)
-			g = db.graphVector[i];
+		if (db.graphVector->at(i)->name == graphName)
+			g = db.graphVector->at(i);
 	}
 	if (g == NULL) {
 		g = new Graph(graphName);
-		db.graphVector.push_back(g);
+		(*db.graphVector).push_back(g);
 	}
 	vector<Node*> nv = g->loadNodeVector();
 	vector<Edge*> ev = g->loadEdgeVector(nv);
@@ -61,14 +61,14 @@ void Definition::loadGraph(string graphName, string databaseName){
 
 void Definition::loadGraph(string name) {
 	Graph* g = NULL;
-	for (long i = 0; i < this->database.graphVector.size(); i++)
+	for (long i = 0; i < (*this->database.graphVector).size(); i++)
 	{
-		if (this->database.graphVector[i]->name == name)
-			g = this->database.graphVector[i];
+		if (this->database.graphVector->at(i)->name == name)
+			g = this->database.graphVector->at(i);
 	}
 	if (g == NULL) {
 		g = new Graph(name);
-		this->database.graphVector.push_back(g);
+		(*this->database.graphVector).push_back(g);
 	}
 	vector<Node*> nv = g->loadNodeVector();
 	vector<Edge*> ev = g->loadEdgeVector(nv);

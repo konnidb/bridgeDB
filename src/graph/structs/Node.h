@@ -4,12 +4,12 @@
 #include"../utils/Serializable.h"
 #include"Schema.h"
 using namespace std;
-
+//class Edge;
 class SerializableNode : public Serializable {
 public:
 	long schemaId;
 	SerializableNode();
-	~SerializableNode();
+	//~SerializableNode();
 	void load(ifstream* streamObj);
 	void store(ofstream* streamObj);
 };
@@ -20,10 +20,12 @@ public:
 	long id;
 	unordered_map<string, string> properties;
 	Serializable* getSerializable(string path);
+	//vector<Edge*> test;
 	Node();
-	~Node();
+	//~Node();
 	Node(long id, unordered_map<string, string> properties);
 	Node(long id);
 	Node(SerializableNode serializable);
 	static bool compareNodes(Node* node1, Node* node2);
+	bool isEmpty();
 };

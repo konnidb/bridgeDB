@@ -14,7 +14,7 @@ public:
 	long originNode;
 	long targetNode;
 	SerializableEdge();
-	~SerializableEdge();
+	//~SerializableEdge();
 	void load(ifstream* streamObj);
 	void store(ofstream* streamObj);
 };
@@ -35,4 +35,5 @@ public:
 	Edge(long id, unordered_map<string, string> properties, Node * originNode, Node * targetNode);
 	Edge(SerializableEdge serializable);
 	static bool compareEdges(Edge* edge1, Edge* edge2);
+	bool isEmpty();
 };

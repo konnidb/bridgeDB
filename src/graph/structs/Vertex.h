@@ -13,7 +13,7 @@ public:
 	vector<int> edgesIdVector;
 	long node;
 	SerializableVertex();
-	~SerializableVertex();
+	//~SerializableVertex();
 	void load(ifstream* streamObj);
 	void store(ofstream* streamObj);
 };
@@ -29,6 +29,7 @@ public:
 	Vertex(long id, Node * node);
 	bool compare(Vertex* vertex);
 	DijkstraWrapper* getDijkstraWrapper();
+	bool isEmpty();
 private:
 	DijkstraWrapper* selfDW;
 };

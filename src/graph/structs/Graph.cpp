@@ -47,6 +47,7 @@ void closeStreamsOnMap(unordered_map<string, ofstream*> pageFiles) {
 
 Graph::Graph(string databaseName) {
 	this->databaseName = databaseName;
+	vertexMap = new unordered_map<Node*, Vertex*>();
 }
 
 void Graph::storeVertexMap() {
@@ -65,7 +66,7 @@ void Graph::storeVertexMap() {
 		pagePath = vertexDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
 			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::binary); //new ofstream(pagePath, ios::out | ios::app | ios::binary);
-			long size = this->vertexMap.size();
+			long size = this->vertexMap->size();
 			char* sizec = (char*)& size;
 			unsigned char* c = (unsigned char*)sizec;
 			pageFiles[pagePath]->write((char*)& size, sizeof(long));
@@ -74,7 +75,7 @@ void Graph::storeVertexMap() {
 	//IF NOT EXISTS, CREATE NEW
 	vector<Node*> nodesVector;
 	vector<Edge*> edgesVector;
-	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap.begin(); it != this->vertexMap.end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
 		index.indexMap[to_string(it->second->id)] = pageId;
 		SerializableVertex* s = dynamic_cast<SerializableVertex*>(it->second->getSerializable(pagePath));
 		s->store(pageFiles[pagePath]); 
@@ -227,7 +228,7 @@ void Graph::loadVertexMap(vector<Node*> nodeVector, vector<Edge*> edgeVector) {
 				else
 					cout << "FAIL: EDGE NOT FOUND, ID: " << s.edgesIdVector[i] << endl;
 			}
-			this->vertexMap[n] = v;
+			this->vertexMap->insert({ n, v });
 		}
 		rf->close();
 		if (!rf->good()) cout << "FAIL CLOSING FILE: " << pageIds[i] << endl;
@@ -270,22 +271,25 @@ vector<Edge*> Graph::loadEdgeVector(vector<Node*> nodeVector) {
 			else
 				edge = result;
 			if (edge->originNode == NULL) {
-				//Node* originNode = vectorFindById<Node>(nodeVector, new Node(serializable.originNode));
-				Node* originNode = vectorFindByFn<Node>(nodeVector, new Node(serializable.originNode), Node::compareNodes);
+				Node* originNode = vectorFindById<Node>(nodeVector, new Node(serializable.originNode));
+				//Node* originNode = vectorFindByFn<Node>(nodeVector, new Node(serializable.originNode), Node::compareNodes);
 				if (originNode == NULL)
-					cout << "ERROR! NODO ORIGEN NO ENCONTRADO!" << endl;
+					cout << "ERROR! NODO ORIGEN NO ENCONTRADO! ID: "<< serializable.originNode << endl;
 				else
 					edge->originNode = originNode;
 			}
 
 			if (edge->targetNode == NULL) {
-				//Node* targetNode = vectorFindById<Node>(nodeVector, new Node(serializable.targetNode));
-				Node* targetNode = vectorFindByFn<Node>(nodeVector, new Node(serializable.targetNode), Node::compareNodes);
+				Node* targetNode = vectorFindById<Node>(nodeVector, new Node(serializable.targetNode));
+				//Node* targetNode = vectorFindByFn<Node>(nodeVector, new Node(serializable.targetNode), Node::compareNodes);
 				if (targetNode == NULL)
-					cout << "ERROR! NODO ORIGEN NO ENCONTRADO!" << endl;
+					cout << "ERROR! NODO ORIGEN NO ENCONTRADO! ID: " << serializable.targetNode << endl;
 				else
 					edge->targetNode = targetNode;
 			}
+
+			if (edge->targetNode == NULL || edge->originNode == NULL)
+				edgeVector.pop_back();
 		}
 		rf->close();
 		if (rf->fail()) cout << "loadEdgeVector: fail closing ifstream on file: " << pageIds[i] << endl;
@@ -330,4 +334,34 @@ vector<Node*> Graph::loadNodeVector() {
 		if (rf->fail()) cout << "loadNodeVector: fail closing ifstream on file: " << pageIds[i] << endl;
 	}
 	return nodeVector;
+}
+
+long Graph::getNextVertexId() {
+	long max = -1;
+	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
+		if (it->second->id > max)
+			max = it->second->id;
+	}
+	return ++max;
+}
+
+long Graph::getNextNodeId() {
+	long max = -1;
+	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
+		if (it->second->id > max)
+			max = it->second->id;
+	}
+	return ++max;
+}
+
+long Graph::getNextEdgeId() {
+	long max = -1;
+	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
+		for (int i = 0; i < it->second->edgesVector.size(); i++)
+		{
+			if (it->second->edgesVector[i]->id > max)
+				max = it->second->edgesVector[i]->id;
+		}
+	}
+	return ++max;
 }

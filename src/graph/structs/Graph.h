@@ -12,7 +12,7 @@ public:
 	string databaseName;
 	string name;
 	//vector<Schema*> schemaVector;
-	unordered_map<Node*, Vertex*> vertexMap;
+	unordered_map<Node*, Vertex*>* vertexMap;
 
 	Graph(string databaseName);
 
@@ -29,6 +29,10 @@ public:
 	vector<Edge*> loadEdgeVector(vector<Node*> nodeVector);
 
 	vector<Node*> loadNodeVector();
+
+	long getNextVertexId();
+	long getNextNodeId();
+	long getNextEdgeId();
 
 	//void loadSchemaVector();
 
