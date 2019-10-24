@@ -55,6 +55,16 @@ vector<NetworkNode*> GraphToGrpc::parse_node_vector(vector<Node*> nodes) {
     return *n_nodes;
 };
 
+vector<NetworkEdge*> GraphToGrpc::parse_edge_vector(vector<Edge*> edges) {
+    vector<NetworkEdge*> *n_edges = new vector<NetworkEdge*>();
+    for_each(edges.begin(), edges.end(), [n_edges](Edge* edge) {
+        NetworkEdge* n_edge = new NetworkEdge();
+        parse_edge(edge, n_edge);
+        n_edges->push_back(n_edge);
+    });
+    return *n_edges;
+};
+
 static NetworkNode* parse_node_array(Node* nodes) {
 
 };

@@ -8,7 +8,9 @@
 #include"../../storage/IndexHandler.cpp"
 #include"../../admin/ConfigFile.cpp"
 #include"../../utils/Enums.h"
+#ifdef __unix__
 #include <bits/stdc++.h>
+#endif
 #include <streambuf>
 using namespace std;
 
