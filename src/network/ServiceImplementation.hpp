@@ -1,10 +1,14 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <unordered_map>
 #include "network.grpc.pb.h"
 #include "network.pb.h"
 #include "auth/AuthService.hpp"
 #include <grpc++/grpc++.h>
+#include "src/graph/operations/Manipulation.h"
+#include "src/graph/structs/Database.h"
+#include "src/graph/structs/Graph.h"
 
 using grpc::Server;
 using grpc::ServerBuilder;
@@ -35,8 +39,10 @@ using network::CreateRelationResponse;
 
 class ServiceImplementation final : public QueryService::Service
 {
-private:
 public:
+    unordered_map<string, unique_ptr<Database>> dbs;
+    unordered_map<string, unique_ptr<Graph>> graphs;
+    unordered_map<string, unique_ptr<Manipulation>> manipulations;
     Status CreateSession(
         ServerContext *context,
         const SessionRequest *request,
@@ -69,4 +75,6 @@ public:
         ServerContext* ctx,
         const CreateRelationReq* req,
         CreateRelationResponse* response) override;
+    ServiceImplementation();
+    ~ServiceImplementation();
 };

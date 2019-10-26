@@ -7,7 +7,10 @@
 #include "ServiceImplementation.hpp"
 #include "src/graph/structs/Edge.h"
 #include "graph/GraphToGrpc.h"
+#include "graph/GrpcToGraph.h"
 #include "src/graph/structs/Node.h"
+#include "src/graph/structs/Graph.h"
+#include "src/graph/operations/Manipulation.h"
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
@@ -47,14 +50,19 @@ Status ServiceImplementation::CreateSession(
     string username = request->username();
     string password = request->password();
     string database = request->database();
-    cout << username << endl;
-    // if (AuthService::validate_credentials(username, password)) {
-    //     return Status::CANCELLED;
-    // }
-    string token = AuthService::generate_token(username, database).c_str();
-    string* tkn = response->mutable_token();
-    *tkn = token;
-    return Status::OK;
+    if (!AuthService::validate_credentials(username, password)) {
+
+        if (this->dbs.at(database).get() == NULL) {
+            Graph *graph = new Graph(database);
+        }
+
+        string token = AuthService::generate_token(username, database).c_str();
+        string* tkn = response->mutable_token();
+        *tkn = token;
+        return Status::OK; 
+    }
+
+    return Status::CANCELLED;
 };
 
 Status ServiceImplementation::ExecuteQuery(
@@ -70,12 +78,12 @@ Status ServiceImplementation::CreateNode(
     const CreateNodeReq *req,
     CreateNodeResponse *response)
 {
-    auto fields = req->fields();
-    Node* n = new Node();
-    n->properties["field1"] = "Prop1";
-    NetworkNode *node = response->mutable_node();
-    GraphToGrpc::parse_node(n, node);
-    (*node->mutable_fields())["field"] = "ASDASDAsd";
+    cout << "CREATING NODE";
+    Node* node = new Node();
+    NetworkNode req_node = (NetworkNode)req->node();
+    NetworkNode* res_node = response->mutable_node();
+    GrpcToGraph::parse_node(&req_node, node);
+    GraphToGrpc::parse_node(node, res_node);
     return Status::OK;
 }
 
@@ -125,4 +133,12 @@ Status ServiceImplementation::CreateRelation(
     edge->properties["prop"] = "Shida";
     GraphToGrpc::parse_edge(edge, response->mutable_edge());
     return Status::OK;
+}
+
+ServiceImplementation::ServiceImplementation() {
+
+}
+
+ServiceImplementation::~ServiceImplementation() {
+
 }

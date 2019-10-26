@@ -14,14 +14,15 @@ GRAPH_OJBS := $(wildcard ./../graph/structs.o)
 UTILS_OBJS := $(wildcard ./../utils/*.o)
 ADMIN_OBJS := $(wildcard ./../admin/*.o)
 
-all: client server
+all: server
 
 client: network.pb.o network.grpc.pb.o client.o auth/AuthService.o
 	echo $(GRAPH_OJBS)
 	$(CXX) $^ $(LDFLAGS) -o build/$@.out
 
-server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o ServiceImplementation.o graph/GraphToGrpc.o
-	$(CXX) $^ $(LDFLAGS) -o build/$@.out ../graph/structs.o ../graph/Node.o ../graph/Edge.o ../graph/utils.o ../graph/Serializable.o ../graph/Database.o
+server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o ServiceImplementation.o graph/GraphToGrpc.o graph/GrpcToGraph.o
+	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o build/$@.out $(wildcard ./../graph/*.o)
+	# ../graph/structs.o ../graph/Node.o ../graph/Edge.o ../graph/utils.o ../graph/Serializable.o ../graph/Database.o ../graph/Graph.o
 	#$(UTILS_OBJS) $(ADMIN_OBJS)
 
 %.grpc.pb.cc: %.proto
@@ -31,4 +32,4 @@ server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o ServiceImplem
 	protoc --cpp_out=. $<
 
 clean:
-	rm -f *.o *.pb.cc *.pb.h client.out server.out
+	rm -f */*.o *.pb.cc *.pb.h client.out server.out

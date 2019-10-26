@@ -32,9 +32,8 @@ message NetworkEdge {
 }
 
 message CreateNodeReq {
-    int64 id = 1;
-    map<string, string> fields = 2;
-    string token = 3;
+    NetworkNode node = 1;
+    string token = 2;
 }
 
 message CreateNodeResponse {
