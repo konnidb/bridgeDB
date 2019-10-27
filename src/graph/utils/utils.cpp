@@ -2,6 +2,13 @@
 #include<iostream>
 #include<string>
 #include<fstream>
+#ifdef _WIN32
+#include<Windows.h>
+#else
+#include<sys/stat.h>
+#include<sys/types.h>
+#include<unistd.h> 
+#endif
 #include<unordered_map>
 #include"..\..\utils\Enums.h"
 #include"..\structs\Database.h"
@@ -30,7 +37,7 @@ bool map_eval_values(unordered_map<string, string> properties, vector<Comparison
 		if (properties.find(toMatch[i].key) != properties.end()) {
 			double n1 = NULL;
 			double n2 = NULL;
-			if (toMatch[i].dataType == DataType::NUM) {
+			if (toMatch[i].dataType == DataType::NUM_) {
 				n1 = stod(toMatch[i].value);
 				n2 = stod(properties[toMatch[i].key]);
 			}
@@ -117,6 +124,42 @@ bool map_contains_values(unordered_map<string, string> properties, unordered_map
 	return true;
 }
 
+string vector_to_str(vector<string> input, char separator) {
+	string str_builder = "";
+	for (long i = 0; i < input.size(); i++)
+	{
+		if (i != 0)
+			str_builder += separator;
+		str_builder += input[i];
+	}
+	return str_builder;
+}
+
+string vector_to_str(vector<string> input) {
+	return vector_to_str(input, PROP_SEPARATOR);
+}
+
+vector<string> str_to_vector(string input, char separator) {
+	vector<string> output;
+	string tmp = "";
+
+	for (long i = 0; i < input.length(); i++) {
+		if ((int)input[i] == 0)
+			continue;
+		if (input[i] == PROP_SEPARATOR) {
+			output.push_back(tmp);
+			tmp = "";
+		}
+		else
+			tmp += input[i];
+	}
+	return output;
+}
+
+vector<string> str_to_vector(string input) {
+	return str_to_vector(input, PROP_SEPARATOR);
+}
+
 /*
 template <class T >
 T* vectorFindByFn(vector<T*> vectorEvl, T* elmnt, bool (*compareFn)(T* elmnt1, T* elmnt2)) {
@@ -190,29 +233,29 @@ bool fileExists(string path){
 }
 
 ConfigFileHandler* getConfigFileHandler(string databaseName) {
-	Database db = Database::getDatabase(databaseName);
-	return db.cfg;
+	Database* db = Database::getDatabase(databaseName);
+	return db->cfg;
 }
-/*
-string buildIndexPath(string databaseName, ElementType element) {
-	Database db = Database::getDatabase(databaseName);
-	string directory, indexFile;
-	switch (element) {
-		case ElementType::EDGE:
-			directory = db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory];
-			indexFile = db.cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile];
-			break;
-		case ElementType::NODE:
-			directory = db.cfg->configFileMap[ConfigFileAttrbute::nodeDirectory];
-			indexFile = db.cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile];
-			break;
-		case ElementType::SCHEMA:
-			break;
-		case ElementType::VERTEX:
-			directory = db.cfg->configFileMap[ConfigFileAttrbute::vertexDirectory];
-			indexFile = db.cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile];
-			break;
-	}
-	return directory + indexFile;
+
+void createSubDir(string dir) {
+#ifdef _WIN32
+	if (!CreateDirectory(dir.c_str(), NULL) && ERROR_ALREADY_EXISTS != GetLastError())
+		throw "Directory " + dir + " could not be created.";
+#else
+	if (mkdir(dir, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)==-1)
+		throw "Directory " + dir + " could not be created.";
+#endif
 }
-*/
+
+bool dirExists(string dir) {
+#ifdef _WIN32
+	if (GetFileAttributesA(dir.c_str()) & FILE_ATTRIBUTE_DIRECTORY)
+		return true;
+#else
+	struct stat statbuf;
+	stat(dir, &statbuf)
+	if (S_ISDIR(statbuf.st_mode))
+		throw "Directory " + dir + " could not be created.";
+#endif
+	return false;
+}
