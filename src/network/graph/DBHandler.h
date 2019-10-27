@@ -3,7 +3,6 @@
 #include <string>
 #include <unordered_map>
 #include "src/graph/structs/Database.h"
-#include "src/graph/operations/Definition.h"
 using namespace std;
 class DBHandler
 {
@@ -12,8 +11,8 @@ private:
 public:
     DBHandler(Database*);
 	DBHandler(string);
-    Database createConfigFile(string);
-	Database loadDatabase(string);
-	Database createDBIfNotExists(string);
+    static Database createConfigFile(string);
+	static Database loadDatabase(string);
+	static Database createDBIfNotExists(string);
     ~DBHandler();
 };

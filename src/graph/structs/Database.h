@@ -16,6 +16,7 @@ public:
 	ConfigFileHandler* cfg;
 	static Database getDatabase(string name);
 	Database();
+	~Database(){};
 
 private:
 	static unordered_map<string, Database> instances;

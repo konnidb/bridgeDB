@@ -1,5 +1,12 @@
 #include<iostream>
 #include"Definition.h"
+#include "src/admin/ConfigFile.h"
+#include "../structs/Graph.h"
+#include "../structs/Schema.h"
+#include "../structs/Database.h"
+#include <string>
+#include <unordered_map>
+#include  <vector>
 
 using namespace std;
 

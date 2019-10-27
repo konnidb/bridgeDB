@@ -2,11 +2,14 @@
 #include<string>
 #include"Vertex.h"
 #include"Schema.h"
+#include "Node.h"
+#include "Edge.h"
+#include <fstream>
 #include"Graph.h"
 #include <vector>
 #include <ios>
 #include"../../storage/IndexHandler.cpp"
-#include"../../admin/ConfigFile.cpp"
+#include"../../admin/ConfigFile.h"
 #include"../../utils/Enums.h"
 #ifdef __unix__
 #include <bits/stdc++.h>

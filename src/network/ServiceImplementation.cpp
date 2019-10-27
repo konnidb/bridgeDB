@@ -13,11 +13,12 @@
 #include "src/graph/operations/Manipulation.h"
 #include "src/graph/utils/Comparison.h"
 #include "src/graph/structs/Database.h"
-#include "./graph/DBHandler.h"
+#include "graph/DBHandler.h"
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
+using grpc::StatusCode;
 
 using network::CreateEdgeReq;
 using network::CreateEdgeResponse;
@@ -71,11 +72,14 @@ Status ServiceImplementation::ExecuteQuery(
     const Query *query,
     QueryResponse *response)
 {
-    string token = (string)query->token();
-    cout<<token;
-    DBHandler handler("dbperrona");
-    handler.createConfigFile("dbperrona");
-    response->set_response("HEllo world");
+    try {
+        string token = (string)query->token();
+        cout<<token;
+        DBHandler::createConfigFile("dbperrona");
+    } catch(exception& e) {
+        return Status(StatusCode::ABORTED, "Error creating config file");
+    }
+    
     return Status::OK;
 };
 Status ServiceImplementation::CreateNode(

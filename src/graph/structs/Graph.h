@@ -6,6 +6,7 @@
 #include"Vertex.h"
 #include"Schema.h"
 #include "Node.h"
+#include "Edge.h"
 using namespace std;
 
 class Graph {

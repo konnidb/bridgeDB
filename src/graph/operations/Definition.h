@@ -1,5 +1,8 @@
 #pragma once
 #include<iostream>
+#include <string>
+#include "../structs/Graph.h"
+#include "../structs/Schema.h"
 #include"../structs/Database.h"
 
 using namespace std;
