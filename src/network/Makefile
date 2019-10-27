@@ -32,4 +32,4 @@ server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o ServiceImplem
 	protoc --cpp_out=. $<
 
 clean:
-	rm -f */*.o *.pb.cc *.pb.h client.out server.out
+	rm -f */*.o *.pb.cc *.pb.h client.out build/server.out

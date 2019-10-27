@@ -2,8 +2,10 @@
 #include<iostream>
 #include<string>
 #include <vector>
+#include <unordered_map>
 #include"Vertex.h"
 #include"Schema.h"
+#include "Node.h"
 using namespace std;
 
 class Graph {

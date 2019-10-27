@@ -11,6 +11,7 @@
 #include "src/graph/structs/Node.h"
 #include "src/graph/structs/Graph.h"
 #include "src/graph/operations/Manipulation.h"
+#include "src/graph/utils/Comparison.h"
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
@@ -50,16 +51,14 @@ Status ServiceImplementation::CreateSession(
     string username = request->username();
     string password = request->password();
     string database = request->database();
-    if (!AuthService::validate_credentials(username, password)) {
+    if (AuthService::validate_credentials(username, password)) {
 
-        if (this->dbs.at(database).get() == NULL) {
-            Graph *graph = new Graph(database);
-        }
-
-        string token = AuthService::generate_token(username, database).c_str();
+        string token = AuthService::generate_token(username, database);
         string* tkn = response->mutable_token();
+        AuthData data = AuthService::get_credentials(token);
+        cout << token << " " << data.database_name << endl;
         *tkn = token;
-        return Status::OK; 
+        return Status::OK;
     }
 
     return Status::CANCELLED;
@@ -70,6 +69,8 @@ Status ServiceImplementation::ExecuteQuery(
     const Query *query,
     QueryResponse *response)
 {
+    string token = (string)query->token();
+    cout<<token;
     response->set_response("HEllo world");
     return Status::OK;
 };
@@ -78,12 +79,15 @@ Status ServiceImplementation::CreateNode(
     const CreateNodeReq *req,
     CreateNodeResponse *response)
 {
+    AuthData data = AuthService::get_credentials(req->token());
+    
     cout << "CREATING NODE";
     Node* node = new Node();
     NetworkNode req_node = (NetworkNode)req->node();
     NetworkNode* res_node = response->mutable_node();
     GrpcToGraph::parse_node(&req_node, node);
-    GraphToGrpc::parse_node(node, res_node);
+    Node* stored_node = manipulations[data.database_name]->createNode(node->properties);
+    GraphToGrpc::parse_node(stored_node, res_node);
     return Status::OK;
 }
 
@@ -92,7 +96,20 @@ Status ServiceImplementation::CreateEdge(
     const CreateEdgeReq *req,
     CreateEdgeResponse *response)
 {
-
+    AuthData data = AuthService::get_credentials(req->token());
+    auto& manpl = manipulations[data.database_name];
+    cout << "CREATING EDGE";
+    NetworkEdge nt_req_edge = (NetworkEdge)req->edge();
+    Edge* edge = new Edge();
+    GrpcToGraph::parse_edge(&nt_req_edge, edge);
+    NetworkNode nt_rq_or = (NetworkNode)nt_req_edge.origin();
+    NetworkNode nt_rq_dst = (NetworkNode)nt_req_edge.destination();
+    long origin_id = (long)(nt_rq_or.id());
+    long dest_id = (long)(nt_rq_dst.id());
+    Node* or_node = manpl->getNodeById(origin_id);
+    Node* dest_node = manpl->getNodeById(dest_id);
+    Edge* res_edge = manpl->createEdge(origin_id, dest_id, edge->properties, true);
+    GraphToGrpc::parse_edge(res_edge, response->mutable_edge());
     return Status::OK;
 }
 
@@ -101,6 +118,12 @@ Status ServiceImplementation::SearchNode(
     const SearchNodeReq *req,
     SearchNodeResponse *resp)
 {
+    AuthData data = AuthService::get_credentials(req->token());
+    auto& manpl = manipulations[data.database_name];
+    const NetworkNode req_node = req->node();
+    if (req_node.id()) {
+        manpl->getNodeById((long)req_node.id());
+    }
     return Status::OK;
 }
 
@@ -117,7 +140,9 @@ Status ServiceImplementation::SpanTree(
     const SpanTreeReq *req,
     SpanTreeResponse *response)
 {
-
+    AuthData data = AuthService::get_credentials(req->token());
+    auto& manpl = manipulations[data.database_name];
+    
     return Status::OK;
 }
 
