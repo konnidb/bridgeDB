@@ -20,7 +20,7 @@ client: network.pb.o network.grpc.pb.o client.o auth/AuthService.o
 	echo $(GRAPH_OJBS)
 	$(CXX) $^ $(LDFLAGS) -o build/$@.out
 
-server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o ServiceImplementation.o graph/GraphToGrpc.o graph/GrpcToGraph.o
+server: network.pb.o network.grpc.pb.o server.o auth/AuthService.o ServiceImplementation.o graph/GraphToGrpc.o graph/GrpcToGraph.o graph/DBHandler.o
 	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o build/$@.out $(wildcard ./../graph/*.o)
 	# ../graph/structs.o ../graph/Node.o ../graph/Edge.o ../graph/utils.o ../graph/Serializable.o ../graph/Database.o ../graph/Graph.o
 	#$(UTILS_OBJS) $(ADMIN_OBJS)

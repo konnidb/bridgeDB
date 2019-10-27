@@ -177,5 +177,5 @@ service QueryService {
     rpc SearchNode (SearchNodeReq) returns (SearchNodeResponse) {};
     rpc SpanTree (SpanTreeReq) returns (SpanTreeResponse) {};
     rpc GetPattern (GetPatternRequest) returns (GetPatternResponse) {};
-    rpc GetGraph (NetworkGraphRequest) returns (NetworkGraphResponse);
+    rpc GetGraph (NetworkGraphRequest) returns (NetworkGraphResponse) {};
 }

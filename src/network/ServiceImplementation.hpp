@@ -41,7 +41,6 @@ class ServiceImplementation final : public QueryService::Service
 {
 public:
     unordered_map<string, unique_ptr<Database>> dbs;
-    unordered_map<string, unique_ptr<Graph>> graphs;
     unordered_map<string, unique_ptr<Manipulation>> manipulations;
     Status CreateSession(
         ServerContext *context,

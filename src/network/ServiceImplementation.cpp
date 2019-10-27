@@ -12,6 +12,8 @@
 #include "src/graph/structs/Graph.h"
 #include "src/graph/operations/Manipulation.h"
 #include "src/graph/utils/Comparison.h"
+#include "src/graph/structs/Database.h"
+#include "./graph/DBHandler.h"
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
@@ -71,6 +73,8 @@ Status ServiceImplementation::ExecuteQuery(
 {
     string token = (string)query->token();
     cout<<token;
+    DBHandler handler("dbperrona");
+    handler.createConfigFile("dbperrona");
     response->set_response("HEllo world");
     return Status::OK;
 };
@@ -96,6 +100,7 @@ Status ServiceImplementation::CreateEdge(
     const CreateEdgeReq *req,
     CreateEdgeResponse *response)
 {
+    
     AuthData data = AuthService::get_credentials(req->token());
     auto& manpl = manipulations[data.database_name];
     cout << "CREATING EDGE";
