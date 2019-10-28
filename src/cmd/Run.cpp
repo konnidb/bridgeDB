@@ -9,6 +9,7 @@
 #include"..\graph\structs\Database.h"
 #include"..\utils\Enums.h"
 #include"..\graph\operations\Manipulation.h"
+#include"..\graph\operations\Definition.h"
 
 using namespace std;
 
@@ -28,23 +29,10 @@ string gen_random(const long len) {
 void generates_semi_random_graph(string dbname) {
 	long id = 1;
 	Database* db = Database::getDatabase(dbname);
-	/*
-	db.cfg->configFileMap[ConfigFileAttrbute::databaseName] = dbname;
-	db.cfg->configFileMap[ConfigFileAttrbute::pageExtension] = ".bdb";
-	db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\edge\\";
-	db.cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile] = "edge.ix";
-	db.cfg->configFileMap[ConfigFileAttrbute::nodeDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\node\\";
-	db.cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile] = "node.ix";
-	db.cfg->configFileMap[ConfigFileAttrbute::vertexDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\vertex\\";
-	db.cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile] = "vertex.ix";
-	db.cfg->configFileMap[ConfigFileAttrbute::schemaDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\dataTests\\schema\\";
-	db.cfg->configFileMap[ConfigFileAttrbute::schemaIndexFile] = "schema.ix";
-	db.cfg->storeConfigFile();
-	//*/
-	db->cfg->loadConfigFile();
 	cout << "CONFIG EDGE DIR: " << db->buildSotrePath(dbname, ElementType::EDGE, false) << endl;
-	Graph* g = new Graph(db->name, dbname);
-	(*db->graphMap)[dbname] = g;
+	Definition* d = new Definition(db);
+	d->createGraph("testGraph");
+	Graph* g = db->graphMap->at("testGraph");
 	g->id = id++;
 	Schema* s1 = new Schema();
 	s1->id = id++;
@@ -57,7 +45,7 @@ void generates_semi_random_graph(string dbname) {
 	properties["correo"] = to_string(DataType::STR_);
 	properties["pw"] = to_string(DataType::STR_);
 	s1->properties = properties;
-	//g.schemaVector.push_back(s1);
+	(*g->schemaMap)[s1->id] = s1;
 	vector<Node*> nodeVec;
 
 	int nodeId = 0;
@@ -98,6 +86,7 @@ void generates_semi_random_graph(string dbname) {
 	}
 		cout << "holi" << endl;
 		g->storeVertexMap();
+		g->storeSchemaMap();
 }
 
 void load_graph_test(string dbname) {
@@ -158,8 +147,8 @@ void createDatasetHtml() {
 }
 
 long main() {
-	//generates_semi_random_graph("test");
-	//*
+	generates_semi_random_graph("test");
+	/*
 	string dbname = "test";
 	load_graph_test(dbname);
 	createDatasetHtml();
@@ -173,7 +162,7 @@ long main() {
 	Node* nw = m->createNode(n->properties);
 	createDatasetHtml();
 	Edge* e1 = m->createEdge(nw, n, "", false);
-	createDatasetHtml();*/
+	createDatasetHtml();
 	Node* n = m->getNodeById(0);
 	DijkstraWrapper* dg = db->graphMap->at(dbname)->vertexMap->at(n)->getDijkstraWrapper();
 	DijkstraWrapper* r = m->UniformCostSearchById(dg, 2, "t", NULL, NULL);
@@ -183,44 +172,25 @@ long main() {
 		cout << "current: " << curr->node->id << endl;
 		curr = curr->previousVertex;
 	}
-	//*/
+	
 	vector<Vertex*> pattern;
 	pattern.push_back(db->graphMap->at(dbname)->vertexMap->at(n));
 	vector<Vertex*>* resVec = m->getPathByPattern(pattern);
+	//*/
 	cout << "SALE" << endl;
 	system("pause");
 }
-
-/*
-long main(string args[]) {
-for (long i = 0; i < sizeof(args)/sizeof(string); i++)
-{
-//if(.compare(args[i]))
-}
-}
-//*/
-
-
-
-//CREATE STRUC FOR OPERATIONS (suma, resta, mult, div, promedio, con, pass fn as attr, concat, convert (to str, to num, to datetime), get datetime format...)
-//HANDLE DATETIME
-//id validator famework: props just can have alphanum chars
-
 /*search node(s), edge(s)
 -by id
 -by property
 -heuristic (by grouper)
 */
-
-
-
-
 //generar arbol
 //balancear arbol
 //
 
 //CREAR ERROR FRAMEWORK
-//CREAR IMPUT/OUTPUT/FORMATING FRAMEWORK
+//CREAR INPUT/OUTPUT/FORMATING FRAMEWORK
 //SECURITY: USERS, GRANT PERMISSIONS, ENCRYPTION
 //NETWORKING: CONECTIVITY
 //COMMAND LINE
@@ -240,6 +210,5 @@ configuration file that should contains :
 - elements (node, edge and vertex) should be created with id=NULL (for comparision proupuses)
 -arquitectura en comparisions
 -comparar nodos dinamicamente map_contains_values?
-
 */
 

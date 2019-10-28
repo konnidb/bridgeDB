@@ -18,8 +18,9 @@
 using namespace std;
 
 
-const char ELMNT_SEPARATOR = '~';
-const char PROP_SEPARATOR = '¬';
+const char LIST_SEPARATOR = (char) 35; //#
+const char ELMNT_SEPARATOR = (char) 126; //~
+const char PROP_SEPARATOR = (char) 170; //¬
 
 long char_ptr_to_int(char* c) {
 	unsigned char* uc = (unsigned char*)c;
@@ -136,7 +137,7 @@ string vector_to_str(vector<string> input, char separator) {
 }
 
 string vector_to_str(vector<string> input) {
-	return vector_to_str(input, PROP_SEPARATOR);
+	return vector_to_str(input, LIST_SEPARATOR);
 }
 
 vector<string> str_to_vector(string input, char separator) {
@@ -146,7 +147,7 @@ vector<string> str_to_vector(string input, char separator) {
 	for (long i = 0; i < input.length(); i++) {
 		if ((int)input[i] == 0)
 			continue;
-		if (input[i] == PROP_SEPARATOR) {
+		if (input[i] == separator) {
 			output.push_back(tmp);
 			tmp = "";
 		}
@@ -157,7 +158,7 @@ vector<string> str_to_vector(string input, char separator) {
 }
 
 vector<string> str_to_vector(string input) {
-	return str_to_vector(input, PROP_SEPARATOR);
+	return str_to_vector(input, LIST_SEPARATOR);
 }
 
 /*

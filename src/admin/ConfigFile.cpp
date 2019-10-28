@@ -16,8 +16,23 @@ string vector_to_str(vector<string> input);
 
 ConfigFileHandler::ConfigFileHandler(string databaseName) {
 	this->databaseName = databaseName;
-	if (!fileExists(this->databaseName + ".cfg"))
-		throw "Exception: config file for db " + databaseName + " not found";
+	if (!fileExists(this->databaseName + ".cfg")) {
+		this->configFileMap[ConfigFileAttrbute::databaseName] = this->databaseName;
+		string slash = "/";
+	#ifdef _WIN32
+		slash = "\\";
+	#endif
+		this->configFileMap[ConfigFileAttrbute::storeDirectory] = "." + slash;
+		this->configFileMap[ConfigFileAttrbute::backupDirectory] = "." + slash + this->databaseName + slash + "bkp" + slash;
+		this->configFileMap[ConfigFileAttrbute::logDirectory] = "." + slash + "log" + slash;
+		this->configFileMap[ConfigFileAttrbute::edgeIndexFile] = "edge.ix";
+		this->configFileMap[ConfigFileAttrbute::nodeIndexFile] = "node.ix";
+		this->configFileMap[ConfigFileAttrbute::schemaIndexFile] = "schema.ix";
+		this->configFileMap[ConfigFileAttrbute::vertexIndexFile] = "vertex.ix";
+		this->configFileMap[ConfigFileAttrbute::pageExtension] = ".bdb";
+		this->configFileMap[ConfigFileAttrbute::graphList] = "";
+		this->storeConfigFile();
+	}
 	else
 		loadConfigFile();
 }

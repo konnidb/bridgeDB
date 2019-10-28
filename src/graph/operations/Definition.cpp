@@ -27,23 +27,17 @@ Graph* Definition::createGraph(string graphName, string databaseName){
 Graph* Definition::createGraph(string name) {
 	if (this->database == NULL)
 		return NULL;
-	Graph* g = new Graph("", name);
+	Graph* g = new Graph(this->database->name, name);
 	(*this->database->graphMap)[name] = g;
 	return g;
 }
-Schema* Definition::createSchema(string schemaName, string databaseName) {
-	Database* db = Database::getDatabase(databaseName);
-	db->cfg->loadConfigFile();
-	//Schema* s = new Schema(schemaName);
-	//db.
-	return NULL;
-}
-Schema* Definition::createSchema(string name){
-	return NULL;
-}
+
+Schema* Definition::createSchema(string schemaName, string databaseName, string graphName){}
+Schema* Definition::createSchema(string name, string graphName){}
 void Definition::deleteDatabase(){}
-void Definition::deleteSchema() {}
-void Definition::deleteGraph() {}
+void Definition::deleteSchema(string name, string graphName){}
+void Definition::deleteGraph(string name){}
+
 void Definition::loadGraph(string graphName, string databaseName){
 	Database* db = Database::getDatabase(databaseName);
 	db->cfg->loadConfigFile();
@@ -56,9 +50,6 @@ void Definition::loadGraph(string graphName, string databaseName){
 		g = new Graph(databaseName, graphName);
 		(*db->graphMap)[graphName] = g;
 	}
-	vector<Node*> nv = g->loadNodeVector();
-	vector<Edge*> ev = g->loadEdgeVector(nv);
-	g->loadVertexMap(nv, ev);
 }
 
 void Definition::loadGraph(string name) {
@@ -73,7 +64,4 @@ void Definition::loadGraph(string name) {
 		g = new Graph(this->database->name, name);
 		(*this->database->graphMap)[name] = g;
 	}
-	vector<Node*> nv = g->loadNodeVector();
-	vector<Edge*> ev = g->loadEdgeVector(nv);
-	g->loadVertexMap(nv, ev);
 }

@@ -54,6 +54,9 @@ Graph::Graph(string databaseName, string graphName) {
 		vector<Edge*> ev = this->loadEdgeVector(nv);
 		this->loadVertexMap(nv, ev);
 	}
+	else if (db->graphMap->find(graphName) != db->graphMap->end())
+		return;
+	(*db->graphMap)[graphName] = this;
 }
 
 void Graph::storeVertexMap() {
@@ -299,7 +302,7 @@ vector<Edge*> Graph::loadEdgeVector(vector<Node*> nodeVector) {
 
 			if (edge->schema == NULL) {
 				if (this->schemaMap->find(serializable.schemaId) == this->schemaMap->end())
-					throw "EDGE SCHEMA NOT FOUND, id: " + serializable.schemaId;
+					cout << "EDGE SCHEMA NOT FOUND, id: " + serializable.schemaId << endl;
 				edge->schema = this->schemaMap->at(serializable.schemaId);
 			}
 
@@ -349,7 +352,7 @@ vector<Node*> Graph::loadNodeVector() {
 				node = result;
 			if (node->schema == NULL) {
 				if (this->schemaMap->find(serializable.schemaId) == this->schemaMap->end())
-					throw "NODE SCHEMA NOT FOUND, id: " + serializable.schemaId;
+					cout << "NODE SCHEMA NOT FOUND, id: " + serializable.schemaId << endl;
 				node->schema = this->schemaMap->at(serializable.schemaId);
 			}
 		}

@@ -36,9 +36,9 @@ vector<string> Database::getGraphNames() {
 string Database::buildSotrePath(string graphName, ElementType element, bool createSubDirs) {
 	if (!dirExists(this->cfg->configFileMap.at(ConfigFileAttrbute::storeDirectory)))
 		throw "Store Directory " + this->cfg->configFileMap.at(ConfigFileAttrbute::storeDirectory) + " doesnt exist!";
-	char slash = '/';
+	string slash = "/";
 #ifdef _WIN32
-	slash = '\\';
+	slash = "\\";
 #endif
 	string elementFoder = "";
 	switch (element) {
@@ -56,7 +56,7 @@ string Database::buildSotrePath(string graphName, ElementType element, bool crea
 			break;
 	}
 		string path = this->cfg->configFileMap.at(ConfigFileAttrbute::storeDirectory);
-		if (path[path.length() - 1] != slash)
+		if (path[path.length() - 1] != slash[0])
 			path += slash;
 		path += this->name + slash;
 		if (createSubDirs)
