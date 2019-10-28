@@ -55,7 +55,6 @@ Status ServiceImplementation::CreateSession(
     string password = request->password();
     string database = request->database();
     if (AuthService::validate_credentials(username, password)) {
-
         string token = AuthService::generate_token(username, database);
         string* tkn = response->mutable_token();
         AuthData data = AuthService::get_credentials(token);
@@ -76,6 +75,8 @@ Status ServiceImplementation::ExecuteQuery(
         string token = (string)query->token();
         cout<<token;
         DBHandler::createConfigFile("dbperrona");
+        Database* db = DBHandler::loadDatabase("dbperrona", "grafo");
+        // Manipulation* man = 
     } catch(exception& e) {
         return Status(StatusCode::ABORTED, "Error creating config file");
     }

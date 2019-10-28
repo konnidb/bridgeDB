@@ -4,15 +4,28 @@
 #include<string>
 #include <ios>
 #include "src/utils/Enums.h"
-#include "ConfigFile.h"
+#include"ConfigFile.h"
+#include"src/graph/structs/Database.h"
 using namespace std;
 
 string serializeMap(unordered_map<string, string> properties);
 unordered_map<string, string> deserializeMap(string properties);
 long char_ptr_to_int(char* c);
+bool fileExists(string path);
+vector<string> str_to_vector(string input);
+string vector_to_str(vector<string> input);
+
+ConfigFileHandler::ConfigFileHandler(string databaseName) {
+	this->databaseName = databaseName;
+	if (!fileExists(this->databaseName + ".cfg")){
+
+		// throw "Exception: config file for db " + databaseName + " not found";
+	} else
+		loadConfigFile();
+}
 
 void ConfigFileHandler::loadConfigFile() {
-	string path = this->databaseName.append(".cfg");
+	string path = this->databaseName+".cfg";
 	ifstream* rf = new ifstream(path, ios::in | ios::binary);
 	if (!rf) cout << "CONFIG FILE: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
 	string props;
@@ -32,20 +45,35 @@ void ConfigFileHandler::loadConfigFile() {
 }
 
 void ConfigFileHandler::storeConfigFile() {
-	string path = this->databaseName.append(".cfg");
+	string path = this->databaseName+".cfg";
+	cout << "OPENING FILE..." << endl;
 	ofstream* wf = new ofstream(path, ios::out | ios::binary);
+	cout << "FILE OPEN" << endl;
 	unordered_map<string, string> map;
+	cout << "Iteration starting..." << endl;
 	for (unordered_map<ConfigFileAttrbute, string>::iterator it = this->configFileMap.begin(); it != this->configFileMap.end(); it++) {
-		map[to_string(it->first)] = it->second;
+		cout << "Iterating with FIRST: " << it->first << " SECOND: " << it->second << endl;
+		if (it->first == ConfigFileAttrbute::graphList) {
+			map[to_string(it->first)] = it->second; // vector_to_str(Database::getDatabase(databaseName)->getGraphNames());
+		}
+		else
+			map[to_string(it->first)] = it->second;
 	}
+	cout << "Iteration Finished" << endl;
+	cout << "Serializing init..." << endl;
 	string props = serializeMap(map);
+	cout << "Map Serialized: " << props << endl;
 	long size = props.size();
+	cout << "Writing in file..." << endl;	
 	wf->write((char*)& size, sizeof(long));
+	cout << "WRITED" << endl;
 	wf->write(&props[0], size);
+	cout << "WRITED" << endl;
 	wf->close();
+	cout << "File CLOSED..." << endl;
 	if (!wf) cout << "CONFIG FILE: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
 }
 
-void ConfigFileHandler::setConfig(string config, string value) {
-
+void ConfigFileHandler::setConfig(ConfigFileAttrbute config, string value) {
+	this->configFileMap[config] = value;
 }

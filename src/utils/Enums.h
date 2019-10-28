@@ -9,11 +9,11 @@ enum LogicOperator {
 };
 
 enum LogType {
-	FAILURE,
-	ERROR,
-	WARNING,
-	INFO,
-	SUCCESS
+	FAILURE_,
+	ERROR_,
+	WARNING_,
+	INFO_,
+	SUCCESS_
 };
 
 enum ElementType {
@@ -36,25 +36,22 @@ enum ComparisonOperator {
 };
 
 enum DataType {
-	NUM,
-	STR,
-	BOOL,
-	CAT,
-	DT
+	NUM_,
+	STR_,
+	BOOL_,
+	CAT_,
+	DATETIME_
 };
 
 enum ConfigFileAttrbute {
 	databaseName,
-	dataDirectory,
-	schemaDirectory,
-	nodeDirectory,
-	edgeDirectory,
-	vertexDirectory,
+	storeDirectory,
 	schemaIndexFile,
 	nodeIndexFile,
 	edgeIndexFile,
 	vertexIndexFile,
 	backupDirectory,
 	logDirectory,
-	pageExtension
+	pageExtension,
+	graphList
 };

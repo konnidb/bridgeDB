@@ -11,25 +11,15 @@ string serializeMap(unordered_map<string, string> properties);
 unordered_map<string, string> deserializeMap(string properties);
 long char_ptr_to_int(char* c);
 
-class ConfigFileModel {
-public:
-	string databaseName;
-	string dataDirectory;
-	string nodeIndexDirectory;
-	string edgeIndexDirectory;
-	string backupDirectory;
-	string logDirectory;
-};
+using namespace std;
 
 class ConfigFileHandler {
 public:
 	string databaseName;
 	unordered_map<ConfigFileAttrbute, string> configFileMap;
 
-	ConfigFileHandler(string databaseName): databaseName(databaseName){};
-
+	ConfigFileHandler(string databaseName);
 	void loadConfigFile();
-
 	void storeConfigFile();
-	void setConfig(string config, string value);
+	void setConfig(ConfigFileAttrbute config, string value);
 };

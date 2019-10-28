@@ -9,10 +9,10 @@ using namespace std;
 
 class Definition {
 public:
-	Database database;
-	Definition(Database database);
+	Database* database;
+	Definition(Database* database);
 	Definition(string database);
-	static Database createDatabase(string name);
+	static Database* createDatabase(string name);
 	static Graph* createGraph(string graphName, string databaseName);
 	Graph* createGraph(string name);
 	static Schema* createSchema(string schemaName, string databaseName);

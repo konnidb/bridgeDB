@@ -11,8 +11,8 @@ private:
 public:
     DBHandler(Database*);
 	DBHandler(string);
-    static Database createConfigFile(string);
-	static Database loadDatabase(string);
-	static Database createDBIfNotExists(string);
+    static Database* createConfigFile(string);
+	static Database* loadDatabase(string, string);
+	static Database* createDBIfNotExists(string);
     ~DBHandler();
 };

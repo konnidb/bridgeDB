@@ -27,7 +27,7 @@ string gen_random(const long len) {
 
 void generates_semi_random_graph(string dbname) {
 	long id = 1;
-	Database db = Database::getDatabase(dbname);
+	Database* db = Database::getDatabase(dbname);
 	/*
 	db.cfg->configFileMap[ConfigFileAttrbute::databaseName] = dbname;
 	db.cfg->configFileMap[ConfigFileAttrbute::pageExtension] = ".bdb";
@@ -41,22 +41,21 @@ void generates_semi_random_graph(string dbname) {
 	db.cfg->configFileMap[ConfigFileAttrbute::schemaIndexFile] = "schema.ix";
 	db.cfg->storeConfigFile();
 	//*/
-	db.cfg->loadConfigFile();
-	cout << "CONFIG EDGE DIR: " << db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] << endl;
-	Graph g(db.name);
-	db.graphVector->push_back(&g);
-	g.name = "testGraph";
-	g.id = id++;
+	db->cfg->loadConfigFile();
+	cout << "CONFIG EDGE DIR: " << db->buildSotrePath(dbname, ElementType::EDGE, false) << endl;
+	Graph* g = new Graph(db->name, dbname);
+	(*db->graphMap)[dbname] = g;
+	g->id = id++;
 	Schema* s1 = new Schema();
 	s1->id = id++;
 	s1->name = "persona";
 	s1->type = ElementType::NODE;
 	unordered_map<string, string> properties;
-	properties["nombre"] = to_string(DataType::STR);
-	properties["edad"] = to_string(DataType::NUM);
-	properties["telefono"] = to_string(DataType::STR);
-	properties["correo"] = to_string(DataType::STR);
-	properties["pw"] = to_string(DataType::STR);
+	properties["nombre"] = to_string(DataType::STR_);
+	properties["edad"] = to_string(DataType::NUM_);
+	properties["telefono"] = to_string(DataType::STR_);
+	properties["correo"] = to_string(DataType::STR_);
+	properties["pw"] = to_string(DataType::STR_);
 	s1->properties = properties;
 	//g.schemaVector.push_back(s1);
 	vector<Node*> nodeVec;
@@ -70,7 +69,7 @@ void generates_semi_random_graph(string dbname) {
 		n->id = nodeId++;
 		for (unordered_map<string, string>::iterator it = properties.begin(); it != properties.end(); it++)
 		{
-			if (it->second == to_string(DataType::NUM))
+			if (it->second == to_string(DataType::NUM_))
 				n->properties[it->first] = to_string((rand() % 1000000000) + 1000000000);
 			else
 				n->properties[it->first] = gen_random(10);
@@ -80,10 +79,10 @@ void generates_semi_random_graph(string dbname) {
 		v->id = vertexId++;
 		v->node = n;
 		nodeVec.push_back(n);
-		g.vertexMap->insert({ n, v });
+		g->vertexMap->insert({ n, v });
 	}
 	int count = 0;
-	for (unordered_map<Node*, Vertex*>::iterator it = g.vertexMap->begin(); it != g.vertexMap->end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = g->vertexMap->begin(); it != g->vertexMap->end(); it++) {
 		{
 			for (long j = count; j < count+3 && j < nodeVec.size(); j++)
 			{
@@ -98,25 +97,25 @@ void generates_semi_random_graph(string dbname) {
 		}
 	}
 		cout << "holi" << endl;
-		g.storeVertexMap();
+		g->storeVertexMap();
 }
 
 void load_graph_test(string dbname) {
-	Database db = Database::getDatabase(dbname);
-	if(db.cfg->configFileMap.size()==0)
-		db.cfg->loadConfigFile();
-	cout << "CONFIG EDGE DIR: " << db.cfg->configFileMap[ConfigFileAttrbute::edgeDirectory] << endl;
-	Graph* g = new Graph(db.name);
-	db.graphVector->push_back(g);
+	Database* db = Database::getDatabase(dbname);
+	if(db->cfg->configFileMap.size()==0)
+		db->cfg->loadConfigFile();
+	cout << "CONFIG EDGE DIR: " << db->buildSotrePath(dbname, ElementType::EDGE, false) << endl;
+	Graph* g = new Graph(db->name, dbname);
+	(*db->graphMap)[dbname] = g;
 	vector<Node*> nv = g->loadNodeVector();
 	vector<Edge*> ev = g->loadEdgeVector(nv);
 	g->loadVertexMap(nv, ev);
 }
 
 string getSimpleNodesJson(string dbname){
-	Database db = Database::getDatabase(dbname);
+	Database* db = Database::getDatabase(dbname);
 	string output= "";
-	for (unordered_map<Node*, Vertex*>::iterator it = db.graphVector->at(0)->vertexMap->begin(); it != db.graphVector->at(0)->vertexMap->end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = db->graphMap->at(dbname)->vertexMap->begin(); it != db->graphMap->at(dbname)->vertexMap->end(); it++) {
 		string name = to_string(it->first->id);//it->first->properties["nombre"]
 		if (output.empty()) {
 			output = "[";
@@ -129,9 +128,9 @@ string getSimpleNodesJson(string dbname){
 }
 
 string getSimpleLinksJson(string dbname) {
-	Database db = Database::getDatabase(dbname);
+	Database* db = Database::getDatabase(dbname);
 	string output = "";
-	for (unordered_map<Node*, Vertex*>::iterator it = db.graphVector->at(0)->vertexMap->begin(); it != db.graphVector->at(0)->vertexMap->end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = db->graphMap->at(dbname)->vertexMap->begin(); it != db->graphMap->at(dbname)->vertexMap->end(); it++) {
 		for (int i = 0; i < it->second->edgesVector.size(); i++)
 		{
 			Edge* e = it->second->edgesVector[i];
@@ -161,10 +160,11 @@ void createDatasetHtml() {
 long main() {
 	//generates_semi_random_graph("test");
 	//*
-	load_graph_test("test");
+	string dbname = "test";
+	load_graph_test(dbname);
 	createDatasetHtml();
-	Database db = Database::getDatabase("test");
-	Manipulation* m = new Manipulation(db.graphVector->at(0));
+	Database* db = Database::getDatabase(dbname);
+	Manipulation* m = new Manipulation(db->graphMap->at(dbname));
 	/*m->deleteNode(4);
 	createDatasetHtml();
 	m->createEdge(3, 0, "", true);
@@ -175,7 +175,7 @@ long main() {
 	Edge* e1 = m->createEdge(nw, n, "", false);
 	createDatasetHtml();*/
 	Node* n = m->getNodeById(0);
-	DijkstraWrapper* dg = db.graphVector->at(0)->vertexMap->at(n)->getDijkstraWrapper();
+	DijkstraWrapper* dg = db->graphMap->at(dbname)->vertexMap->at(n)->getDijkstraWrapper();
 	DijkstraWrapper* r = m->UniformCostSearchById(dg, 2, "t", NULL, NULL);
 	DijkstraWrapper* curr = r;
 	cout << endl << "RESULT!!" << endl << endl;
@@ -185,7 +185,7 @@ long main() {
 	}
 	//*/
 	vector<Vertex*> pattern;
-	pattern.push_back(db.graphVector->at(0)->vertexMap->at(n));
+	pattern.push_back(db->graphMap->at(dbname)->vertexMap->at(n));
 	vector<Vertex*>* resVec = m->getPathByPattern(pattern);
 	cout << "SALE" << endl;
 	system("pause");
