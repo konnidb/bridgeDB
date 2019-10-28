@@ -16,22 +16,23 @@ string vector_to_str(vector<string> input);
 
 ConfigFileHandler::ConfigFileHandler(string databaseName) {
 	this->databaseName = databaseName;
+	this->configFileMap = new unordered_map<ConfigFileAttrbute, string>();
 	if (!fileExists(this->databaseName + ".cfg")) {
-		this->configFileMap[ConfigFileAttrbute::databaseName] = this->databaseName;
+		(*this->configFileMap)[ConfigFileAttrbute::databaseName] = this->databaseName;
 		string slash = "/";
-	#ifdef _WIN32
+#ifdef _WIN32
 		slash = "\\";
-	#endif
-		this->configFileMap[ConfigFileAttrbute::storeDirectory] = "." + slash;
-		this->configFileMap[ConfigFileAttrbute::backupDirectory] = "." + slash + this->databaseName + slash + "bkp" + slash;
-		this->configFileMap[ConfigFileAttrbute::logDirectory] = "." + slash + "log" + slash;
-		this->configFileMap[ConfigFileAttrbute::edgeIndexFile] = "edge.ix";
-		this->configFileMap[ConfigFileAttrbute::nodeIndexFile] = "node.ix";
-		this->configFileMap[ConfigFileAttrbute::schemaIndexFile] = "schema.ix";
-		this->configFileMap[ConfigFileAttrbute::vertexIndexFile] = "vertex.ix";
-		this->configFileMap[ConfigFileAttrbute::pageExtension] = ".bdb";
-		this->configFileMap[ConfigFileAttrbute::graphList] = "";
-		this->storeConfigFile();
+#endif
+		(*this->configFileMap)[ConfigFileAttrbute::storeDirectory] = "." + slash;
+		(*this->configFileMap)[ConfigFileAttrbute::backupDirectory] = "." + slash + this->databaseName + slash + "bkp" + slash;
+		(*this->configFileMap)[ConfigFileAttrbute::logDirectory] = "." + slash + "log" + slash;
+		(*this->configFileMap)[ConfigFileAttrbute::edgeIndexFile] = "edge.ix";
+		(*this->configFileMap)[ConfigFileAttrbute::nodeIndexFile] = "node.ix";
+		(*this->configFileMap)[ConfigFileAttrbute::schemaIndexFile] = "schema.ix";
+		(*this->configFileMap)[ConfigFileAttrbute::vertexIndexFile] = "vertex.ix";
+		(*this->configFileMap)[ConfigFileAttrbute::pageExtension] = ".bdb";
+		(*this->configFileMap)[ConfigFileAttrbute::graphList] = "";
+		//this->storeConfigFile();
 	}
 	else
 		loadConfigFile();
@@ -51,7 +52,7 @@ void ConfigFileHandler::loadConfigFile() {
 	rf->read(&props[0], size);
 	unordered_map<string, string> map = deserializeMap(props);
 	for (unordered_map<string, string>::iterator it = map.begin(); it != map.end(); it++) {
-		this->configFileMap[(ConfigFileAttrbute)stoi(it->first)] = it->second;
+		(*this->configFileMap)[(ConfigFileAttrbute)stoi(it->first)] = it->second;
 	}
 	rf->close();
 	if (!rf->good()) cout << "CONFIG FILE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
@@ -61,7 +62,7 @@ void ConfigFileHandler::storeConfigFile() {
 	string path = this->databaseName+".cfg";
 	ofstream* wf = new ofstream(path, ios::out | ios::binary);
 	unordered_map<string, string> map;
-	for (unordered_map<ConfigFileAttrbute, string>::iterator it = this->configFileMap.begin(); it != this->configFileMap.end(); it++) {
+	for (unordered_map<ConfigFileAttrbute, string>::iterator it = this->configFileMap->begin(); it != this->configFileMap->end(); it++) {
 		if (it->first == ConfigFileAttrbute::graphList) {
 			map[to_string(it->first)] = vector_to_str(Database::getDatabase(databaseName)->getGraphNames());
 		}
@@ -77,5 +78,5 @@ void ConfigFileHandler::storeConfigFile() {
 }
 
 void ConfigFileHandler::setConfig(ConfigFileAttrbute config, string value) {
-	this->configFileMap[config] = value;
+	(*this->configFileMap)[config] = value;
 }

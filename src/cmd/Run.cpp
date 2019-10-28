@@ -87,11 +87,12 @@ void generates_semi_random_graph(string dbname) {
 		cout << "holi" << endl;
 		g->storeVertexMap();
 		g->storeSchemaMap();
+		db->cfg->storeConfigFile();
 }
 
 void load_graph_test(string dbname) {
 	Database* db = Database::getDatabase(dbname);
-	if(db->cfg->configFileMap.size()==0)
+	if(db->cfg->configFileMap->size()==0)
 		db->cfg->loadConfigFile();
 	cout << "CONFIG EDGE DIR: " << db->buildSotrePath(dbname, ElementType::EDGE, false) << endl;
 	Graph* g = new Graph(db->name, dbname);
@@ -147,7 +148,7 @@ void createDatasetHtml() {
 }
 
 long main() {
-	generates_semi_random_graph("test");
+	generates_semi_random_graph("test2");
 	/*
 	string dbname = "test";
 	load_graph_test(dbname);

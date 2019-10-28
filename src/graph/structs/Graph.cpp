@@ -62,8 +62,8 @@ Graph::Graph(string databaseName, string graphName) {
 void Graph::storeVertexMap() {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string vertexDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::VERTEX, true);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string vertexIndexPath = vertexDir + cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string vertexIndexPath = vertexDir + (*cfg->configFileMap)[ConfigFileAttrbute::vertexIndexFile];
 	IndexHandler index(vertexIndexPath);
 	string pageId = "";
 	string pagePath = "";
@@ -105,8 +105,8 @@ void Graph::storeVertexMap() {
 void Graph::storeEdgeVector(vector<Edge*> edgesVector) {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string edgeDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::EDGE, true);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string edgeIndexPath = edgeDir + cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string edgeIndexPath = edgeDir + (*cfg->configFileMap)[ConfigFileAttrbute::edgeIndexFile];
 	bool newPage = false;
 	IndexHandler index(edgeIndexPath);
 	string pageId = "";
@@ -137,8 +137,8 @@ void Graph::storeEdgeVector(vector<Edge*> edgesVector) {
 void Graph::storeNodeVector(vector<Node*> nodesVector) {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string nodeDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::NODE, true);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string nodeIndexPath = nodeDir + cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string nodeIndexPath = nodeDir + (*cfg->configFileMap)[ConfigFileAttrbute::nodeIndexFile];
 	IndexHandler index(nodeIndexPath);
 	string pageId = "";
 	unordered_map<string, ofstream*> pageFiles;
@@ -168,8 +168,8 @@ void Graph::storeNodeVector(vector<Node*> nodesVector) {
 void Graph::storeSchemaMap() {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string schemaDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::SCHEMA, true);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string schemaIndexPath = schemaDir + cfg->configFileMap[ConfigFileAttrbute::schemaIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string schemaIndexPath = schemaDir + (*cfg->configFileMap)[ConfigFileAttrbute::schemaIndexFile];
 	IndexHandler index(schemaIndexPath);
 	string pageId = "";
 	unordered_map<string, ofstream*> pageFiles;
@@ -200,8 +200,8 @@ void Graph::loadVertexMap(vector<Node*> nodeVector, vector<Edge*> edgeVector) {
 		return;
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string vertexDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::VERTEX, false);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string vertexIndexPath = vertexDir + cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string vertexIndexPath = vertexDir + (*cfg->configFileMap)[ConfigFileAttrbute::vertexIndexFile];
 	IndexHandler index(vertexIndexPath);
 	if (fileExists(vertexIndexPath))
 		index.loadIndex();
@@ -250,8 +250,8 @@ vector<Edge*> Graph::loadEdgeVector(vector<Node*> nodeVector) {
 	vector<Edge*> edgeVector;
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string edgeDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::EDGE, false);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string edgeIndexPath = edgeDir + cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string edgeIndexPath = edgeDir + (*cfg->configFileMap)[ConfigFileAttrbute::edgeIndexFile];
 	IndexHandler index(edgeIndexPath);
 	if (fileExists(edgeIndexPath))
 		index.loadIndex();
@@ -319,8 +319,8 @@ vector<Node*> Graph::loadNodeVector() {
 	vector<Node*> nodeVector;
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string nodeDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::NODE, false);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string nodeIndexPath = nodeDir + cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string nodeIndexPath = nodeDir + (*cfg->configFileMap)[ConfigFileAttrbute::nodeIndexFile];
 	IndexHandler index(nodeIndexPath);
 	if (fileExists(nodeIndexPath))
 		index.loadIndex();
@@ -365,8 +365,8 @@ vector<Node*> Graph::loadNodeVector() {
 void Graph::loadSchemaMap() {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string schemaDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::SCHEMA, true);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string schemaIndexPath = schemaDir + cfg->configFileMap[ConfigFileAttrbute::schemaIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string schemaIndexPath = schemaDir + (*cfg->configFileMap)[ConfigFileAttrbute::schemaIndexFile];
 	IndexHandler index(schemaIndexPath);
 	if (fileExists(schemaIndexPath))
 		index.loadIndex();

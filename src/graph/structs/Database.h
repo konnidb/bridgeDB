@@ -16,6 +16,6 @@ public:
 	Database();
 
 private:
-	static unordered_map<string, Database*> instances;
+	static unordered_map<string, Database*>* instances;
 	Database(string name);
 };

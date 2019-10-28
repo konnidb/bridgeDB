@@ -32,8 +32,8 @@ Graph* Definition::createGraph(string name) {
 	return g;
 }
 
-Schema* Definition::createSchema(string schemaName, string databaseName, string graphName){}
-Schema* Definition::createSchema(string name, string graphName){}
+Schema* Definition::createSchema(string schemaName, string databaseName, string graphName) { return NULL; }
+Schema* Definition::createSchema(string name, string graphName){ return NULL; }
 void Definition::deleteDatabase(){}
 void Definition::deleteSchema(string name, string graphName){}
 void Definition::deleteGraph(string name){}
