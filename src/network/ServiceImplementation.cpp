@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stdexcept>
 #include "network.grpc.pb.h"
 #include "network.pb.h"
 #include "auth/AuthService.hpp"
@@ -75,7 +76,7 @@ Status ServiceImplementation::ExecuteQuery(
         string token = (string)query->token();
         cout<<token;
         DBHandler::createConfigFile("dbperrona");
-        Database* db = DBHandler::loadDatabase("dbperrona", "grafo");
+        Manipulation* manpl = DBHandler::loadDatabase("dbperrona", "grafo");
         // Manipulation* man = 
     } catch(exception& e) {
         return Status(StatusCode::ABORTED, "Error creating config file");
@@ -88,15 +89,21 @@ Status ServiceImplementation::CreateNode(
     const CreateNodeReq *req,
     CreateNodeResponse *response)
 {
-    AuthData data = AuthService::get_credentials(req->token());
-    
+    // // AuthData data = AuthService::get_credentials(req->token());
+    Manipulation* manpl = DBHandler::loadDatabase("dbperrona", "grafo");
+
     cout << "CREATING NODE";
     Node* node = new Node();
     NetworkNode req_node = (NetworkNode)req->node();
     NetworkNode* res_node = response->mutable_node();
     GrpcToGraph::parse_node(&req_node, node);
-    Node* stored_node = manipulations[data.database_name]->createNode(node->properties);
+    cout << "About to create node" << endl;
+    Node* stored_node = manpl->createNode(node->properties);
+    manpl->graph->storeVertexMap();
+    cout << "Stored nodeID: " << stored_node->id << endl;
+    cout << "Node created" << endl;
     GraphToGrpc::parse_node(stored_node, res_node);
+
     return Status::OK;
 }
 
@@ -107,7 +114,7 @@ Status ServiceImplementation::CreateEdge(
 {
     
     AuthData data = AuthService::get_credentials(req->token());
-    auto& manpl = manipulations[data.database_name];
+    Manipulation* manpl = DBHandler::loadDatabase("dbperrona", "grafo");
     cout << "CREATING EDGE";
     NetworkEdge nt_req_edge = (NetworkEdge)req->edge();
     Edge* edge = new Edge();
@@ -128,11 +135,20 @@ Status ServiceImplementation::SearchNode(
     const SearchNodeReq *req,
     SearchNodeResponse *resp)
 {
-    AuthData data = AuthService::get_credentials(req->token());
-    auto& manpl = manipulations[data.database_name];
+    // AuthData data = AuthService::get_credentials(req->token());
+    Manipulation* manpl = DBHandler::loadDatabase("dbperrona", "grafo");
+    cout << "Manpl aquired" << endl;
     const NetworkNode req_node = req->node();
-    if (req_node.id()) {
-        manpl->getNodeById((long)req_node.id());
+    try {
+        if (req_node.id()) {
+            Node* res_node = manpl->getNodeById((long)req_node.id());
+            cout << res_node->id << endl;
+            NetworkNode* resNode = new NetworkNode();
+            GraphToGrpc::parse_node(res_node, resNode);
+            resp->mutable_nodes()->AddAllocated(resNode);
+        }
+    } catch(exception& e) {
+        return Status(StatusCode::NOT_FOUND, "NO ITEMS FOUND");
     }
     return Status::OK;
 }
@@ -151,7 +167,7 @@ Status ServiceImplementation::SpanTree(
     SpanTreeResponse *response)
 {
     AuthData data = AuthService::get_credentials(req->token());
-    auto& manpl = manipulations[data.database_name];
+    Manipulation* manpl = DBHandler::loadDatabase("dbperrona", "grafo");
     
     return Status::OK;
 }

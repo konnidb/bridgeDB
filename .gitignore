@@ -12,3 +12,4 @@ CMTest/.vs/
 CMTest/CMTest/Debug/
 *.file
 build
+*.cfg

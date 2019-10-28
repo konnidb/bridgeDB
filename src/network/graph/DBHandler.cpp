@@ -38,7 +38,7 @@ Database* DBHandler::createConfigFile(string db_name) {
 	return NULL;
 }
 
-Database* DBHandler::loadDatabase(string dbName, string graphName) {
+Manipulation* DBHandler::loadDatabase(string dbName, string graphName) {
 	Database* db =  Database::getDatabase(dbName);
 	cout << "DB obtained" << endl;
 	cout << "DB PATH: " << db->cfg->configFileMap.at(ConfigFileAttrbute::storeDirectory) << endl;
@@ -46,9 +46,19 @@ Database* DBHandler::loadDatabase(string dbName, string graphName) {
 	cout << "Definition created" << endl;
 	def->loadGraph(graphName);
 	cout << "Load Database completed" << endl;
-	new Manipulation(db->graphMap->at(graphName));
-	cout << "Created Manipulation" << endl;
-	return db;
+	return new Manipulation(db->graphMap->at(graphName));
+	// cout << "Created Manipulation" << endl;
+	// return db;
+}
+
+Manipulation* DBHandler::getManipulation(string dbName, string graphName) {
+	Database* db = Database::getDatabase(dbName);
+	cout << "DB PATH: " << db->cfg->configFileMap.at(ConfigFileAttrbute::storeDirectory) << endl;
+	Definition* def = new Definition(db);
+	cout << "Definition created" << endl;
+	def->loadGraph(graphName);
+	cout << "Load Database completed" << endl;
+	return new Manipulation(db->graphMap->at(graphName));
 }
 
 Database* DBHandler::createDBIfNotExists(string dbName) {
