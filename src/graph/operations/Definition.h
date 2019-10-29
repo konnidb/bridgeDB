@@ -15,11 +15,13 @@ public:
 	static Database* createDatabase(string name);
 	static Graph* createGraph(string graphName, string databaseName);
 	Graph* createGraph(string name);
-	static Schema* createSchema(string schemaName, string databaseName);
-	Schema* createSchema(string name);
+	static Schema* createSchema(string schemaName, string databaseName, string graphName, unordered_map<string, string> properties, ElementType type);
+	Schema* createSchema(string name, string graphName, unordered_map<string, string> properties, ElementType type);
+	static Schema* createSchema(string schemaName, string databaseName, string graphName, string properties, ElementType type);
+	Schema* createSchema(string name, string graphName, string properties, ElementType type);
 	void deleteDatabase();
-	void deleteSchema();
-	void deleteGraph();
+	void deleteSchema(string name, string graphName);
+	void deleteGraph(string name);
 	static void loadGraph(string graphName, string databaseName);
 	void loadGraph(string name);
 };

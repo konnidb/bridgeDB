@@ -49,6 +49,15 @@ void closeStreamsOnMap(unordered_map<string, ofstream*> pageFiles) {
 	}
 }
 
+Graph* Graph::getGraph(string databaseName, string graphName) {
+	Database* db = Database::getDatabase(databaseName);
+	vector<string> graphNames = db->getGraphNames();
+	if (db->graphMap->find(graphName) != db->graphMap->end())
+		return db->graphMap->at(graphName);
+	else
+		return new Graph(databaseName, graphName);
+}
+
 Graph::Graph(string databaseName, string graphName) {
 	this->databaseName = databaseName;
 	this->name = graphName;
@@ -62,21 +71,22 @@ Graph::Graph(string databaseName, string graphName) {
 		vector<Edge*> ev = this->loadEdgeVector(nv);
 		this->loadVertexMap(nv, ev);
 	}
+	(*db->graphMap)[graphName] = this;
 }
 
 void Graph::storeVertexMap() {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	cout << "START BUILD STORE PATH" << endl;
 	string vertexDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::VERTEX, true);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string vertexIndexPath = vertexDir + cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string vertexIndexPath = vertexDir + (*cfg->configFileMap)[ConfigFileAttrbute::vertexIndexFile];
 	IndexHandler index(vertexIndexPath);
 	string pageId = "";
 	string pagePath = "";
 	unordered_map<string, ofstream*> pageFiles;
-	if (fileExists(vertexIndexPath))
-		index.loadIndex();
-	else {
+	//if (fileExists(vertexIndexPath))
+		//index.loadIndex();
+	//else {
 		pageId = to_string(index.getNextPageId());
 		pagePath = vertexDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
@@ -86,11 +96,12 @@ void Graph::storeVertexMap() {
 			unsigned char* c = (unsigned char*)sizec;
 			pageFiles[pagePath]->write((char*)& size, sizeof(long));
 		}
-	}
+	//}
 	//IF NOT EXISTS, CREATE NEW
 	vector<Node*> nodesVector;
 	vector<Edge*> edgesVector;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
+		//if(index.indexMap.find(to_string(it->second->id))==index.indexMap.end())
 		index.indexMap[to_string(it->second->id)] = pageId;
 		SerializableVertex* s = dynamic_cast<SerializableVertex*>(it->second->getSerializable(pagePath));
 		s->store(pageFiles[pagePath]); 
@@ -111,16 +122,16 @@ void Graph::storeVertexMap() {
 void Graph::storeEdgeVector(vector<Edge*> edgesVector) {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string edgeDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::EDGE, true);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string edgeIndexPath = edgeDir + cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string edgeIndexPath = edgeDir + (*cfg->configFileMap)[ConfigFileAttrbute::edgeIndexFile];
 	bool newPage = false;
 	IndexHandler index(edgeIndexPath);
 	string pageId = "";
 	string pagePath = "";
 	unordered_map<string, ofstream*> pageFiles;
-	if (fileExists(edgeIndexPath))
-		index.loadIndex();
-	else {
+	//if (fileExists(edgeIndexPath))
+		//index.loadIndex();
+	//else {
 		pageId = to_string(index.getNextPageId());
 		pagePath = edgeDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
@@ -130,7 +141,7 @@ void Graph::storeEdgeVector(vector<Edge*> edgesVector) {
 			unsigned char* c = (unsigned char*)sizec;
 			pageFiles[pagePath]->write((char*)& size, sizeof(long));
 		}
-	}
+	//}
 	for (long i = 0; i < edgesVector.size(); i++) {
 		index.indexMap[to_string(edgesVector[i]->id)] = pageId;
 		SerializableEdge* s = dynamic_cast<SerializableEdge*>(edgesVector[i]->getSerializable(pagePath));
@@ -143,15 +154,15 @@ void Graph::storeEdgeVector(vector<Edge*> edgesVector) {
 void Graph::storeNodeVector(vector<Node*> nodesVector) {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string nodeDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::NODE, true);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string nodeIndexPath = nodeDir + cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string nodeIndexPath = nodeDir + (*cfg->configFileMap)[ConfigFileAttrbute::nodeIndexFile];
 	IndexHandler index(nodeIndexPath);
 	string pageId = "";
 	unordered_map<string, ofstream*> pageFiles;
 	string pagePath;
-	if (fileExists(nodeIndexPath))
-		index.loadIndex();
-	else{
+	//if (fileExists(nodeIndexPath))
+		//index.loadIndex();
+	//else{
 		pageId = to_string(index.getNextPageId());
 		pagePath = nodeDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
@@ -161,7 +172,7 @@ void Graph::storeNodeVector(vector<Node*> nodesVector) {
 			unsigned char* c = (unsigned char*)sizec;
 			pageFiles[pagePath]->write((char *)&size, sizeof(long));
 		}
-	}
+	//}
 	for (long i = 0; i < nodesVector.size(); i++) {
 		index.indexMap[to_string(nodesVector[i]->id)] = pageId;
 		SerializableNode* s = dynamic_cast<SerializableNode*>(nodesVector[i]->getSerializable(pagePath));
@@ -174,15 +185,15 @@ void Graph::storeNodeVector(vector<Node*> nodesVector) {
 void Graph::storeSchemaMap() {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string schemaDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::SCHEMA, true);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string schemaIndexPath = schemaDir + cfg->configFileMap[ConfigFileAttrbute::schemaIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string schemaIndexPath = schemaDir + (*cfg->configFileMap)[ConfigFileAttrbute::schemaIndexFile];
 	IndexHandler index(schemaIndexPath);
 	string pageId = "";
 	unordered_map<string, ofstream*> pageFiles;
 	string pagePath;
-	if (fileExists(schemaIndexPath))
-		index.loadIndex();
-	else {
+	//if (fileExists(schemaIndexPath))
+		//index.loadIndex();
+	//else {
 		pageId = to_string(index.getNextPageId());
 		pagePath = schemaDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
@@ -192,7 +203,7 @@ void Graph::storeSchemaMap() {
 			unsigned char* c = (unsigned char*)sizec;
 			pageFiles[pagePath]->write((char*)& size, sizeof(long));
 		}
-	}
+	//}
 	for (unordered_map<long, Schema*>::iterator it = this->schemaMap->begin(); it != this->schemaMap->end(); it++) {
 		index.indexMap[to_string(it->second->id)] = pageId;
 		it->second->store(pageFiles[pagePath]);
@@ -206,8 +217,8 @@ void Graph::loadVertexMap(vector<Node*> nodeVector, vector<Edge*> edgeVector) {
 		return;
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string vertexDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::VERTEX, false);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string vertexIndexPath = vertexDir + cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string vertexIndexPath = vertexDir + (*cfg->configFileMap)[ConfigFileAttrbute::vertexIndexFile];
 	IndexHandler index(vertexIndexPath);
 	if (fileExists(vertexIndexPath))
 		index.loadIndex();
@@ -256,8 +267,8 @@ vector<Edge*> Graph::loadEdgeVector(vector<Node*> nodeVector) {
 	vector<Edge*> edgeVector;
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string edgeDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::EDGE, false);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string edgeIndexPath = edgeDir + cfg->configFileMap[ConfigFileAttrbute::edgeIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string edgeIndexPath = edgeDir + (*cfg->configFileMap)[ConfigFileAttrbute::edgeIndexFile];
 	IndexHandler index(edgeIndexPath);
 	if (fileExists(edgeIndexPath))
 		index.loadIndex();
@@ -281,8 +292,8 @@ vector<Edge*> Graph::loadEdgeVector(vector<Node*> nodeVector) {
 			SerializableEdge serializable;
 			serializable.load(rf);
 			Edge* edge = new Edge(serializable);
-			//Edge* result = vectorFindById<Edge>(edgeVector, edge);
-			Edge* result = vectorFindByFn<Edge>(edgeVector, edge, Edge::compareEdges);
+			Edge* result = vectorFindById<Edge>(edgeVector, edge);
+			//Edge* result = vectorFindByFn<Edge>(edgeVector, edge, Edge::compareEdges);
 			//bool(*test)(Edge* e, Edge* e2) = Edge::compareEdges;
 			if (result == NULL)
 				edgeVector.push_back(edge);
@@ -308,8 +319,9 @@ vector<Edge*> Graph::loadEdgeVector(vector<Node*> nodeVector) {
 
 			if (edge->schema == NULL) {
 				if (this->schemaMap->find(serializable.schemaId) == this->schemaMap->end())
-					throw "EDGE SCHEMA NOT FOUND, id: " + serializable.schemaId;
-				edge->schema = this->schemaMap->at(serializable.schemaId);
+					cout << "EDGE SCHEMA NOT FOUND, id: " << serializable.schemaId << endl;
+				else
+					edge->schema = this->schemaMap->at(serializable.schemaId);
 			}
 
 			if (edge->targetNode == NULL || edge->originNode == NULL)
@@ -325,8 +337,8 @@ vector<Node*> Graph::loadNodeVector() {
 	vector<Node*> nodeVector;
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string nodeDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::NODE, false);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string nodeIndexPath = nodeDir + cfg->configFileMap[ConfigFileAttrbute::nodeIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string nodeIndexPath = nodeDir + (*cfg->configFileMap)[ConfigFileAttrbute::nodeIndexFile];
 	IndexHandler index(nodeIndexPath);
 	if (fileExists(nodeIndexPath))
 		index.loadIndex();
@@ -358,8 +370,9 @@ vector<Node*> Graph::loadNodeVector() {
 				node = result;
 			if (node->schema == NULL) {
 				if (this->schemaMap->find(serializable.schemaId) == this->schemaMap->end())
-					throw "NODE SCHEMA NOT FOUND, id: " + serializable.schemaId;
-				node->schema = this->schemaMap->at(serializable.schemaId);
+					cout << "NODE SCHEMA NOT FOUND, id: " << serializable.schemaId << endl;
+				else
+					node->schema = this->schemaMap->at(serializable.schemaId);
 			}
 		}
 		rf->close();
@@ -371,8 +384,8 @@ vector<Node*> Graph::loadNodeVector() {
 void Graph::loadSchemaMap() {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	string schemaDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::SCHEMA, true);
-	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
-	string schemaIndexPath = schemaDir + cfg->configFileMap[ConfigFileAttrbute::schemaIndexFile];
+	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
+	string schemaIndexPath = schemaDir + (*cfg->configFileMap)[ConfigFileAttrbute::schemaIndexFile];
 	IndexHandler index(schemaIndexPath);
 	if (fileExists(schemaIndexPath))
 		index.loadIndex();
@@ -404,7 +417,7 @@ void Graph::loadSchemaMap() {
 }
 
 long Graph::getNextVertexId() {
-	long max = -1;
+	long max = 0;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
 		if (it->second->id > max)
 			max = it->second->id;
@@ -413,7 +426,7 @@ long Graph::getNextVertexId() {
 }
 
 long Graph::getNextNodeId() {
-	long max = -1;
+	long max = 0;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
 		if (it->second->id > max)
 			max = it->second->id;
@@ -422,7 +435,7 @@ long Graph::getNextNodeId() {
 }
 
 long Graph::getNextEdgeId() {
-	long max = -1;
+	long max = 0;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
 		for (int i = 0; i < it->second->edgesVector.size(); i++)
 		{

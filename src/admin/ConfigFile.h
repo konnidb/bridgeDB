@@ -16,7 +16,7 @@ using namespace std;
 class ConfigFileHandler {
 public:
 	string databaseName;
-	unordered_map<ConfigFileAttrbute, string> configFileMap;
+	unordered_map<ConfigFileAttrbute, string>* configFileMap;
 
 	ConfigFileHandler(string databaseName);
 	void loadConfigFile();

@@ -19,6 +19,7 @@ Serializable* Node::getSerializable(string path) {
 	SerializableNode* serializable = new SerializableNode();
 	serializable->path = path;
 	serializable->id = this->id;
+	serializable->schemaId = this->schema!=NULL? this->schema->id:-1;
 	serializable->properties = properties;
 	return serializable;
 }

@@ -18,8 +18,9 @@
 using namespace std;
 
 
-const char ELMNT_SEPARATOR = '~';
-const char PROP_SEPARATOR = (char)140;
+const char LIST_SEPARATOR = (char) 35; //#
+const char ELMNT_SEPARATOR = (char) 126; //~
+const char PROP_SEPARATOR = (char) 170; //�
 
 long char_ptr_to_int(char* c) {
 	unsigned char* uc = (unsigned char*)c;
@@ -137,7 +138,7 @@ string vector_to_str(vector<string> input, char separator) {
 }
 
 string vector_to_str(vector<string> input) {
-	return vector_to_str(input, PROP_SEPARATOR);
+	return vector_to_str(input, LIST_SEPARATOR);
 }
 
 vector<string> str_to_vector(string input, char separator) {
@@ -147,18 +148,20 @@ vector<string> str_to_vector(string input, char separator) {
 	for (long i = 0; i < input.length(); i++) {
 		if ((int)input[i] == 0)
 			continue;
-		if (input[i] == PROP_SEPARATOR) {
+		if (input[i] == separator) {
 			output.push_back(tmp);
 			tmp = "";
 		}
 		else
 			tmp += input[i];
 	}
+	if(tmp.length()>0)
+		output.push_back(tmp);
 	return output;
 }
 
 vector<string> str_to_vector(string input) {
-	return str_to_vector(input, PROP_SEPARATOR);
+	return str_to_vector(input, LIST_SEPARATOR);
 }
 
 /*
@@ -237,24 +240,8 @@ ConfigFileHandler* getConfigFileHandler(string databaseName) {
 	Database* db = Database::getDatabase(databaseName);
 	return db->cfg;
 }
-bool dirExists(string dir);
-void createSubDir(string dir) {
-	cout << "INSIDE CREATESUBDIR: " << dir << endl;
-	if (dirExists(dir)) return;
-#ifdef _WIN32
-	if (!CreateDirectory(dir.c_str(), NULL) && ERROR_ALREADY_EXISTS != GetLastError())
-		throw "Directory " + dir + " could not be created.";
-#else
-	if (mkdir(dir.c_str(), 0777)==-1) {
-		cout << "mkdir failed" << endl;
-		throw "Directory " + dir + " could not be created.";
-	}
-#endif
-	cout << "FINISHED CREATE SUB DIR" << endl;
-}
 
 bool dirExists(string dir) {
-	cout << "INSIDE DIR EXISTS" << endl;
 #ifdef _WIN32
 	if (GetFileAttributesA(dir.c_str()) & FILE_ATTRIBUTE_DIRECTORY)
 		return true;
@@ -262,17 +249,31 @@ bool dirExists(string dir) {
 	cout << "SHIT GOING ON HERE" << endl;
 	struct stat info;
 
-	if( stat(dir.c_str(), &info ) != 0){
+	if (stat(dir.c_str(), &info) != 0) {
 		cout << "cannot access" << endl;
 		return false;
-	} else if( info.st_mode & S_IFDIR ) {
+}
+	else if (info.st_mode & S_IFDIR) {
 		cout << dir << " Is directory" << endl;
 		return true;
 	}
 	else {
 		cout << dir << " Is not directory" << endl;
 	}
-
 #endif
 	return false;
+}
+
+
+void createSubDir(string dir) {
+	if (dirExists(dir)) return;
+#ifdef _WIN32
+	if (!CreateDirectory(dir.c_str(), NULL) && ERROR_ALREADY_EXISTS != GetLastError())
+		throw "Directory " + dir + " could not be created.";
+#else
+	if (mkdir(dir.c_str(), 0777) == -1) {
+		cout << "mkdir failed" << endl;
+		throw "Directory " + dir + " could not be created.";
+	}
+#endif
 }
