@@ -4,6 +4,8 @@
 
 using namespace std;
 
+unordered_map<string, string> deserializeMap(string properties);
+
 Definition::Definition(Database* database){
 	this->database = database;
 }
@@ -20,20 +22,31 @@ Database* Definition::createDatabase(string name){
 Graph* Definition::createGraph(string graphName, string databaseName){
 	Database* db = Database::getDatabase(databaseName);
 	db->cfg->loadConfigFile();
-	Graph* g = new Graph(databaseName, graphName);
-	(*db->graphMap)[graphName]=g;
+	Graph* g = Graph::getGraph(databaseName, graphName);
 	return g;
 }
 Graph* Definition::createGraph(string name) {
 	if (this->database == NULL)
 		return NULL;
-	Graph* g = new Graph(this->database->name, name);
-	(*this->database->graphMap)[name] = g;
+	Graph* g = Graph::getGraph(this->database->name, name);
 	return g;
 }
 
-Schema* Definition::createSchema(string schemaName, string databaseName, string graphName) { return NULL; }
-Schema* Definition::createSchema(string name, string graphName){ return NULL; }
+Schema* Definition::createSchema(string schemaName, string databaseName, string graphName, unordered_map<string, string> properties, ElementType type) {
+	Graph* g = Graph::getGraph(databaseName, graphName);
+	Schema* s = new Schema(schemaName, properties, type);
+	(*g->schemaMap)[s->id] = s;
+	return s;
+}
+Schema* Definition::createSchema(string name, string graphName, unordered_map<string, string> properties, ElementType type) {
+	return Definition::createSchema(name, this->database->name, graphName, properties, type);
+}
+Schema* Definition::createSchema(string schemaName, string databaseName, string graphName, string properties, ElementType type) {
+	return Definition::createSchema(schemaName, databaseName, graphName, deserializeMap(properties), type);
+}
+Schema* Definition::createSchema(string name, string graphName, string properties, ElementType type) {
+	return Definition::createSchema(name, this->database->name, graphName, deserializeMap(properties), type);
+}
 void Definition::deleteDatabase(){}
 void Definition::deleteSchema(string name, string graphName){}
 void Definition::deleteGraph(string name){}
@@ -41,27 +54,11 @@ void Definition::deleteGraph(string name){}
 void Definition::loadGraph(string graphName, string databaseName){
 	Database* db = Database::getDatabase(databaseName);
 	db->cfg->loadConfigFile();
-	Graph* g = NULL;
-	for (unordered_map<string, Graph*>::iterator it = db->graphMap->begin(); it != db->graphMap->end(); it++) {
-		if (it->first == graphName)
-			g = it->second;
-	}
-	if (g == NULL) {
-		g = new Graph(databaseName, graphName);
-		(*db->graphMap)[graphName] = g;
-	}
+	Graph* g = Graph::getGraph(databaseName, graphName);
 }
 
 void Definition::loadGraph(string name) {
 	if (this->database == NULL)
 		return;
-	Graph* g = NULL;
-	for (unordered_map<string, Graph*>::iterator it = this->database->graphMap->begin(); it != this->database->graphMap->end(); it++) {
-		if (it->first == name)
-			g = it->second;
-	}
-	if (g == NULL) {
-		g = new Graph(this->database->name, name);
-		(*this->database->graphMap)[name] = g;
-	}
+	Graph* g = Graph::getGraph(this->database->name, name);
 }

@@ -19,6 +19,7 @@ Serializable* Edge::getSerializable(string path) {
 	SerializableEdge* serializable = new SerializableEdge();
 	serializable->id = this->id;
 	serializable->path = path;
+	serializable->schemaId = this->schema != NULL ? this->schema->id : -1;
 	serializable->properties = this->properties;
 	serializable->originNode = this->originNode->id;
 	serializable->targetNode = this->targetNode->id;

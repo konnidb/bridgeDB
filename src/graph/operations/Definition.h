@@ -12,8 +12,10 @@ public:
 	static Database* createDatabase(string name);
 	static Graph* createGraph(string graphName, string databaseName);
 	Graph* createGraph(string name);
-	static Schema* createSchema(string schemaName, string databaseName, string graphName);
-	Schema* createSchema(string name, string graphName);
+	static Schema* createSchema(string schemaName, string databaseName, string graphName, unordered_map<string, string> properties, ElementType type);
+	Schema* createSchema(string name, string graphName, unordered_map<string, string> properties, ElementType type);
+	static Schema* createSchema(string schemaName, string databaseName, string graphName, string properties, ElementType type);
+	Schema* createSchema(string name, string graphName, string properties, ElementType type);
 	void deleteDatabase();
 	void deleteSchema(string name, string graphName);
 	void deleteGraph(string name);

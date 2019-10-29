@@ -95,7 +95,7 @@ void load_graph_test(string dbname) {
 	if(db->cfg->configFileMap->size()==0)
 		db->cfg->loadConfigFile();
 	cout << "CONFIG EDGE DIR: " << db->buildSotrePath(dbname, ElementType::EDGE, false) << endl;
-	Graph* g = new Graph(db->name, dbname);
+	Graph* g = Graph::getGraph(db->name, dbname);
 	(*db->graphMap)[dbname] = g;
 	vector<Node*> nv = g->loadNodeVector();
 	vector<Edge*> ev = g->loadEdgeVector(nv);
@@ -148,7 +148,7 @@ void createDatasetHtml() {
 }
 
 long main() {
-	generates_semi_random_graph("test2");
+	//generates_semi_random_graph("test2");
 	/*
 	string dbname = "test";
 	load_graph_test(dbname);
@@ -178,6 +178,18 @@ long main() {
 	pattern.push_back(db->graphMap->at(dbname)->vertexMap->at(n));
 	vector<Vertex*>* resVec = m->getPathByPattern(pattern);
 	//*/
+
+	Database* db = Database::getDatabase("test2");
+	cout << "CONFIG EDGE DIR: " << db->buildSotrePath("test2", ElementType::EDGE, false) << endl;
+	Definition* d = new Definition(db);
+	d->createGraph("testGraph");
+	Graph* g = db->graphMap->at("testGraph");
+	Manipulation* m = new Manipulation(g);
+	Node* n1 = m->getNodeById(2);
+	Node* n2 = m->createNode(n1->properties);
+	m->createEdge(n1, n2, "", true);
+	g->storeVertexMap();
+
 	cout << "SALE" << endl;
 	system("pause");
 }

@@ -12,7 +12,8 @@ public:
 	string name;
 	unordered_map<Node*, Vertex*>* vertexMap;
 	unordered_map<long, Schema*>* schemaMap;
-	Graph(string databaseName, string graphName);
+
+	static Graph* getGraph(string databaseName, string graphName);
 
 	void storeVertexMap();
 
@@ -36,4 +37,6 @@ public:
 
 	vector<Edge*> getEdgeVector();
 	vector<Node*> getNodeVector();
+private:
+	Graph(string databaseName, string graphName);
 };
