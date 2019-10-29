@@ -62,6 +62,11 @@ Status ServiceImplementation::CreateSession(
         string token = AuthService::generate_token(rq_credentials);
         string* tkn = response->mutable_token();
         AuthData data = AuthService::get_auth_data(token);
+        auto handler = DBHandler::getManipulation(rq_credentials.database, rq_credentials.graph);
+        auto graph = Database::getDatabase(rq_credentials.database)->graphMap->at(rq_credentials.graph);
+        auto node_vector = graph->loadNodeVector();
+        auto edge_vector = graph->loadEdgeVector(node_vector);
+        graph->loadVertexMap(node_vector, edge_vector);
         cout << token << " " << data.database_name << endl;
         *tkn = token;
         return Status::OK;
