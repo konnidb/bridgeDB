@@ -40,7 +40,7 @@ string AuthService::generate_token(AuthCredentials credentials)
     return token;
 }
 
-AuthData AuthService::get_credentials(string token) {
+AuthData AuthService::get_auth_data(string token) {
     AuthData data;
     auto decoded = jwt::decode(token);
     auto& username = decoded.get_payload_claim(_username_str);

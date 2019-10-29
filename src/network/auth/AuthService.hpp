@@ -21,7 +21,7 @@ private:
     /* data */
 public:
     AuthService();
-    static AuthData get_credentials(string token);
+    static AuthData get_auth_data(string token);
     static bool validate_credentials(AuthCredentials);
     static string generate_token(AuthCredentials    );
     static bool validate_token(string);

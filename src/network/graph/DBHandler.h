@@ -12,7 +12,7 @@ private:
 public:
     DBHandler(Database*);
 	DBHandler(string);
-    static Database* createConfigFile(string);
+    static Database* createConfigFile(string, string);
 	static Manipulation* loadDatabase(string, string);
 	static Database* createDBIfNotExists(string);
     static Manipulation* getManipulation(string db_name, string graph_name);

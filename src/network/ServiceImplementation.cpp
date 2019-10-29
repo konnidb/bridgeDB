@@ -61,7 +61,7 @@ Status ServiceImplementation::CreateSession(
     if (AuthService::validate_credentials(rq_credentials)) {
         string token = AuthService::generate_token(rq_credentials);
         string* tkn = response->mutable_token();
-        AuthData data = AuthService::get_credentials(token);
+        AuthData data = AuthService::get_auth_data(token);
         cout << token << " " << data.database_name << endl;
         *tkn = token;
         return Status::OK;
@@ -77,9 +77,9 @@ Status ServiceImplementation::ExecuteQuery(
 {
     try {
         string token = (string)query->token();
-        cout<<token;
-        DBHandler::createConfigFile("dbperrona");
-        Manipulation* manpl = DBHandler::loadDatabase("dbperrona", "grafo");
+        AuthData authData = AuthService::get_auth_data(token);
+        DBHandler::createConfigFile(authData.database_name, authData.graph_name);
+        Manipulation* manpl = DBHandler::loadDatabase(authData.database_name, authData.graph_name);
         // Manipulation* man = 
     } catch(exception& e) {
         return Status(StatusCode::ABORTED, "Error creating config file");
@@ -92,8 +92,8 @@ Status ServiceImplementation::CreateNode(
     const CreateNodeReq *req,
     CreateNodeResponse *response)
 {
-    // // AuthData data = AuthService::get_credentials(req->token());
-    Manipulation* manpl = DBHandler::loadDatabase("dbperrona", "grafo");
+    AuthData data = AuthService::get_auth_data(req->token());
+    Manipulation* manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
 
     cout << "CREATING NODE";
     Node* node = new Node();
@@ -116,8 +116,8 @@ Status ServiceImplementation::CreateEdge(
     CreateEdgeResponse *response)
 {
     
-    AuthData data = AuthService::get_credentials(req->token());
-    Manipulation* manpl = DBHandler::loadDatabase("dbperrona", "grafo");
+    AuthData data = AuthService::get_auth_data(req->token());
+    Manipulation* manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
     cout << "CREATING EDGE";
     NetworkEdge nt_req_edge = (NetworkEdge)req->edge();
     Edge* edge = new Edge();
@@ -138,8 +138,8 @@ Status ServiceImplementation::SearchNode(
     const SearchNodeReq *req,
     SearchNodeResponse *resp)
 {
-    // AuthData data = AuthService::get_credentials(req->token());
-    Manipulation* manpl = DBHandler::loadDatabase("dbperrona", "grafo");
+    AuthData data = AuthService::get_auth_data(req->token());
+    Manipulation* manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
     cout << "Manpl aquired" << endl;
     const NetworkNode req_node = req->node();
     try {
@@ -171,9 +171,8 @@ Status ServiceImplementation::SpanTree(
     const SpanTreeReq *req,
     SpanTreeResponse *response)
 {
-    AuthData data = AuthService::get_credentials(req->token());
-    Manipulation* manpl = DBHandler::loadDatabase("dbperrona", "grafo");
-    
+    AuthData data = AuthService::get_auth_data(req->token());
+    Manipulation* manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
     return Status::OK;
 }
 

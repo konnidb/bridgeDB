@@ -20,7 +20,7 @@ DBHandler::DBHandler(string db_name) {
 	cout << db_name << endl;
 }
 
-Database* DBHandler::createConfigFile(string db_name) {
+Database* DBHandler::createConfigFile(string db_name, string graph_name) {
 	cout << "Looking for db instance" << endl;
     // Database* db = Database::getDatabase(db_name);
 	ConfigFileHandler* cfgFile = new ConfigFileHandler(db_name);
@@ -33,7 +33,7 @@ Database* DBHandler::createConfigFile(string db_name) {
 	cfgFile->configFileMap[ConfigFileAttrbute::nodeIndexFile] = "node.ix";
 	cfgFile->configFileMap[ConfigFileAttrbute::vertexIndexFile] = "vertex.ix";
 	cfgFile->configFileMap[ConfigFileAttrbute::schemaIndexFile] = "schema.ix";
-	cfgFile->configFileMap[ConfigFileAttrbute::graphList] = "pitochu";
+	cfgFile->configFileMap[ConfigFileAttrbute::graphList] = graph_name;
 	cfgFile->storeConfigFile();
 	return NULL;
 }
