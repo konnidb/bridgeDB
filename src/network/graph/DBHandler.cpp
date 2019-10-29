@@ -28,7 +28,7 @@ Database* DBHandler::createConfigFile(string db_name) {
 	cout << "SETTING CONFIG FILE ATTRS" << endl;
     cfgFile->configFileMap[ConfigFileAttrbute::databaseName] = db_name;
 	cfgFile->configFileMap[ConfigFileAttrbute::pageExtension] = ".bdb";
-	cfgFile->configFileMap[ConfigFileAttrbute::storeDirectory] = "/Users/yiyo/bridgeDB/dbs/";
+	cfgFile->configFileMap[ConfigFileAttrbute::storeDirectory] = "/Users/yiyo/bridgeDB/dbs";
 	cfgFile->configFileMap[ConfigFileAttrbute::edgeIndexFile] = "edge.ix";
 	cfgFile->configFileMap[ConfigFileAttrbute::nodeIndexFile] = "node.ix";
 	cfgFile->configFileMap[ConfigFileAttrbute::vertexIndexFile] = "vertex.ix";

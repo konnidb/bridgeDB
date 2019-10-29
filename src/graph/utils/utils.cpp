@@ -4,7 +4,6 @@
 #ifdef _WIN32
 #include<Windows.h>
 #else
-#include <sys/stat.h>
 #include<sys/stat.h>
 #include<sys/types.h>
 #include<unistd.h> 
@@ -238,26 +237,42 @@ ConfigFileHandler* getConfigFileHandler(string databaseName) {
 	Database* db = Database::getDatabase(databaseName);
 	return db->cfg;
 }
-
+bool dirExists(string dir);
 void createSubDir(string dir) {
+	cout << "INSIDE CREATESUBDIR: " << dir << endl;
+	if (dirExists(dir)) return;
 #ifdef _WIN32
 	if (!CreateDirectory(dir.c_str(), NULL) && ERROR_ALREADY_EXISTS != GetLastError())
 		throw "Directory " + dir + " could not be created.";
 #else
-	if (mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)==-1)
+	if (mkdir(dir.c_str(), 0777)==-1) {
+		cout << "mkdir failed" << endl;
 		throw "Directory " + dir + " could not be created.";
+	}
 #endif
+	cout << "FINISHED CREATE SUB DIR" << endl;
 }
 
 bool dirExists(string dir) {
+	cout << "INSIDE DIR EXISTS" << endl;
 #ifdef _WIN32
 	if (GetFileAttributesA(dir.c_str()) & FILE_ATTRIBUTE_DIRECTORY)
 		return true;
 #else
-	struct stat statbuf;
-	stat(dir.c_str(), &statbuf);
-	if (S_ISDIR(statbuf.st_mode))
-		throw "Directory " + dir + " could not be created.";
+	cout << "SHIT GOING ON HERE" << endl;
+	struct stat info;
+
+	if( stat(dir.c_str(), &info ) != 0){
+		cout << "cannot access" << endl;
+		return false;
+	} else if( info.st_mode & S_IFDIR ) {
+		cout << dir << " Is directory" << endl;
+		return true;
+	}
+	else {
+		cout << dir << " Is not directory" << endl;
+	}
+
 #endif
 	return false;
 }

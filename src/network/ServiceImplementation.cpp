@@ -146,6 +146,8 @@ Status ServiceImplementation::SearchNode(
             NetworkNode* resNode = new NetworkNode();
             GraphToGrpc::parse_node(res_node, resNode);
             resp->mutable_nodes()->AddAllocated(resNode);
+        } else {
+            return Status::OK;
         }
     } catch(exception& e) {
         return Status(StatusCode::NOT_FOUND, "NO ITEMS FOUND");

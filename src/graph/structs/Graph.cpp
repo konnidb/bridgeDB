@@ -66,6 +66,7 @@ Graph::Graph(string databaseName, string graphName) {
 
 void Graph::storeVertexMap() {
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
+	cout << "START BUILD STORE PATH" << endl;
 	string vertexDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::VERTEX, true);
 	string pageExtension = cfg->configFileMap[ConfigFileAttrbute::pageExtension];
 	string vertexIndexPath = vertexDir + cfg->configFileMap[ConfigFileAttrbute::vertexIndexFile];

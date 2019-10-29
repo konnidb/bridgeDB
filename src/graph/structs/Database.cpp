@@ -48,6 +48,7 @@ vector<string> Database::getGraphNames() {
 }
 
 string Database::buildSotrePath(string graphName, ElementType element, bool createSubDirs) {
+	cout << "INSIDE buildSotrePath" << endl;
 	if (!dirExists(this->cfg->configFileMap.at(ConfigFileAttrbute::storeDirectory)))
 		throw "Store Directory " + this->cfg->configFileMap.at(ConfigFileAttrbute::storeDirectory) + " doesnt exist!";
 	char slash = '/';
@@ -87,4 +88,5 @@ string Database::buildSotrePath(string graphName, ElementType element, bool crea
 			if (createSubDirs)
 				createSubDir(path);
 		}	
+		return path;
 }
