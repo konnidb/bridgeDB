@@ -1,6 +1,5 @@
 #include <iostream>
 #include <set>
-#include <string>
 #include <unordered_map>
 #include <vector>
 #include "AuthService.hpp"
@@ -56,8 +55,30 @@ AuthData AuthService::get_auth_data(string token) {
 
 bool AuthService::validate_credentials(AuthCredentials credentials)
 {
-    
-    return true;
+    bool flag = false;
+    ifstream authFile;
+    vector<string> tokens;
+    authFile.open("au.th", ios::in);
+    authFile.read((char*)&tokens, sizeof(tokens));
+    for(string token: tokens) {
+        auto decoded = jwt::decode(token);
+        string username = decoded.get_payload_claim("username").as_string();
+        if (strcmp(username.c_str(), credentials.username.c_str())) {
+            string database = decoded.get_payload_claim("database").as_string();
+            string graph = decoded.get_payload_claim("graph").as_string();
+            if (strcmp(database.c_str(), credentials.database.c_str()) && strcmp(graph.c_str(), credentials.graph.c_str())) {
+                flag = strcmp(
+                    decoded.get_payload_claim("password").as_string().c_str(),
+                    credentials.password.c_str()
+                );
+            }
+        }
+    }
+    authFile.close();
+    if (!authFile.good()) {
+        throw "Failure opening file in Validate Credentials";
+    }
+    return flag;
 }
 
 bool AuthService::create_user(AuthCredentials credentials, AuthData user) {
@@ -70,10 +91,24 @@ bool AuthService::create_user(AuthCredentials credentials, AuthData user) {
                     .set_payload_claim("database", jwt::claim(credentials.database))
                     .set_payload_claim("graph", jwt::claim(credentials.graph))
                     .sign(jwt::algorithm::hs256{"supersecret"});
-    vector<pair<string, string>> stored_vector;
-    ifstream userfile_i("au.th", ios::binary);
+    // ifstream userfile_i("au.th", ios::binary);
     if (user.is_root) {
-
+        vector<string> tokens;
+        ifstream authFile;
+        authFile.open("au.th", ios::in);
+        authFile.read((char*)&tokens, sizeof(tokens));
+        tokens.push_back(token);
+        authFile.close();
+        if (!authFile.good()) {
+            throw "Failure reading auth file.";
+        }
+        ofstream writeFile;
+        writeFile.open("au.th", ios::app);
+        writeFile.write((char*)&tokens, sizeof(tokens));
+        writeFile.close();
+        if (!writeFile.good()) {
+            throw "Failure creating user.";
+        }
     }
 };
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 struct AuthData {
@@ -13,6 +14,10 @@ struct AuthData {
 
 struct AuthCredentials {
     string username, password, database, graph;
+};
+
+struct AuthVectorWrapper {
+    vector<AuthCredentials> data;
 };
 
 class AuthService
