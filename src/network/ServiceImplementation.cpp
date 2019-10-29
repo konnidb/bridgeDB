@@ -52,11 +52,14 @@ Status ServiceImplementation::CreateSession(
     const SessionRequest *request,
     Session *response)
 {
-    string username = request->username();
-    string password = request->password();
-    string database = request->database();
-    if (AuthService::validate_credentials(username, password)) {
-        string token = AuthService::generate_token(username, database);
+    AuthCredentials rq_credentials;
+    
+    rq_credentials.username = request->username();
+    rq_credentials.password = request->password();
+    rq_credentials.database = request->database();
+    rq_credentials.graph = request->graph();
+    if (AuthService::validate_credentials(rq_credentials)) {
+        string token = AuthService::generate_token(rq_credentials);
         string* tkn = response->mutable_token();
         AuthData data = AuthService::get_credentials(token);
         cout << token << " " << data.database_name << endl;

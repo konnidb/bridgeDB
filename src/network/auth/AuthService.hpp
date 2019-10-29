@@ -5,9 +5,14 @@ using namespace std;
 
 struct AuthData {
     bool authenticated;
+    bool is_root;
     string database_name;
     string graph_name;
     string username;
+};
+
+struct AuthCredentials {
+    string username, password, database, graph;
 };
 
 class AuthService
@@ -17,8 +22,11 @@ private:
 public:
     AuthService();
     static AuthData get_credentials(string token);
-    static bool validate_credentials(string username, string password);
-    static string generate_token(string, string);
+    static bool validate_credentials(AuthCredentials);
+    static string generate_token(AuthCredentials    );
     static bool validate_token(string);
+    static bool create_user(AuthCredentials, AuthData);
+    static AuthCredentials get_stored_user(string, string);
+    static void configurate_auth_file();
     ~AuthService();
 };
