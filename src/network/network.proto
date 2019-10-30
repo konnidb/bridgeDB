@@ -1,0 +1,182 @@
+syntax = "proto3";
+
+package network;
+option java_package="bridgedb";
+option go_package="bridgedb";
+option java_multiple_files=true;
+
+message Query {
+    int64 number = 1;
+    string message = 2;
+    string token = 3;
+}
+
+message QueryResponse {
+    string response = 1;
+    string token = 2;
+    map<string, string> fields = 3;
+    NetworkNode node = 4;
+}
+
+message NetworkNode{
+    int64 id = 1;
+    map<string, string> fields = 2;    
+    repeated NetworkEdge connections = 3;
+}
+
+message NetworkEdge {
+    string label = 1;
+    map<string, string> fields = 2;
+    NetworkNode origin = 3;
+    NetworkNode destination = 4;
+}
+
+message CreateNodeReq {
+    NetworkNode node = 1;
+    string token = 2;
+}
+
+message CreateNodeResponse {
+    NetworkNode node = 1;
+    string token = 2;
+}
+
+message CreateEdgeReq {
+    NetworkEdge edge = 1;
+    string token = 2;
+}
+
+message CreateEdgeResponse {
+    NetworkEdge edge = 1;
+    string token = 2;
+}
+
+message CreateRelationReq {
+    NetworkNode source = 1;
+    NetworkNode destination = 2;
+    map<string, string> rel_attrs =3;
+    string token = 4;
+}
+
+message CreateRelationResponse {
+    NetworkEdge edge = 1;
+    string token = 4;
+}
+
+message DeleteNodeReq {
+    int64 nodeId = 1;
+    string token = 2;
+}
+
+message DeleteNodeResponse {
+    NetworkNode node = 1;
+    string token = 2;
+}
+
+message DeleteEdgeReq {
+    int64 edgeId = 1;
+    string token = 2;
+}
+
+message DeleteEdgeResponse {
+    NetworkEdge edge = 1;
+    string token = 2;
+}
+
+message SearchNodeReq {
+    NetworkNode node = 1;
+    string token = 2;
+}
+
+message SearchNodeResponse {
+    repeated NetworkNode nodes = 1;
+    string token = 2;
+}
+
+message Session {
+    string session_uuid = 1;
+    string token = 2;
+}
+
+message SessionRequest {
+    string username = 1;
+    string password = 2;
+    string database = 3;
+    string graph = 4;
+}
+
+message SpanTreeReq {
+    string token = 1;
+}
+
+message SpanTreeResponse {
+    string token = 1;
+    repeated NetworkNode nodes = 2;
+    repeated NetworkEdge edges = 3;
+}
+
+message PatternEdge {
+    bool isDirected = 1;
+    PatternNode origin = 2;
+    PatternNode destination = 3;
+    string label = 4;
+    map<string, string> values = 5;
+}
+
+message PatternNode {
+    string identifier = 1;
+    map<string, string> values = 2;
+    repeated PatternEdge connections = 3;
+    string schema = 4;
+}
+
+message GetPatternRequest {
+    repeated PatternNode nodes = 1;
+    repeated PatternEdge edges = 2;
+    string token = 3;
+}
+
+message NtNodeArr {
+    repeated NetworkNode nodes = 1;
+}
+
+message NtEdgeArr {
+    repeated NetworkEdge edges = 1;
+}
+
+message GetPatternResponse {
+    repeated NetworkNode nodes = 1;
+    repeated NetworkEdge edges = 2;
+    string token = 3;
+    map<string, NtNodeArr> nodeList = 4;
+    map<string, NtEdgeArr> edgeList = 5;
+}
+
+message NetworkGraph {
+    repeated NetworkEdge edges = 1;
+    repeated NetworkNode nodes = 2;
+}
+
+message NetworkGraphRequest {
+    string token = 1;
+}
+
+message NetworkGraphResponse {
+    string token = 1;
+    repeated NetworkNode nodes = 2;
+    repeated NetworkEdge edges = 3;
+}
+
+service QueryService {
+    rpc CreateSession (SessionRequest) returns (Session) {};
+    rpc ExecuteQuery (Query) returns (QueryResponse) {};
+    rpc CreateNode (CreateNodeReq) returns (CreateNodeResponse) {};
+    rpc DeleteNode (DeleteNodeReq) returns (DeleteNodeResponse) {};
+    rpc CreateRelation (CreateRelationReq) returns (CreateRelationResponse) {};
+    rpc CreateEdge (CreateEdgeReq) returns (CreateEdgeResponse) {};
+    rpc DeleteEdge (DeleteEdgeReq) returns (DeleteEdgeResponse) {};
+    rpc SearchNode (SearchNodeReq) returns (SearchNodeResponse) {};
+    rpc SpanTree (SpanTreeReq) returns (SpanTreeResponse) {};
+    rpc GetPattern (GetPatternRequest) returns (GetPatternResponse) {};
+    rpc GetGraph (NetworkGraphRequest) returns (NetworkGraphResponse) {};
+}
