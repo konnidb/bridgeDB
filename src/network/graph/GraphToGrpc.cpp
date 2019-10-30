@@ -12,13 +12,21 @@
 #include <string>
 #include <algorithm>
 #include "GraphToGrpc.h"
-#include "src/graph/structs/Node.h"
+#include "src/graph/structs/Vertex.h"
 
 using namespace std;
 using network::NetworkNode;
 using network::NetworkEdge;
 
 GraphToGrpc::GraphToGrpc(){};
+
+NetworkNode* GraphToGrpc::parse_vertex(Vertex* vertex, NetworkNode* n) {
+    parse_node(vertex->node, n);
+    Node* graphNode = vertex->node;
+    vector<NetworkEdge> networkEdges = parse_edge_vector(vertex->edgesVector);
+    *n->mutable_connections() = {networkEdges.begin(), networkEdges.end()};
+}
+
 NetworkNode GraphToGrpc::parse_node(Node* node, NetworkNode* n) {
     auto fields = n->mutable_fields();
     auto props = node->properties;
@@ -42,6 +50,8 @@ NetworkEdge GraphToGrpc::parse_edge(Edge* edge, NetworkEdge* e) {
         auto value = element.second;
         (*fields)[key] = value;
     });
+    parse_node(edge->originNode, e->mutable_origin());
+    parse_node(edge->targetNode, e->mutable_destination());
     return *e;
 }
 
@@ -55,12 +65,12 @@ vector<NetworkNode> GraphToGrpc::parse_node_vector(vector<Node*> nodes) {
     return *n_nodes;
 };
 
-vector<NetworkEdge*> GraphToGrpc::parse_edge_vector(vector<Edge*> edges) {
-    vector<NetworkEdge*> *n_edges = new vector<NetworkEdge*>();
+vector<NetworkEdge> GraphToGrpc::parse_edge_vector(vector<Edge*> edges) {
+    vector<NetworkEdge> *n_edges = new vector<NetworkEdge>();
     for_each(edges.begin(), edges.end(), [n_edges](Edge* edge) {
         NetworkEdge* n_edge = new NetworkEdge();
         parse_edge(edge, n_edge);
-        n_edges->push_back(n_edge);
+        n_edges->push_back(*n_edge);
     });
     return *n_edges;
 };

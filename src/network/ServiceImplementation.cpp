@@ -12,6 +12,7 @@
 #include "graph/GrpcToGraph.h"
 #include "src/graph/structs/Node.h"
 #include "src/graph/structs/Graph.h"
+#include "src/graph/structs/Vertex.h"
 #include "src/graph/operations/Manipulation.h"
 #include "src/graph/utils/Comparison.h"
 #include "src/graph/structs/Database.h"
@@ -51,6 +52,36 @@ using network::DeleteNodeReq;
 using network::DeleteNodeResponse;
 using network::DeleteEdgeReq;
 using network::DeleteEdgeResponse;
+using network::NetworkGraphRequest;
+using network::NetworkGraphResponse;
+
+Status ServiceImplementation::GetGraph(
+    ServerContext* ctx,
+    const NetworkGraphRequest* req,
+    NetworkGraphResponse* resp
+) {
+    try {
+        string token = req->token();
+        AuthData data = AuthService::get_auth_data(token);
+        Manipulation *manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
+        vector<Node*> nodes = manpl->graph->getNodeVector();
+        vector<Edge*> edges = manpl->graph->getEdgeVector();
+        cout << "[ServiceImplementation] Nodes len: " << nodes.size() << " Edges len: " << edges.size() << endl;
+        vector<NetworkNode> respNodesVector = GraphToGrpc::parse_node_vector(nodes);
+        vector<NetworkEdge> respEdgesVector = GraphToGrpc::parse_edge_vector(edges);
+        // manpl->graph->getNodeVector()
+        *resp->mutable_nodes() = { respNodesVector.begin(), respNodesVector.end() };
+        *resp->mutable_edges() = { respEdgesVector.begin(), respEdgesVector.end() };
+
+        // Vertex vertex;
+        // vector<Vertex*> vertexs = manpl->getVertexes(vertex);
+        // for (auto& v: vertexs) {}
+    } catch (exception& e) {
+        return Status(StatusCode::ABORTED, e.what());
+    }
+    
+    return Status::OK;
+}
 
 Status ServiceImplementation::CreateSession(
     ServerContext *context,
@@ -111,6 +142,7 @@ Status ServiceImplementation::DeleteNode(
         Node* deleted = manpl->getNodeById(deletedId);
         GraphToGrpc::parse_node(deleted, resp->mutable_node());
         manpl->deleteNode(deletedId);
+        manpl->graph->storeVertexMap();
     } catch (exception& e) {
         return Status(StatusCode::ABORTED, e.what());
     }
@@ -168,6 +200,7 @@ Status ServiceImplementation::CreateEdge(
         Node* dest_node = manpl->getNodeById(dest_id);
         Edge* res_edge = manpl->createEdge(origin_id, dest_id, edge->properties, true);
         GraphToGrpc::parse_edge(res_edge, response->mutable_edge());
+        manpl->graph->storeVertexMap();
     } catch(exception& e) {
         return Status(StatusCode::ABORTED, e.what());
     }
@@ -194,7 +227,6 @@ Status ServiceImplementation::SearchNode(
             cout << "[ServiceImplementation] Not id in request" << endl;
             Node* tmpNode = new Node();
             cout << "[ServiceImplementation] Parsing node..." << endl;
-            // NetworkNode req_node = (NetworkNode)req->node();
             GrpcToGraph::parse_node(&req_node, tmpNode);
             cout << "[ServiceImplementation] Node parsed: " << tmpNode->id << endl;
             cout << "[ServiceImplementation] Aquiring vector" << endl;
@@ -204,6 +236,7 @@ Status ServiceImplementation::SearchNode(
             auto respNodes = GraphToGrpc::parse_node_vector(nodes);
             cout << "[ServiceImplementation] Vector parsed " << respNodes.size() << endl;
             *resp->mutable_nodes() = { respNodes.begin(), respNodes.end() };
+
         }
     } catch(exception& e) {
         return Status(StatusCode::NOT_FOUND, "NO ITEMS FOUND");

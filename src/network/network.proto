@@ -163,8 +163,8 @@ message NetworkGraphRequest {
 
 message NetworkGraphResponse {
     string token = 1;
-    NtNodeArr nodes = 2;
-    NtEdgeArr edges = 3;
+    repeated NetworkNode nodes = 2;
+    repeated NetworkEdge edges = 3;
 }
 
 service QueryService {

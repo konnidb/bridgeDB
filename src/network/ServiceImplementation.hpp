@@ -40,12 +40,19 @@ using network::SessionRequest;
 using network::SpanTreeReq;
 using network::SpanTreeResponse;
 using network::DeleteEdgeResponse;
+using network::NetworkGraphRequest;
+using network::NetworkGraphResponse;
 
-    class ServiceImplementation final : public QueryService::Service
+class ServiceImplementation final : public QueryService::Service
 {
 public:
     unordered_map<string, unique_ptr<Database>> dbs;
     unordered_map<string, unique_ptr<Manipulation>> manipulations;
+    Status GetGraph(
+        ServerContext*, 
+        const NetworkGraphRequest*,
+        NetworkGraphResponse*
+    ) override;
     Status CreateSession(
         ServerContext *context,
         const SessionRequest *request,
