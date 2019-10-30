@@ -117,7 +117,7 @@ Status ServiceImplementation::CreateSession(
     return Status::CANCELLED;
 };
 
-Status ServiceImplementation::ExecuteQuery(
+Status ServiceImplementation::ConfigNewDB(
     ServerContext *context,
     const Query *query,
     QueryResponse *response)

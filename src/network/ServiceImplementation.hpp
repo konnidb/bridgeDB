@@ -46,8 +46,6 @@ using network::NetworkGraphResponse;
 class ServiceImplementation final : public QueryService::Service
 {
 public:
-    unordered_map<string, unique_ptr<Database>> dbs;
-    unordered_map<string, unique_ptr<Manipulation>> manipulations;
     Status GetGraph(
         ServerContext*, 
         const NetworkGraphRequest*,
@@ -57,7 +55,7 @@ public:
         ServerContext *context,
         const SessionRequest *request,
         Session *response) override;
-    Status ExecuteQuery(
+    Status ConfigNewDB(
         ServerContext *context,
         const Query *query,
         QueryResponse *response) override;

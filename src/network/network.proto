@@ -169,7 +169,7 @@ message NetworkGraphResponse {
 
 service QueryService {
     rpc CreateSession (SessionRequest) returns (Session) {};
-    rpc ExecuteQuery (Query) returns (QueryResponse) {};
+    rpc ConfigNewDB (Query) returns (QueryResponse) {};
     rpc CreateNode (CreateNodeReq) returns (CreateNodeResponse) {};
     rpc DeleteNode (DeleteNodeReq) returns (DeleteNodeResponse) {};
     rpc CreateRelation (CreateRelationReq) returns (CreateRelationResponse) {};
