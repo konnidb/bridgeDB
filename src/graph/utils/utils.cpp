@@ -265,7 +265,7 @@ bool dirExists(string dir) {
 
 
 void createSubDir(string dir) {
-	if (dirExists(dir)) return;
+	//if (dirExists(dir)) return;
 #ifdef _WIN32
 	if (!CreateDirectory(dir.c_str(), NULL) && ERROR_ALREADY_EXISTS != GetLastError())
 		throw "Directory " + dir + " could not be created.";

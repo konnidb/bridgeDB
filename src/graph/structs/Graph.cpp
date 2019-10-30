@@ -408,7 +408,7 @@ void Graph::loadSchemaMap() {
 }
 
 long Graph::getNextVertexId() {
-	long max = -1;
+	long max = 0;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
 		if (it->second->id > max)
 			max = it->second->id;
@@ -417,7 +417,7 @@ long Graph::getNextVertexId() {
 }
 
 long Graph::getNextNodeId() {
-	long max = -1;
+	long max = 0;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
 		if (it->second->id > max)
 			max = it->second->id;
@@ -426,7 +426,7 @@ long Graph::getNextNodeId() {
 }
 
 long Graph::getNextEdgeId() {
-	long max = -1;
+	long max = 0;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
 		for (int i = 0; i < it->second->edgesVector.size(); i++)
 		{

@@ -51,7 +51,7 @@ void generates_semi_random_graph(string dbname) {
 	int nodeId = 0;
 	int edgeId = 0;
 	int vertexId = 0;
-	for (long i = 0; i < 16; i++)
+	for (long i = 0; i < 7; i++)
 	{
 		Node* n = new Node();
 		n->id = nodeId++;
@@ -102,11 +102,62 @@ void load_graph_test(string dbname) {
 	g->loadVertexMap(nv, ev);
 }
 
-string getSimpleNodesJson(string dbname){
-	Database* db = Database::getDatabase(dbname);
+
+
+void QuickSortById(vector<Node*>* toValidate, int min, int max) //1=asc -1=desc
+{
+	if (toValidate->size() == 0) return;
+	int p = (max + min) / 2;
+	double pivot;
+	if (toValidate->at(p)->id == NULL)
+		pivot = 0;
+	else
+		pivot = toValidate->at(p)->id;
+	int i = min - 1;
+	int j = max + 1;
+	do
+	{
+		double pivotMin = NULL;
+		double pivotMax = NULL;
+		do
+		{
+			i++;
+			if (toValidate->at(i)->id == NULL)
+				pivotMin = 0;
+			else
+				pivotMin = toValidate->at(i)->id;
+		} while (pivot > pivotMin);
+		do
+		{
+			j--;
+			if (toValidate->at(j)->id == NULL)
+				pivotMax = 0;
+			else
+				pivotMax = toValidate->at(j)->id;
+		} while (pivot < pivotMax);
+
+		if (i <= j)
+		{
+			Node* aux = toValidate->at(i);
+			toValidate->at(i) = toValidate->at(j);
+			toValidate->at(j) = aux;
+			i++;
+			j--;
+		}
+
+	} while (i <= j);
+	if (min < j)
+		QuickSortById(toValidate, min, j);
+	if (max > i)
+		QuickSortById(toValidate, i, max);
+}
+
+string getSimpleNodesJson(Graph* g){
 	string output= "";
-	for (unordered_map<Node*, Vertex*>::iterator it = db->graphMap->at(dbname)->vertexMap->begin(); it != db->graphMap->at(dbname)->vertexMap->end(); it++) {
-		string name = to_string(it->first->id);//it->first->properties["nombre"]
+	vector<Node*> nodeVector = g->getNodeVector();
+	QuickSortById(&nodeVector, 0, nodeVector.size()-1);
+	for (int i = 0; i < nodeVector.size(); i++){
+		string name = to_string(nodeVector[i]->id);//it->first->properties["nombre"]
 		if (output.empty()) {
 			output = "[";
 			output += "{ \"name\": \"" + name + "\" }";// , \"group\":  " + it->first->properties["group"] + " }";
@@ -117,10 +168,9 @@ string getSimpleNodesJson(string dbname){
 	return output;
 }
 
-string getSimpleLinksJson(string dbname) {
-	Database* db = Database::getDatabase(dbname);
+string getSimpleLinksJson(Graph* g) {
 	string output = "";
-	for (unordered_map<Node*, Vertex*>::iterator it = db->graphMap->at(dbname)->vertexMap->begin(); it != db->graphMap->at(dbname)->vertexMap->end(); it++) {
+	for (unordered_map<Node*, Vertex*>::iterator it = g->vertexMap->begin(); it != g->vertexMap->end(); it++) {
 		for (int i = 0; i < it->second->edgesVector.size(); i++)
 		{
 			Edge* e = it->second->edgesVector[i];
@@ -138,18 +188,121 @@ string getSimpleLinksJson(string dbname) {
 	return output;
 }
 
-void createDatasetHtml() {
-	string nodejson = getSimpleNodesJson("test");
-	string linkjson = getSimpleLinksJson("test");
+void createDatasetHtml(Graph* g, string path) {
+	string nodejson = getSimpleNodesJson(g);
+	string linkjson = getSimpleLinksJson(g);
 	string dataset = "var dataset = { nodes: " + nodejson + " , edges: " + linkjson + "};";
-	ofstream out("C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\bridgeDB\\html_test\\dataset.js");
+	ofstream out(path);
 	out << dataset;
 	out.close();
 }
 
+
+/*
+string getSimpleNodesJsonDG(DijkstraWrapper* dg, Graph* g) {
+	string output = "";
+	DijkstraWrapper* curr = dg;
+	while (curr->previousVertex != NULL) {
+		curr = curr->previousVertex;
+	}
+	for (unordered_map<Node*, Vertex*>::iterator it = g->vertexMap->begin(); it != g->vertexMap->end(); it++) {
+		string name = to_string(it->first->id);//it->first->properties["nombre"]
+		if (output.empty()) {
+			output = "[";
+			output += "{ \"name\": \"" + name + "\" }";// , \"group\":  " + it->first->properties["group"] + " }";
+		}
+		else
+			output += ",{ \"name\": \"" + name + "\" }";// , \"group\": " + it->first->properties["group"] + " }";
+	}
+	if (!output.empty()) output += "]";
+	return output;
+}
+
+string getSimpleLinksJsonDG(DijkstraWrapper* dg, Graph* g) {
+	string output = "";
+	DijkstraWrapper* curr = dg;
+	while (curr->previousVertex != NULL) {
+		Vertex* v = g->vertexMap->at(curr->previousVertex->node);
+		Edge* e = NULL;
+		for (long i = 0; i < v->edgesVector.size(); i++)
+		{
+			Edge* tmp = v->edgesVector.at(i)->targetNode();
+			if ( == curr->node) {
+
+			}
+		}
+		curr
+	}
+	for (unordered_map<Node*, Vertex*>::iterator it = g->vertexMap->begin(); it != g->vertexMap->end(); it++) {
+		for (int i = 0; i < it->second->edgesVector.size(); i++)
+		{
+			Edge* e = it->second->edgesVector[i];
+			if (output.empty()) {
+				output = "[";
+				output += "{ \"source\": " + to_string(e->originNode->id) + ", \"target\": " + to_string(e->targetNode->id) + "  , \"value\": " + e->properties["t"] + " }";
+			}
+			else
+				output += ",{ \"source\": " + to_string(e->originNode->id) + ", \"target\": " + to_string(e->targetNode->id) + " , \"value\": " + e->properties["t"] + " }";
+		}
+
+
+	}
+	if (!output.empty()) output += "]";
+	return output;
+}
+
+void createDatasetHtmlDG(DijkstraWrapper* dg, Graph* g, string path) {
+	string nodejson = getSimpleNodesJsonDG(dg, g);
+	string linkjson = getSimpleLinksJsonDG(dg, g);
+	string dataset = "var dataset = { nodes: " + nodejson + " , edges: " + linkjson + "};";
+	ofstream out(path);
+	out << dataset;
+	out.close();
+}*/
+
 long main() {
-	//generates_semi_random_graph("test2");
+	//generates_semi_random_graph("test5");
+	string dbName = "test5";
+	string graphName = "testGraph";
+	string path = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\bridgeDB\\html_test\\dataset.js";
+	Database* db = Database::getDatabase(dbName);
+	cout << "CONFIG EDGE DIR: " << db->buildSotrePath(dbName, ElementType::EDGE, false) << endl;
+	Definition* d = new Definition(db);
+	d->createGraph(graphName);
+	Graph* g = db->graphMap->at(graphName);
 	/*
+	(*db->cfg->configFileMap)[ConfigFileAttrbute::storeDirectory] = "C:\\Users\\cmarisca\\Documents\\CRISTINA\\proy\\";
+	g->storeSchemaMap();
+	g->storeVertexMap();
+	db->cfg->storeConfigFile();
+	//*/
+	Manipulation* m = new Manipulation(g);
+	Node* n1 = m->getNodeById(2);
+	createDatasetHtml(g, path);
+	Node* n2 = m->createNode(n1->properties);
+	createDatasetHtml(g, path);
+	m->createEdge(n1, n2, g->vertexMap->at(n1)->edgesVector.at(0)->properties, true);
+	createDatasetHtml(g, path);
+	DijkstraWrapper* dg1 = g->vertexMap->at(n1)->getDijkstraWrapper();
+	DijkstraWrapper* dg6 = m->UniformCostSearchById(dg1, 6, "t", NULL, NULL);
+	DijkstraWrapper* curr = dg6;
+	cout << endl << "ROOT: " << dg1->node->id<< endl << endl;
+	cout << endl << "RESULT!! " << dg6->node->id << endl << endl;
+	while (curr != NULL) {
+		cout << "Reversed path: " << curr->node->id << endl;
+		curr = curr->previousVertex;
+	}
+	m->deleteNode(n1);
+	createDatasetHtml(g, path);
+	//g->storeVertexMap();
+
+	cout << "SALE" << endl;
+	system("pause");
+}
+
+
+//line 226
+/*
 	string dbname = "test";
 	load_graph_test(dbname);
 	createDatasetHtml();
@@ -173,26 +326,15 @@ long main() {
 		cout << "current: " << curr->node->id << endl;
 		curr = curr->previousVertex;
 	}
-	
+
 	vector<Vertex*> pattern;
 	pattern.push_back(db->graphMap->at(dbname)->vertexMap->at(n));
 	vector<Vertex*>* resVec = m->getPathByPattern(pattern);
 	//*/
 
-	Database* db = Database::getDatabase("test2");
-	cout << "CONFIG EDGE DIR: " << db->buildSotrePath("test2", ElementType::EDGE, false) << endl;
-	Definition* d = new Definition(db);
-	d->createGraph("testGraph");
-	Graph* g = db->graphMap->at("testGraph");
-	Manipulation* m = new Manipulation(g);
-	Node* n1 = m->getNodeById(2);
-	Node* n2 = m->createNode(n1->properties);
-	m->createEdge(n1, n2, "", true);
-	g->storeVertexMap();
 
-	cout << "SALE" << endl;
-	system("pause");
-}
+
+
 /*search node(s), edge(s)
 -by id
 -by property

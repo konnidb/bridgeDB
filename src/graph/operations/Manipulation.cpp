@@ -408,6 +408,7 @@ DijkstraWrapper* Manipulation::UniformCostSearchById(DijkstraWrapper* root, int 
 
 void Manipulation::QuickSort(vector<DijkstraWrapper*>* toValidate, int min, int max, const short isShortest) //1=asc -1=desc
 {
+	if (toValidate->size() == 0) return;
 	int p = (max + min) / 2;
 	double pivot;
 	if (toValidate->at(p)->weight == NULL)
