@@ -25,9 +25,12 @@ Database::Database(string name) {
 }
 
 Database* Database::getDatabase(string name) {
+	cout << "[Database] Getting database" << endl;
 	if (Database::instances->find(name) == Database::instances->end()) {
+		cout << "[Database] Inside if" << endl;
 		Database* d = new Database(name);
 	}
+	cout << "[Database] Returning database" << endl;
 	return (*Database::instances)[name];
 }
 

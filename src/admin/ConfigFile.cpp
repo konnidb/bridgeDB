@@ -16,14 +16,17 @@ vector<string> str_to_vector(string input);
 string vector_to_str(vector<string> input);
 
 ConfigFileHandler::ConfigFileHandler(string databaseName) {
+	cout << "[ConfigFileHandler] Creating config file" << endl;
 	this->databaseName = databaseName;
 	this->configFileMap = new unordered_map<ConfigFileAttrbute, string>();
 	if (!fileExists(this->databaseName + ".cfg")) {
+		cout << "[ConfigFileHandler] Inside if" << endl;
 		(*this->configFileMap)[ConfigFileAttrbute::databaseName] = this->databaseName;
 		string slash = "/";
 #ifdef _WIN32
 		slash = "\\";
 #endif
+		cout << "[ConfigFileHandler] Creating configuration" << endl;
 		(*this->configFileMap)[ConfigFileAttrbute::storeDirectory] = "." + slash;
 		(*this->configFileMap)[ConfigFileAttrbute::backupDirectory] = "." + slash + this->databaseName + slash + "bkp" + slash;
 		(*this->configFileMap)[ConfigFileAttrbute::logDirectory] = "." + slash + "log" + slash;
@@ -34,8 +37,10 @@ ConfigFileHandler::ConfigFileHandler(string databaseName) {
 		(*this->configFileMap)[ConfigFileAttrbute::pageExtension] = ".bdb";
 		(*this->configFileMap)[ConfigFileAttrbute::graphList] = "";
 	}
-	else
+	else {
+		cout << "[ConfigFileHandler] Loading existing config file" << endl;
 		loadConfigFile();
+	}
 }
 
 void ConfigFileHandler::loadConfigFile() {
