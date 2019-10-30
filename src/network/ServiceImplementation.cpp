@@ -95,14 +95,20 @@ Status ServiceImplementation::CreateSession(
     rq_credentials.database = request->database();
     rq_credentials.graph = request->graph();
     if (AuthService::validate_credentials(rq_credentials)) {
+        cout << "Inside if" << endl;
         string token = AuthService::generate_token(rq_credentials);
         string* tkn = response->mutable_token();
         AuthData data = AuthService::get_auth_data(token);
-        auto handler = DBHandler::getManipulation(rq_credentials.database, rq_credentials.graph);
+        cout << "AuthData generated" << endl;
+        DBHandler::loadDatabase(rq_credentials.database, rq_credentials.graph);
         auto graph = Database::getDatabase(rq_credentials.database)->graphMap->at(rq_credentials.graph);
+        cout << "Graph aquired" << endl;
         auto node_vector = graph->loadNodeVector();
+        cout << "Nodes laoded" << endl;
         auto edge_vector = graph->loadEdgeVector(node_vector);
+        cout << "Edges loaded" << endl;
         graph->loadVertexMap(node_vector, edge_vector);
+        cout << "Vertex loaded" << endl;
         cout << token << " " << data.database_name << endl;
         *tkn = token;
         return Status::OK;
