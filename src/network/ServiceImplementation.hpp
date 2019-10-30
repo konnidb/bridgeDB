@@ -19,6 +19,11 @@ using network::CreateEdgeReq;
 using network::CreateEdgeResponse;
 using network::CreateNodeReq;
 using network::CreateNodeResponse;
+using network::CreateRelationReq;
+using network::CreateRelationResponse;
+using network::DeleteEdgeReq;
+using network::DeleteNodeReq;
+using network::DeleteNodeResponse;
 using network::GetPatternRequest;
 using network::GetPatternResponse;
 using network::NetworkEdge;
@@ -34,10 +39,9 @@ using network::Session;
 using network::SessionRequest;
 using network::SpanTreeReq;
 using network::SpanTreeResponse;
-using network::CreateRelationReq;
-using network::CreateRelationResponse;
+using network::DeleteEdgeResponse;
 
-class ServiceImplementation final : public QueryService::Service
+    class ServiceImplementation final : public QueryService::Service
 {
 public:
     unordered_map<string, unique_ptr<Database>> dbs;
@@ -74,6 +78,15 @@ public:
         ServerContext* ctx,
         const CreateRelationReq* req,
         CreateRelationResponse* response) override;
+    Status DeleteNode(
+        ServerContext *ctx,
+        const DeleteNodeReq *req,
+        DeleteNodeResponse *resp) override;
+    Status DeleteEdge(
+        ServerContext* ctx,
+        const DeleteEdgeReq* req,
+        DeleteEdgeResponse* resp
+    ) override;
     ServiceImplementation();
     ~ServiceImplementation();
 };

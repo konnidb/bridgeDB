@@ -45,12 +45,12 @@ NetworkEdge GraphToGrpc::parse_edge(Edge* edge, NetworkEdge* e) {
     return *e;
 }
 
-vector<NetworkNode*> GraphToGrpc::parse_node_vector(vector<Node*> nodes) {
-    vector<NetworkNode*> *n_nodes = new vector<NetworkNode*>();
+vector<NetworkNode> GraphToGrpc::parse_node_vector(vector<Node*> nodes) {
+    vector<NetworkNode> *n_nodes = new vector<NetworkNode>();
     for_each(nodes.begin(), nodes.end(), [n_nodes](Node* node) {
         NetworkNode* n_node = new NetworkNode();
         parse_node(node, n_node);
-        n_nodes->push_back(n_node);
+        n_nodes->push_back(*n_node);
     });
     return *n_nodes;
 };

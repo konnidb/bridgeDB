@@ -64,7 +64,7 @@ message CreateRelationResponse {
 }
 
 message DeleteNodeReq {
-    NetworkNode node = 1;
+    int64 nodeId = 1;
     string token = 2;
 }
 
@@ -74,7 +74,7 @@ message DeleteNodeResponse {
 }
 
 message DeleteEdgeReq {
-    NetworkEdge edge = 1;
+    int64 edgeId = 1;
     string token = 2;
 }
 

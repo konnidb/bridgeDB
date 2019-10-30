@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include "GrpcToGraph.h"
 #include "src/graph/structs/Edge.h"
 #include "src/graph/structs/Node.h"
@@ -40,14 +41,19 @@ vector<Edge *> GrpcToGraph::parse_edge_vector(vector<NetworkEdge *>n_edges){
 
 Node *GrpcToGraph::parse_node(NetworkNode* n, Node *node){
     auto fields = *n->mutable_fields();
-    auto props = &(node->properties);
     node->id = n->id();
-    for_each(fields.begin(), fields.end(), [props](pair<string, string> element) {
-        auto key = element.first;
-        auto value = element.second;
-        cout << key << ":" << value << endl;
-        (*props)[key] = value;
-    });
+    for (auto &pair : fields) {
+        cout << "[GrpcToGraph] Iterating parse_node: " << pair.first << ": " << pair.second << endl;
+        node->properties[pair.first] = pair.second;
+    }
+    cout << "[GrpcToGraph] Finished iteration" << endl;
+
+    // for_each(fields.begin(), fields.end(), [props](pair<string, string> element) {
+    //     auto key = element.first;
+    //     auto value = element.second;
+    //     cout << key << ":" << value << endl;
+    //     (*props)[key] = value;
+    // });
     return node;
 };
 

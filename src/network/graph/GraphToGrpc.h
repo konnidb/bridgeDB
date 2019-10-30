@@ -26,7 +26,7 @@ public:
     static NetworkNode parse_node(Node* node, NetworkNode*);
     static NetworkEdge parse_edge(Edge* edge, NetworkEdge*);
 
-    static vector<NetworkNode*> parse_node_vector(vector<Node*> nodes);
+    static vector<NetworkNode> parse_node_vector(vector<Node*> nodes);
     static NetworkNode* parse_node_array(Node* nodes);
     static vector<NetworkEdge*> parse_edge_vector(vector<Edge*> edges);
     static NetworkEdge* parse_edge_array(Edge* edges);

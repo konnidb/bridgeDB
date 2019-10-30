@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
+#include <vector>
 #include "network.grpc.pb.h"
 #include "network.pb.h"
 #include "auth/AuthService.hpp"
@@ -46,6 +47,10 @@ using network::SpanTreeReq;
 using network::SpanTreeResponse;
 using network::CreateRelationReq;
 using network::CreateRelationResponse;
+using network::DeleteNodeReq;
+using network::DeleteNodeResponse;
+using network::DeleteEdgeReq;
+using network::DeleteEdgeResponse;
 
 Status ServiceImplementation::CreateSession(
     ServerContext *context,
@@ -92,6 +97,34 @@ Status ServiceImplementation::ExecuteQuery(
     
     return Status::OK;
 };
+
+Status ServiceImplementation::DeleteNode(
+    ServerContext* ctx,
+    const DeleteNodeReq* req,
+    DeleteNodeResponse* resp
+) {
+    try {
+        string token = req->token();
+        AuthData data = AuthService::get_auth_data(token);
+        Manipulation* manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
+        long deletedId = (long)req->nodeid();
+        Node* deleted = manpl->getNodeById(deletedId);
+        GraphToGrpc::parse_node(deleted, resp->mutable_node());
+        manpl->deleteNode(deletedId);
+    } catch (exception& e) {
+        return Status(StatusCode::ABORTED, e.what());
+    }
+    return Status::OK;
+}
+
+Status ServiceImplementation::DeleteEdge(
+    ServerContext* ctx,
+    const DeleteEdgeReq* req,
+    DeleteEdgeResponse* resp
+) {
+    return Status::OK;
+}
+
 Status ServiceImplementation::CreateNode(
     ServerContext *context,
     const CreateNodeReq *req,
@@ -120,21 +153,24 @@ Status ServiceImplementation::CreateEdge(
     const CreateEdgeReq *req,
     CreateEdgeResponse *response)
 {
-    
-    AuthData data = AuthService::get_auth_data(req->token());
-    Manipulation* manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
-    cout << "CREATING EDGE";
-    NetworkEdge nt_req_edge = (NetworkEdge)req->edge();
-    Edge* edge = new Edge();
-    GrpcToGraph::parse_edge(&nt_req_edge, edge);
-    NetworkNode nt_rq_or = (NetworkNode)nt_req_edge.origin();
-    NetworkNode nt_rq_dst = (NetworkNode)nt_req_edge.destination();
-    long origin_id = (long)(nt_rq_or.id());
-    long dest_id = (long)(nt_rq_dst.id());
-    Node* or_node = manpl->getNodeById(origin_id);
-    Node* dest_node = manpl->getNodeById(dest_id);
-    Edge* res_edge = manpl->createEdge(origin_id, dest_id, edge->properties, true);
-    GraphToGrpc::parse_edge(res_edge, response->mutable_edge());
+    try {
+        AuthData data = AuthService::get_auth_data(req->token());
+        Manipulation* manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
+        cout << "CREATING EDGE";
+        NetworkEdge nt_req_edge = (NetworkEdge)req->edge();
+        Edge* edge = new Edge();
+        GrpcToGraph::parse_edge(&nt_req_edge, edge);
+        NetworkNode nt_rq_or = (NetworkNode)nt_req_edge.origin();
+        NetworkNode nt_rq_dst = (NetworkNode)nt_req_edge.destination();
+        long origin_id = (long)(nt_rq_or.id());
+        long dest_id = (long)(nt_rq_dst.id());
+        Node* or_node = manpl->getNodeById(origin_id);
+        Node* dest_node = manpl->getNodeById(dest_id);
+        Edge* res_edge = manpl->createEdge(origin_id, dest_id, edge->properties, true);
+        GraphToGrpc::parse_edge(res_edge, response->mutable_edge());
+    } catch(exception& e) {
+        return Status(StatusCode::ABORTED, e.what());
+    }
     return Status::OK;
 }
 
@@ -143,11 +179,11 @@ Status ServiceImplementation::SearchNode(
     const SearchNodeReq *req,
     SearchNodeResponse *resp)
 {
-    AuthData data = AuthService::get_auth_data(req->token());
-    Manipulation* manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
-    cout << "Manpl aquired" << endl;
-    const NetworkNode req_node = req->node();
     try {
+        AuthData data = AuthService::get_auth_data(req->token());
+        Manipulation* manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
+        cout << "Manpl aquired" << endl;
+        NetworkNode req_node = (NetworkNode)req->node();
         if (req_node.id()) {
             Node* res_node = manpl->getNodeById((long)req_node.id());
             cout << res_node->id << endl;
@@ -155,7 +191,19 @@ Status ServiceImplementation::SearchNode(
             GraphToGrpc::parse_node(res_node, resNode);
             resp->mutable_nodes()->AddAllocated(resNode);
         } else {
-            return Status::OK;
+            cout << "[ServiceImplementation] Not id in request" << endl;
+            Node* tmpNode = new Node();
+            cout << "[ServiceImplementation] Parsing node..." << endl;
+            // NetworkNode req_node = (NetworkNode)req->node();
+            GrpcToGraph::parse_node(&req_node, tmpNode);
+            cout << "[ServiceImplementation] Node parsed: " << tmpNode->id << endl;
+            cout << "[ServiceImplementation] Aquiring vector" << endl;
+            vector<Node*> nodes = manpl->getNodes(*tmpNode);
+            cout << "[ServiceImplementation] Vector aquired: " << nodes.size() << endl;
+            cout << "[ServiceImplementation] Parsing vector "<< endl;
+            auto respNodes = GraphToGrpc::parse_node_vector(nodes);
+            cout << "[ServiceImplementation] Vector parsed " << respNodes.size() << endl;
+            *resp->mutable_nodes() = { respNodes.begin(), respNodes.end() };
         }
     } catch(exception& e) {
         return Status(StatusCode::NOT_FOUND, "NO ITEMS FOUND");
