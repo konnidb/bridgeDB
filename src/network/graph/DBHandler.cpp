@@ -46,6 +46,7 @@ Manipulation* DBHandler::loadDatabase(string dbName, string graphName) {
 	cout << "Definition created" << endl;
 	def->loadGraph(graphName);
 	cout << "Load Database completed" << endl;
+	cout << "[DBHandler] Number of nodes: " << db->graphMap->at(graphName)->vertexMap->size() << endl;
 	return new Manipulation(db->graphMap->at(graphName));
 	// cout << "Created Manipulation" << endl;
 	// return db;

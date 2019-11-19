@@ -44,6 +44,7 @@ ConfigFileHandler::ConfigFileHandler(string databaseName) {
 }
 
 void ConfigFileHandler::loadConfigFile() {
+	cout << "[ConfigFile] Loading config file..." << endl;
 	string path = this->databaseName+".cfg";
 	ifstream* rf = new ifstream(path, ios::in | ios::binary);
 	if (!rf) cout << "CONFIG FILE: FAILED OPENING" << endl; //ErrorMap::error_loading_object->action();
@@ -51,6 +52,8 @@ void ConfigFileHandler::loadConfigFile() {
 	char* sizec = new char[sizeof(long)];
 	cout << "SIZE LONG: " << sizeof(long) << endl;
 	cout << "SIZE sizec: " << sizeof(sizec) << endl;
+
+	cout << "[ConfigFile] reading stream" << endl;
 	rf->read(sizec, sizeof(long));
 	long size = char_ptr_to_int(sizec);
 	props.resize(size);

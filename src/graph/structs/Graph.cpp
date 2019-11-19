@@ -19,9 +19,11 @@
 using namespace std;
 
 long char_ptr_to_int(char* c);
+vector<string> str_to_vector(string input);
+string vector_to_str(vector<string> input);
 
-template <class T >
-T* vectorFindByFn(vector<T*> vectorEvl, T* elmnt, bool(*compareFn)(T* elmnt1, T* elmnt2)) {
+template <class T>
+T *vectorFindByFn(vector<T *> vectorEvl, T *elmnt, bool (*compareFn)(T *elmnt1, T *elmnt2)) {
 	for (long i = 0; i < vectorEvl.size(); i++)
 	{
 		if (compareFn(elmnt, vectorEvl[i]))
@@ -61,26 +63,41 @@ Graph* Graph::getGraph(string databaseName, string graphName) {
 Graph::Graph(string databaseName, string graphName) {
 	this->databaseName = databaseName;
 	this->name = graphName;
+	cout << "[Graph] Creating maps" << endl;
 	vertexMap = new unordered_map<Node*, Vertex*>();
 	schemaMap = new unordered_map<long, Schema*>();
 	Database* db = Database::getDatabase(databaseName);
+	cout << "[Graph] Database auired" << endl;
 	vector<string> graphNames = db->getGraphNames();
 	if (db->graphMap->find(graphName) == db->graphMap->end() && find(graphNames.begin(), graphNames.end(), graphName) != graphNames.end()) {
+		cout << "[Graph] Inside constructor if" << endl;
 		this->loadSchemaMap();
 		vector<Node*> nv = this->loadNodeVector();
+		cout << "[Graph] node vector loaded" << endl;
 		vector<Edge*> ev = this->loadEdgeVector(nv);
+		cout << "[Graph] edge vector loaded" << endl;
 		this->loadVertexMap(nv, ev);
+	} else {	
+		auto cfgVector = str_to_vector(db->cfg->configFileMap->at(ConfigFileAttrbute::graphList));
+		cfgVector.push_back(graphName);
+		(*db->cfg->configFileMap)[ConfigFileAttrbute::graphList] = vector_to_str(cfgVector);
+		db->cfg->storeConfigFile();
 	}
+	cout<< "[Graph] Constructor done..." << endl;
 	(*db->graphMap)[graphName] = this;
 }
 
 void Graph::storeVertexMap() {
+	cout << "[GRaph] init storeVertexMap" << endl;
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
 	cout << "START BUILD STORE PATH" << endl;
 	string vertexDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::VERTEX, true);
+	cout << "[GRaph] DB aquired" << endl;
 	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
 	string vertexIndexPath = vertexDir + (*cfg->configFileMap)[ConfigFileAttrbute::vertexIndexFile];
+	cout << "[GRaph] Configs aquired" << endl;
 	IndexHandler index(vertexIndexPath);
+	cout << "[GRaph] Created IndexHandler" << endl;
 	string pageId = "";
 	string pagePath = "";
 	unordered_map<string, ofstream*> pageFiles;
@@ -90,11 +107,13 @@ void Graph::storeVertexMap() {
 		pageId = to_string(index.getNextPageId());
 		pagePath = vertexDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
+			cout << "[GRaph] inside if" << endl;
 			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::binary); //new ofstream(pagePath, ios::out | ios::app | ios::binary);
 			long size = this->vertexMap->size();
 			char* sizec = (char*)& size;
 			unsigned char* c = (unsigned char*)sizec;
 			pageFiles[pagePath]->write((char*)& size, sizeof(long));
+			cout << "[GRaph] written" << endl;
 		}
 	//}
 	//IF NOT EXISTS, CREATE NEW
@@ -114,8 +133,11 @@ void Graph::storeVertexMap() {
 		}
 	}
 	index.storeIndex();
+	cout << "[GRaph] index.storeIndex()" << endl;
 	this->storeEdgeVector(edgesVector);
+	cout << "[GRaph] Edge Vector: " << edgesVector.size() << endl;
 	this->storeNodeVector(nodesVector);
+	cout << "[GRaph] Node Vector: " << nodesVector.size() << endl;
 	closeStreamsOnMap(pageFiles);
 }
 
@@ -152,8 +174,11 @@ void Graph::storeEdgeVector(vector<Edge*> edgesVector) {
 }
 
 void Graph::storeNodeVector(vector<Node*> nodesVector) {
+	cout << "[Graph] Storenodevector init.." << endl;
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
+	cout << "[Graph] Configfilehandler aquired" << endl;
 	string nodeDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::NODE, true);
+	cout << "[Graph] Database aquired..." << endl;
 	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
 	string nodeIndexPath = nodeDir + (*cfg->configFileMap)[ConfigFileAttrbute::nodeIndexFile];
 	IndexHandler index(nodeIndexPath);
@@ -166,20 +191,29 @@ void Graph::storeNodeVector(vector<Node*> nodesVector) {
 		pageId = to_string(index.getNextPageId());
 		pagePath = nodeDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
+			cout << "[Graph] pagefiles if" << endl;
 			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::binary); //new ofstream(pagePath, ios::out | ios::app | ios::binary);
+			cout << "[Graph] pagefiles stream" << endl;
 			long size = nodesVector.size();
 			char* sizec = (char*)&size;
 			unsigned char* c = (unsigned char*)sizec;
 			pageFiles[pagePath]->write((char *)&size, sizeof(long));
+			cout << "[Graph] pagefiles written.." << endl;
 		}
-	//}
-	for (long i = 0; i < nodesVector.size(); i++) {
-		index.indexMap[to_string(nodesVector[i]->id)] = pageId;
-		SerializableNode* s = dynamic_cast<SerializableNode*>(nodesVector[i]->getSerializable(pagePath));
-		s->store(pageFiles[pagePath]);
+		cout << "[Graph] End pagefiles if" << endl;
+
+		//}
+		for (long i = 0; i < nodesVector.size(); i++)
+		{
+			index.indexMap[to_string(nodesVector[i]->id)] = pageId;
+			SerializableNode *s = dynamic_cast<SerializableNode *>(nodesVector[i]->getSerializable(pagePath));
+			s->store(pageFiles[pagePath]);
 	}
+	cout << "[Graph] Before storeindex" << endl;
 	index.storeIndex();
+	cout << "[Graph] storeindex finished" << endl;
 	closeStreamsOnMap(pageFiles);
+	cout << "[Graph] streams closed" << endl;
 }
 
 void Graph::storeSchemaMap() {

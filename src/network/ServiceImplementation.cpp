@@ -100,15 +100,11 @@ Status ServiceImplementation::CreateSession(
         string* tkn = response->mutable_token();
         AuthData data = AuthService::get_auth_data(token);
         cout << "AuthData generated" << endl;
-        DBHandler::loadDatabase(rq_credentials.database, rq_credentials.graph);
-        auto graph = Database::getDatabase(rq_credentials.database)->graphMap->at(rq_credentials.graph);
+        cout << "[ServiceImplementation] Retrieving database from CreateSession" << endl;
+        auto db = Database::getDatabase(rq_credentials.database);
+        cout << "[ServiceImplementation] Database retrieved" << endl;
+        auto graph = Graph::getGraph(rq_credentials.database, rq_credentials.graph);
         cout << "Graph aquired" << endl;
-        auto node_vector = graph->loadNodeVector();
-        cout << "Nodes laoded" << endl;
-        auto edge_vector = graph->loadEdgeVector(node_vector);
-        cout << "Edges loaded" << endl;
-        graph->loadVertexMap(node_vector, edge_vector);
-        cout << "Vertex loaded" << endl;
         cout << token << " " << data.database_name << endl;
         *tkn = token;
         return Status::OK;
@@ -125,9 +121,9 @@ Status ServiceImplementation::ExecuteQuery(
     try {
         string token = (string)query->token();
         AuthData authData = AuthService::get_auth_data(token);
-        DBHandler::createConfigFile(authData.database_name, authData.graph_name);
-        Manipulation* manpl = DBHandler::loadDatabase(authData.database_name, authData.graph_name);
-        // Manipulation* man = 
+        auto db = Database::getDatabase(authData.database_name);
+        db->cfg->storeConfigFile();
+        cout << "[ServiceImplementation] Created Config File" << endl;
     } catch(exception& e) {
         return Status(StatusCode::ABORTED, "Error creating config file");
     }

@@ -20,7 +20,9 @@ using namespace std;
 Database::Database(string name) {
 	(*Database::instances)[name] = this;
 	this->name = name;
+	cout << "[Database] Creating new Config handler object"<< endl;
 	this->cfg = new ConfigFileHandler(name);
+	cout << "[Database] ConfigHandler object created" << endl;
 	graphMap = new unordered_map<string,  Graph*>();
 }
 
