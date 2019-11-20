@@ -16,14 +16,23 @@ SerializableEdge::SerializableEdge() {
 
 //SerializableEdge::~SerializableEdge() {}
 
-Serializable* Edge::getSerializable(string path) {
+SerializableEdge* Edge::getSerializable(string path) {
+	cout << "[Edge::GetSerializable] init" << endl;
 	SerializableEdge* serializable = new SerializableEdge();
+	cout << "[Edge::GetSerializable] SerializableEdge object created" << endl;
 	serializable->id = this->id;
+	cout << "[Edge::GetSerializable] id set!" << endl;
 	serializable->path = path;
-	serializable->schemaId = this->schema != NULL ? this->schema->id : -1;
+	cout << "[Edge::GetSerializable] path set" << endl;
+	// serializable->schemaId = this->schema != NULL ? this->schema->id : -1;
+	cout << "[Edge::GetSerializable] schema set!" << endl;
 	serializable->properties = this->properties;
+	cout << "[Edge::GetSerializable] properties set!" << endl;
 	serializable->originNode = this->originNode->id;
+	cout << "[Edge::GetSerializable] origin node! " << serializable->originNode << endl;
 	serializable->targetNode = this->targetNode->id;
+	cout << "[Edge::GetSerializable] targetNode set! " << serializable->targetNode << endl;
+	cout << "[Edge::GetSerializable] Finish" << endl;
 	return serializable;
 }
 

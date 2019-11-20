@@ -15,11 +15,11 @@ SerializableNode::SerializableNode() {
 
 //SerializableNode::~SerializableNode() {}
 
-Serializable* Node::getSerializable(string path) {
+SerializableNode* Node::getSerializable(string path) {
 	SerializableNode* serializable = new SerializableNode();
 	serializable->path = path;
 	serializable->id = this->id;
-	serializable->schemaId = this->schema!=NULL? this->schema->id:-1;
+	// serializable->schemaId = this->schema!=NULL? this->schema->id:-1;
 	serializable->properties = properties;
 	return serializable;
 }
@@ -54,6 +54,7 @@ void SerializableNode::load(ifstream* streamObj) {
 }
 
 void SerializableNode::store(ofstream* streamObj) {
+	cout << "[Node] store init" << endl;
 	ofstream* wf;
 	if (streamObj == NULL)
 		wf = new ofstream(this->path, ios::out | ios::binary);
@@ -71,6 +72,7 @@ void SerializableNode::store(ofstream* streamObj) {
 		wf->close();
 		if (!wf->good()) cout << "NODE STORE: FAILED CLOSING" << endl; //ErrorMap::error_loading_object->action();
 	}
+	cout << "[Node] store exit" << endl;
 }
 
 Node::Node() {

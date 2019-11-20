@@ -11,7 +11,7 @@ SerializableVertex::SerializableVertex() {
 
 //SerializableVertex::~SerializableVertex() {}
 
-Serializable* Vertex::getSerializable(string path) {
+SerializableVertex* Vertex::getSerializable(string path) {
 	SerializableVertex* serializable = new SerializableVertex();
 	serializable->path = path;
 	serializable->id = this->id;

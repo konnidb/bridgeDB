@@ -19,7 +19,7 @@ public:
 	Schema * schema;
 	long id;
 	unordered_map<string, string> properties;
-	Serializable* getSerializable(string path);
+	SerializableNode* getSerializable(string path);
 	//vector<Edge*> test;
 	Node();
 	//~Node();

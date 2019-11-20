@@ -190,19 +190,26 @@ Status ServiceImplementation::CreateEdge(
     try {
         AuthData data = AuthService::get_auth_data(req->token());
         Manipulation* manpl = DBHandler::loadDatabase(data.database_name, data.graph_name);
-        cout << "CREATING EDGE";
+        cout << "CREATING EDGE" << endl;
         NetworkEdge nt_req_edge = (NetworkEdge)req->edge();
         Edge* edge = new Edge();
+        cout << "[ServiceImplementation] new edge created" << endl;
         GrpcToGraph::parse_edge(&nt_req_edge, edge);
         NetworkNode nt_rq_or = (NetworkNode)nt_req_edge.origin();
         NetworkNode nt_rq_dst = (NetworkNode)nt_req_edge.destination();
+        cout << "[ServiceImplementation] parsed nodes and edge" << endl;
         long origin_id = (long)(nt_rq_or.id());
         long dest_id = (long)(nt_rq_dst.id());
         Node* or_node = manpl->getNodeById(origin_id);
         Node* dest_node = manpl->getNodeById(dest_id);
+        cout << "[ServiceImplementation] Nodes retreived from engine" << endl;
+        cout << "[ServiceImplementation] about te create edge" << endl;
         Edge* res_edge = manpl->createEdge(origin_id, dest_id, edge->properties, true);
+        cout << "[ServiceImplementation] Edge Created!" << endl;
         GraphToGrpc::parse_edge(res_edge, response->mutable_edge());
+        cout << "[ServiceImplementation] About to store vertex map" << endl;
         manpl->graph->storeVertexMap();
+        cout << "[ServiceImplementation] Vertex map stored" << endl;
     } catch(exception& e) {
         return Status(StatusCode::ABORTED, e.what());
     }

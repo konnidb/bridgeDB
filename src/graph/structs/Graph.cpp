@@ -122,7 +122,7 @@ void Graph::storeVertexMap() {
 	for (unordered_map<Node*, Vertex*>::iterator it = this->vertexMap->begin(); it != this->vertexMap->end(); it++) {
 		//if(index.indexMap.find(to_string(it->second->id))==index.indexMap.end())
 		index.indexMap[to_string(it->second->id)] = pageId;
-		SerializableVertex* s = dynamic_cast<SerializableVertex*>(it->second->getSerializable(pagePath));
+		SerializableVertex* s = it->second->getSerializable(pagePath);
 		s->store(pageFiles[pagePath]); 
 		if (find(nodesVector.begin(), nodesVector.end(), it->first) == nodesVector.end())
 			nodesVector.push_back(it->first);
@@ -142,12 +142,16 @@ void Graph::storeVertexMap() {
 }
 
 void Graph::storeEdgeVector(vector<Edge*> edgesVector) {
+	cout << "[Graph] Store Edge Vector init" << endl;
 	ConfigFileHandler* cfg = getConfigFileHandler(this->databaseName);
+	cout << "[Graph] Config file aquired storeEdgeVector" << endl;
 	string edgeDir = Database::getDatabase(this->databaseName)->buildSotrePath(this->name, ElementType::EDGE, true);
+	cout << "[Graph::StoreEdgeVector] store path built!" << endl;
 	string pageExtension = (*cfg->configFileMap)[ConfigFileAttrbute::pageExtension];
 	string edgeIndexPath = edgeDir + (*cfg->configFileMap)[ConfigFileAttrbute::edgeIndexFile];
 	bool newPage = false;
 	IndexHandler index(edgeIndexPath);
+	cout << "[Graph::StoreEdgeVector] Index Handler object created" << endl;
 	string pageId = "";
 	string pagePath = "";
 	unordered_map<string, ofstream*> pageFiles;
@@ -157,21 +161,29 @@ void Graph::storeEdgeVector(vector<Edge*> edgesVector) {
 		pageId = to_string(index.getNextPageId());
 		pagePath = edgeDir + pageId + pageExtension;
 		if (pageFiles.find(pagePath) == pageFiles.end()) {
+			cout << "[Graph::StoreEdgeVector] Inside pageFiles find if" << endl;
 			pageFiles[pagePath] = new ofstream(pagePath, ios::out | ios::binary); //new ofstream(pagePath, ios::out | ios::app | ios::binary);
 			long size = edgesVector.size();
 			char* sizec = (char*)& size;
 			unsigned char* c = (unsigned char*)sizec;
 			pageFiles[pagePath]->write((char*)& size, sizeof(long));
+			cout << "[Graph::StoreEdgeVector] pageFiles written!" << endl;
 		}
 	//}
-	for (long i = 0; i < edgesVector.size(); i++) {
-		index.indexMap[to_string(edgesVector[i]->id)] = pageId;
-		SerializableEdge* s = dynamic_cast<SerializableEdge*>(edgesVector[i]->getSerializable(pagePath));
-		s->store(pageFiles[pagePath]);
+		cout << "[Graph::StoreEdgeVector] End if" << endl;
+		for (long i = 0; i < edgesVector.size(); i++)
+		{
+			cout << "[Graph::StoreEdgeVector] iteratin edgesVector, position: " << i << endl;
+			index.indexMap[to_string(edgesVector[i]->id)] = pageId;
+			SerializableEdge *s = edgesVector[i]->getSerializable(pagePath);
+			cout << "[Graph::StoreEdgeVector] SerializableEdge aquired!" << endl;
+			s->store(pageFiles[pagePath]);
+			cout << "[Graph::StoreEdgeVector] Stored pageFiles at pagePath: " << pagePath << endl;
 	}
 	index.storeIndex();
+	cout << "[Graph::StoreEdgeVector] Index Stored" << endl;
 	closeStreamsOnMap(pageFiles);
-}
+	cout << "[Graph::StoreEdgeVector] Store Edge Vector finished!" << endl;}
 
 void Graph::storeNodeVector(vector<Node*> nodesVector) {
 	cout << "[Graph] Storenodevector init.." << endl;
@@ -205,10 +217,14 @@ void Graph::storeNodeVector(vector<Node*> nodesVector) {
 		//}
 		for (long i = 0; i < nodesVector.size(); i++)
 		{
+			cout << "[Graph] nodesVector iterating... " << to_string(nodesVector[i]->id) << endl;
 			index.indexMap[to_string(nodesVector[i]->id)] = pageId;
-			SerializableNode *s = dynamic_cast<SerializableNode *>(nodesVector[i]->getSerializable(pagePath));
+			cout << "[Graph] about to do Dynamic casting..." << endl;
+			SerializableNode *s = nodesVector[i]->getSerializable(pagePath);
+			cout << "[Graph] dynamic cast done..." << endl;
 			s->store(pageFiles[pagePath]);
-	}
+			cout << "[Graph] Stored properly..." << endl;	
+		}
 	cout << "[Graph] Before storeindex" << endl;
 	index.storeIndex();
 	cout << "[Graph] storeindex finished" << endl;

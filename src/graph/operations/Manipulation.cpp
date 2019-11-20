@@ -28,16 +28,27 @@ Node* Manipulation::createNode(string properties) {
 	return Manipulation::createNode(props);
 }
 Edge* Manipulation::createEdge(Node* originNode, Node* targetNode, unordered_map<string, string> properties, bool isDigraph) {
-	if (originNode == NULL || targetNode == NULL)
+	cout << "[Manipulation] CreteEdge Init 2" << endl;
+	if (originNode == NULL || targetNode == NULL) {
+		cout << "[Manipulation] Origin or target node NULL" << endl;
 		return NULL;
-	long id = this->graph->getNextEdgeId();
-	Edge* e = new Edge(id, properties, originNode, targetNode); 
-	this->graph->vertexMap->at(originNode)->edgesVector.push_back(e);
-	if (!isDigraph) {
-		long id2 = this->graph->getNextEdgeId();
-		Edge* e2 = new Edge(id2, properties, targetNode, originNode);
-		this->graph->vertexMap->at(targetNode)->edgesVector.push_back(e2);
 	}
+	long id = this->graph->getNextEdgeId();
+	cout << "[Manipulation] Next edge id retrieved" << endl;
+	Edge* e = new Edge(id, properties, originNode, targetNode);
+	cout << "[Manipulation] New edge object created" << endl;
+	this->graph->vertexMap->at(originNode)->edgesVector.push_back(e);
+	cout << "[Manipulation] Edge push back done!" << endl;
+	if (!isDigraph) {
+		cout << "[Manipulation] Inside of CreateEdge directed graph" << endl;
+		long id2 = this->graph->getNextEdgeId();
+		cout << "[Manipulation] second id retrieved from graph" << endl;
+		Edge* e2 = new Edge(id2, properties, targetNode, originNode);
+		cout << "[Manipulation] New edge object created for directed graph" << endl;
+		this->graph->vertexMap->at(targetNode)->edgesVector.push_back(e2);
+		cout << "[Manipulation] Edge push back done for directed graph!" << endl;
+	}
+	cout << "[Manipulation] Returning edge" << endl;
 	return e;
 }
 
@@ -47,15 +58,18 @@ Edge* Manipulation::createEdge(Node * originNode, Node * targetNode, string prop
 }
 
 Edge* Manipulation::createEdge(long originNodeId, long targetNodeId, unordered_map<string, string> properties, bool isDigraph) {
+	cout << "[Manipulation] CreteEdge Init..." << endl;
 	Node* originNode = NULL;
 	Node* targetNode = NULL;
 	for (unordered_map<Node*, Vertex*>::iterator it = this->graph->vertexMap->begin(); it != this->graph->vertexMap->end(); it++)
 	{
+		cout << "[Manipulation] Iterating in unordered map values" << endl;
 		if (it->first->id == originNodeId)
 			originNode = it->first;
 		if (it->first->id == targetNodeId)
 			targetNode = it->first;
 	}
+
 	return Manipulation::createEdge(originNode, targetNode, properties, isDigraph);
 }
 Edge* Manipulation::createEdge(long originNodeId, long targetNodeId, string properties, bool isDigraph) {

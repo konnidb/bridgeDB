@@ -23,7 +23,7 @@ public:
 	long id;
 	Node * node;
 	vector<Edge *> edgesVector;
-	Serializable* getSerializable(string path);
+	SerializableVertex* getSerializable(string path);
 	Vertex();
 	~Vertex();
 	Vertex(long id, Node * node);

@@ -21,5 +21,5 @@ public:
 class Element {
 public:
 	long id;
-	virtual Serializable* getSerializable(string path);
+	Serializable* getSerializable(string path);
 };
