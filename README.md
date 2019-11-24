@@ -35,3 +35,12 @@ In BridgeDB we have three concepts needed to operate on the database.
 
 Every time you create an instance of BridgeDB you need to create a token using the RPC method called `CreateSession`. This method generates a token using a SHA256 algorithm. After the database will be configured and you can start to perform operations, operations defined in the `src/network/network.proto` file.
 
+Once you have created your session in the previous step your token will containt certain information about the Database name that you will be performing operations and also the Graph were the information will be stored.
+
+Similar to the concept of documents in NoSQL databases such as MongoDB we manage the conept of Graphs, one graph is independant of another, but a database could have multple graphs inside. Which graph will you be working with will depend on the authentication data used to create your token.
+
+Is important to note before you start creating relations between multiple vertex that we have a difference between a Node and a Vertex.
+
+A Node is the unit of information, is where data is truly stored, your nodes contain the information you actually want to be stored while a Vertex is a wrapper for a Node and the Edges it could have.
+
+<strong>Important:</strong> we originally planed this to work only with directed Graphs, so if you plan to configure the databases using a Non-direceted edges, what our engine actually does is create another Edge that goes from the Destination Node to the Origin Node with the exact same properties as the original.
