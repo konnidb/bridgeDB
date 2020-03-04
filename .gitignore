@@ -5,3 +5,9 @@
 *.out
 .vscode
 *.dev
+*.pb.h
+*.pb.cc
+*.o
+CMTest/.vs/
+CMTest/CMTest/Debug/
+*.file

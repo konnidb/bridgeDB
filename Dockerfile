@@ -1,5 +1,8 @@
-FROM gcc
-RUN apt-get install -y lex bison
-
-RUN mkdir -p bridgedb
-COPY . /bridgedb
+FROM grpc/cxx AS builder
+RUN mkdir bridgedb
+WORKDIR /bridgedb
+ADD . .
+WORKDIR /bridgedb/src/network
+RUN make
+WORKDIR /bridgedb
+CMD [ "./test" ]

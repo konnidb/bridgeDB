@@ -1,21 +1,21 @@
 jobs:
   build:
     docker:
-      - image: "debian:stretch"
+      - image: "grpc/cxx:latest"
     steps:
       - checkout
       - run:
-          name: Upgrade
-          command: 'apt-get update'
+          name: cd
+          command: 'cd src/network'
       - run:
-          name: Installing SUDO
-          command: 'apt-get install -y sudo'
-      - run:
-          name: Installing Flex and Bison
-          command: 'sudo apt-get install -y gcc g++ flex bison'
-      - run:
-          name: Installing CMAKE
-          command: 'sudo apt-get install -y cmake'
-      - run:
-          name: Running make for langbuilder
-          command: make -f MAKEFILE
+          name: 
+          command: 'make network'
+    #   - run:
+    #       name: Installing Flex and Bison
+    #       command: 'sudo apt-get install -y gcc g++ flex bison'
+    #   - run:
+    #       name: Installing CMAKE
+    #       command: 'sudo apt-get install -y cmake'
+    #   - run:
+    #       name: Running make for langbuilder
+    #       command: make -f MAKEFILE
